@@ -35,14 +35,17 @@
 |---|---|
 | **Project URL** (`https://xxxx.supabase.co`) | `NEXT_PUBLIC_SUPABASE_URL` |
 | **anon / public key** | `NEXT_PUBLIC_SUPABASE_ANON_KEY` |
-| **service_role key** | `SUPABASE_SERVICE_ROLE_KEY` — понадобится позже, но пусть лежит |
 
 `anon key` попадает в браузер — это нормально, его защищает RLS.
-`service_role key` не должен попасть ни в браузер, ни в git. Никогда.
+
+**`service_role key` пока не трогайте.** В `CLAUDE.md` он перечислен, но на этапе 1 код им не
+пользуется — этот ключ обходит RLS и читает любые данные любого студента. Заводить его в Vercel
+«на будущее» значит держать открытым лишний риск без пользы. Добавим, когда появится этап,
+которому он действительно нужен.
 
 ### 1.4 Локальный файл ключей
 
-В папке проекта скопируйте `.env.example` в `.env.local` и подставьте значения.
+В папке проекта скопируйте `.env.example` в `.env.local` и подставьте URL и anon key. Строку `SUPABASE_SERVICE_ROLE_KEY` оставьте пустой.
 `.env.local` уже в `.gitignore` — в GitHub он не уедет.
 
 ---
@@ -68,15 +71,15 @@ git push -u origin main
 1. [vercel.com/new](https://vercel.com/new) → **Import Git Repository** → выберите `english-studio`.
    Если репозитория нет в списке — **Adjust GitHub App Permissions** и дайте доступ к нему.
 2. Framework Preset определится как **Next.js**. Root Directory — `./`. Ничего не меняйте.
-3. Разверните **Environment Variables** и добавьте три переменные — те же, что в `.env.local`:
+3. Разверните **Environment Variables** и добавьте две переменные — те же, что в `.env.local`:
 
    ```
    NEXT_PUBLIC_SUPABASE_URL
    NEXT_PUBLIC_SUPABASE_ANON_KEY
-   SUPABASE_SERVICE_ROLE_KEY
+   (service_role пока не добавляем — см. п. 1.3)
    ```
 
-   Это самая частая причина «локально работает, на сайте нет». Проверьте, что все три на месте
+   Это самая частая причина «локально работает, на сайте нет». Проверьте, что обе на месте
    и без лишних пробелов по краям.
 4. **Deploy**. Через 1–2 минуты получите адрес `english-studio-xxxx.vercel.app`. Откройте его —
    должен открыться тёмно-зелёный экран входа.
