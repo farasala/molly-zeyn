@@ -41,7 +41,7 @@ CLAUDE.md                            ← this file
 SETUP.md                             ← human checklist: accounts, domain, DNS, deploy
 schema.sql                           ← run this in Supabase SQL editor (stage 1)
 content/english-studio-content.json  ← ALL course content. Source of truth.
-audio/el/*.mp3                       ← 92 recordings (ElevenLabs, one voice)
+public/audio/el/*.mp3                ← 92 recordings (ElevenLabs, one voice), served by the app
 reference/prototype.dc.html          ← working HTML prototype of the whole UI
 reference/_ds/                       ← design system: tokens, fonts, styles, component bundle
 reference/courses/                   ← how the prototype loads content (read for structure)
@@ -111,10 +111,17 @@ const slug = (t: string) =>
 - listening exercise → `slug(ex.text)`
 - speaking model answer → `slug(speak.model)`
 
-All 92 files exist and cover 100% of units 1–2. Upload them to the public Storage bucket
-`audio` under `el/<slug>.mp3` and play with a plain `<audio>` element.
+All 92 files exist and cover 100% of units 1–2. Play them with a plain `<audio>` element.
 **Never fall back to browser speech synthesis** — one voice only. If a file is missing, hide
 the play button instead.
+
+**Where they are served from (changed in stage 2).** The files live in `public/audio/el/` and
+ship with the app, served from the Vercel CDN. The Storage bucket `audio` is created and public,
+but writing to it needs the service-role key, which this app must never hold — so the upload
+cannot be automated from here. To move to the bucket later: upload the folder in the Supabase
+dashboard, then set `NEXT_PUBLIC_AUDIO_BASE` to
+`https://<project>.supabase.co/storage/v1/object/public/audio/el`. Nothing else changes;
+`lib/audio.ts` reads that one variable.
 
 ---
 
