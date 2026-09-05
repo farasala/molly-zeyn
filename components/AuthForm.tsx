@@ -2,8 +2,7 @@
 
 import { useActionState, useState } from 'react';
 import { login, signUp } from '@/app/auth-actions';
-import { emptyAuthState, type AuthState } from '@/lib/auth-state';
-import type { Role } from '@/lib/auth';
+import { emptyAuthState, type AuthState, type Role } from '@/lib/auth-state';
 
 const ROLES: { id: Role; label: string }[] = [
   { id: 'student', label: 'Student' },

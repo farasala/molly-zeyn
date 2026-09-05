@@ -3,8 +3,7 @@
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
-import { emptyAuthState, type AuthState } from '@/lib/auth-state';
-import type { Role } from '@/lib/auth';
+import { emptyAuthState, type AuthState, type Role } from '@/lib/auth-state';
 
 const EMAIL = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
 const MIN_PASSWORD = 6;

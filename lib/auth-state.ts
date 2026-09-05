@@ -1,4 +1,5 @@
-import type { Role } from '@/lib/auth';
+/** Student or teacher — the only two roles the schema allows. */
+export type Role = 'student' | 'teacher';
 
 /**
  * Shape passed between the auth form and its server actions.

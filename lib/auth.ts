@@ -1,7 +1,6 @@
 import { redirect } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
-
-export type Role = 'student' | 'teacher';
+import type { Role } from '@/lib/auth-state';
 
 export type Profile = {
   id: string;
