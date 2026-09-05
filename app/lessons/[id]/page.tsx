@@ -82,8 +82,9 @@ export default async function LessonPage({ params, searchParams }: Props) {
     <div className="shell">
       <AppHeader user={account.user} />
 
-      <div className="page">
-        <section className={`lesson-head accent-${unit.accent}`}>
+      {/* the accent lives on the page so the flashcard and badges all share it */}
+      <div className={`page accent-${unit.accent}`}>
+        <section className="lesson-head">
           <div className="lesson-head-top">
             <div className="lesson-identity">
               <span className="lesson-badge">{lesson.id}</span>
