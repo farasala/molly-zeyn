@@ -1,7 +1,7 @@
-@font-face{font-family:'Montserrat';font-weight:100 900;font-style:normal;font-display:swap;src:url('/fonts/Montserrat.ttf') format('truetype-variations'),url('/fonts/Montserrat.ttf') format('truetype');}
-@font-face{font-family:'Montserrat';font-weight:100 900;font-style:italic;font-display:swap;src:url('/fonts/Montserrat-Italic.ttf') format('truetype-variations'),url('/fonts/Montserrat-Italic.ttf') format('truetype');}
+/* Growland typography tokens. Montserrat itself is loaded by next/font in app/layout.tsx,
+   which exposes it as --font-montserrat; the fallback keeps a locally installed copy usable. */
 :root{
---font-base:'Montserrat',-apple-system,'Segoe UI',sans-serif; /* @kind font */
+--font-base:var(--font-montserrat),'Montserrat',-apple-system,'Segoe UI',sans-serif; /* @kind font */
 --fw-regular:400; /* @kind other */
 --fw-medium:500; /* @kind other */
 --fw-semibold:600; /* @kind other */
