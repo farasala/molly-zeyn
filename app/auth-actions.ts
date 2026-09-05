@@ -17,6 +17,28 @@ function readRole(formData: FormData): Role {
   return read(formData, 'role') === 'teacher' ? 'teacher' : 'student';
 }
 
+/**
+ * Turns a Supabase auth error into something a student can act on.
+ * Raw messages are never shown: they are English jargon at best and leak
+ * internals at worst. Returns null when the caller has a better message.
+ */
+function describeAuthError(message: string): string | null {
+  const text = message.toLowerCase();
+
+  if (
+    text.includes('fetch failed') ||
+    text.includes('failed to fetch') ||
+    text.includes('network') ||
+    text.includes('timeout')
+  ) {
+    return 'Could not reach the server. Check your connection and try again.';
+  }
+  if (text.includes('rate limit') || text.includes('too many')) {
+    return 'Too many attempts. Wait a minute, then try again.';
+  }
+  return null;
+}
+
 export async function login(_prev: AuthState, formData: FormData): Promise<AuthState> {
   const email = read(formData, 'email').trim().toLowerCase();
   const password = read(formData, 'password');
@@ -43,7 +65,9 @@ export async function login(_prev: AuthState, formData: FormData): Promise<AuthS
     return {
       ...base,
       status: 'error',
-      message: 'Email or password is not right. Check both and try again.',
+      message:
+        describeAuthError(error.message) ??
+        'Email or password is not right. Check both and try again.',
     };
   }
 
@@ -88,7 +112,20 @@ export async function signUp(_prev: AuthState, formData: FormData): Promise<Auth
         message: 'That email is already registered. Log in instead.',
       };
     }
-    return { ...base, status: 'error', message: `${error.message} Please try again.` };
+    if (text.includes('password')) {
+      return {
+        ...base,
+        status: 'error',
+        message: `Password needs at least ${MIN_PASSWORD} characters. Add a few more.`,
+      };
+    }
+    return {
+      ...base,
+      status: 'error',
+      message:
+        describeAuthError(error.message) ??
+        'Could not create the account. Try again in a moment.',
+    };
   }
 
   // Supabase returns a user with no identities when the email is already taken
