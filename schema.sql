@@ -29,6 +29,10 @@ create trigger on_auth_user_created
   after insert on auth.users
   for each row execute function public.handle_new_user();
 
+-- Nothing should be able to call the trigger function over the REST API.
+-- Postgres does not check EXECUTE for trigger functions, so the trigger keeps working.
+revoke execute on function public.handle_new_user() from anon, authenticated, public;
+
 -- ============================================================ groups
 create table if not exists public.groups (
   id         uuid primary key default gen_random_uuid(),
