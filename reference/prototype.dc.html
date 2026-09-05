@@ -1,0 +1,1483 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/growland-design-system-5ed90c33-fcb9-468f-ac3b-422661632259/tokens/colors.css">
+<link rel="stylesheet" href="_ds/growland-design-system-5ed90c33-fcb9-468f-ac3b-422661632259/tokens/typography.css">
+<link rel="stylesheet" href="_ds/growland-design-system-5ed90c33-fcb9-468f-ac3b-422661632259/tokens/spacing.css">
+<link rel="stylesheet" href="_ds/growland-design-system-5ed90c33-fcb9-468f-ac3b-422661632259/tokens/radius.css">
+<link rel="stylesheet" href="_ds/growland-design-system-5ed90c33-fcb9-468f-ac3b-422661632259/tokens/shadows.css">
+<link rel="stylesheet" href="_ds/growland-design-system-5ed90c33-fcb9-468f-ac3b-422661632259/tokens/motion.css">
+<link rel="stylesheet" href="_ds/growland-design-system-5ed90c33-fcb9-468f-ac3b-422661632259/styles.css">
+<script src="_ds/growland-design-system-5ed90c33-fcb9-468f-ac3b-422661632259/_ds_bundle.js"></script>
+<script src="courses/levels.js"></script>
+<script src="courses/elementary.js"></script>
+<script src="courses/audio-elementary.js"></script>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:var(--neutral-100);font-family:var(--font-base);color:var(--green-900);-webkit-font-smoothing:antialiased}
+a{color:var(--green-700);text-decoration:none}
+a:hover{color:var(--green-900);text-decoration:underline}
+input,button,textarea{font-family:var(--font-base)}
+input:focus-visible,button:focus-visible{outline:2px solid var(--green-900);outline-offset:2px}
+::selection{background:var(--mint-300)}
+@keyframes popIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+</style>
+</helmet>
+
+<div>
+
+<sc-if value="{{ isAuth }}" hint-placeholder-val="{{ false }}">
+  <div style="min-height:100vh;background:var(--green-900);display:grid;grid-template-columns:repeat(auto-fit,minmax(360px,1fr));align-items:center;gap:40px;padding:48px">
+    <div style="display:flex;flex-direction:column;gap:22px;max-width:52ch;padding:0 12px">
+      <div style="font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--mint-300)">English Studio · Elementary A1–A2</div>
+      <div style="font-size:44px;font-weight:700;line-height:1.1;color:#fff;text-wrap:pretty">Your own account, your own progress.</div>
+      <div style="font-size:16px;line-height:1.65;color:var(--mint-200);text-wrap:pretty">Every student gets a personal cabinet: the words they have learned, the exercises they have finished, XP and unit-by-unit progress — saved between lessons and homework.</div>
+      <div style="display:flex;flex-direction:column;gap:12px;margin-top:8px">
+        <sc-for list="{{ authPoints }}" as="p" hint-placeholder-count="3">
+          <div style="display:flex;align-items:center;gap:12px;font-size:15px;color:#fff">
+            <span style="width:26px;height:26px;flex:0 0 auto;border-radius:var(--radius-pill);background:var(--mint-400);color:var(--green-900);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800">{{ p.n }}</span>
+            <span>{{ p.t }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="background:#fff;border-radius:var(--radius-xl);padding:32px;display:flex;flex-direction:column;gap:20px;max-width:460px;width:100%;justify-self:center">
+      <div style="display:flex;gap:6px;padding:5px;border-radius:var(--radius-pill);background:var(--neutral-100)">
+        <sc-for list="{{ authTabs }}" as="t" hint-placeholder-count="2">
+          <button onClick="{{ t.onClick }}" style="flex:1 1 0;border:none;cursor:pointer;padding:11px 16px;border-radius:var(--radius-pill);font-size:14px;font-weight:700;background:{{ t.bg }};color:{{ t.fg }}">{{ t.label }}</button>
+        </sc-for>
+      </div>
+
+      <div style="font-size:24px;font-weight:700;line-height:1.25">{{ authTitle }}</div>
+
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <sc-if value="{{ isSignup }}" hint-placeholder-val="{{ false }}">
+          <label style="display:flex;flex-direction:column;gap:7px">
+            <span style="font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text-tertiary)">Full name</span>
+            <input value="{{ fName }}" onChange="{{ onName }}" placeholder="Aisha Nurlan" style="padding:14px 16px;font-size:16px;border-radius:var(--radius-md);border:1px solid var(--border-default);background:var(--neutral-100);color:var(--green-900)">
+          </label>
+        </sc-if>
+
+        <label style="display:flex;flex-direction:column;gap:7px">
+          <span style="font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text-tertiary)">Email</span>
+          <input value="{{ fEmail }}" onChange="{{ onEmail }}" onKeyDown="{{ onAuthKey }}" placeholder="you@example.com" style="padding:14px 16px;font-size:16px;border-radius:var(--radius-md);border:1px solid var(--border-default);background:var(--neutral-100);color:var(--green-900)">
+        </label>
+
+        <label style="display:flex;flex-direction:column;gap:7px">
+          <span style="font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text-tertiary)">Password</span>
+          <input type="password" value="{{ fPass }}" onChange="{{ onPass }}" onKeyDown="{{ onAuthKey }}" placeholder="At least 6 characters" style="padding:14px 16px;font-size:16px;border-radius:var(--radius-md);border:1px solid var(--border-default);background:var(--neutral-100);color:var(--green-900)">
+        </label>
+
+        <sc-if value="{{ isSignup }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;flex-direction:column;gap:7px">
+            <span style="font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text-tertiary)">I am a</span>
+            <div style="display:flex;gap:8px">
+              <sc-for list="{{ roleTabs }}" as="r" hint-placeholder-count="2">
+                <button onClick="{{ r.onClick }}" style="flex:1 1 0;cursor:pointer;padding:13px 16px;border-radius:var(--radius-md);font-size:14px;font-weight:600;background:{{ r.bg }};color:{{ r.fg }};border:2px solid {{ r.border }}">{{ r.label }}</button>
+              </sc-for>
+            </div>
+          </div>
+        </sc-if>
+      </div>
+
+      <sc-if value="{{ authError }}" hint-placeholder-val="{{ false }}">
+        <div style="padding:13px 16px;border-radius:var(--radius-md);background:rgba(198,91,78,.10);color:var(--error);font-size:14px;font-weight:600">{{ authError }}</div>
+      </sc-if>
+
+      <button onClick="{{ submitAuth }}" style="border:none;cursor:pointer;width:100%;background:var(--green-900);color:#fff;border-radius:var(--radius-md);padding:17px;font-size:15px;font-weight:700">{{ authCta }}</button>
+
+      <div style="display:flex;flex-direction:column;gap:8px;padding-top:6px;border-top:1px solid var(--border-default)">
+        <div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text-tertiary);padding-top:10px">Demo accounts — one click</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <sc-for list="{{ demoAccounts }}" as="d" hint-placeholder-count="3">
+            <button onClick="{{ d.onClick }}" style="cursor:pointer;border:1px solid var(--border-default);background:#fff;border-radius:var(--radius-pill);padding:10px 16px;font-size:13px;font-weight:600;color:var(--green-900);white-space:nowrap">{{ d.label }}</button>
+          </sc-for>
+        </div>
+        <div style="font-size:12px;line-height:1.5;color:var(--text-tertiary)">Accounts are stored in this browser only — no server, nothing leaves the device.</div>
+      </div>
+    </div>
+  </div>
+</sc-if>
+
+<sc-if value="{{ isApp }}" hint-placeholder-val="{{ true }}">
+<div style="display:grid;grid-template-columns:272px minmax(0,1fr);min-height:100vh;background:var(--neutral-100)">
+
+  <aside style="background:var(--green-900);color:#fff;padding:26px 18px;display:flex;flex-direction:column;gap:26px;position:sticky;top:0;height:100vh;overflow:auto">
+    <div style="display:flex;flex-direction:column;gap:4px;padding:2px 2px 0">
+      <div style="font-size:17px;font-weight:700;line-height:1.15">English Studio</div>
+      <div style="font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--mint-300)">Elementary · A1–A2</div>
+    </div>
+
+    <nav style="display:flex;flex-direction:column;gap:4px">
+      <sc-for list="{{ navItems }}" as="it" hint-placeholder-count="5">
+        <div onClick="{{ it.onClick }}" style="display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:var(--radius-md);cursor:pointer;font-size:14px;font-weight:600;background:{{ it.bg }};color:{{ it.fg }}">
+          <x-import component-from-global-scope="GrowlandDesignSystem_5ed90c.Icon" name="{{ it.icon }}" size="18" hint-size="18px,18px"></x-import>
+          <span>{{ it.label }}</span>
+        </div>
+      </sc-for>
+    </nav>
+
+    <div style="display:flex;flex-direction:column;gap:10px;margin-top:auto">
+      <div style="font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mint-300)">Levels</div>
+      <sc-for list="{{ levelItems }}" as="lv" hint-placeholder-count="6">
+        <div onClick="{{ lv.onClick }}" style="display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 12px;border-radius:var(--radius-md);background:{{ lv.bg }};cursor:{{ lv.cursor }}">
+          <span style="font-size:13px;font-weight:600;color:{{ lv.fg }}">{{ lv.name }}</span>
+          <span style="font-size:10px;font-weight:700;letter-spacing:.06em;color:{{ lv.tag }}">{{ lv.cefr }}</span>
+        </div>
+      </sc-for>
+      <p style="font-size:11px;line-height:1.55;color:rgba(255,255,255,.55);margin:6px 0 0">Elementary is live. Every other level runs on the same lesson engine — drop in a course file and it appears here.</p>
+    </div>
+  </aside>
+
+  <main style="display:flex;flex-direction:column;min-width:0">
+    <header style="display:flex;align-items:center;justify-content:space-between;gap:24px;padding:18px 32px;background:#fff;border-bottom:1px solid var(--border-default);position:sticky;top:0;z-index:20">
+      <div style="display:flex;flex-direction:column;gap:4px;min-width:0">
+        <div style="font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--text-tertiary)">{{ crumbSub }}</div>
+        <div style="font-size:24px;font-weight:700;line-height:1.2">{{ crumb }}</div>
+      </div>
+
+      <div style="display:flex;align-items:center;gap:10px">
+        <sc-if value="{{ teacherTools }}" hint-placeholder-val="{{ true }}">
+          <div style="display:flex;align-items:center;gap:6px;padding:5px;border-radius:var(--radius-pill);background:var(--neutral-100)">
+            <button onClick="{{ toggleAnswers }}" style="display:flex;align-items:center;gap:8px;border:none;cursor:pointer;padding:9px 16px;border-radius:var(--radius-pill);font-size:13px;font-weight:600;white-space:nowrap;background:{{ answersBg }};color:{{ answersFg }}">
+              <x-import component-from-global-scope="GrowlandDesignSystem_5ed90c.Icon" name="{{ answersIcon }}" size="16" hint-size="16px,16px"></x-import>
+              <span>{{ answersLabel }}</span>
+            </button>
+            <button onClick="{{ toggleTimer }}" style="display:flex;align-items:center;gap:8px;border:none;cursor:pointer;padding:9px 16px;border-radius:var(--radius-pill);font-size:13px;font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap;background:{{ timerBg }};color:{{ timerFg }}">
+              <x-import component-from-global-scope="GrowlandDesignSystem_5ed90c.Icon" name="calendar" size="16" hint-size="16px,16px"></x-import>
+              <span>{{ timerLabel }}</span>
+            </button>
+          </div>
+        </sc-if>
+
+        <div style="position:relative">
+          <button onClick="{{ toggleStudentMenu }}" style="display:flex;align-items:center;gap:12px;padding:8px 16px 8px 8px;border-radius:var(--radius-pill);border:1px solid var(--border-default);background:#fff;cursor:pointer">
+            <span style="width:36px;height:36px;border-radius:var(--radius-pill);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#fff;background:{{ meColor }}">{{ meInitial }}</span>
+            <span style="display:flex;flex-direction:column;align-items:flex-start;gap:2px">
+              <span style="font-size:13px;font-weight:700">{{ meName }}</span>
+              <span style="font-size:11px;font-weight:600;color:var(--text-tertiary)">{{ meXpLabel }}</span>
+            </span>
+          </button>
+          <sc-if value="{{ studentMenu }}" hint-placeholder-val="{{ false }}">
+            <div style="position:absolute;right:0;top:56px;width:264px;background:#fff;border:1px solid var(--border-default);border-radius:var(--radius-lg);padding:10px;display:flex;flex-direction:column;gap:4px;box-shadow:0 12px 32px rgba(6,52,23,.12);animation:popIn 160ms ease">
+              <div style="display:flex;align-items:center;gap:10px;padding:8px 10px 12px;border-bottom:1px solid var(--border-default);margin-bottom:4px">
+                <span style="width:34px;height:34px;flex:0 0 auto;border-radius:var(--radius-pill);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#fff;background:{{ acColor }}">{{ acInitial }}</span>
+                <span style="display:flex;flex-direction:column;gap:2px;min-width:0">
+                  <span style="font-size:13px;font-weight:700">{{ acName }}</span>
+                  <span style="font-size:11px;color:var(--text-tertiary)">{{ acEmail }}</span>
+                </span>
+              </div>
+              <sc-if value="{{ canSwitch }}" hint-placeholder-val="{{ false }}">
+                <div style="display:flex;flex-direction:column;gap:4px">
+                  <div style="font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--text-tertiary);padding:6px 10px">Viewing progress of</div>
+                  <sc-for list="{{ studentItems }}" as="s" hint-placeholder-count="2">
+                    <div onClick="{{ s.onClick }}" style="display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:var(--radius-md);cursor:pointer;background:{{ s.bg }}">
+                      <span style="width:28px;height:28px;flex:0 0 auto;border-radius:var(--radius-pill);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;background:{{ s.color }}">{{ s.initial }}</span>
+                      <span style="display:flex;flex-direction:column;gap:1px;min-width:0">
+                        <span style="font-size:13px;font-weight:600">{{ s.name }}</span>
+                        <span style="font-size:11px;color:var(--text-tertiary)">{{ s.sub }}</span>
+                      </span>
+                    </div>
+                  </sc-for>
+                  <button onClick="{{ addStudent }}" style="margin:4px 0;border:1px dashed var(--border-default);background:#fff;border-radius:var(--radius-md);padding:10px;font-size:13px;font-weight:600;color:var(--green-900);cursor:pointer">+ Add student</button>
+                </div>
+              </sc-if>
+              <button onClick="{{ goAccount }}" style="text-align:left;border:none;background:transparent;border-radius:var(--radius-md);padding:11px 10px;font-size:13px;font-weight:600;color:var(--green-900);cursor:pointer">My account</button>
+              <button onClick="{{ logout }}" style="text-align:left;border:none;background:transparent;border-radius:var(--radius-md);padding:11px 10px;font-size:13px;font-weight:600;color:var(--error);cursor:pointer">Log out</button>
+            </div>
+          </sc-if>
+        </div>
+      </div>
+    </header>
+
+    <div style="padding:22px 32px 56px;display:flex;flex-direction:column;gap:16px;min-width:0">
+
+      <sc-if value="{{ booting }}" hint-placeholder-val="{{ true }}">
+        <div style="background:#fff;border-radius:var(--radius-lg);padding:40px;font-size:15px;color:var(--text-secondary)">Loading the Elementary course…</div>
+      </sc-if>
+
+      <!-- ============ DASHBOARD ============ -->
+      <sc-if value="{{ isDashboard }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-direction:column;gap:20px">
+          <section style="background:var(--green-900);color:#fff;border-radius:var(--radius-xl);padding:32px 36px;display:flex;flex-direction:column;gap:28px">
+            <div style="display:flex;flex-direction:column;gap:14px;min-width:0">
+              <span style="font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mint-300)">Continue learning</span>
+              <div style="font-size:34px;font-weight:700;line-height:1.15;text-wrap:pretty">{{ heroTitle }}</div>
+              <div style="font-size:15px;line-height:1.6;color:var(--mint-200);max-width:56ch;text-wrap:pretty">{{ heroSub }}</div>
+              <div style="display:flex;gap:12px;margin-top:8px;flex-wrap:wrap">
+                <button onClick="{{ openHero }}" style="flex:0 0 auto;white-space:nowrap;border:none;cursor:pointer;background:var(--mint-400);color:var(--green-900);border-radius:var(--radius-pill);padding:16px 28px;font-size:15px;font-weight:700">Open the lesson</button>
+                <button onClick="{{ goUnits }}" style="flex:0 0 auto;white-space:nowrap;cursor:pointer;background:transparent;color:#fff;border:1px solid rgba(255,255,255,.45);border-radius:var(--radius-pill);padding:16px 28px;font-size:15px;font-weight:600">All 12 units</button>
+              </div>
+            </div>
+          </section>
+
+          <section style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px">
+            <sc-for list="{{ stats }}" as="st" hint-placeholder-count="4">
+              <div style="background:#fff;border-radius:var(--radius-lg);padding:22px;display:flex;flex-direction:column;gap:8px">
+                <div style="font-size:32px;font-weight:800;line-height:1;font-variant-numeric:tabular-nums">{{ st.value }}</div>
+                <div style="font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--text-tertiary)">{{ st.label }}</div>
+              </div>
+            </sc-for>
+          </section>
+
+          <section style="display:grid;grid-template-columns:repeat(auto-fit,minmax(228px,1fr));gap:16px">
+            <sc-for list="{{ featureCards }}" as="f" hint-placeholder-count="4">
+              <div onClick="{{ f.onClick }}" style="background:{{ f.bg }};border-radius:var(--radius-xl);padding:24px;min-height:172px;display:flex;flex-direction:column;justify-content:space-between;gap:16px;cursor:pointer;color:var(--green-900)">
+                <x-import component-from-global-scope="GrowlandDesignSystem_5ed90c.Icon" name="{{ f.icon }}" size="26" hint-size="26px,26px"></x-import>
+                <div style="display:flex;flex-direction:column;gap:6px">
+                  <div style="font-size:19px;font-weight:700;line-height:1.25">{{ f.title }}</div>
+                  <div style="font-size:13px;line-height:1.5;opacity:.8">{{ f.sub }}</div>
+                </div>
+              </div>
+            </sc-for>
+          </section>
+
+          <section style="background:#fff;border-radius:var(--radius-lg);padding:26px;display:flex;flex-direction:column;gap:18px">
+            <div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px">
+              <div style="font-size:20px;font-weight:700">Today's plan · {{ planUnitTitle }}</div>
+              <div style="font-size:13px;font-weight:600;color:var(--text-tertiary)">{{ planPractical }}</div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:10px">
+              <sc-for list="{{ planItems }}" as="p" hint-placeholder-count="3">
+                <div onClick="{{ p.onClick }}" style="display:grid;grid-template-columns:56px minmax(0,1fr) auto;gap:16px;align-items:center;padding:16px 18px;border-radius:var(--radius-md);background:var(--neutral-100);cursor:pointer">
+                  <span style="font-size:15px;font-weight:800;color:var(--green-700)">{{ p.id }}</span>
+                  <span style="display:flex;flex-direction:column;gap:4px;min-width:0">
+                    <span style="font-size:16px;font-weight:700">{{ p.title }}</span>
+                    <span style="font-size:13px;color:var(--text-secondary)">{{ p.meta }}</span>
+                  </span>
+                  <span style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:7px 12px;border-radius:var(--radius-pill);background:{{ p.chipBg }};color:{{ p.chipFg }}">{{ p.chip }}</span>
+                </div>
+              </sc-for>
+            </div>
+          </section>
+        </div>
+      </sc-if>
+
+      <!-- ============ UNITS ============ -->
+      <sc-if value="{{ isUnits }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-direction:column;gap:18px">
+          <p style="margin:0;font-size:15px;line-height:1.6;color:var(--text-secondary);max-width:78ch;text-wrap:pretty">{{ courseNote }}</p>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px">
+            <sc-for list="{{ unitCards }}" as="u" hint-placeholder-count="12">
+              <div onClick="{{ u.onClick }}" style="background:#fff;border-radius:var(--radius-lg);padding:22px;display:flex;flex-direction:column;gap:16px;cursor:pointer;border:1px solid {{ u.border }}">
+                <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+                  <span style="width:44px;height:44px;border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:800;background:{{ u.tint }};color:var(--green-900)">{{ u.n }}</span>
+                  <span style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:6px 10px;border-radius:var(--radius-pill);background:{{ u.badgeBg }};color:{{ u.badgeFg }}">{{ u.badge }}</span>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:6px">
+                  <div style="font-size:19px;font-weight:700;line-height:1.25">{{ u.title }}</div>
+                  <div style="font-size:13px;line-height:1.5;color:var(--text-secondary)">{{ u.theme }}</div>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:6px">
+                  <sc-for list="{{ u.lessons }}" as="l" hint-placeholder-count="3">
+                    <div style="display:flex;gap:8px;font-size:12px;color:var(--text-secondary)">
+                      <span style="font-weight:800;color:var(--green-700);min-width:28px">{{ l.id }}</span>
+                      <span style="min-width:0">{{ l.g }}</span>
+                    </div>
+                  </sc-for>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:8px;margin-top:auto">
+                  <x-import component-from-global-scope="GrowlandDesignSystem_5ed90c.ProgressBar" value="{{ u.pct }}" max="100" hint-size="100%,8px"></x-import>
+                  <span style="font-size:11px;font-weight:600;color:var(--text-tertiary)">{{ u.pctLabel }}</span>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </sc-if>
+
+      <!-- ============ LESSON ============ -->
+      <sc-if value="{{ isLesson }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-direction:column;gap:18px">
+          <section style="background:#fff;border-radius:var(--radius-lg);padding:16px 20px;display:flex;flex-direction:column;gap:12px">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap">
+              <div style="display:flex;align-items:center;gap:14px;min-width:0">
+                <span style="flex:0 0 auto;width:42px;height:42px;border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;background:{{ lessonTint }}">{{ lessonId }}</span>
+                <div style="display:flex;flex-direction:column;gap:3px;min-width:0">
+                  <div style="font-size:19px;font-weight:700;line-height:1.2">{{ lessonTitle }}</div>
+                  <div style="font-size:12px;color:var(--text-secondary)">{{ lessonMeta }}</div>
+                </div>
+              </div>
+              <button onClick="{{ goUnits }}" style="flex:0 0 auto;white-space:nowrap;border:1px solid var(--border-default);background:#fff;border-radius:var(--radius-pill);padding:11px 20px;font-size:13px;font-weight:600;cursor:pointer;color:var(--green-900)">← Back to units</button>
+            </div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap">
+              <sc-for list="{{ stageTabs }}" as="t" hint-placeholder-count="5">
+                <button onClick="{{ t.onClick }}" style="flex:0 0 auto;white-space:nowrap;border:none;cursor:pointer;padding:9px 18px;border-radius:var(--radius-pill);font-size:13px;font-weight:700;background:{{ t.bg }};color:{{ t.fg }}">{{ t.label }}</button>
+              </sc-for>
+            </div>
+          </section>
+
+          <!-- locked lesson -->
+          <sc-if value="{{ lessonLocked }}" hint-placeholder-val="{{ false }}">
+            <section style="background:#fff;border-radius:var(--radius-lg);padding:34px;display:flex;flex-direction:column;gap:16px;max-width:80ch">
+              <div style="font-size:22px;font-weight:700">Syllabus is set — content in production</div>
+              <div style="font-size:15px;line-height:1.65;color:var(--text-secondary);text-wrap:pretty">This lesson already has its slot in the course map: grammar focus <b>{{ lessonG }}</b>, lexical set <b>{{ lessonV }}</b>. The vocabulary, grammar cards, exercises and speaking prompts drop into the same engine you can see in Units 1 and 2.</div>
+              <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:6px">
+                <button onClick="{{ openUnit1 }}" style="border:none;cursor:pointer;background:var(--green-900);color:#fff;border-radius:var(--radius-pill);padding:14px 24px;font-size:14px;font-weight:700">See a finished lesson (1A)</button>
+              </div>
+            </section>
+          </sc-if>
+
+          <!-- overview -->
+          <sc-if value="{{ isOverview }}" hint-placeholder-val="{{ false }}">
+            <section style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px">
+              <sc-for list="{{ overviewCards }}" as="o" hint-placeholder-count="4">
+                <div onClick="{{ o.onClick }}" style="background:#fff;border-radius:var(--radius-lg);padding:26px;display:flex;flex-direction:column;gap:12px;cursor:pointer;border:1px solid var(--neutral-200)">
+                  <span style="font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--text-tertiary)">Step {{ o.step }}</span>
+                  <div style="font-size:21px;font-weight:700">{{ o.title }}</div>
+                  <div style="font-size:14px;line-height:1.6;color:var(--text-secondary);text-wrap:pretty">{{ o.sub }}</div>
+                  <span style="font-size:12px;font-weight:700;color:var(--green-700);margin-top:4px">{{ o.cta }} →</span>
+                </div>
+              </sc-for>
+            </section>
+          </sc-if>
+
+          <!-- vocabulary / flashcards -->
+          <sc-if value="{{ isVocabStage }}" hint-placeholder-val="{{ false }}">
+            <section style="background:#fff;border-radius:var(--radius-lg);padding:28px;display:flex;flex-direction:column;gap:22px">
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap">
+                <div style="font-size:13px;font-weight:700;color:var(--text-tertiary)">{{ flashPos }}</div>
+                <div style="display:flex;gap:8px">
+                  <button onClick="{{ toggleListMode }}" style="flex:0 0 auto;white-space:nowrap;border:1px solid var(--border-default);background:#fff;border-radius:var(--radius-pill);padding:10px 18px;font-size:13px;font-weight:600;cursor:pointer;color:var(--green-900)">{{ listModeLabel }}</button>
+                  <button onClick="{{ speakCard }}" style="flex:0 0 auto;white-space:nowrap;border:none;background:var(--mint-200);border-radius:var(--radius-pill);padding:10px 18px;font-size:13px;font-weight:700;cursor:pointer;color:var(--green-900)">◗ Listen</button>
+                </div>
+              </div>
+
+              <sc-if value="{{ flashMode }}" hint-placeholder-val="{{ true }}">
+                <div style="display:flex;flex-direction:column;gap:18px;align-items:center">
+                  <div onClick="{{ flip }}" style="width:100%;max-width:720px;min-height:290px;border-radius:var(--radius-xl);background:{{ cardBg }};display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:40px;cursor:pointer;text-align:center">
+                    <div style="font-size:44px;font-weight:700;line-height:1.15;color:{{ cardFg }};text-wrap:balance">{{ cardFront }}</div>
+                    <div style="font-size:18px;font-weight:500;color:{{ cardMuted }}">{{ cardIpa }}</div>
+                    <sc-if value="{{ flashBack }}" hint-placeholder-val="{{ false }}">
+                      <div style="display:flex;flex-direction:column;gap:12px;max-width:52ch">
+                        <div style="font-size:20px;line-height:1.5;color:{{ cardFg }}">{{ cardDef }}</div>
+                        <div style="font-size:17px;line-height:1.5;font-style:italic;color:{{ cardMuted }}">“{{ cardEx }}”</div>
+                      </div>
+                    </sc-if>
+                    <sc-if value="{{ flashFront }}" hint-placeholder-val="{{ true }}">
+                      <div style="font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:{{ cardMuted }}">Click to reveal</div>
+                    </sc-if>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:center">
+                    <button onClick="{{ prevCard }}" style="flex:0 0 auto;white-space:nowrap;border:1px solid var(--border-default);background:#fff;border-radius:var(--radius-pill);padding:13px 22px;font-size:14px;font-weight:600;cursor:pointer;color:var(--green-900)">← Previous</button>
+                    <button onClick="{{ toggleKnown }}" style="flex:0 0 auto;white-space:nowrap;border:none;border-radius:var(--radius-pill);padding:13px 24px;font-size:14px;font-weight:700;cursor:pointer;background:{{ knownBg }};color:{{ knownFg }}">{{ knownLabel }}</button>
+                    <button onClick="{{ nextCard }}" style="flex:0 0 auto;white-space:nowrap;border:none;background:var(--green-900);color:#fff;border-radius:var(--radius-pill);padding:13px 24px;font-size:14px;font-weight:700;cursor:pointer">Next word →</button>
+                  </div>
+                </div>
+              </sc-if>
+
+              <sc-if value="{{ listMode }}" hint-placeholder-val="{{ false }}">
+                <div style="display:flex;flex-direction:column;gap:8px">
+                  <sc-for list="{{ lessonWords }}" as="w" hint-placeholder-count="10">
+                    <div style="display:grid;grid-template-columns:minmax(0,1.1fr) 130px minmax(0,1.6fr) auto;gap:16px;align-items:center;padding:14px 16px;border-radius:var(--radius-md);background:var(--neutral-100)">
+                      <span style="font-size:16px;font-weight:700">{{ w.w }}</span>
+                      <span style="font-size:13px;color:var(--text-tertiary)">{{ w.ipa }}</span>
+                      <span style="font-size:14px;color:var(--text-secondary);min-width:0">{{ w.def }}</span>
+                      <button onClick="{{ w.onSpeak }}" style="border:none;background:var(--mint-200);border-radius:var(--radius-pill);width:36px;height:36px;font-size:13px;cursor:pointer;color:var(--green-900)">◗</button>
+                    </div>
+                  </sc-for>
+                </div>
+              </sc-if>
+            </section>
+          </sc-if>
+
+          <!-- grammar -->
+          <sc-if value="{{ isGrammarStage }}" hint-placeholder-val="{{ false }}">
+            <section style="background:#fff;border-radius:var(--radius-lg);padding:34px;display:flex;flex-direction:column;gap:26px">
+              <div style="font-size:30px;font-weight:700;line-height:1.2">{{ gHead }}</div>
+              <div style="display:flex;flex-direction:column;gap:12px">
+                <sc-for list="{{ gRows }}" as="r" hint-placeholder-count="3">
+                  <div style="display:grid;grid-template-columns:150px minmax(0,1fr);gap:20px;align-items:start;padding:18px 20px;border-radius:var(--radius-md);background:var(--mint-100)">
+                    <span style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--green-700);padding-top:5px">{{ r.label }}</span>
+                    <span style="display:flex;flex-wrap:wrap;gap:10px 18px">
+                      <sc-for list="{{ r.items }}" as="i" hint-placeholder-count="3">
+                        <span style="font-size:21px;font-weight:600;line-height:1.4">{{ i.node }}</span>
+                      </sc-for>
+                    </span>
+                  </div>
+                </sc-for>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:12px">
+                <div style="font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--text-tertiary)">Watch out</div>
+                <sc-for list="{{ gNotes }}" as="n" hint-placeholder-count="3">
+                  <div style="display:flex;gap:12px;font-size:17px;line-height:1.6;color:var(--text-secondary)">
+                    <span style="color:var(--green-500);font-weight:800">·</span>
+                    <span style="min-width:0">{{ n.node }}</span>
+                  </div>
+                </sc-for>
+              </div>
+              <button onClick="{{ startPractice }}" style="align-self:flex-start;border:none;background:var(--green-900);color:#fff;border-radius:var(--radius-pill);padding:15px 28px;font-size:14px;font-weight:700;cursor:pointer">Practise this →</button>
+            </section>
+          </sc-if>
+
+          <!-- speaking -->
+          <sc-if value="{{ isSpeaking }}" hint-placeholder-val="{{ false }}">
+            <section style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px">
+              <sc-for list="{{ speakCards }}" as="s" hint-placeholder-count="3">
+                <div style="background:#fff;border-radius:var(--radius-lg);padding:26px;display:flex;flex-direction:column;gap:16px;min-height:250px">
+                  <span style="font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--text-tertiary)">Task {{ s.n }}</span>
+                  <div style="font-size:20px;font-weight:600;line-height:1.4;text-wrap:pretty">{{ s.p }}</div>
+                  <div style="margin-top:auto;display:flex;flex-direction:column;gap:12px">
+                    <sc-if value="{{ s.open }}" hint-placeholder-val="{{ false }}">
+                      <div style="font-size:15px;line-height:1.6;font-style:italic;color:var(--green-700);padding:14px 16px;border-radius:var(--radius-md);background:var(--mint-100)">{{ s.model }}</div>
+                    </sc-if>
+                    <div style="display:flex;gap:8px">
+                      <button onClick="{{ s.onReveal }}" style="border:1px solid var(--border-default);background:#fff;border-radius:var(--radius-pill);padding:11px 18px;font-size:13px;font-weight:600;cursor:pointer;color:var(--green-900)">{{ s.revealLabel }}</button>
+                      <button onClick="{{ s.onSpeak }}" style="border:none;background:var(--mint-200);border-radius:var(--radius-pill);padding:11px 18px;font-size:13px;font-weight:700;cursor:pointer;color:var(--green-900)">◗ Model</button>
+                    </div>
+                  </div>
+                </div>
+              </sc-for>
+            </section>
+          </sc-if>
+
+          <!-- practice / test runner -->
+          <sc-if value="{{ isRunner }}" hint-placeholder-val="{{ false }}">
+            <section style="background:#fff;border-radius:var(--radius-lg);padding:22px 26px 26px;display:flex;flex-direction:column;gap:18px">
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:16px">
+                <div style="display:flex;gap:5px">
+                  <sc-for list="{{ dots }}" as="d" hint-placeholder-count="10">
+                    <span style="width:26px;height:6px;border-radius:var(--radius-pill);background:{{ d.bg }}"></span>
+                  </sc-for>
+                </div>
+                <div style="font-size:13px;font-weight:700;color:var(--text-tertiary);font-variant-numeric:tabular-nums">{{ exCounter }}</div>
+              </div>
+
+              <sc-if value="{{ finished }}" hint-placeholder-val="{{ false }}">
+                <div style="display:flex;flex-direction:column;gap:20px;align-items:flex-start;padding:20px 0">
+                  <div style="font-size:14px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-tertiary)">{{ resultKicker }}</div>
+                  <div style="font-size:56px;font-weight:800;line-height:1">{{ scoreText }}</div>
+                  <div style="font-size:17px;line-height:1.6;color:var(--text-secondary);max-width:60ch">{{ resultMsg }}</div>
+                  <div style="display:flex;gap:12px;flex-wrap:wrap">
+                    <button onClick="{{ restart }}" style="flex:0 0 auto;white-space:nowrap;border:none;background:var(--green-900);color:#fff;border-radius:var(--radius-pill);padding:15px 26px;font-size:14px;font-weight:700;cursor:pointer">Try again</button>
+                    <button onClick="{{ backToLesson }}" style="flex:0 0 auto;white-space:nowrap;border:1px solid var(--border-default);background:#fff;border-radius:var(--radius-pill);padding:15px 26px;font-size:14px;font-weight:600;cursor:pointer;color:var(--green-900)">Back to the lesson</button>
+                  </div>
+                </div>
+              </sc-if>
+
+              <sc-if value="{{ running }}" hint-placeholder-val="{{ true }}">
+                <div style="display:flex;flex-direction:column;gap:22px">
+                  <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap">
+                    <span style="font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:7px 12px;border-radius:var(--radius-pill);background:var(--mint-100);color:var(--green-700)">{{ exKind }}</span>
+                    <span style="font-size:14px;color:var(--text-secondary)">{{ exInstr }}</span>
+                  </div>
+
+                  <sc-if value="{{ hasPlay }}" hint-placeholder-val="{{ false }}">
+                    <button onClick="{{ playAudio }}" style="align-self:flex-start;white-space:nowrap;border:none;background:var(--teal-200);color:var(--green-900);border-radius:var(--radius-pill);padding:14px 26px;font-size:15px;font-weight:700;cursor:pointer">◗ Play audio</button>
+                  </sc-if>
+
+                  <div style="font-size:28px;font-weight:600;line-height:1.45;text-wrap:pretty">{{ exQuestionNode }}</div>
+
+                  <sc-if value="{{ isMc }}" hint-placeholder-val="{{ false }}">
+                    <div style="display:flex;flex-direction:column;gap:10px;max-width:640px">
+                      <sc-for list="{{ mcOptions }}" as="o" hint-placeholder-count="3">
+                        <button onClick="{{ o.onClick }}" style="text-align:left;cursor:pointer;padding:18px 22px;border-radius:var(--radius-md);font-size:19px;font-weight:600;background:{{ o.bg }};color:{{ o.fg }};border:2px solid {{ o.border }}">{{ o.label }}</button>
+                      </sc-for>
+                    </div>
+                  </sc-if>
+
+                  <sc-if value="{{ isOrder }}" hint-placeholder-val="{{ false }}">
+                    <div style="display:flex;flex-direction:column;gap:18px">
+                      <div onDragOver="{{ onDragOver }}" onDrop="{{ onDropStrip }}" style="min-height:74px;border-radius:var(--radius-md);border:2px dashed var(--border-default);background:var(--neutral-100);padding:14px;display:flex;flex-wrap:wrap;gap:10px;align-items:center">
+                        <sc-for list="{{ orderPicked }}" as="p" hint-placeholder-count="0">
+                          <span onClick="{{ p.onClick }}" style="cursor:pointer;padding:11px 16px;border-radius:var(--radius-sm);background:var(--green-900);color:#fff;font-size:19px;font-weight:600">{{ p.t }}</span>
+                        </sc-for>
+                        <sc-if value="{{ orderEmpty }}" hint-placeholder-val="{{ true }}">
+                          <span style="font-size:14px;color:var(--text-tertiary)">Drag the words here, or click them below</span>
+                        </sc-if>
+                      </div>
+                      <div style="display:flex;flex-wrap:wrap;gap:10px">
+                        <sc-for list="{{ orderPool }}" as="w" hint-placeholder-count="5">
+                          <span draggable="true" onDragStart="{{ w.onDragStart }}" onClick="{{ w.onClick }}" style="cursor:grab;padding:11px 16px;border-radius:var(--radius-sm);background:var(--mint-200);color:var(--green-900);font-size:19px;font-weight:600">{{ w.t }}</span>
+                        </sc-for>
+                      </div>
+                    </div>
+                  </sc-if>
+
+                  <sc-if value="{{ isMatch }}" hint-placeholder-val="{{ false }}">
+                    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;max-width:900px">
+                      <div style="display:flex;flex-direction:column;gap:10px">
+                        <sc-for list="{{ matchLeftItems }}" as="m" hint-placeholder-count="4">
+                          <button onClick="{{ m.onClick }}" style="text-align:left;cursor:pointer;padding:16px 18px;border-radius:var(--radius-md);font-size:18px;font-weight:600;background:{{ m.bg }};color:{{ m.fg }};border:2px solid {{ m.border }}">{{ m.t }}</button>
+                        </sc-for>
+                      </div>
+                      <div style="display:flex;flex-direction:column;gap:10px">
+                        <sc-for list="{{ matchRightItems }}" as="m" hint-placeholder-count="4">
+                          <button onClick="{{ m.onClick }}" style="text-align:left;cursor:pointer;padding:16px 18px;border-radius:var(--radius-md);font-size:16px;font-weight:500;background:{{ m.bg }};color:{{ m.fg }};border:2px solid {{ m.border }}">{{ m.t }}</button>
+                        </sc-for>
+                      </div>
+                    </div>
+                  </sc-if>
+
+                  <sc-if value="{{ hasInput }}" hint-placeholder-val="{{ false }}">
+                    <input value="{{ typed }}" onChange="{{ onType }}" onKeyDown="{{ onKey }}" placeholder="Type your answer" style="max-width:640px;padding:18px 20px;font-size:22px;font-weight:600;border-radius:var(--radius-md);border:2px solid var(--border-default);background:var(--neutral-100);color:var(--green-900)">
+                  </sc-if>
+
+                  <sc-if value="{{ showFb }}" hint-placeholder-val="{{ false }}">
+                    <div style="padding:18px 22px;border-radius:var(--radius-md);background:{{ fbBg }};display:flex;flex-direction:column;gap:6px">
+                      <div style="font-size:16px;font-weight:800;color:{{ fbFg }}">{{ fbTitle }}</div>
+                      <div style="font-size:17px;line-height:1.5;color:var(--green-900)">{{ fbBody }}</div>
+                    </div>
+                  </sc-if>
+
+                  <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">
+                    <sc-if value="{{ canCheck }}" hint-placeholder-val="{{ true }}">
+                      <button onClick="{{ check }}" style="flex:0 0 auto;white-space:nowrap;border:none;background:var(--green-900);color:#fff;border-radius:var(--radius-pill);padding:15px 30px;font-size:14px;font-weight:700;cursor:pointer">Check</button>
+                    </sc-if>
+                    <sc-if value="{{ canNext }}" hint-placeholder-val="{{ false }}">
+                      <button onClick="{{ next }}" style="flex:0 0 auto;white-space:nowrap;border:none;background:var(--green-900);color:#fff;border-radius:var(--radius-pill);padding:15px 30px;font-size:14px;font-weight:700;cursor:pointer">{{ nextLabel }}</button>
+                    </sc-if>
+                    <button onClick="{{ skip }}" style="border:none;background:transparent;color:var(--text-tertiary);font-size:13px;font-weight:600;cursor:pointer;text-decoration:underline;padding:10px">Skip</button>
+                  </div>
+                </div>
+              </sc-if>
+            </section>
+          </sc-if>
+        </div>
+      </sc-if>
+
+      <!-- ============ VOCABULARY BANK ============ -->
+      <sc-if value="{{ isBank }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-direction:column;gap:16px">
+          <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">
+            <input value="{{ q }}" onChange="{{ onSearch }}" placeholder="Search a word or a meaning" style="flex:1 1 320px;padding:15px 18px;font-size:15px;border-radius:var(--radius-pill);border:1px solid var(--border-default);background:#fff;color:var(--green-900)">
+            <div style="display:flex;gap:8px;flex-wrap:wrap">
+              <sc-for list="{{ bankFilters }}" as="f" hint-placeholder-count="3">
+                <button onClick="{{ f.onClick }}" style="border:none;cursor:pointer;padding:12px 18px;border-radius:var(--radius-pill);font-size:13px;font-weight:700;background:{{ f.bg }};color:{{ f.fg }}">{{ f.label }}</button>
+              </sc-for>
+            </div>
+          </div>
+          <div style="background:#fff;border-radius:var(--radius-lg);padding:12px;display:flex;flex-direction:column;gap:4px">
+            <sc-for list="{{ bankRows }}" as="r" hint-placeholder-count="8">
+              <div style="display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;padding:14px 16px;border-radius:var(--radius-md);background:{{ r.bg }}">
+                <span style="flex:0 0 44px;font-size:11px;font-weight:800;color:var(--green-700)">{{ r.unit }}</span>
+                <span style="flex:1 1 130px;min-width:0;font-size:16px;font-weight:700">{{ r.w }}</span>
+                <span style="flex:0 1 116px;min-width:0;font-size:13px;color:var(--text-tertiary)">{{ r.ipa }}</span>
+                <span style="flex:2 1 180px;min-width:0;font-size:14px;color:var(--text-secondary)">{{ r.def }}</span>
+                <span style="flex:2 1 180px;min-width:0;font-size:14px;font-style:italic;color:var(--text-tertiary)">{{ r.ex }}</span>
+                <span style="flex:0 0 auto;margin-left:auto;display:flex;gap:8px">
+                  <button onClick="{{ r.onSpeak }}" style="border:none;background:var(--mint-200);border-radius:var(--radius-pill);width:36px;height:36px;cursor:pointer;color:var(--green-900);font-size:13px">◗</button>
+                  <button onClick="{{ r.onToggle }}" style="border:none;background:{{ r.knownBg }};color:{{ r.knownFg }};border-radius:var(--radius-pill);padding:0 16px;height:36px;cursor:pointer;font-size:12px;font-weight:700">{{ r.knownLabel }}</button>
+                </span>
+              </div>
+            </sc-for>
+          </div>
+          <sc-if value="{{ bankEmpty }}" hint-placeholder-val="{{ false }}">
+            <div style="background:#fff;border-radius:var(--radius-lg);padding:32px;font-size:15px;color:var(--text-secondary)">No words match that search yet.</div>
+          </sc-if>
+        </div>
+      </sc-if>
+
+      <!-- ============ GRAMMAR REFERENCE ============ -->
+      <sc-if value="{{ isGrammarRef }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <sc-for list="{{ grammarRef }}" as="g" hint-placeholder-count="12">
+            <div style="background:#fff;border-radius:var(--radius-lg);padding:22px 26px;display:grid;grid-template-columns:64px minmax(0,1fr);gap:20px;align-items:start">
+              <span style="width:48px;height:48px;border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;background:{{ g.tint }}">{{ g.n }}</span>
+              <div style="display:flex;flex-direction:column;gap:12px;min-width:0">
+                <div style="font-size:19px;font-weight:700">{{ g.title }}</div>
+                <div style="display:flex;flex-direction:column;gap:6px">
+                  <sc-for list="{{ g.rows }}" as="l" hint-placeholder-count="3">
+                    <div onClick="{{ l.onClick }}" style="display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:14px;align-items:center;padding:11px 14px;border-radius:var(--radius-md);background:var(--neutral-100);cursor:{{ l.cursor }}">
+                      <span style="font-size:13px;font-weight:800;color:var(--green-700)">{{ l.id }}</span>
+                      <span style="font-size:15px;font-weight:600;min-width:0">{{ l.g }}</span>
+                      <span style="font-size:12px;font-weight:700;color:{{ l.linkFg }}">{{ l.link }}</span>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </sc-if>
+
+      <!-- ============ PROGRESS ============ -->
+      <sc-if value="{{ isProgress }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-direction:column;gap:18px">
+          <section style="background:var(--green-900);color:#fff;border-radius:var(--radius-xl);padding:32px;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:28px;align-items:center">
+            <div style="display:flex;align-items:center;gap:18px;min-width:0">
+              <span style="width:64px;height:64px;border-radius:var(--radius-pill);display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;color:#fff;background:{{ meColor }}">{{ meInitial }}</span>
+              <div style="display:flex;flex-direction:column;gap:6px;min-width:0">
+                <div style="font-size:26px;font-weight:700">{{ meName }}</div>
+                <div style="font-size:13px;color:var(--mint-200)">Elementary · A1–A2</div>
+              </div>
+            </div>
+            <sc-for list="{{ progressStats }}" as="p" hint-placeholder-count="3">
+              <div style="display:flex;flex-direction:column;gap:6px">
+                <div style="font-size:32px;font-weight:800;line-height:1;font-variant-numeric:tabular-nums">{{ p.value }}</div>
+                <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mint-300)">{{ p.label }}</div>
+              </div>
+            </sc-for>
+          </section>
+
+          <section style="background:#fff;border-radius:var(--radius-lg);padding:26px;display:flex;flex-direction:column;gap:16px">
+            <div style="font-size:20px;font-weight:700">Unit by unit</div>
+            <div style="display:flex;flex-direction:column;gap:14px">
+              <sc-for list="{{ unitBars }}" as="b" hint-placeholder-count="12">
+                <div style="display:grid;grid-template-columns:34px minmax(0,1.2fr) minmax(0,2fr) 96px;gap:16px;align-items:center">
+                  <span style="font-size:13px;font-weight:800;color:var(--green-700)">{{ b.n }}</span>
+                  <span style="font-size:14px;font-weight:600;min-width:0">{{ b.title }}</span>
+                  <x-import component-from-global-scope="GrowlandDesignSystem_5ed90c.ProgressBar" value="{{ b.pct }}" max="100" hint-size="100%,8px"></x-import>
+                  <span style="font-size:12px;font-weight:700;color:var(--text-tertiary);text-align:right">{{ b.label }}</span>
+                </div>
+              </sc-for>
+            </div>
+            <button onClick="{{ resetProgress }}" style="align-self:flex-start;margin-top:6px;border:1px solid var(--border-default);background:#fff;border-radius:var(--radius-pill);padding:12px 22px;font-size:13px;font-weight:600;cursor:pointer;color:var(--text-secondary)">Reset this student's progress</button>
+          </section>
+        </div>
+      </sc-if>
+
+      <!-- ============ PERSONAL CABINET ============ -->
+      <sc-if value="{{ isAccount }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-direction:column;gap:18px">
+          <section style="background:#fff;border-radius:var(--radius-xl);padding:30px;display:flex;flex-wrap:wrap;gap:28px;align-items:center">
+            <span style="width:82px;height:82px;flex:0 0 auto;border-radius:var(--radius-pill);display:flex;align-items:center;justify-content:center;font-size:30px;font-weight:800;color:#fff;background:{{ acColor }}">{{ acInitial }}</span>
+            <div style="display:flex;flex-direction:column;gap:7px;min-width:200px;flex:1 1 240px">
+              <div style="font-size:28px;font-weight:700;line-height:1.15">{{ acName }}</div>
+              <div style="font-size:14px;color:var(--text-secondary)">{{ acEmail }}</div>
+              <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
+                <span style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:6px 12px;border-radius:var(--radius-pill);background:var(--mint-200);color:var(--green-900)">{{ acRole }}</span>
+                <span style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:6px 12px;border-radius:var(--radius-pill);background:var(--neutral-100);color:var(--text-secondary)">Joined {{ acJoined }}</span>
+              </div>
+            </div>
+            <div style="display:flex;gap:10px;flex-wrap:wrap;margin-left:auto">
+              <button onClick="{{ renameMe }}" style="flex:0 0 auto;white-space:nowrap;cursor:pointer;border:1px solid var(--border-default);background:#fff;border-radius:var(--radius-pill);padding:13px 22px;font-size:13px;font-weight:600;color:var(--green-900)">Edit name</button>
+              <button onClick="{{ logout }}" style="flex:0 0 auto;white-space:nowrap;cursor:pointer;border:none;background:var(--green-900);color:#fff;border-radius:var(--radius-pill);padding:13px 22px;font-size:13px;font-weight:700">Log out</button>
+            </div>
+          </section>
+
+          <section style="display:flex;flex-direction:column;gap:12px">
+            <div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-tertiary)">{{ statsTitle }}</div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px">
+            <sc-for list="{{ acStats }}" as="s" hint-placeholder-count="4">
+              <div style="background:#fff;border-radius:var(--radius-lg);padding:22px;display:flex;flex-direction:column;gap:8px">
+                <div style="font-size:32px;font-weight:800;line-height:1;font-variant-numeric:tabular-nums">{{ s.value }}</div>
+                <div style="font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--text-tertiary)">{{ s.label }}</div>
+              </div>
+            </sc-for>
+            </div>
+          </section>
+
+          <section style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px">
+            <div style="background:#fff;border-radius:var(--radius-lg);padding:26px;display:flex;flex-direction:column;gap:16px">
+              <div style="font-size:19px;font-weight:700">{{ progressTitle }}</div>
+              <div style="display:flex;flex-direction:column;gap:10px">
+                <x-import component-from-global-scope="GrowlandDesignSystem_5ed90c.ProgressBar" value="{{ acOverall }}" max="100" hint-size="100%,8px"></x-import>
+                <span style="font-size:13px;color:var(--text-secondary)">{{ acOverallLabel }}</span>
+              </div>
+              <button onClick="{{ goProgress }}" style="align-self:flex-start;margin-top:auto;flex:0 0 auto;white-space:nowrap;cursor:pointer;border:1px solid var(--border-default);background:#fff;border-radius:var(--radius-pill);padding:12px 20px;font-size:13px;font-weight:600;color:var(--green-900)">Unit-by-unit breakdown →</button>
+            </div>
+
+            <div style="background:#fff;border-radius:var(--radius-lg);padding:26px;display:flex;flex-direction:column;gap:14px">
+              <div style="font-size:19px;font-weight:700">{{ historyTitle }}</div>
+              <sc-if value="{{ acHasHistory }}" hint-placeholder-val="{{ false }}">
+                <div style="display:flex;flex-direction:column;gap:8px">
+                  <sc-for list="{{ acHistory }}" as="h" hint-placeholder-count="4">
+                    <div style="display:flex;align-items:center;gap:14px;padding:12px 14px;border-radius:var(--radius-md);background:var(--neutral-100)">
+                      <span style="flex:0 0 52px;font-size:13px;font-weight:800;color:var(--green-700)">{{ h.id }}</span>
+                      <span style="flex:1 1 auto;min-width:0;font-size:14px;color:var(--text-secondary)">{{ h.label }}</span>
+                      <span style="flex:0 0 auto;font-size:13px;font-weight:800;font-variant-numeric:tabular-nums;color:{{ h.fg }}">{{ h.score }}</span>
+                    </div>
+                  </sc-for>
+                </div>
+              </sc-if>
+              <sc-if value="{{ acNoHistory }}" hint-placeholder-val="{{ true }}">
+                <div style="font-size:14px;line-height:1.6;color:var(--text-secondary)">Nothing finished yet. Open a lesson, run the practice, and results land here.</div>
+              </sc-if>
+            </div>
+          </section>
+
+          <sc-if value="{{ isTeacherAccount }}" hint-placeholder-val="{{ false }}">
+            <section style="background:#fff;border-radius:var(--radius-lg);padding:26px;display:flex;flex-direction:column;gap:16px">
+              <div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap">
+                <div style="font-size:19px;font-weight:700">My students</div>
+                <div style="font-size:13px;color:var(--text-tertiary)">{{ rosterNote }}</div>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:8px">
+                <sc-for list="{{ roster }}" as="r" hint-placeholder-count="2">
+                  <div style="display:flex;align-items:center;gap:14px;padding:14px 16px;border-radius:var(--radius-md);background:{{ r.bg }};flex-wrap:wrap">
+                    <span style="width:36px;height:36px;flex:0 0 auto;border-radius:var(--radius-pill);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#fff;background:{{ r.color }}">{{ r.initial }}</span>
+                    <span style="display:flex;flex-direction:column;gap:2px;flex:1 1 160px;min-width:0">
+                      <span style="font-size:15px;font-weight:700">{{ r.name }}</span>
+                      <span style="font-size:12px;color:var(--text-tertiary)">{{ r.email }}</span>
+                    </span>
+                    <span style="flex:1 1 140px;min-width:120px"><x-import component-from-global-scope="GrowlandDesignSystem_5ed90c.ProgressBar" value="{{ r.pct }}" max="100" hint-size="100%,8px"></x-import></span>
+                    <span style="flex:0 0 auto;font-size:12px;font-weight:700;color:var(--text-secondary);font-variant-numeric:tabular-nums">{{ r.meta }}</span>
+                    <button onClick="{{ r.onOpen }}" style="flex:0 0 auto;white-space:nowrap;cursor:pointer;border:none;background:var(--mint-200);color:var(--green-900);border-radius:var(--radius-pill);padding:10px 18px;font-size:12px;font-weight:700">{{ r.cta }}</button>
+                  </div>
+                </sc-for>
+              </div>
+            </section>
+          </sc-if>
+        </div>
+      </sc-if>
+
+    </div>
+  </main>
+</div>
+</sc-if>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:940},&quot;teacherMode&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Teaching&quot;,&quot;label&quot;:&quot;Teacher toolbar (answers + timer)&quot;},&quot;instantFeedback&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Teaching&quot;,&quot;label&quot;:&quot;Check multiple choice instantly&quot;},&quot;autoSpeak&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Teaching&quot;,&quot;label&quot;:&quot;Read flashcards aloud automatically&quot;},&quot;showIpa&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Teaching&quot;,&quot;label&quot;:&quot;Show phonemic transcription&quot;}}">
+class Component extends DCLogic {
+  KEY = 'growland_ef_v1';
+  KIND = { mc: 'Multiple choice', gap: 'Gap fill', order: 'Word order', match: 'Matching', transform: 'Transformation', dictation: 'Dictation', listen: 'Listening' };
+  ACC = { pink: ['var(--pink-500)', 'var(--pink-200)'], mint: ['var(--mint-400)', 'var(--mint-200)'], amber: ['var(--amber-500)', 'var(--amber-200)'], teal: ['var(--teal-500)', 'var(--teal-200)'] };
+  state = {
+    ready: false, view: 'dashboard', unitN: 1, lessonId: '1A', stage: 'overview', testMode: false,
+    exIdx: 0, sel: null, typed: '', pool: [], picked: [], matchLeft: null, matchDone: [], matchWrong: null,
+    rightOrder: [], checked: false, results: [], finished: false,
+    students: [], activeId: null, studentMenu: false,
+    session: null, authMode: 'login', fName: '', fEmail: '', fPass: '', fRole: 'student', authError: '',
+    showAnswers: false, timer: 0, timerRunning: false,
+    flashIdx: 0, flashBack: false, listMode: false, revealed: {},
+    q: '', bankUnit: 0
+  };
+
+  componentDidMount() {
+    const tick = () => {
+      if (window.EF_COURSES && window.EF_COURSES.elementary && window.EF_LEVELS) this.boot();
+      else requestAnimationFrame(tick);
+    };
+    tick();
+    this._int = setInterval(() => {
+      if (!this.state.timerRunning) return;
+      const t = this.state.timer - 1;
+      if (t <= 0) this.setState({ timer: 0, timerRunning: false });
+      else this.setState({ timer: t });
+    }, 1000);
+  }
+  componentWillUnmount() { clearInterval(this._int); }
+
+  boot() {
+    let saved = null;
+    try { saved = JSON.parse(localStorage.getItem(this.KEY) || 'null'); } catch (e) { saved = null; }
+    let students = (saved && saved.students && saved.students.length) ? saved.students : null;
+    if (!students) {
+      let old = null;
+      try { old = JSON.parse(localStorage.getItem('growland_ef_v1') || 'null'); } catch (e) { old = null; }
+      students = (old && old.students && old.students.length) ? old.students : [
+        { id: 's1', name: 'Aisha Nurlan', email: 'aisha@demo.com', pass: 'demo123', role: 'student', color: 'var(--pink-500)', joined: '2026-09-01', xp: 0, done: {}, words: {} },
+        { id: 's2', name: 'Timur Abay', email: 'timur@demo.com', pass: 'demo123', role: 'student', color: 'var(--teal-500)', joined: '2026-09-01', xp: 0, done: {}, words: {} },
+        { id: 't1', name: 'Farhat', email: 'teacher@demo.com', pass: 'demo123', role: 'teacher', color: 'var(--green-700)', joined: '2026-09-01', xp: 0, done: {}, words: {} }
+      ];
+    }
+    const P = ['var(--pink-500)', 'var(--teal-500)', 'var(--amber-500)', 'var(--green-700)'];
+    students = students.map((s, i) => Object.assign({
+      email: (s.name || ('user' + i)).toLowerCase().replace(/[^a-z0-9]/g, '') + '@demo.com',
+      pass: 'demo123', role: 'student', color: P[i % 4], joined: '2026-09-01', xp: 0, done: {}, words: {}
+    }, s));
+    if (!students.some(s => s.role === 'teacher')) {
+      students = students.concat([{
+        id: 't1', name: 'Farhat', email: 'teacher@demo.com', pass: 'demo123', role: 'teacher',
+        color: 'var(--green-700)', joined: '2026-09-01', xp: 0, done: {}, words: {}
+      }]);
+    }
+    students = students.filter(s => (s.email || '') !== 'vt@demo.com' && s.name !== 'Verifier Teacher');
+    if (!students.some(s => s.role === 'teacher')) {
+      students.push({ id: 't1', name: 'Farhat', email: 'teacher@demo.com', pass: 'demo123', role: 'teacher', color: 'var(--green-700)', joined: '2026-09-01', xp: 0, done: {}, words: {} });
+    }
+    const session = (saved && saved.session && students.some(s => s.id === saved.session)) ? saved.session : null;
+    const viewer = students.find(s => s.id === session);
+    const activeId = session ? ((viewer && viewer.role === 'teacher')
+      ? ((saved && saved.activeId && students.some(s => s.id === saved.activeId)) ? saved.activeId : (students.find(s => s.role === 'student') || viewer).id)
+      : session) : null;
+    this.setState({ ready: true, students, session, activeId, view: session ? 'dashboard' : 'auth' });
+  }
+  save(students, activeId, session) {
+    const s = this.state;
+    try {
+      localStorage.setItem(this.KEY, JSON.stringify({
+        students: students || s.students,
+        activeId: activeId !== undefined ? activeId : s.activeId,
+        session: session !== undefined ? session : s.session
+      }));
+    } catch (e) {}
+  }
+  viewer() { return this.state.students.find(s => s.id === this.state.session) || null; }
+  isTeacher() { const v = this.viewer(); return !!v && v.role === 'teacher'; }
+  login(email, pass) {
+    const e = String(email || '').trim().toLowerCase();
+    const acc = this.state.students.find(s => (s.email || '').toLowerCase() === e);
+    if (!acc) return this.setState({ authError: 'No account with that email. Sign up instead?' });
+    if (acc.pass !== pass) return this.setState({ authError: 'Wrong password. Try again.' });
+    this.enter(acc);
+  }
+  signup() {
+    const s = this.state;
+    const name = s.fName.trim(), email = s.fEmail.trim().toLowerCase(), pass = s.fPass;
+    if (name.length < 2) return this.setState({ authError: 'Please enter your name.' });
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return this.setState({ authError: 'That email does not look right.' });
+    if (pass.length < 6) return this.setState({ authError: 'Password needs at least 6 characters.' });
+    if (s.students.some(a => (a.email || '').toLowerCase() === email)) return this.setState({ authError: 'That email is already registered. Log in instead.' });
+    const P = ['var(--pink-500)', 'var(--teal-500)', 'var(--amber-500)', 'var(--green-700)'];
+    const acc = {
+      id: 'u' + Date.now(), name, email, pass, role: s.fRole, color: P[s.students.length % 4],
+      joined: new Date().toISOString().slice(0, 10), xp: 0, done: {}, words: {}
+    };
+    const students = s.students.concat([acc]);
+    this.setState({ students }, () => this.enter(acc, students));
+  }
+  enter(acc, students) {
+    const list = students || this.state.students;
+    const activeId = acc.role === 'teacher' ? ((list.find(x => x.role === 'student') || acc).id) : acc.id;
+    this.setState({ session: acc.id, activeId, view: 'dashboard', authError: '', fName: '', fEmail: '', fPass: '', studentMenu: false });
+    this.save(list, activeId, acc.id);
+  }
+  logout() {
+    this.setState({ session: null, activeId: null, view: 'auth', studentMenu: false, authMode: 'login', authError: '', fEmail: '', fPass: '' });
+    this.save(null, null, null);
+  }
+
+  /* ---------- data helpers ---------- */
+  course() { return (window.EF_COURSES && window.EF_COURSES.elementary) || { units: [] }; }
+  units() { return this.course().units || []; }
+  unit(n) { return this.units().find(u => u.n === (n || this.state.unitN)) || null; }
+  lesson() { const u = this.unit(); if (!u) return null; return u.lessons.find(l => l.id === this.state.lessonId) || u.lessons[0]; }
+  me() { return this.state.students.find(s => s.id === this.state.activeId) || this.state.students[0] || { name: '—', xp: 0, done: {}, words: {}, color: 'var(--green-700)' }; }
+  patchMe(fn) {
+    const students = this.state.students.map(s => (s.id === this.me().id ? fn(Object.assign({}, s)) : s));
+    this.setState({ students }); this.save(students);
+  }
+  exList() { const u = this.unit(); if (!u) return []; if (this.state.testMode) return u.test || []; const l = this.lesson(); return (l && l.ex) || []; }
+  curEx() { return this.exList()[this.state.exIdx] || null; }
+  doneKey() { return this.state.testMode ? 'U' + this.state.unitN + ':test' : this.state.lessonId + ':practice'; }
+
+  norm(s) {
+    return (s == null ? '' : String(s)).toLowerCase()
+      .replace(/[\u2018\u2019]/g, "'").replace(/[\u201c\u201d]/g, '"')
+      .replace(/[.,!?;:"]/g, '').replace(/\s+/g, ' ').trim();
+  }
+  rich(str) {
+    const s = String(str || '').replace(/&nbsp;/g, '\u00a0').replace(/&middot;/g, '\u00b7');
+    const out = []; const re = /<(b|i)>([\s\S]*?)<\/\1>/g; let last = 0, m, k = 0;
+    while ((m = re.exec(s))) {
+      if (m.index > last) out.push(s.slice(last, m.index));
+      out.push(React.createElement(m[1], { key: 'r' + (k++) }, m[2]));
+      last = m.index + m[0].length;
+    }
+    if (last < s.length) out.push(s.slice(last));
+    return React.createElement('span', null, out);
+  }
+  audioKey(text) {
+    return String(text || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 60);
+  }
+  speak(text) {
+    const src = window.EF_AUDIO && window.EF_AUDIO[this.audioKey(text)];
+    if (src) {
+      try {
+        if (window.speechSynthesis) window.speechSynthesis.cancel();
+        if (this._au) { this._au.pause(); this._au.currentTime = 0; }
+        this._au = new Audio(src);
+        this._au.play();
+        return;
+      } catch (e) {}
+    }
+    try {
+      const synth = window.speechSynthesis; if (!synth) return;
+      synth.cancel();
+      const u = new SpeechSynthesisUtterance(String(text || ''));
+      u.lang = 'en-GB'; u.rate = 0.92;
+      const v = synth.getVoices().find(x => /en-GB|en_GB/.test(x.lang)) || synth.getVoices().find(x => /^en/.test(x.lang));
+      if (v) u.voice = v;
+      synth.speak(u);
+    } catch (e) {}
+  }
+  shuffle(arr, seed) {
+    const s = ((seed || 7) * 7919 + 31) % 1013;
+    const a = arr.map((t, i) => ({ t, k: ((i + 1) * (s + 17) * 2654435761) % 100003 }));
+    a.sort((x, y) => x.k - y.k);
+    const out = a.map(o => o.t);
+    if (out.length > 1 && out.every((v, i) => v === arr[i])) out.push(out.shift());
+    return out;
+  }
+  resetEx(ex) {
+    let words = [];
+    if (ex && ex.t === 'order') {
+      const src = String(ex.a).split(' ');
+      words = this.shuffle(src, src.length);
+      let guard = 0;
+      while (words.join(' ') === ex.a && guard < 6) { words = words.slice(1).concat(words.slice(0, 1)); guard++; }
+    }
+    let ro = [];
+    if (ex && ex.t === 'match') {
+      const seed = ex.pairs.reduce((n, p) => n + p[0].length * 13 + p[1].length, ex.pairs.length);
+      ro = this.shuffle(ex.pairs.map((p, i) => i), seed);
+    }
+    return { sel: null, typed: '', pool: words, picked: [], matchLeft: null, matchDone: [], matchWrong: null, rightOrder: ro, checked: false };
+  }
+
+  /* ---------- navigation ---------- */
+  go(view) { this.setState(Object.assign({ view: view, studentMenu: false }, view === 'lesson' ? {} : {})); }
+  openLesson(unitN, lessonId, stage) {
+    const u = this.unit(unitN); const l = u && u.lessons.find(x => x.id === lessonId);
+    const st = (l && l.locked) ? 'overview' : (stage || 'overview');
+    this.setState(Object.assign({ view: 'lesson', unitN: unitN, lessonId: lessonId, stage: st, testMode: false, exIdx: 0, results: [], finished: false, flashIdx: 0, flashBack: false, listMode: false, studentMenu: false }, this.resetEx(null)));
+  }
+  setStage(stage) {
+    const l = this.lesson();
+    if (stage === 'practice' || stage === 'test') {
+      const testMode = stage === 'test';
+      const list = testMode ? (this.unit().test || []) : ((l && l.ex) || []);
+      this.setState(Object.assign({ stage: 'practice', testMode: testMode, exIdx: 0, results: [], finished: false }, this.resetEx(list[0])));
+    } else this.setState({ stage: stage, testMode: false });
+  }
+
+  /* ---------- runner ---------- */
+  isOk(ex) {
+    if (!ex) return false;
+    if (ex.t === 'mc' || ex.t === 'listen') return this.state.sel === ex.a;
+    if (ex.t === 'order') return this.norm(this.state.picked.join(' ')) === this.norm(ex.a);
+    if (ex.t === 'match') return this.state.matchDone.length === ex.pairs.length;
+    const list = Array.isArray(ex.a) ? ex.a : [ex.a];
+    return list.some(a => this.norm(a) === this.norm(this.state.typed));
+  }
+  answerText(ex) {
+    if (!ex) return '';
+    if (ex.t === 'mc' || ex.t === 'listen') return ex.o[ex.a];
+    if (ex.t === 'order') return ex.a;
+    return Array.isArray(ex.a) ? ex.a[0] : ex.a;
+  }
+  pushResult(ok) { const r = this.state.results.slice(); r[this.state.exIdx] = !!ok; this.setState({ results: r }); }
+  check() { const ex = this.curEx(); if (!ex) return; this.pushResult(this.isOk(ex)); this.setState({ checked: true }); }
+  next() {
+    const i = this.state.exIdx + 1;
+    if (i >= this.exList().length) return this.finish();
+    this.setState(Object.assign({ exIdx: i }, this.resetEx(this.exList()[i])));
+  }
+  skip() { const r = this.state.results.slice(); if (r[this.state.exIdx] === undefined) r[this.state.exIdx] = false; this.setState({ results: r }, () => this.next()); }
+  finish() {
+    const total = this.exList().length;
+    const score = this.state.results.filter(Boolean).length;
+    const key = this.doneKey();
+    this.patchMe(s => {
+      const done = Object.assign({}, s.done); const prev = done[key];
+      if (!prev || prev.score < score) done[key] = { score: score, total: total };
+      s.done = done; s.xp = (s.xp || 0) + score * 10; return s;
+    });
+    this.setState({ finished: true });
+  }
+  restart() { const list = this.exList(); this.setState(Object.assign({ exIdx: 0, results: [], finished: false }, this.resetEx(list[0]))); }
+
+  /* ---------- vocab ---------- */
+  words(l) { return (l && l.vocab) || []; }
+  toggleKnown(word) { this.patchMe(s => { const w = Object.assign({}, s.words); if (w[word]) delete w[word]; else w[word] = 1; s.words = w; return s; }); }
+
+  /* ---------- progress maths ---------- */
+  unitPct(u) {
+    if (!u || u.locked) return 0;
+    const me = this.me(); const keys = u.lessons.map(l => l.id + ':practice').concat(['U' + u.n + ':test']);
+    let sum = 0;
+    keys.forEach(k => { const d = me.done[k]; if (d && d.total) sum += Math.round((d.score / d.total) * 100); });
+    return Math.round(sum / keys.length);
+  }
+
+  renderVals() {
+    const S = this.state;
+    const teacherTools = this.props.teacherMode !== false;
+    const shell = {
+      booting: !S.ready, teacherTools: teacherTools,
+      isAuth: false, isApp: false, isAccount: false,
+      isDashboard: false, isUnits: false, isLesson: false, isBank: false, isGrammarRef: false, isProgress: false,
+      crumb: 'English Studio', crumbSub: 'Growland',
+      navItems: [], levelItems: [], studentMenu: false, studentItems: [],
+      meName: '—', meInitial: '·', meColor: 'var(--green-700)', meXpLabel: '',
+      answersLabel: 'Answers', answersIcon: 'eyeOff', answersBg: 'transparent', answersFg: 'var(--green-900)',
+      timerLabel: 'Timer', timerBg: 'transparent', timerFg: 'var(--green-900)',
+      toggleAnswers: () => this.setState({ showAnswers: !S.showAnswers }),
+      toggleTimer: () => this.setState({ timerRunning: !S.timerRunning, timer: S.timerRunning ? 0 : 120 }),
+      toggleStudentMenu: () => this.setState({ studentMenu: !S.studentMenu }),
+      addStudent: () => {
+        const name = window.prompt('Student name'); if (!name) return;
+        const palette = ['var(--pink-500)', 'var(--teal-500)', 'var(--amber-500)', 'var(--green-500)'];
+        const em = name.toLowerCase().replace(/[^a-z0-9]/g, '') + '@demo.com';
+        const s = {
+          id: 's' + Date.now(), name: name, email: em, pass: 'demo123', role: 'student',
+          color: palette[S.students.length % 4], joined: new Date().toISOString().slice(0, 10), xp: 0, done: {}, words: {}
+        };
+        const students = S.students.concat([s]);
+        this.setState({ students: students, activeId: s.id, studentMenu: false }); this.save(students, s.id);
+      },
+      logout: () => this.logout(),
+      goAccount: () => this.setState({ view: 'account', studentMenu: false }),
+      goProgress: () => this.setState({ view: 'progress' }),
+      goUnits: () => this.setState({ view: 'units', studentMenu: false })
+    };
+    if (!S.ready) return shell;
+
+    if (!S.session) {
+      const signup = S.authMode === 'signup';
+      shell.isAuth = true;
+      shell.isSignup = signup;
+      shell.authTitle = signup ? 'Create your account' : 'Welcome back';
+      shell.authCta = signup ? 'Create account' : 'Log in';
+      shell.authError = S.authError;
+      shell.fName = S.fName; shell.fEmail = S.fEmail; shell.fPass = S.fPass;
+      shell.onName = e => this.setState({ fName: e.target.value, authError: '' });
+      shell.onEmail = e => this.setState({ fEmail: e.target.value, authError: '' });
+      shell.onPass = e => this.setState({ fPass: e.target.value, authError: '' });
+      shell.onAuthKey = e => { if (e.key === 'Enter') { signup ? this.signup() : this.login(S.fEmail, S.fPass); } };
+      shell.submitAuth = () => { signup ? this.signup() : this.login(S.fEmail, S.fPass); };
+      shell.authTabs = [{ id: 'login', label: 'Log in' }, { id: 'signup', label: 'Sign up' }].map(t => ({
+        label: t.label,
+        bg: S.authMode === t.id ? 'var(--green-900)' : 'transparent',
+        fg: S.authMode === t.id ? '#fff' : 'var(--green-900)',
+        onClick: () => this.setState({ authMode: t.id, authError: '' })
+      }));
+      shell.roleTabs = [{ id: 'student', label: 'Student' }, { id: 'teacher', label: 'Teacher' }].map(r => ({
+        label: r.label,
+        bg: S.fRole === r.id ? 'var(--mint-200)' : 'var(--neutral-100)',
+        fg: 'var(--green-900)',
+        border: S.fRole === r.id ? 'var(--green-500)' : 'var(--neutral-100)',
+        onClick: () => this.setState({ fRole: r.id })
+      }));
+      shell.authPoints = [
+        { n: '1', t: 'Sign up once — progress follows you to every lesson.' },
+        { n: '2', t: 'Flashcards remember the words you marked as known.' },
+        { n: '3', t: 'Teachers see the whole group from one account.' }
+      ];
+      shell.demoAccounts = S.students.slice(0, 3).map(a => ({
+        label: a.name + (a.role === 'teacher' ? ' · teacher' : ''),
+        onClick: () => this.enter(a)
+      }));
+      return shell;
+    }
+    shell.isApp = true;
+
+    const me = this.me();
+    const units = this.units();
+    const unit = this.unit();
+    const lesson = this.lesson();
+    const acc = this.ACC[(unit && unit.accent) || 'mint'];
+
+    /* nav */
+    const nav = [
+      { id: 'dashboard', label: 'Dashboard', icon: 'home' },
+      { id: 'units', label: 'Units', icon: 'book' },
+      { id: 'bank', label: 'Vocabulary', icon: 'search' },
+      { id: 'grammar', label: 'Grammar', icon: 'check' },
+      { id: 'progress', label: 'Progress', icon: 'trophy' },
+      { id: 'account', label: this.isTeacher() ? 'My account' : 'My cabinet', icon: 'users' }
+    ];
+    shell.navItems = nav.map(n => {
+      const active = S.view === n.id || (n.id === 'units' && S.view === 'lesson');
+      return { label: n.label, icon: n.icon, bg: active ? 'var(--mint-400)' : 'transparent', fg: active ? 'var(--green-900)' : 'rgba(255,255,255,.82)', onClick: () => this.setState({ view: n.id, studentMenu: false }) };
+    });
+    shell.levelItems = (window.EF_LEVELS || []).map(lv => {
+      const on = lv.status === 'ready';
+      return { name: lv.name, cefr: lv.cefr, bg: on ? 'rgba(138,219,166,.18)' : 'transparent', fg: on ? '#fff' : 'rgba(255,255,255,.45)', tag: on ? 'var(--mint-300)' : 'rgba(255,255,255,.35)', cursor: on ? 'pointer' : 'default', onClick: on ? (() => this.setState({ view: 'units', studentMenu: false })) : (() => {}) };
+    });
+
+    /* student chip */
+    shell.meName = me.name; shell.meInitial = (me.name || '?').charAt(0).toUpperCase();
+    shell.meColor = me.color; shell.meXpLabel = (me.xp || 0) + ' XP';
+    shell.studentMenu = S.studentMenu;
+    shell.canSwitch = this.isTeacher();
+    shell.studentItems = S.students.filter(s => s.role !== 'teacher').map(s => ({
+      name: s.name, initial: (s.name || '?').charAt(0).toUpperCase(), color: s.color,
+      sub: (s.xp || 0) + ' XP · ' + Object.keys(s.words || {}).length + ' words',
+      bg: s.id === me.id ? 'var(--mint-100)' : 'transparent',
+      onClick: () => { this.setState({ activeId: s.id, studentMenu: false }); this.save(null, s.id); }
+    }));
+    shell.menuTitle = 'Viewing progress of';
+    shell.answersLabel = S.showAnswers ? 'Answers on' : 'Answers off';
+    shell.answersIcon = S.showAnswers ? 'eye' : 'eyeOff';
+    shell.answersBg = S.showAnswers ? 'var(--green-900)' : 'transparent';
+    shell.answersFg = S.showAnswers ? '#fff' : 'var(--green-900)';
+    const mm = Math.floor(S.timer / 60), ss = S.timer % 60;
+    shell.timerLabel = S.timerRunning || S.timer > 0 ? mm + ':' + (ss < 10 ? '0' + ss : ss) : '2:00 timer';
+    shell.timerBg = S.timerRunning ? 'var(--amber-500)' : 'transparent';
+    shell.timerFg = S.timerRunning ? '#fff' : 'var(--green-900)';
+
+    /* crumbs */
+    if (S.view === 'dashboard') { shell.crumb = 'Good to see you, ' + me.name; shell.crumbSub = 'Elementary · A1–A2'; }
+    if (S.view === 'units') { shell.crumb = 'Elementary course map'; shell.crumbSub = '12 units · A1–A2'; }
+    if (S.view === 'bank') { shell.crumb = 'Vocabulary bank'; shell.crumbSub = 'Elementary'; }
+    if (S.view === 'grammar') { shell.crumb = 'Grammar reference'; shell.crumbSub = 'Elementary'; }
+    if (S.view === 'progress') { shell.crumb = 'Progress'; shell.crumbSub = me.name; }
+    if (S.view === 'account') { shell.crumb = this.isTeacher() ? 'My account' : 'My cabinet'; shell.crumbSub = 'Elementary · A1–A2'; }
+
+    const vw = this.viewer() || me;
+    shell.acName = vw.name;
+    shell.acEmail = vw.email || '';
+    shell.acInitial = (vw.name || '?').charAt(0).toUpperCase();
+    shell.acColor = vw.color;
+    shell.acRole = vw.role === 'teacher' ? 'Teacher' : 'Student';
+    shell.acJoined = vw.joined || '—';
+    shell.isTeacherAccount = vw.role === 'teacher';
+
+    if (S.view === 'account') {
+      shell.isAccount = true;
+      const forTeacher = vw.role === 'teacher';
+      const target = forTeacher ? me : vw;
+      const pcts = units.filter(u => !u.locked).map(u => this.unitPct(u));
+      const overall = Math.round(pcts.reduce((a, b) => a + b, 0) / (units.length || 1));
+      shell.acOverall = overall;
+      shell.statsTitle = forTeacher ? 'Progress of ' + target.name : 'My progress';
+      shell.progressTitle = forTeacher ? 'Course progress · ' + target.name : 'Course progress';
+      shell.historyTitle = forTeacher ? 'Recent results · ' + target.name : 'Recent results';
+      shell.acOverallLabel = overall + '% of the Elementary course · ' + units.filter(u => !u.locked).length + ' of 12 units published';
+      shell.acStats = [
+        { value: target.xp || 0, label: 'XP' },
+        { value: Object.keys(target.words || {}).length, label: 'Words learned' },
+        { value: Object.keys(target.done || {}).length, label: 'Activities done' },
+        { value: units.filter(u => this.unitPct(u) >= 80).length, label: 'Units mastered' }
+      ];
+      const hist = Object.keys(target.done || {}).map(k => {
+        const d = target.done[k];
+        const isTest = /:test$/.test(k);
+        const id = isTest ? k.replace(/^U(\d+):test$/, 'U$1') : k.split(':')[0];
+        const ratio = d.total ? d.score / d.total : 0;
+        return {
+          id: id, label: isTest ? 'Unit test' : 'Lesson practice',
+          score: d.score + '/' + d.total,
+          fg: ratio >= 0.8 ? 'var(--green-700)' : ratio >= 0.5 ? 'var(--amber-500)' : 'var(--error)'
+        };
+      }).reverse().slice(0, 6);
+      shell.acHistory = hist;
+      shell.acHasHistory = hist.length > 0;
+      shell.acNoHistory = hist.length === 0;
+      shell.renameMe = () => {
+        const name = window.prompt('Your name', vw.name); if (!name) return;
+        const students = S.students.map(s => (s.id === vw.id ? Object.assign({}, s, { name: name.trim() }) : s));
+        this.setState({ students }); this.save(students);
+      };
+      const kids = S.students.filter(s => s.role !== 'teacher');
+      shell.rosterNote = kids.length + ' student ' + (kids.length === 1 ? 'account' : 'accounts') + ' in this browser';
+      shell.roster = kids.map(s => {
+        const saved = S.activeId;
+        const open = units.filter(u => !u.locked);
+        const pct = Math.round(open.map(u => {
+          const keys = u.lessons.map(l => l.id + ':practice').concat(['U' + u.n + ':test']);
+          let sum = 0;
+          keys.forEach(k => { const d = (s.done || {})[k]; if (d && d.total) sum += Math.round((d.score / d.total) * 100); });
+          return Math.round(sum / keys.length);
+        }).reduce((a, b) => a + b, 0) / (units.length || 1));
+        return {
+          name: s.name, email: s.email || '', initial: (s.name || '?').charAt(0).toUpperCase(), color: s.color,
+          bg: s.id === saved ? 'var(--mint-100)' : 'var(--neutral-100)',
+          pct: pct, meta: (s.xp || 0) + ' XP',
+          cta: s.id === saved ? 'Viewing' : 'View',
+          onOpen: () => { this.setState({ activeId: s.id, view: 'progress' }); this.save(null, s.id); }
+        };
+      });
+    }
+    if (S.view === 'lesson' && unit && lesson) { shell.crumb = lesson.title; shell.crumbSub = 'Unit ' + unit.n + ' · ' + unit.title + ' · ' + lesson.id; }
+
+    /* ---------- dashboard ---------- */
+    if (S.view === 'dashboard') {
+      shell.isDashboard = true;
+      const openU = units.find(u => !u.locked) || units[0];
+      const nextLesson = openU.lessons.find(l => !me.done[l.id + ':practice']) || openU.lessons[0];
+      shell.heroTitle = 'Unit ' + openU.n + ' · ' + nextLesson.id + ' ' + nextLesson.title;
+      shell.heroSub = nextLesson.g + ' · ' + nextLesson.v + '. Vocabulary, grammar on the big screen, ' + ((nextLesson.ex || []).length) + ' exercises and speaking tasks.';
+      shell.openHero = () => this.openLesson(openU.n, nextLesson.id, 'overview');
+      const doneStages = Object.keys(me.done || {}).length;
+      shell.stats = [
+        { value: (me.xp || 0), label: 'XP earned' },
+        { value: doneStages, label: 'Activities done' },
+        { value: Object.keys(me.words || {}).length, label: 'Words learned' },
+        { value: units.filter(u => this.unitPct(u) >= 80).length + '/12', label: 'Units mastered' }
+      ];
+      shell.featureCards = [
+        { title: 'Units & lessons', sub: '12 units, three lessons each', bg: 'var(--pink-200)', icon: 'book', onClick: () => this.setState({ view: 'units' }) },
+        { title: 'Vocabulary bank', sub: 'Words, phonemics, examples, audio', bg: 'var(--teal-200)', icon: 'search', onClick: () => this.setState({ view: 'bank' }) },
+        { title: 'Grammar reference', sub: 'Every A1–A2 point, big and clear', bg: 'var(--amber-200)', icon: 'check', onClick: () => this.setState({ view: 'grammar' }) },
+        { title: 'Speaking tasks', sub: 'Pair and solo prompts with models', bg: 'var(--mint-200)', icon: 'mic', onClick: () => this.openLesson(openU.n, nextLesson.id, 'speaking') }
+      ];
+      shell.planUnitTitle = 'Unit ' + openU.n + ' ' + openU.title;
+      shell.planPractical = openU.practical;
+      shell.planItems = openU.lessons.map(l => {
+        const d = me.done[l.id + ':practice'];
+        return {
+          id: l.id, title: l.title, meta: l.g + ' · ' + l.v,
+          chip: d ? d.score + '/' + d.total : 'Not started',
+          chipBg: d ? 'var(--mint-200)' : 'var(--neutral-200)', chipFg: 'var(--green-900)',
+          onClick: () => this.openLesson(openU.n, l.id, 'overview')
+        };
+      });
+    }
+
+    /* ---------- units ---------- */
+    if (S.view === 'units') {
+      shell.isUnits = true;
+      shell.courseNote = this.course().note;
+      shell.unitCards = units.map(u => {
+        const a = this.ACC[u.accent || 'mint'];
+        const pct = this.unitPct(u);
+        return {
+          n: u.n, title: u.title, theme: u.theme, tint: a[1], border: u.locked ? 'var(--neutral-200)' : a[1],
+          badge: u.locked ? 'Planned' : 'Live', badgeBg: u.locked ? 'var(--neutral-200)' : 'var(--mint-400)', badgeFg: u.locked ? 'var(--text-secondary)' : 'var(--green-900)',
+          lessons: u.lessons.map(l => ({ id: l.id, g: l.g })),
+          pct: pct, pctLabel: u.locked ? 'Syllabus ready · content in production' : pct + '% complete',
+          onClick: () => this.openLesson(u.n, u.lessons[0].id, 'overview')
+        };
+      });
+    }
+
+    /* ---------- lesson ---------- */
+    if (S.view === 'lesson' && unit && lesson) {
+      shell.isLesson = true;
+      shell.lessonId = lesson.id; shell.lessonTitle = lesson.title;
+      shell.lessonMeta = 'Grammar: ' + lesson.g + '  ·  Vocabulary: ' + lesson.v;
+      shell.lessonTint = acc[1];
+      shell.lessonLocked = !!lesson.locked;
+      shell.lessonG = lesson.g; shell.lessonV = lesson.v;
+      shell.openUnit1 = () => this.openLesson(1, '1A', 'overview');
+
+      const tabs = lesson.locked ? [] : [
+        { id: 'overview', label: 'Overview' }, { id: 'vocab', label: 'Vocabulary' },
+        { id: 'grammar', label: 'Grammar' }, { id: 'practice', label: 'Practice' },
+        { id: 'speaking', label: 'Speaking' }, { id: 'test', label: 'Unit test' }
+      ];
+      shell.stageTabs = tabs.map(t => {
+        const on = (t.id === 'test' ? (S.stage === 'practice' && S.testMode) : (S.stage === t.id && !S.testMode));
+        return { label: t.label, bg: on ? 'var(--green-900)' : 'var(--neutral-100)', fg: on ? '#fff' : 'var(--green-900)', onClick: () => this.setStage(t.id) };
+      });
+
+      const stage = lesson.locked ? 'none' : S.stage;
+      shell.isOverview = stage === 'overview';
+      shell.isVocabStage = stage === 'vocab';
+      shell.isGrammarStage = stage === 'grammar';
+      shell.isSpeaking = stage === 'speaking';
+      shell.isRunner = stage === 'practice';
+
+      if (shell.isOverview) {
+        shell.overviewCards = [
+          { step: 1, title: 'Vocabulary', sub: this.words(lesson).length + ' words from “' + lesson.v + '” with phonemics, meaning, an example and audio.', cta: 'Open flashcards', onClick: () => this.setStage('vocab') },
+          { step: 2, title: 'Grammar', sub: 'Present ' + lesson.g + ' on the big screen: forms, examples and the mistakes to head off.', cta: 'Show the rule', onClick: () => this.setStage('grammar') },
+          { step: 3, title: 'Practice', sub: ((lesson.ex || []).length) + ' exercises: multiple choice, gap fill, word order, matching, transformation, dictation and listening.', cta: 'Start practice', onClick: () => this.setStage('practice') },
+          { step: 4, title: 'Speaking', sub: ((lesson.speak || []).length) + ' prompts for pair or solo work, each with a model answer you can reveal.', cta: 'Open tasks', onClick: () => this.setStage('speaking') }
+        ];
+      }
+
+      if (shell.isVocabStage) {
+        const ws = this.words(lesson);
+        const idx = Math.min(S.flashIdx, Math.max(0, ws.length - 1));
+        const card = ws[idx] || { w: '', ipa: '', def: '', ex: '' };
+        const known = !!me.words[card.w];
+        shell.flashMode = !S.listMode; shell.listMode = S.listMode;
+        shell.listModeLabel = S.listMode ? 'Flashcards' : 'Word list';
+        shell.toggleListMode = () => this.setState({ listMode: !S.listMode });
+        shell.flashPos = 'Word ' + (idx + 1) + ' of ' + ws.length + ' · ' + lesson.v;
+        shell.cardFront = card.w; shell.cardIpa = card.ipa; shell.cardDef = card.def; shell.cardEx = card.ex;
+        shell.cardBg = S.flashBack ? 'var(--green-900)' : acc[1];
+        shell.cardFg = S.flashBack ? '#fff' : 'var(--green-900)';
+        shell.cardMuted = S.flashBack ? 'var(--mint-300)' : 'rgba(6,52,23,.6)';
+        shell.flashBack = S.flashBack; shell.flashFront = !S.flashBack;
+        shell.flip = () => { const b = !S.flashBack; this.setState({ flashBack: b }); if (b && this.props.autoSpeak) this.speak(card.ex || card.w); };
+        shell.speakCard = () => this.speak(card.w + '. ' + (card.ex || ''));
+        shell.prevCard = () => this.setState({ flashIdx: (idx - 1 + ws.length) % ws.length, flashBack: false });
+        shell.nextCard = () => { const n = (idx + 1) % ws.length; this.setState({ flashIdx: n, flashBack: false }); if (this.props.autoSpeak) this.speak(ws[n].w); };
+        shell.toggleKnown = () => this.toggleKnown(card.w);
+        shell.knownLabel = known ? '✓ Known' : 'Mark as known';
+        shell.knownBg = known ? 'var(--mint-400)' : 'var(--neutral-100)';
+        shell.knownFg = 'var(--green-900)';
+        shell.lessonWords = ws.map(w => ({ w: w.w, ipa: this.props.showIpa === false ? '' : w.ipa, def: w.def, onSpeak: () => this.speak(w.w + '. ' + w.ex) }));
+      }
+
+      if (shell.isGrammarStage && lesson.grammar) {
+        shell.gHead = this.rich(lesson.grammar.h);
+        shell.gRows = (lesson.grammar.rows || []).map(r => ({ label: r.label, items: r.items.map(i => ({ node: this.rich(i) })) }));
+        shell.gNotes = (lesson.grammar.notes || []).map(n => ({ node: this.rich(n) }));
+        shell.startPractice = () => this.setStage('practice');
+      }
+
+      if (shell.isSpeaking) {
+        shell.speakCards = (lesson.speak || []).map((s, i) => {
+          const open = !!S.revealed[lesson.id + i] || S.showAnswers;
+          return {
+            n: i + 1, p: s.p, model: s.model, open: open,
+            revealLabel: open ? 'Hide model' : 'Show model',
+            onReveal: () => { const r = Object.assign({}, S.revealed); r[lesson.id + i] = !S.revealed[lesson.id + i]; this.setState({ revealed: r }); },
+            onSpeak: () => this.speak(s.model)
+          };
+        });
+      }
+
+      if (shell.isRunner) {
+        const list = this.exList();
+        const ex = this.curEx();
+        const total = list.length;
+        const score = S.results.filter(Boolean).length;
+        shell.dots = list.map((x, i) => ({
+          bg: S.results[i] === true ? 'var(--green-500)' : S.results[i] === false ? 'var(--error)' : i === S.exIdx ? 'var(--green-900)' : 'var(--neutral-200)'
+        }));
+        shell.exCounter = (S.testMode ? 'Unit test · ' : 'Practice · ') + Math.min(S.exIdx + 1, total) + ' / ' + total;
+        shell.finished = S.finished; shell.running = !S.finished && !!ex;
+        shell.scoreText = score + ' / ' + total;
+        shell.resultKicker = S.testMode ? 'Unit ' + unit.n + ' test result' : lesson.id + ' practice result';
+        shell.resultMsg = score === total ? 'Everything correct. Add ' + (score * 10) + ' XP and move on to the next lesson.'
+          : score >= total * 0.6 ? 'Solid. Review the items marked in red, then try again for a clean run. +' + (score * 10) + ' XP.'
+          : 'Worth going back to the grammar card and the flashcards before the next attempt. +' + (score * 10) + ' XP.';
+        shell.restart = () => this.restart();
+        shell.backToLesson = () => this.setState({ stage: 'overview', testMode: false, finished: false });
+
+        if (ex) {
+          const reveal = S.checked || S.showAnswers;
+          shell.exKind = this.KIND[ex.t] || 'Exercise';
+          shell.exInstr = ex.instr || (ex.t === 'dictation' ? 'Listen and type exactly what you hear.' : ex.t === 'order' ? 'Put the words in the right order.' : ex.t === 'match' ? 'Click a word on the left, then its match on the right.' : ex.t === 'gap' ? 'Type the missing word.' : '');
+          shell.hasPlay = ex.t === 'dictation' || ex.t === 'listen';
+          shell.playAudio = () => this.speak(ex.t === 'dictation' ? ex.a : ex.text);
+          shell.exQuestionNode = ex.t === 'dictation' ? this.rich('Listen, then write the sentence.')
+            : ex.t === 'order' ? this.rich('Build a correct sentence.')
+            : ex.t === 'match' ? this.rich('Match the pairs.')
+            : this.rich(ex.q || '');
+
+          shell.isMc = ex.t === 'mc' || ex.t === 'listen';
+          shell.isOrder = ex.t === 'order';
+          shell.isMatch = ex.t === 'match';
+          shell.hasInput = ex.t === 'gap' || ex.t === 'transform' || ex.t === 'dictation';
+          shell.typed = S.typed;
+          shell.onType = e => this.setState({ typed: e.target.value });
+          shell.onKey = e => { if (e.key === 'Enter') { if (S.checked) this.next(); else this.check(); } };
+
+          if (shell.isMc) {
+            shell.mcOptions = ex.o.map((label, i) => {
+              let bg = 'var(--neutral-100)', fg = 'var(--green-900)', border = 'var(--neutral-100)';
+              if (reveal && i === ex.a) { bg = 'var(--mint-200)'; border = 'var(--green-500)'; }
+              else if (S.checked && S.sel === i) { bg = 'rgba(198,91,78,.12)'; border = 'var(--error)'; }
+              else if (S.sel === i) { border = 'var(--green-900)'; }
+              return { label: label, bg: bg, fg: fg, border: border, onClick: () => { if (!S.checked) this.setState({ sel: i }, () => { if (this.props.instantFeedback !== false) this.check(); }); } };
+            });
+          }
+          if (shell.isOrder) {
+            shell.orderPicked = S.picked.map((t, i) => ({ t: t, onClick: () => { if (S.checked) return; const p = S.picked.slice(); const back = p.splice(i, 1); this.setState({ picked: p, pool: S.pool.concat(back) }); } }));
+            shell.orderEmpty = S.picked.length === 0;
+            shell.orderPool = S.pool.map((t, i) => ({
+              t: t,
+              onClick: () => { if (S.checked) return; const pool = S.pool.slice(); pool.splice(i, 1); this.setState({ pool: pool, picked: S.picked.concat([t]) }); },
+              onDragStart: e => { try { e.dataTransfer.setData('text/plain', String(i)); } catch (err) {} }
+            }));
+            shell.onDragOver = e => e.preventDefault();
+            shell.onDropStrip = e => {
+              e.preventDefault(); if (S.checked) return;
+              let i = -1; try { i = parseInt(e.dataTransfer.getData('text/plain'), 10); } catch (err) {}
+              if (isNaN(i) || i < 0 || i >= S.pool.length) return;
+              const pool = S.pool.slice(); const t = pool.splice(i, 1)[0];
+              this.setState({ pool: pool, picked: S.picked.concat([t]) });
+            };
+          }
+          if (shell.isMatch) {
+            shell.matchLeftItems = ex.pairs.map((p, i) => {
+              const done = S.matchDone.indexOf(i) > -1;
+              return {
+                t: p[0], bg: done ? 'var(--mint-200)' : S.matchLeft === i ? 'var(--green-900)' : 'var(--neutral-100)',
+                fg: !done && S.matchLeft === i ? '#fff' : 'var(--green-900)',
+                border: done ? 'var(--green-500)' : S.matchLeft === i ? 'var(--green-900)' : 'var(--neutral-100)',
+                onClick: () => { if (!done) this.setState({ matchLeft: i }); }
+              };
+            });
+            shell.matchRightItems = S.rightOrder.map((pi, d) => {
+              const done = S.matchDone.indexOf(pi) > -1;
+              const wrong = S.matchWrong === d;
+              return {
+                t: ex.pairs[pi][1],
+                bg: done ? 'var(--mint-200)' : wrong ? 'rgba(198,91,78,.14)' : 'var(--neutral-100)',
+                fg: 'var(--green-900)',
+                border: done ? 'var(--green-500)' : wrong ? 'var(--error)' : 'var(--neutral-100)',
+                onClick: () => {
+                  if (done || S.matchLeft === null) return;
+                  if (pi === S.matchLeft) {
+                    const md = S.matchDone.concat([pi]);
+                    const all = md.length === ex.pairs.length;
+                    this.setState({ matchDone: md, matchLeft: null, checked: all });
+                    if (all) this.pushResult(true);
+                  } else {
+                    this.setState({ matchWrong: d });
+                    setTimeout(() => this.setState({ matchWrong: null, matchLeft: null }), 500);
+                  }
+                }
+              };
+            });
+          }
+
+          const ok = S.results[S.exIdx];
+          shell.showFb = S.checked || (S.showAnswers && ex.t !== 'match');
+          shell.fbBg = !S.checked ? 'var(--neutral-100)' : ok ? 'var(--mint-100)' : 'rgba(198,91,78,.10)';
+          shell.fbFg = !S.checked ? 'var(--text-secondary)' : ok ? 'var(--green-700)' : 'var(--error)';
+          shell.fbTitle = !S.checked ? 'Answer key' : ok ? 'Correct' : 'Not quite';
+          shell.fbBody = ex.t === 'match' ? 'All pairs matched.' : this.answerText(ex);
+          shell.canCheck = !S.checked && ex.t !== 'match';
+          shell.canNext = S.checked;
+          shell.nextLabel = S.exIdx + 1 >= total ? 'See the result' : 'Next →';
+          shell.check = () => this.check();
+          shell.next = () => this.next();
+          shell.skip = () => this.skip();
+        }
+      }
+    }
+
+    /* ---------- vocabulary bank ---------- */
+    if (S.view === 'bank') {
+      shell.isBank = true;
+      const open = units.filter(u => !u.locked);
+      shell.bankFilters = [{ n: 0, label: 'All units' }].concat(open.map(u => ({ n: u.n, label: 'Unit ' + u.n }))).map(f => ({
+        label: f.label, bg: S.bankUnit === f.n ? 'var(--green-900)' : '#fff', fg: S.bankUnit === f.n ? '#fff' : 'var(--green-900)',
+        onClick: () => this.setState({ bankUnit: f.n })
+      }));
+      shell.q = S.q;
+      shell.onSearch = e => this.setState({ q: e.target.value });
+      const q = this.norm(S.q);
+      const rows = [];
+      open.forEach(u => {
+        if (S.bankUnit && u.n !== S.bankUnit) return;
+        u.lessons.forEach(l => (l.vocab || []).forEach(w => {
+          if (q && this.norm(w.w).indexOf(q) < 0 && this.norm(w.def).indexOf(q) < 0) return;
+          const known = !!me.words[w.w];
+          rows.push({
+            unit: u.n + l.id.slice(-1), w: w.w, ipa: this.props.showIpa === false ? '' : w.ipa, def: w.def, ex: w.ex,
+            bg: known ? 'var(--mint-100)' : 'var(--neutral-100)',
+            knownLabel: known ? '✓' : 'Learn', knownBg: known ? 'var(--mint-400)' : '#fff', knownFg: 'var(--green-900)',
+            onSpeak: () => this.speak(w.w + '. ' + w.ex), onToggle: () => this.toggleKnown(w.w)
+          });
+        }));
+      });
+      shell.bankRows = rows; shell.bankEmpty = rows.length === 0;
+    }
+
+    /* ---------- grammar reference ---------- */
+    if (S.view === 'grammar') {
+      shell.isGrammarRef = true;
+      shell.grammarRef = units.map(u => ({
+        n: u.n, title: u.title + ' · ' + u.theme, tint: this.ACC[u.accent || 'mint'][1],
+        rows: u.lessons.map(l => ({
+          id: l.id, g: l.g, link: l.locked ? 'In production' : 'Open →',
+          linkFg: l.locked ? 'var(--text-tertiary)' : 'var(--green-700)',
+          cursor: l.locked ? 'default' : 'pointer',
+          onClick: l.locked ? (() => {}) : (() => this.openLesson(u.n, l.id, 'grammar'))
+        }))
+      }));
+    }
+
+    /* ---------- progress ---------- */
+    if (S.view === 'progress') {
+      shell.isProgress = true;
+      shell.progressStats = [
+        { value: (me.xp || 0), label: 'XP' },
+        { value: Object.keys(me.words || {}).length, label: 'Words learned' },
+        { value: Object.keys(me.done || {}).length, label: 'Activities' }
+      ];
+      shell.unitBars = units.map(u => {
+        const pct = this.unitPct(u);
+        return { n: u.n, title: u.title, pct: pct, label: u.locked ? 'planned' : pct + '%' };
+      });
+      shell.resetProgress = () => { if (window.confirm('Reset progress for ' + me.name + '?')) this.patchMe(s => { s.xp = 0; s.done = {}; s.words = {}; return s; }); };
+    }
+
+    return shell;
+  }
+}
+
+</script>
+</body>
+</html>
