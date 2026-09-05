@@ -569,8 +569,18 @@ a:focus-visible {
 
 @media (max-width: 640px) {
   .auth {
+    grid-template-columns: 1fr;
     padding: var(--space-6) var(--space-4);
     gap: var(--space-8);
+  }
+
+  /* On a phone the form comes first — students sign up there, they do not read the pitch. */
+  .auth-card {
+    order: -1;
+  }
+
+  .auth-hero {
+    padding: 0;
   }
 
   .auth-title {
