@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import type { Metadata } from 'next';
 import { AppHeader } from '@/components/AppHeader';
 import { logOut } from '@/app/auth-actions';
@@ -47,12 +48,20 @@ export default async function DashboardPage() {
 
       <div className="page">
         <section className="welcome">
-          <span className="welcome-eyebrow">Signed in</span>
+          <span className="welcome-eyebrow">Continue learning</span>
           <h1 className="welcome-title">Welcome, {firstName}.</h1>
           <p className="welcome-sub">
-            Your account is live and your progress will be saved to it from the first exercise.
-            Lessons, vocabulary and grammar arrive in the next release.
+            Elementary is open: twelve units, vocabulary flashcards, grammar cards built for the
+            screen share, and speaking prompts with model answers.
           </p>
+          <div className="welcome-actions">
+            <Link className="pill-button is-light" href="/levels/elementary">
+              Open the course map
+            </Link>
+            <Link className="pill-button is-ghost" href="/lessons/1A">
+              Start with 1A
+            </Link>
+          </div>
         </section>
 
         <section className="card">
