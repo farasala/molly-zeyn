@@ -71,7 +71,9 @@ export function AudioButton({ src, label, variant = 'pill', text = 'Listen' }: P
     audio.currentTime = 0;
     void audio.play().then(
       () => setPlaying(true),
-      () => setFailed(true),
+      // A rejected play() is the browser declining the gesture, not a missing
+      // file. Only the media error event hides the button.
+      () => setPlaying(false),
     );
   };
 
