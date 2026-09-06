@@ -10,22 +10,71 @@ import type { Exercise } from '@/lib/content';
 export const XP_PER_CORRECT = 10;
 
 /**
- * Answer comparison, per CLAUDE.md: lowercase, straighten quotes, strip
- * . , ! ? ; : " — collapse spaces, trim. Apostrophes stay: "I'm" and "Im"
- * are not the same answer in a beginner course.
+ * Contractions, written out. Both the student's answer and the key go through
+ * this, so "I'm", "I am" and even "Im" all land on the same string.
+ *
+ * The list is explicit rather than a clever `n't` rule, because that rule turns
+ * "doesn't" into "doesn not". Elementary uses a small, closed set.
+ * Order matters: the negatives must run before the 's rule.
  */
-export function normalizeAnswer(value: string): string {
-  return value
+const CONTRACTIONS: [RegExp, string][] = [
+  [/\blet'?s\b/g, 'let us'],
+  [/\bcan'?t\b/g, 'can not'],
+  [/\bcannot\b/g, 'can not'],
+  [/\bwon'?t\b/g, 'will not'],
+  [/\bdon'?t\b/g, 'do not'],
+  [/\bdoesn'?t\b/g, 'does not'],
+  [/\bdidn'?t\b/g, 'did not'],
+  [/\bisn'?t\b/g, 'is not'],
+  [/\baren'?t\b/g, 'are not'],
+  [/\bwasn'?t\b/g, 'was not'],
+  [/\bweren'?t\b/g, 'were not'],
+  [/\bhasn'?t\b/g, 'has not'],
+  [/\bhaven'?t\b/g, 'have not'],
+  [/\bcouldn'?t\b/g, 'could not'],
+  [/\bshouldn'?t\b/g, 'should not'],
+  [/\bwouldn'?t\b/g, 'would not'],
+  [/\bi'?m\b/g, 'i am'],
+  [/\b(you|we|they)'?re\b/g, '$1 are'],
+  [/\b(i|you|we|they)'?ve\b/g, '$1 have'],
+  [/\b(i|you|we|they|he|she|it)'?ll\b/g, '$1 will'],
+  [/\b(he|she|it|that|this|there|what|who|where)'?s\b/g, '$1 is'],
+];
+
+/**
+ * Answer comparison. Lowercase, straighten quotes, fold accents, strip
+ * punctuation, collapse spaces, trim — and by default write contractions out,
+ * so a missing apostrophe or "I am" for "I'm" is not counted as a mistake.
+ *
+ * `expandContractions: false` is for the handful of tasks where the
+ * contraction is the thing being tested; see checkExercise.
+ */
+export function normalizeAnswer(value: string, expandContractions = true): string {
+  let text = value
     .toLowerCase()
+    .normalize('NFD')
+    // café and cafe are the same answer at this level.
+    .replace(/[̀-ͯ]/g, '')
     .replace(/[‘’‛′]/g, "'")
     .replace(/[“”‟″]/g, '"')
     .replace(/[.,!?;:"]/g, '')
     .replace(/\s+/g, ' ')
     .trim();
+
+  if (expandContractions) {
+    for (const [pattern, replacement] of CONTRACTIONS) {
+      text = text.replace(pattern, replacement);
+    }
+  }
+
+  // Anything left, like a stray apostrophe, stops mattering here.
+  return text.replace(/'/g, '').replace(/\s+/g, ' ').trim();
 }
 
-function sameAnswer(given: string, expected: string): boolean {
-  return normalizeAnswer(given) === normalizeAnswer(expected);
+function sameAnswer(given: string, expected: string, expandContractions = true): boolean {
+  return (
+    normalizeAnswer(given, expandContractions) === normalizeAnswer(expected, expandContractions)
+  );
 }
 
 /** Fisher-Yates, retried so the result is never the order it came in. */
@@ -121,7 +170,12 @@ export function checkExercise(exercise: Exercise, given: string): CheckResult {
     case 'dictation':
       return { correct: sameAnswer(given, exercise.a), expected: exercise.a };
     case 'transform': {
-      const correct = exercise.a.some((option) => sameAnswer(given, option));
+      // "Write the contraction." is the one place where writing it out in
+      // full is the wrong answer, so leniency is switched off there.
+      const testsContraction = /contraction/i.test(exercise.instr);
+      const correct = exercise.a.some((option) =>
+        sameAnswer(given, option, !testsContraction),
+      );
       return { correct, expected: exercise.a[0] };
     }
     case 'match': {

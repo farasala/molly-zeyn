@@ -4,6 +4,8 @@ import { AppHeader } from '@/components/AppHeader';
 import { logOut } from '@/app/auth-actions';
 import { requireAccount } from '@/lib/auth';
 import { getTotals } from '@/lib/progress';
+import { createClient } from '@/lib/supabase/server';
+import { StudentHomework } from '@/components/lesson/HomeworkStage';
 
 export const metadata: Metadata = { title: 'Dashboard · English Studio' };
 
@@ -13,6 +15,38 @@ const JOINED = new Intl.DateTimeFormat('en-GB', {
   year: 'numeric',
   timeZone: 'UTC',
 });
+
+/** Every assignment this student can see, newest first, with its state. */
+async function getStudentDashboardHomework(studentId: string) {
+  const supabase = await createClient();
+
+  const { data: homework } = await supabase
+    .from('homework')
+    .select('id, lesson_id, unit_n, title, due_at, created_at, group_id, student_id, items')
+    .order('created_at', { ascending: false });
+
+  if (!homework?.length) return [];
+
+  const { data: submissions } = await supabase
+    .from('homework_submissions')
+    .select('id, homework_id, student_id, status, score, total, submitted_at')
+    .eq('student_id', studentId);
+
+  return homework.map((row) => ({
+    homework: {
+      id: row.id,
+      lesson_id: row.lesson_id,
+      unit_n: row.unit_n,
+      title: row.title,
+      due_at: row.due_at,
+      created_at: row.created_at,
+      group_id: row.group_id,
+      student_id: row.student_id,
+      item_count: Array.isArray(row.items) ? row.items.length : 0,
+    },
+    submission: submissions?.find((item) => item.homework_id === row.id) ?? null,
+  }));
+}
 
 export default async function DashboardPage() {
   const account = await requireAccount();
@@ -40,7 +74,9 @@ export default async function DashboardPage() {
   }
 
   const { user } = account;
+  const isTeacher = user.profile.role === 'teacher';
   const totals = await getTotals(user.profile.id, 'elementary');
+  const homework = isTeacher ? [] : await getStudentDashboardHomework(user.profile.id);
   const { full_name: fullName, role, created_at: createdAt } = user.profile;
   const firstName = fullName.trim().split(/\s+/)[0];
 
@@ -53,18 +89,35 @@ export default async function DashboardPage() {
           <span className="welcome-eyebrow">Continue learning</span>
           <h1 className="welcome-title">Welcome, {firstName}.</h1>
           <p className="welcome-sub">
-            Elementary is open: twelve units, vocabulary flashcards, grammar cards built for the
-            screen share, and speaking prompts with model answers.
+            {isTeacher
+              ? 'Every unit is open to you. Set homework from a lesson and it appears on your students’ dashboards.'
+              : 'You work through a lesson with your teacher, then the homework for it turns up here. Finishing it opens that lesson for you to go back over.'}
           </p>
           <div className="welcome-actions">
             <Link className="pill-button is-light" href="/levels/elementary">
-              Open the course map
+              {isTeacher ? 'Open the course map' : 'See the course'}
             </Link>
-            <Link className="pill-button is-ghost" href="/lessons/1A">
-              Start with 1A
-            </Link>
+            {isTeacher && (
+              <Link className="pill-button is-ghost" href="/teacher">
+                Groups and students
+              </Link>
+            )}
           </div>
         </section>
+
+        {!isTeacher && (
+          <section className="stage-card">
+            <h2 className="card-title">Your homework</h2>
+            {homework.length === 0 ? (
+              <p className="card-text">
+                Nothing set yet. After a lesson your teacher puts a short set here; finishing it
+                opens that lesson so you can go back over it.
+              </p>
+            ) : (
+              <StudentHomework rows={homework} lessonId={homework[0].homework.lesson_id} />
+            )}
+          </section>
+        )}
 
         <section className="card">
           <h2 className="card-title">Your progress</h2>
@@ -119,8 +172,8 @@ export default async function DashboardPage() {
         <section className="card">
           <h2 className="card-title">What comes next</h2>
           <p className="card-text">
-            Homework is the next piece: after a lesson your teacher sets a short set drawn from
-            what you covered, and finishing it opens that lesson here for revision.
+            Everything you finish is kept against your account, so it is there on any device you
+            sign in from — your phone in the evening, a laptop the next morning.
           </p>
         </section>
       </div>

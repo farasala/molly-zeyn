@@ -2033,3 +2033,40 @@ a.level-card:hover {
 select.field-input {
   cursor: pointer;
 }
+
+/* sealed tabs and shut units: visible, so the student can see what opens */
+
+.stage-tab.is-sealed {
+  background: var(--neutral-100);
+  color: var(--text-tertiary);
+  cursor: default;
+}
+
+.unit-card.is-shut {
+  border-color: var(--neutral-200);
+  background: var(--neutral-100);
+  color: var(--text-tertiary);
+}
+
+.unit-card.is-shut .unit-number {
+  background: var(--neutral-200);
+  color: var(--text-tertiary);
+}
+
+.unit-card.is-shut .unit-title,
+.unit-card.is-shut .unit-lesson-id {
+  color: var(--text-secondary);
+}
+
+.notice-card {
+  padding: 14px var(--space-5);
+  border-radius: var(--radius-md);
+  background: var(--mint-100);
+}
+
+.notice-text {
+  margin: 0;
+  font-size: var(--fs-body-lg);
+  font-weight: var(--fw-semibold);
+  color: var(--green-700);
+}

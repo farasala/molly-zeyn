@@ -8,6 +8,7 @@ import { VocabularyStage, type VocabItem } from '@/components/lesson/VocabularyS
 import { audioSlug, audioUrl, vocabSlug } from '@/lib/audio';
 import { requireAccount } from '@/lib/auth';
 import { getLessonById, hasAudio } from '@/lib/content';
+import { EMPTY_ACCESS, getStudentAccess, lessonState } from '@/lib/access';
 import { PracticeRunner } from '@/components/practice/PracticeRunner';
 import { StudentHomework, TeacherHomework } from '@/components/lesson/HomeworkStage';
 import { getGroups, getSubmissions, getTeacherHomework } from '@/lib/teaching';
@@ -95,7 +96,7 @@ export default async function LessonPage({ params, searchParams }: Props) {
   if (!found) notFound();
 
   const { unit, lesson } = found;
-  const stage = resolveStage(stageParam);
+  const requestedStage = resolveStage(stageParam);
   const locked = Boolean(lesson.locked);
 
   const vocab: VocabItem[] = (lesson.vocab ?? []).map((entry) => ({
@@ -124,6 +125,12 @@ export default async function LessonPage({ params, searchParams }: Props) {
     : [];
   const studentHomework = isTeacher ? [] : await getStudentHomework(lesson.id, account.user.profile.id);
 
+  const access = isTeacher ? EMPTY_ACCESS : await getStudentAccess(LEVEL_ID);
+  const state = lessonState(isTeacher, lesson.id, access);
+
+  // Homework first, then the rest of the lesson once it is handed in.
+  const stage = state === 'homework-only' ? 'homework' : requestedStage;
+
   const practiceItems = shuffle(
     exercises.map((exercise, index) => toPublicItem(exercise, index, `/api/clip/${lesson.id}`)),
   );
@@ -150,18 +157,27 @@ export default async function LessonPage({ params, searchParams }: Props) {
             </Link>
           </div>
 
-          {!locked && (
+          {!locked && state !== 'shut' && (
             <nav className="stage-tabs" aria-label="Lesson stages">
-              {STAGES.map((item) => (
-                <Link
-                  className="stage-tab"
-                  key={item.id}
-                  href={`/lessons/${lesson.id}?stage=${item.id}`}
-                  aria-current={item.id === stage ? 'page' : undefined}
-                >
-                  {item.label}
-                </Link>
-              ))}
+              {STAGES.map((item) => {
+                // Until the homework is handed in, the rest of the lesson is
+                // not a link — it is shown so the student can see what opens.
+                const sealed = state === 'homework-only' && item.id !== 'homework';
+                return sealed ? (
+                  <span className="stage-tab is-sealed" key={item.id} aria-disabled="true">
+                    {item.label}
+                  </span>
+                ) : (
+                  <Link
+                    className="stage-tab"
+                    key={item.id}
+                    href={`/lessons/${lesson.id}?stage=${item.id}`}
+                    aria-current={item.id === stage ? 'page' : undefined}
+                  >
+                    {item.label}
+                  </Link>
+                );
+              })}
             </nav>
           )}
         </section>
@@ -178,8 +194,28 @@ export default async function LessonPage({ params, searchParams }: Props) {
               See a finished lesson (1A)
             </Link>
           </section>
+        ) : state === 'shut' ? (
+          <section className="stage-card is-locked">
+            <h2 className="locked-title">This lesson is not open yet</h2>
+            <p className="locked-text">
+              Lessons open one at a time. You go through this one with your teacher, then the
+              homework for it appears here — finishing that opens the vocabulary, the grammar card,
+              the exercises and the speaking tasks for you to go back over.
+            </p>
+            <Link className="pill-button is-primary is-wide" href="/dashboard">
+              See what is waiting for you
+            </Link>
+          </section>
         ) : (
           <>
+            {state === 'homework-only' && (
+              <section className="notice-card">
+                <p className="notice-text">
+                  The rest of this lesson opens once you hand this homework in.
+                </p>
+              </section>
+            )}
+
             {stage === 'overview' && (
               <section className="overview-grid">
                 <Link className="overview-card" href={`/lessons/${lesson.id}?stage=vocab`}>
