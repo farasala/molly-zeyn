@@ -309,8 +309,10 @@ per-group summary of the most-missed tasks. This is the screen the next lesson s
 **Check:** results recorded on a student's phone appear in the teacher's view after a
 refresh, and one student cannot fetch another's rows.
 
-### Stage 7 — student cabinet
+### Stage 7 — student cabinet — DONE
 Dashboard totals, vocabulary bank with search and mark-as-known, per-unit progress, profile.
+The bank holds only words from lessons the student has open — it must not become a way
+round the gate. All three screens read the records rather than keeping their own count.
 
 **Check:** the numbers on the dashboard, progress page and cabinet agree with each other.
 
