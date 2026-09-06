@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import { useFormStatus } from 'react-dom';
 import { logOut } from '@/app/auth-actions';
@@ -72,6 +73,9 @@ export function UserMenu({ name, email, role, avatarColor, initial }: Props) {
               <span className="user-dropdown-email">{email}</span>
             </span>
           </div>
+          <Link className="menu-link" href="/account" onClick={() => setOpen(false)}>
+            My account
+          </Link>
           <form action={logOut}>
             <LogOutButton />
           </form>

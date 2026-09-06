@@ -2203,3 +2203,189 @@ select.field-input {
   font-size: var(--fs-body);
   color: var(--green-700);
 }
+
+/* ============================================================ word bank */
+
+.menu-link {
+  display: block;
+  border-radius: var(--radius-md);
+  padding: 11px 10px;
+  font-size: 13px;
+  font-weight: var(--fw-semibold);
+  color: var(--green-900);
+  transition: background var(--duration-fast) var(--ease-standard);
+}
+
+.menu-link:hover {
+  background: var(--neutral-100);
+  color: var(--green-900);
+  text-decoration: none;
+}
+
+.bank-controls {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.bank-search {
+  flex: 1 1 260px;
+}
+
+.bank-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-3);
+}
+
+.bank-row {
+  background: var(--white);
+  border: 1px solid var(--neutral-200);
+  border-left: 4px solid var(--accent, var(--mint-400));
+  border-radius: var(--radius-md);
+  padding: var(--space-4) var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.bank-main {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.bank-word {
+  font-size: 19px;
+  font-weight: var(--fw-bold);
+}
+
+.bank-ipa {
+  font-size: 13px;
+  color: var(--text-tertiary);
+}
+
+.bank-unit {
+  margin-left: auto;
+  font-size: 10px;
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  white-space: nowrap;
+}
+
+.bank-def {
+  font-size: var(--fs-body-lg);
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.bank-ex {
+  font-size: var(--fs-body);
+  font-style: italic;
+  color: var(--green-700);
+  margin: 0;
+}
+
+.bank-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+}
+
+.pill-button.is-known {
+  background: var(--mint-200);
+  border-color: var(--mint-400);
+  font-weight: var(--fw-bold);
+}
+
+/* ============================================================ progress */
+
+.progress-list,
+.result-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.progress-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.progress-n {
+  flex: 0 0 auto;
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  font-weight: var(--fw-extrabold);
+  background: var(--accent-tint, var(--neutral-200));
+  color: var(--green-900);
+}
+
+.progress-body {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.progress-title {
+  font-size: var(--fs-body-lg);
+  font-weight: var(--fw-semibold);
+}
+
+.progress-note {
+  font-size: var(--fs-caption);
+  color: var(--text-tertiary);
+}
+
+.result-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: 12px var(--space-4);
+  border-radius: var(--radius-md);
+  background: var(--neutral-100);
+  flex-wrap: wrap;
+}
+
+.result-lesson {
+  font-size: var(--fs-body-lg);
+  font-weight: var(--fw-bold);
+  min-width: 46px;
+}
+
+.result-score {
+  font-size: var(--fs-body-lg);
+  font-variant-numeric: tabular-nums;
+}
+
+.result-xp {
+  font-size: var(--fs-body);
+  font-weight: var(--fw-semibold);
+  color: var(--green-700);
+}
+
+.result-when {
+  margin-left: auto;
+  font-size: var(--fs-caption);
+  color: var(--text-tertiary);
+  white-space: nowrap;
+}

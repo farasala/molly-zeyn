@@ -4,17 +4,12 @@ import { AppHeader } from '@/components/AppHeader';
 import { logOut } from '@/app/auth-actions';
 import { requireAccount } from '@/lib/auth';
 import { getTotals } from '@/lib/progress';
+import { EMPTY_ACCESS, getStudentAccess } from '@/lib/access';
+import { getUnitProgress } from '@/lib/vocabulary';
 import { createClient } from '@/lib/supabase/server';
 import { StudentHomework } from '@/components/lesson/HomeworkStage';
 
 export const metadata: Metadata = { title: 'Dashboard · English Studio' };
-
-const JOINED = new Intl.DateTimeFormat('en-GB', {
-  day: 'numeric',
-  month: 'long',
-  year: 'numeric',
-  timeZone: 'UTC',
-});
 
 /** Every assignment this student can see, newest first, with its state. */
 async function getStudentDashboardHomework(studentId: string) {
@@ -75,9 +70,18 @@ export default async function DashboardPage() {
 
   const { user } = account;
   const isTeacher = user.profile.role === 'teacher';
+  const access = isTeacher ? EMPTY_ACCESS : await getStudentAccess('elementary');
   const totals = await getTotals(user.profile.id, 'elementary');
   const homework = isTeacher ? [] : await getStudentDashboardHomework(user.profile.id);
-  const { full_name: fullName, role, created_at: createdAt } = user.profile;
+
+  // Read the same way the progress page and the account page read them, so the
+  // three screens cannot drift apart.
+  const units = await getUnitProgress('elementary', isTeacher, access);
+  const wordsKnown = units.reduce((sum, unit) => sum + unit.wordsKnown, 0);
+  const mastered = units.filter(
+    (unit) => !unit.planned && unit.lessons > 0 && unit.open === unit.lessons,
+  ).length;
+  const { full_name: fullName } = user.profile;
   const firstName = fullName.trim().split(/\s+/)[0];
 
   return (
@@ -132,50 +136,25 @@ export default async function DashboardPage() {
               <dd>{totals.xp}</dd>
             </div>
             <div className="detail">
+              <dt>Words known</dt>
+              <dd>{wordsKnown}</dd>
+            </div>
+            <div className="detail">
               <dt>Practice runs</dt>
               <dd>{totals.activities}</dd>
             </div>
             <div className="detail">
-              <dt>Lessons practised</dt>
-              <dd>{totals.lessonsPractised}</dd>
+              <dt>Units finished</dt>
+              <dd>{mastered}</dd>
             </div>
           </dl>
-        </section>
-
-        <section className="card">
-          <h2 className="card-title">Your account</h2>
-          <p className="card-text">
-            {role === 'teacher'
-              ? 'You are set up as a teacher. Groups and the student roster come with the teacher cabinet.'
-              : 'You are set up as a student. Everything you finish will be recorded here.'}
-          </p>
-          <dl className="detail-list">
-            <div className="detail">
-              <dt>Name</dt>
-              <dd>{fullName}</dd>
-            </div>
-            <div className="detail">
-              <dt>Email</dt>
-              <dd>{user.email}</dd>
-            </div>
-            <div className="detail">
-              <dt>Role</dt>
-              <dd>{role === 'teacher' ? 'Teacher' : 'Student'}</dd>
-            </div>
-            <div className="detail">
-              <dt>Joined</dt>
-              <dd>{JOINED.format(new Date(createdAt))}</dd>
-            </div>
-          </dl>
-        </section>
-
-        <section className="card">
-          <h2 className="card-title">What comes next</h2>
-          <p className="card-text">
-            Everything you finish is kept against your account, so it is there on any device you
-            sign in from — your phone in the evening, a laptop the next morning.
+          <p>
+            <Link className="pill-button is-wide" href="/progress">
+              See it unit by unit
+            </Link>
           </p>
         </section>
+
       </div>
     </div>
   );

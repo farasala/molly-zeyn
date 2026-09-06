@@ -18,6 +18,12 @@ export function AppHeader({ user }: { user: SignedInUser }) {
           <Link className="topnav-link" href="/levels">
             Levels
           </Link>
+          <Link className="topnav-link" href="/vocabulary">
+            Words
+          </Link>
+          <Link className="topnav-link" href="/progress">
+            Progress
+          </Link>
           {user.profile.role === 'teacher' && (
             <Link className="topnav-link" href="/teacher">
               Groups
