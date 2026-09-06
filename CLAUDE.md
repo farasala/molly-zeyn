@@ -264,7 +264,7 @@ protected routes, header with log out. Live and verified.
 Practice / Speaking. Flashcards, word list, the grammar projection card, speaking prompts,
 92 recordings. Live and verified. **Access is not yet restricted — stage 4 does that.**
 
-### Stage 3 — exercise engine
+### Stage 3 — exercise engine — DONE
 Seven types, all present in the JSON:
 
 | `t` | shape | UI |
@@ -277,14 +277,16 @@ Seven types, all present in the JSON:
 | `dictation` | `a` | play button + text input |
 | `listen` | `text, q, o[], a` | play button + option buttons |
 
-Answer comparison: lowercase, straighten quotes, strip `. , ! ? ; : "`, collapse spaces,
-trim. Progress bar, per-item feedback, wrong items re-queued, score screen, XP = 10 per
+Answer comparison: lowercase, straighten quotes, fold accents, strip `. , ! ? ; : "`, write
+contractions out on both sides, drop apostrophes, collapse spaces, trim — so "I am", "I'm"
+and "im" all match, and "cafe" matches "café". The exception is a `transform` task whose
+instruction asks for the contraction: there the contraction is the answer, so leniency is off. Progress bar, per-item feedback, wrong items re-queued, score screen, XP = 10 per
 correct answer. The `order` and `match` shuffles must never come back in the original order.
 Build the checker as a server action from the start — stage 5 needs it there.
 
 **Check:** finish a lesson's practice, log out, log in on another device — score and XP are there.
 
-### Stage 4 — groups, invites and the access gate
+### Stage 4 — groups, invites and the access gate — DONE
 Teacher creates and renames groups. Invite links; `/join/<token>` registers a student into a
 group. Role choice comes out of the sign-up form; open sign-up closes. `lesson_access` and
 `has_lesson_access`. The course map greys out for students; lesson pages refuse on the
@@ -293,14 +295,14 @@ server.
 **Check:** a second student account, invited by link, sees grey cards and cannot fetch a
 lesson's content — test it with the anon key, not just in the browser.
 
-### Stage 5 — homework
+### Stage 5 — homework — DONE
 A "Homework" tab beside the five lesson stages. Teacher assigns from it; student sees a card
 with unit, topic and level, opens it, works through it, and the lesson unlocks on finish.
 
 **Check:** full round trip on two devices — assign on the laptop, do it on the phone, the
 lesson opens.
 
-### Stage 6 — review
+### Stage 6 — review — DONE
 Group list → student → submission → **every task with the student's answer**, plus a
 per-group summary of the most-missed tasks. This is the screen the next lesson starts from.
 
