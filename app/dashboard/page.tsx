@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { AppHeader } from '@/components/AppHeader';
 import { logOut } from '@/app/auth-actions';
 import { requireAccount } from '@/lib/auth';
+import { getTotals } from '@/lib/progress';
 
 export const metadata: Metadata = { title: 'Dashboard · English Studio' };
 
@@ -39,6 +40,7 @@ export default async function DashboardPage() {
   }
 
   const { user } = account;
+  const totals = await getTotals(user.profile.id, 'elementary');
   const { full_name: fullName, role, created_at: createdAt } = user.profile;
   const firstName = fullName.trim().split(/\s+/)[0];
 
@@ -62,6 +64,29 @@ export default async function DashboardPage() {
               Start with 1A
             </Link>
           </div>
+        </section>
+
+        <section className="card">
+          <h2 className="card-title">Your progress</h2>
+          <p className="card-text">
+            {totals.activities === 0
+              ? 'Nothing recorded yet. Finish a practice set and it lands here, on every device you sign in from.'
+              : 'Counted from every practice run you have finished. The best attempt counts per lesson.'}
+          </p>
+          <dl className="detail-list">
+            <div className="detail">
+              <dt>XP</dt>
+              <dd>{totals.xp}</dd>
+            </div>
+            <div className="detail">
+              <dt>Practice runs</dt>
+              <dd>{totals.activities}</dd>
+            </div>
+            <div className="detail">
+              <dt>Lessons practised</dt>
+              <dd>{totals.lessonsPractised}</dd>
+            </div>
+          </dl>
         </section>
 
         <section className="card">
@@ -94,9 +119,8 @@ export default async function DashboardPage() {
         <section className="card">
           <h2 className="card-title">What comes next</h2>
           <p className="card-text">
-            The Elementary course — twelve units, vocabulary flashcards, grammar cards for the
-            screen share, seven kinds of exercise and speaking practice — is being wired to this
-            account now. Nothing you do later will need a second sign-up.
+            Homework is the next piece: after a lesson your teacher sets a short set drawn from
+            what you covered, and finishing it opens that lesson here for revision.
           </p>
         </section>
       </div>

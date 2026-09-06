@@ -1833,3 +1833,12 @@ a.level-card:hover {
     display: none;
   }
 }
+
+.verdict-label {
+  font-size: var(--fs-caption);
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  margin: 0;
+}

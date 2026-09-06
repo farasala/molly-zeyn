@@ -122,6 +122,17 @@ export function PracticeRunner({ lessonId, lessonTitle, items }: Props) {
     setCursor((current) => current + 1);
   };
 
+  /** Same tasks, fresh run. The order stays as the server dealt it. */
+  const restart = () => {
+    setQueue(items.map((_, index) => index));
+    setCursor(0);
+    setFirstTry({});
+    setFeedback(null);
+    setSaving('idle');
+    setSaveMessage('');
+    resetDrafts();
+  };
+
   const skip = () => {
     if (!item) return;
     setFirstTry((current) => (position in current ? current : { ...current, [position]: false }));
@@ -164,9 +175,9 @@ export function PracticeRunner({ lessonId, lessonTitle, items }: Props) {
         )}
 
         <div className="score-actions">
-          <Link className="pill-button is-primary" href={`/lessons/${lessonId}?stage=practice`}>
+          <button className="pill-button is-primary" type="button" onClick={restart}>
             Run It Again
-          </Link>
+          </button>
           <Link className="pill-button" href={`/lessons/${lessonId}?stage=speaking`}>
             On to speaking →
           </Link>
@@ -393,7 +404,12 @@ export function PracticeRunner({ lessonId, lessonTitle, items }: Props) {
       {feedback ? (
         <div className={`verdict ${feedback.correct ? 'is-right' : 'is-wrong'}`} role="status">
           <p className="verdict-head">{feedback.correct ? 'Correct' : 'Not quite'}</p>
-          {!feedback.correct && <p className="verdict-answer">{feedback.expected}</p>}
+          {!feedback.correct && (
+            <>
+              <p className="verdict-label">The answer is</p>
+              <p className="verdict-answer">{feedback.expected}</p>
+            </>
+          )}
         </div>
       ) : null}
 
