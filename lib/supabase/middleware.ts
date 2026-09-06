@@ -3,7 +3,7 @@ import { NextResponse, type NextRequest } from 'next/server';
 import { supabaseAnonKey, supabaseUrl } from '@/lib/env';
 
 /** Routes reachable without a session. */
-const PUBLIC_ROUTES = ['/login', '/signup'];
+const PUBLIC_ROUTES = ['/login', '/signup', '/join'];
 
 function isPublic(pathname: string): boolean {
   return PUBLIC_ROUTES.some((route) => pathname === route || pathname.startsWith(`${route}/`));
@@ -47,7 +47,9 @@ export async function updateSession(request: NextRequest): Promise<NextResponse>
     return redirectKeepingCookies(target, response);
   }
 
-  if (user && isPublic(pathname)) {
+  // An invitation link stays open to someone already signed in: they may be a
+  // student joining a second group, so it must not bounce to the dashboard.
+  if (user && isPublic(pathname) && !pathname.startsWith('/join')) {
     target.pathname = '/dashboard';
     target.search = '';
     return redirectKeepingCookies(target, response);

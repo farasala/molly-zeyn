@@ -127,21 +127,41 @@ create policy profiles_self       on public.profiles for select using (id = auth
 create policy profiles_self_write on public.profiles for update using (id = auth.uid()) with check (id = auth.uid());
 create policy profiles_teacher    on public.profiles for select using (public.teaches(auth.uid(), id));
 
+-- groups and group_members refer to each other, so the membership tests live
+-- in security-definer functions. Inlining them as sub-selects makes each
+-- policy read the other table, and Postgres refuses with
+-- "infinite recursion detected in policy".
+create or replace function public.is_group_teacher(_group uuid)
+returns boolean language sql stable security definer set search_path = public as $$
+  select exists (
+    select 1 from public.groups g where g.id = _group and g.teacher_id = auth.uid()
+  );
+$$;
+
+create or replace function public.is_group_member(_group uuid)
+returns boolean language sql stable security definer set search_path = public as $$
+  select exists (
+    select 1 from public.group_members gm
+    where gm.group_id = _group and gm.student_id = auth.uid()
+  );
+$$;
+
+revoke execute on function public.is_group_teacher(uuid) from anon;
+revoke execute on function public.is_group_member(uuid)  from anon;
+
 -- groups: owned by the teacher; members may read their own group
 drop policy if exists groups_owner  on public.groups;
 drop policy if exists groups_member on public.groups;
 create policy groups_owner  on public.groups for all
   using (teacher_id = auth.uid()) with check (teacher_id = auth.uid());
-create policy groups_member on public.groups for select using (
-  exists (select 1 from public.group_members gm where gm.group_id = id and gm.student_id = auth.uid())
-);
+create policy groups_member on public.groups for select using (public.is_group_member(id));
 
 -- group_members: teacher manages; student sees their own membership
 drop policy if exists gm_teacher on public.group_members;
 drop policy if exists gm_self    on public.group_members;
 create policy gm_teacher on public.group_members for all
-  using (exists (select 1 from public.groups g where g.id = group_id and g.teacher_id = auth.uid()))
-  with check (exists (select 1 from public.groups g where g.id = group_id and g.teacher_id = auth.uid()));
+  using (public.is_group_teacher(group_id))
+  with check (public.is_group_teacher(group_id));
 create policy gm_self on public.group_members for select using (student_id = auth.uid());
 
 -- progress: student owns it, teacher reads it, teacher never writes it
