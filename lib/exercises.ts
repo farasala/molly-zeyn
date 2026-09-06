@@ -202,6 +202,53 @@ export function checkExercise(exercise: Exercise, given: string): CheckResult {
   }
 }
 
+/**
+ * A task written out for the teacher's review screen: what was asked, and
+ * what the right answer was. Only ever rendered to a teacher.
+ */
+export function describeExercise(exercise: Exercise): { prompt: string; answer: string } {
+  switch (exercise.t) {
+    case 'mc':
+      return { prompt: exercise.q, answer: exercise.o[exercise.a] };
+    case 'listen':
+      return { prompt: `Listening — ${exercise.q}`, answer: exercise.o[exercise.a] };
+    case 'gap':
+      return { prompt: exercise.q, answer: exercise.a };
+    case 'order':
+      return { prompt: 'Word order', answer: exercise.a };
+    case 'transform':
+      return { prompt: `${exercise.instr} ${exercise.q}`, answer: exercise.a[0] };
+    case 'dictation':
+      return { prompt: 'Dictation', answer: exercise.a };
+    case 'match':
+      return {
+        prompt: `Matching — ${exercise.pairs.map((pair) => pair[0]).join(', ')}`,
+        answer: exercise.pairs.map(([left, right]) => `${left} — ${right}`).join(' · '),
+      };
+  }
+}
+
+/** The student's raw answer, turned back into something readable. */
+export function describeGiven(exercise: Exercise, given: string): string {
+  if (exercise.t === 'mc' || exercise.t === 'listen') {
+    const chosen = Number.parseInt(given, 10);
+    return exercise.o[chosen] ?? given;
+  }
+
+  if (exercise.t === 'match') {
+    try {
+      const pairs = JSON.parse(given) as [string, string][];
+      return Array.isArray(pairs)
+        ? pairs.map(([left, right]) => `${left} — ${right}`).join(' · ')
+        : given;
+    } catch {
+      return given;
+    }
+  }
+
+  return given;
+}
+
 /** One-line description of a task type, for the practice intro. */
 export const EXERCISE_NAMES: Record<Exercise['t'], string> = {
   mc: 'multiple choice',

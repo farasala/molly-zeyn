@@ -142,9 +142,14 @@ export function TeacherHomework({ lessonId, groups, assigned, submissions }: Tea
                         ` · ${done.map((row) => `${row.score}/${row.total}`).join(', ')}`}
                     </span>
                   </div>
-                  <ActionForm action={deleteHomework} submitLabel="Remove" variant="danger">
-                    <input type="hidden" name="homeworkId" value={homework.id} />
-                  </ActionForm>
+                  <div className="hw-row-actions">
+                    <Link className="pill-button" href={`/teacher/homework/${homework.id}`}>
+                      Review
+                    </Link>
+                    <ActionForm action={deleteHomework} submitLabel="Remove" variant="danger">
+                      <input type="hidden" name="homeworkId" value={homework.id} />
+                    </ActionForm>
+                  </div>
                 </li>
               );
             })}
