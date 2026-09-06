@@ -9,6 +9,9 @@ import { audioSlug, audioUrl, vocabSlug } from '@/lib/audio';
 import { requireAccount } from '@/lib/auth';
 import { getLessonById, hasAudio } from '@/lib/content';
 import { PracticeRunner } from '@/components/practice/PracticeRunner';
+import { StudentHomework, TeacherHomework } from '@/components/lesson/HomeworkStage';
+import { getGroups, getSubmissions, getTeacherHomework } from '@/lib/teaching';
+import { createClient } from '@/lib/supabase/server';
 import { EXERCISE_NAMES, shuffle, toPublicItem } from '@/lib/exercises';
 
 const LEVEL_ID = 'elementary';
@@ -19,6 +22,7 @@ const STAGES = [
   { id: 'grammar', label: 'Grammar' },
   { id: 'practice', label: 'Practice' },
   { id: 'speaking', label: 'Speaking' },
+  { id: 'homework', label: 'Homework' },
 ] as const;
 
 type StageId = (typeof STAGES)[number]['id'];
@@ -41,6 +45,43 @@ function resolveStage(value: string | undefined): StageId {
 /** Recording URL for a spoken string, or null when there is no file. */
 function urlFor(slug: string): string | null {
   return hasAudio(slug) ? audioUrl(slug) : null;
+}
+
+/** The assignments set for this lesson that this student can see, with state. */
+async function getStudentHomework(lessonId: string, studentId: string) {
+  const supabase = await createClient();
+
+  const { data: homework } = await supabase
+    .from('homework')
+    .select('id, lesson_id, unit_n, title, due_at, created_at, group_id, student_id, items')
+    .eq('lesson_id', lessonId)
+    .order('created_at', { ascending: false });
+
+  if (!homework?.length) return [];
+
+  const { data: submissions } = await supabase
+    .from('homework_submissions')
+    .select('id, homework_id, student_id, status, score, total, submitted_at')
+    .eq('student_id', studentId)
+    .in(
+      'homework_id',
+      homework.map((row) => row.id),
+    );
+
+  return homework.map((row) => ({
+    homework: {
+      id: row.id,
+      lesson_id: row.lesson_id,
+      unit_n: row.unit_n,
+      title: row.title,
+      due_at: row.due_at,
+      created_at: row.created_at,
+      group_id: row.group_id,
+      student_id: row.student_id,
+      item_count: Array.isArray(row.items) ? row.items.length : 0,
+    },
+    submission: submissions?.find((item) => item.homework_id === row.id) ?? null,
+  }));
 }
 
 export default async function LessonPage({ params, searchParams }: Props) {
@@ -72,8 +113,19 @@ export default async function LessonPage({ params, searchParams }: Props) {
 
   // Stripped of their answers and reshuffled on every visit. `i` keeps each
   // task's index in the lesson, which is how the server checks the answer.
+  const isTeacher = account.user.profile.role === 'teacher';
+
+  const groups = isTeacher ? await getGroups(account.user.profile.id) : [];
+  const teacherHomework = isTeacher
+    ? await getTeacherHomework(account.user.profile.id, lesson.id)
+    : [];
+  const teacherSubmissions = isTeacher
+    ? await getSubmissions(teacherHomework.map((row) => row.id))
+    : [];
+  const studentHomework = isTeacher ? [] : await getStudentHomework(lesson.id, account.user.profile.id);
+
   const practiceItems = shuffle(
-    exercises.map((exercise, index) => toPublicItem(exercise, index, lesson.id)),
+    exercises.map((exercise, index) => toPublicItem(exercise, index, `/api/clip/${lesson.id}`)),
   );
 
   return (
@@ -192,6 +244,18 @@ export default async function LessonPage({ params, searchParams }: Props) {
             )}
 
             {stage === 'speaking' && <SpeakingStage prompts={prompts} />}
+
+            {stage === 'homework' &&
+              (isTeacher ? (
+                <TeacherHomework
+                  lessonId={lesson.id}
+                  groups={groups}
+                  assigned={teacherHomework}
+                  submissions={teacherSubmissions}
+                />
+              ) : (
+                <StudentHomework rows={studentHomework} lessonId={lesson.id} />
+              ))}
           </>
         )}
       </div>

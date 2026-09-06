@@ -50,6 +50,38 @@ export async function requireAccount(): Promise<AccountState> {
   return { kind: 'signed-in', user: { email, profile } };
 }
 
+/**
+ * The signed-in user, or null — for pages a signed-out visitor may also see,
+ * like an invitation link.
+ */
+export async function getSignedInAccount(): Promise<SignedInUser | null> {
+  const supabase = await createClient();
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  if (!user) return null;
+
+  const { data: profile } = await supabase
+    .from('profiles')
+    .select('id, full_name, role, avatar_color, created_at')
+    .eq('id', user.id)
+    .maybeSingle<Profile>();
+
+  return profile ? { email: user.email ?? '', profile } : null;
+}
+
+/**
+ * The signed-in teacher, or null for anyone else.
+ * Use this before every teacher-only read or write; the role lives in
+ * `profiles`, which a student can read but not change.
+ */
+export async function getTeacher(): Promise<SignedInUser | null> {
+  const account = await requireAccount();
+  if (account.kind !== 'signed-in') return null;
+  return account.user.profile.role === 'teacher' ? account.user : null;
+}
+
 /** First letter of the name, for the avatar circle. */
 export function initialOf(fullName: string): string {
   const trimmed = fullName.trim();

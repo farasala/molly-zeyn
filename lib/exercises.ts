@@ -45,7 +45,7 @@ export function shuffle<T>(input: readonly T[]): T[] {
   return [...input];
 }
 
-/** What the browser is allowed to see. `i` indexes into the lesson's `ex`. */
+/** What the browser is allowed to see. `i` is the task's position in the run. */
 export type PublicItem =
   | { i: number; t: 'mc'; q: string; o: string[] }
   | { i: number; t: 'gap'; q: string; hint?: string }
@@ -58,12 +58,13 @@ export type PublicItem =
 /**
  * Strips an exercise down to what the student needs to answer it.
  *
- * Dictation and listening clips are addressed by lesson and index, not by
- * their slug: the slug is built from the text being dictated, so a plain
- * file URL would hand over the answer.
+ * Dictation and listening clips are addressed by position, not by their slug:
+ * the slug is built from the text being dictated, so a plain file URL would
+ * hand over the answer. `clipPrefix` says which route resolves that position —
+ * the lesson for free practice, the homework for an assignment.
  */
-export function toPublicItem(exercise: Exercise, i: number, lessonId: string): PublicItem {
-  const clip = `/api/clip/${encodeURIComponent(lessonId)}/${i}`;
+export function toPublicItem(exercise: Exercise, i: number, clipPrefix: string): PublicItem {
+  const clip = `${clipPrefix}/${i}`;
 
   switch (exercise.t) {
     case 'mc':

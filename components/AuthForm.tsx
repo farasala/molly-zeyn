@@ -1,19 +1,20 @@
 'use client';
 
-import { useActionState, useState } from 'react';
+import { useActionState } from 'react';
 import { login, signUp } from '@/app/auth-actions';
-import { emptyAuthState, type AuthState, type Role } from '@/lib/auth-state';
+import { emptyAuthState, type AuthState } from '@/lib/auth-state';
 
-const ROLES: { id: Role; label: string }[] = [
-  { id: 'student', label: 'Student' },
-  { id: 'teacher', label: 'Teacher' },
-];
-
+/**
+ * Log in, or sign up as a student.
+ *
+ * There is deliberately no Student/Teacher choice here any more: letting a
+ * visitor pick "Teacher" handed them a view of other people's students.
+ * Teacher accounts are set by hand in the database.
+ */
 export function AuthForm({ mode }: { mode: 'login' | 'signup' }) {
   const isSignup = mode === 'signup';
   const action = isSignup ? signUp : login;
   const [state, formAction, isPending] = useActionState<AuthState, FormData>(action, emptyAuthState);
-  const [role, setRole] = useState<Role>('student');
 
   return (
     <form className="auth-form" action={formAction}>
@@ -60,26 +61,6 @@ export function AuthForm({ mode }: { mode: 'login' | 'signup' }) {
             placeholder={isSignup ? 'At least 6 characters' : 'Your password'}
           />
         </label>
-
-        {isSignup && (
-          <div className="field">
-            <span className="field-label">I am a</span>
-            <div className="role-options">
-              {ROLES.map((option) => (
-                <button
-                  key={option.id}
-                  type="button"
-                  className="role-option"
-                  aria-pressed={role === option.id}
-                  onClick={() => setRole(option.id)}
-                >
-                  {option.label}
-                </button>
-              ))}
-            </div>
-            <input type="hidden" name="role" value={role} />
-          </div>
-        )}
       </div>
 
       {state.status !== 'idle' && state.message ? (
