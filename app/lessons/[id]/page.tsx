@@ -7,7 +7,9 @@ import { SpeakingStage, type SpeakItem } from '@/components/lesson/SpeakingStage
 import { VocabularyStage, type VocabItem } from '@/components/lesson/VocabularyStage';
 import { audioSlug, audioUrl, vocabSlug } from '@/lib/audio';
 import { requireAccount } from '@/lib/auth';
-import { getLessonById, hasAudio, type Exercise } from '@/lib/content';
+import { getLessonById, hasAudio } from '@/lib/content';
+import { PracticeRunner } from '@/components/practice/PracticeRunner';
+import { EXERCISE_NAMES, shuffle, toPublicItem } from '@/lib/exercises';
 
 const LEVEL_ID = 'elementary';
 
@@ -24,16 +26,6 @@ type StageId = (typeof STAGES)[number]['id'];
 type Props = {
   params: Promise<{ id: string }>;
   searchParams: Promise<{ stage?: string }>;
-};
-
-const EXERCISE_NAMES: Record<Exercise['t'], string> = {
-  mc: 'multiple choice',
-  gap: 'gap fill',
-  order: 'word order',
-  transform: 'transformation',
-  match: 'matching',
-  dictation: 'dictation',
-  listen: 'listening',
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -77,6 +69,12 @@ export default async function LessonPage({ params, searchParams }: Props) {
 
   const exercises = lesson.ex ?? [];
   const kinds = [...new Set(exercises.map((exercise) => EXERCISE_NAMES[exercise.t]))];
+
+  // Stripped of their answers and reshuffled on every visit. `i` keeps each
+  // task's index in the lesson, which is how the server checks the answer.
+  const practiceItems = shuffle(
+    exercises.map((exercise, index) => toPublicItem(exercise, index, lesson.id)),
+  );
 
   return (
     <div className="shell">
@@ -186,17 +184,11 @@ export default async function LessonPage({ params, searchParams }: Props) {
               ))}
 
             {stage === 'practice' && (
-              <section className="stage-card">
-                <h2 className="card-title">Practice</h2>
-                <p className="card-text">
-                  {exercises.length} exercises are written and waiting: {kinds.join(', ')}. The
-                  runner that checks answers and records XP is the next piece of work — it lands
-                  before you need it in class.
-                </p>
-                <Link className="pill-button is-primary is-wide" href={`/lessons/${lesson.id}?stage=grammar`}>
-                  Back to the grammar card
-                </Link>
-              </section>
+              <PracticeRunner
+                lessonId={lesson.id}
+                lessonTitle={`${lesson.id} · ${lesson.title}`}
+                items={practiceItems}
+              />
             )}
 
             {stage === 'speaking' && <SpeakingStage prompts={prompts} />}
