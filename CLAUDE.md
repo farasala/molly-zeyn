@@ -19,7 +19,7 @@ everything", refuse and do the next unfinished stage only.
 | Auth + DB + files | **Supabase** (Postgres, Auth, Storage, RLS) |
 | Hosting | **Vercel** |
 | Domain | bought on hoster.kz, DNS pointed at Vercel |
-| Audio | pre-rendered mp3 files in Supabase Storage (no TTS at runtime) |
+| Audio | pre-rendered mp3 files served with the app (no TTS at runtime) — see §3 |
 
 No other dependencies without asking. No ORM — use `@supabase/supabase-js` and
 `@supabase/ssr` only.
@@ -148,52 +148,126 @@ Copy exact spacing, sizes and colours per screen from `reference/prototype.dc.ht
 
 ---
 
-## 5. Data model
+## 5. Who sees what — read this before touching access
 
-Run `schema.sql` in the Supabase SQL editor. Summary:
+Lessons happen live on Zoom. The platform is what comes **after** the lesson.
 
-- `profiles` — one row per auth user: `full_name`, `role` (`student` | `teacher`), `avatar_color`, `created_at`.
+- **The teacher sees everything, always.** Every level, unit and lesson is open. No gates.
+- **A student starts with nothing open.** They see the course map as greyed-out cards —
+  unit titles and themes, so they can see where the course goes — and cannot open a lesson.
+- The teacher runs a lesson, then **assigns homework for that one lesson** (`1A`, `1B`, …).
+- The student does the homework. Finishing it **opens that lesson** as a revision resource.
+- A teacher can also open a lesson by hand, for a student who missed the class.
+
+This order is deliberate: it keeps the live lesson primary and stops a student running ahead.
+
+**Enforce it on the server, before rendering.** The course JSON is imported into the server
+bundle only — verified: no course string appears in any client chunk. Keep it that way. A
+student who is not entitled to a lesson must never receive its content, not merely be unable
+to click it. UI-only hiding is not access control.
+
+Single source of truth: `has_lesson_access(student, level_id, lesson_id)` — true when a
+submitted homework covers that lesson, or a teacher granted it by hand.
+
+### Accounts
+
+Students join **by invitation only**. There is no open sign-up.
+
+1. Teacher creates a group (one-to-one is a group of one) and gets a link `/join/<token>`.
+2. The student opens it, sees who invited them, and registers with an email.
+3. Consuming the token adds them to the group. **The role comes from the invite and is
+   always `student`** — the Student/Teacher choice comes out of the sign-up form.
+4. Teacher accounts are created by hand: register, then set `role = 'teacher'` in `profiles`.
+
+## 6. Data model
+
+`schema.sql` holds what stage 1 applied. Everything below arrives as migrations in the stage
+that needs it — do not rewrite the applied file, add to it.
+
+Already live:
+
+- `profiles` — `full_name`, `role` (`student` | `teacher`), `avatar_color`, `created_at`.
 - `groups`, `group_members` — a teacher's classes.
-- `activity_results` — one row per finished practice or unit test: `level_id`, `unit_n`,
-  `lesson_id`, `kind` (`practice` | `test`), `score`, `total`, `xp`, `created_at`. Keep every
-  attempt; show the best per activity, and use the sum of `xp` for total XP.
-- `known_words` — `(user_id, level_id, word)` unique, one row per word marked known.
-- `homework`, `homework_submissions` — stage 6.
+- `activity_results` — one row per finished practice or unit test. Keep every attempt; show
+  the best per activity, and use the sum of `xp` for total XP.
+- `known_words` — `(user_id, level_id, word)`.
 
-**RLS is on for every table.** A student can read and write only their own rows. A teacher can
-read rows of students who share a group with them, and cannot write a student's progress.
-Never disable RLS "temporarily". Never query with the service-role key to work around it.
+To come:
 
----
+| Table | What it holds |
+|---|---|
+| `invites` | `token`, `teacher_id`, `group_id`, `expires_at`, `max_uses`, `used_count` |
+| `homework` | `teacher_id`, `group_id`/`student_id`, `level_id`, `unit_n`, `lesson_id`, `items` (jsonb: the exact task list and its order), `due_at` |
+| `homework_submissions` | `homework_id`, `student_id`, `attempt`, `status` (`assigned`\|`in_progress`\|`submitted`), `score`, `total`, `xp`, `submitted_at` |
+| `homework_answers` | `submission_id`, `item_index`, `given`, `correct`, `answered_at` |
+| `lesson_access` | `student_id`, `level_id`, `lesson_id`, `source` (`homework`\|`teacher`), `granted_at` |
 
-## 6. Stages
+`homework_answers` is what the whole review screen rests on. Without a row per task the
+teacher cannot see *which* question a student got wrong, only a score, and the "go through
+last week's homework" lesson opening does not work.
 
-### Stage 1 — auth and accounts
-Email + password sign-up and log-in via Supabase Auth. Sign-up asks name, email, password, role
-(Student / Teacher) and creates the matching `profiles` row. Session persists across reloads.
-Protected routes redirect to `/login`. Header shows the signed-in user; log out works.
-Recreate the split auth screen from the prototype (dark-green hero left, white card right).
-No demo accounts, no one-click login buttons.
+`homework.items` stores task references (lesson id + index into `ex`, or a vocabulary word)
+**and the order**, so a submission stays readable later. Treat a released unit's content as
+append-only; editing a published exercise invalidates past submissions.
 
-**Check:** register on a phone as a student → that student appears in Supabase and, once
-stage 5 exists, in the teacher's list on a laptop. Log out, log back in, session holds.
+**RLS is on for every table.** A student reads and writes only their own rows. A teacher
+reads rows of students who share a group, and never writes a student's progress. Never
+disable RLS "temporarily". Never query with the service-role key to work around it.
 
-### Stage 2 — content
-Load the JSON server-side. `/levels` (Elementary live, five levels planned), `/levels/elementary`
-(12 unit cards, accent colour, lesson list, progress bar), `/lessons/[id]` with the five stages
-Overview / Vocabulary / Grammar / Practice / Speaking. Vocabulary = flashcard flip + word-list
-toggle + play button. Grammar = the large projection card. Upload audio to Storage; playback works.
-Locked units render the "coming soon" panel.
+## 7. Homework
 
-**Check:** every unit and lesson opens without an error; unit 3 shows "coming soon"; audio plays
-in vocabulary and speaking.
+### Where the tasks come from
+
+Assembled from the authored content, **never generated at runtime**. Units 1–2 already carry
+66 exercises, 2 unit tests, 60 words and 18 speaking prompts. Generating new English would
+break three things: the licence discipline (every string in the JSON is original and must
+stay so), the audio (one recorded voice — a generated sentence has no file), and the
+teacher's review (if every student gets different tasks, comparing them is meaningless).
+
+The generator is deterministic: lesson → vocabulary recall drawn from `vocab`, the lesson's
+own `ex` items, a couple of items from the unit's `test`, a dictation and a listening item
+when a recording exists → shuffle → 12–15 tasks. Fill units 3–12 and their homework appears
+with no code change.
+
+### How a student works through it
+
+Duolingo's session mechanics, minus the parts that sell subscriptions:
+
+- one task per screen, a progress bar, instant right/wrong feedback;
+- **a wrong task goes back into the queue and returns until it is answered correctly** —
+  this is the mechanic worth copying;
+- a score screen with XP, 10 per correct answer;
+- **no hearts or lives.** A student locked out after three mistakes simply arrives at the
+  next lesson with no homework done.
+
+### Answer checking
+
+**Homework answers are checked on the server.** Sending the answer key to the browser would
+put it one devtools panel away, and the teacher's review data would mean nothing. One round
+trip per task; from Frankfurt that is well under the time it takes to read the feedback.
+
+Free practice inside an already-open lesson may check on the client — nothing is recorded.
+
+## 8. Stages
+
+Build one stage at a time. Each ends with a manual check. Do not start stage N+1 until the
+check for stage N passes.
+
+### Stage 1 — auth and accounts — DONE
+Email + password via Supabase Auth, profile row from a trigger, session in cookies,
+protected routes, header with log out. Live and verified.
+
+### Stage 2 — content — DONE
+`/levels`, `/levels/elementary`, `/lessons/[id]` with Overview / Vocabulary / Grammar /
+Practice / Speaking. Flashcards, word list, the grammar projection card, speaking prompts,
+92 recordings. Live and verified. **Access is not yet restricted — stage 4 does that.**
 
 ### Stage 3 — exercise engine
 Seven types, all present in the JSON:
 
 | `t` | shape | UI |
 |---|---|---|
-| `mc` | `q, o[], a` (index) | option buttons, instant check |
+| `mc` | `q, o[], a` (index) | option buttons |
 | `gap` | `q, a` (string), `hint?` | text input |
 | `order` | `a` (target sentence) | shuffled word chips, click or drag into a strip |
 | `transform` | `instr, q, a[]` | text input, any listed answer counts |
@@ -201,60 +275,64 @@ Seven types, all present in the JSON:
 | `dictation` | `a` | play button + text input |
 | `listen` | `text, q, o[], a` | play button + option buttons |
 
-Answer comparison: lowercase, straighten quotes, strip `. , ! ? ; : "`, collapse spaces, trim.
-Progress dots, per-item feedback, skip, score screen, XP = 10 per correct answer. The `order`
-and `match` shuffles must never come back in the original order. Unit test = same engine over
-`unit.test`.
+Answer comparison: lowercase, straighten quotes, strip `. , ! ? ; : "`, collapse spaces,
+trim. Progress bar, per-item feedback, wrong items re-queued, score screen, XP = 10 per
+correct answer. The `order` and `match` shuffles must never come back in the original order.
+Build the checker as a server action from the start — stage 5 needs it there.
 
-**Check:** finish a lesson, log out, log in on another device — the score and XP are there.
+**Check:** finish a lesson's practice, log out, log in on another device — score and XP are there.
 
-### Stage 4 — student cabinet
-Dashboard (continue-lesson hero, XP / words / activities / units-mastered, four feature cards,
-today's plan), vocabulary bank (search, filter by unit, mark known, audio), progress page
-(per-unit bars), personal cabinet (profile, editable name, stats, last results, log out).
-All figures come from `activity_results` and `known_words`.
+### Stage 4 — groups, invites and the access gate
+Teacher creates and renames groups. Invite links; `/join/<token>` registers a student into a
+group. Role choice comes out of the sign-up form; open sign-up closes. `lesson_access` and
+`has_lesson_access`. The course map greys out for students; lesson pages refuse on the
+server.
 
-**Check:** numbers on the dashboard, progress page and cabinet agree with each other.
+**Check:** a second student account, invited by link, sees grey cards and cannot fetch a
+lesson's content — test it with the anon key, not just in the browser.
 
-### Stage 5 — teacher cabinet
-Groups: create, rename, add and remove students. Student list with real progress per student
-(percentage, XP, words, last activity) and a read-only drill-down into one student's progress.
-Teacher toolbar for live lessons: show/hide answers, task timer.
+### Stage 5 — homework
+A "Homework" tab beside the five lesson stages. Teacher assigns from it; student sees a card
+with unit, topic and level, opens it, works through it, and the lesson unlocks on finish.
 
-**Check:** a student's result recorded on their phone appears in the teacher's view within a
-refresh — and one student cannot fetch another student's rows (test it with the anon key).
+**Check:** full round trip on two devices — assign on the laptop, do it on the phone, the
+lesson opens.
 
-### Stage 6 — homework
-Teacher assigns a lesson or a custom task to a group or one student, with instructions and a due
-date. Student sees assigned homework, submits text and/or file uploads (private `homework`
-bucket, per-user folders, RLS on Storage too). Teacher reviews: reads, grades, leaves feedback;
-student sees the result. Longest stage — split it into assign → submit → review and check each.
+### Stage 6 — review
+Group list → student → submission → **every task with the student's answer**, plus a
+per-group summary of the most-missed tasks. This is the screen the next lesson starts from.
 
-**Check:** full round trip on two devices, and no student can read another student's file by
-guessing a path.
+**Check:** results recorded on a student's phone appear in the teacher's view after a
+refresh, and one student cannot fetch another's rows.
+
+### Stage 7 — student cabinet
+Dashboard totals, vocabulary bank with search and mark-as-known, per-unit progress, profile.
+
+**Check:** the numbers on the dashboard, progress page and cabinet agree with each other.
 
 ---
 
-## 7. Before the first real students
+## 9. Before the first real students
 
 1. No demo or seeded accounts anywhere; no password shipped in code or docs.
-2. Re-verify RLS on every table and on the `homework` Storage bucket, with a second logged-in
+2. Re-verify RLS on every table, and the access gate in §5, with a second logged-in
    student account, not just in theory.
 3. Turn on database backups (Supabase Pro).
 4. Custom domain live on HTTPS, `*.vercel.app` still working as a fallback.
 5. Fill units 3–12: add `vocab`, `grammar`, `ex`, `speak` to each lesson, record the audio in
-   the same single voice, drop the mp3s into the `audio` bucket, remove `locked`.
+   the same single voice, drop the mp3s into `public/audio/el/`, remove `locked`.
 6. Content licence: the syllabus follows a published coursebook, but every text, example and
    exercise in the JSON is original. Keep it that way — do not paste in coursebook text.
 
 ---
 
-## 8. Working rules
+## 10. Working rules
 
 - One stage per session. Report what you did and what the check is; wait for the result.
 - Server components for data fetching; client components only where interaction needs them.
 - Every list needs an empty state, every mutation a pending and an error state.
 - No `any` in TypeScript. No `console.log` left behind.
 - Commit per stage with a plain message: `stage 3: exercise engine`.
+- Homework answers are checked on the server. Never ship an answer key to the browser.
 - If something in this file conflicts with what the teacher asks in chat, the teacher wins —
   then update this file.
