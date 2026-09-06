@@ -1,34 +1,10 @@
 'use server';
 
 import { getLessonById } from '@/lib/content';
-import { checkExercise, XP_PER_CORRECT, type CheckResult } from '@/lib/exercises';
+import { XP_PER_CORRECT } from '@/lib/exercises';
 import { createClient } from '@/lib/supabase/server';
 
 const LEVEL_ID = 'elementary';
-
-/**
- * Checks one answer. The key lives here and never goes to the browser:
- * the client sends which task it is answering and what the student typed,
- * and gets back only right-or-wrong plus the answer to show afterwards.
- */
-export async function checkAnswer(input: {
-  lessonId: string;
-  index: number;
-  given: string;
-}): Promise<CheckResult & { ok: boolean }> {
-  const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  if (!user) return { ok: false, correct: false, expected: '' };
-
-  const found = getLessonById(LEVEL_ID, input.lessonId);
-  const exercise = found?.lesson.ex?.[input.index];
-  if (!exercise) return { ok: false, correct: false, expected: '' };
-
-  return { ok: true, ...checkExercise(exercise, input.given) };
-}
 
 export type SaveResult = { ok: boolean; message?: string };
 

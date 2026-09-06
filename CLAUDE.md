@@ -242,8 +242,10 @@ Duolingo's session mechanics, minus the parts that sell subscriptions:
 
 ### Answer checking
 
-**Homework answers are checked on the server.** Sending the answer key to the browser would
-put it one devtools panel away, and the teacher's review data would mean nothing. One round
+**Homework answers are checked on the server**, by the `/api/check` route handler. Sending the answer key to the browser would
+put it one devtools panel away, and the teacher’s review data would mean nothing. Use a route
+handler, not a server action: an action re-renders the page tree and costs about half a second
+per answer, which a 15-task drill cannot afford. One round
 trip per task; from Frankfurt that is well under the time it takes to read the feedback.
 
 Free practice inside an already-open lesson may check on the client — nothing is recorded.

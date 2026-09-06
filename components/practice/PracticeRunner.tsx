@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { checkAnswer, savePractice } from '@/app/practice-actions';
+import { savePractice } from '@/app/practice-actions';
 import { AudioButton } from '@/components/AudioButton';
 import type { PublicItem } from '@/lib/exercises';
 
@@ -100,7 +100,18 @@ export function PracticeRunner({ lessonId, lessonTitle, items }: Props) {
   const submit = async (value: string) => {
     if (!item || pending) return;
     setPending(true);
-    const result = await checkAnswer({ lessonId, index: item.i, given: value });
+
+    let result = { ok: false, correct: false, expected: '' };
+    try {
+      const response = await fetch('/api/check', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ lessonId, index: item.i, given: value }),
+      });
+      if (response.ok) result = await response.json();
+    } catch {
+      // Left as not-ok; the message below explains it.
+    }
     setPending(false);
 
     if (!result.ok) {
