@@ -41,7 +41,9 @@ CLAUDE.md                            ← this file
 SETUP.md                             ← human checklist: accounts, domain, DNS, deploy
 schema.sql                           ← run this in Supabase SQL editor (stage 1)
 content/english-studio-content.json  ← ALL course content. Source of truth.
-public/audio/el/*.mp3                ← 92 recordings (ElevenLabs, one voice), served by the app
+public/audio/el/*.mp3                ← the recordings (ElevenLabs, one voice), served by the app
+scripts/audio.mjs                    ← rebuilds the audio map, writes recordings-todo.txt
+recordings-todo.txt                  ← generated: the lines still to record
 reference/prototype.dc.html          ← working HTML prototype of the whole UI
 reference/_ds/                       ← design system: tokens, fonts, styles, component bundle
 reference/courses/                   ← how the prototype loads content (read for structure)
@@ -118,6 +120,15 @@ const slug = (t: string) =>
 - speaking model answer → `slug(speak.model)`
 
 All 92 files exist and cover 100% of units 1–2. Play them with a plain `<audio>` element.
+
+**Never edit the `audio` map by hand.** Run `node scripts/audio.mjs`: it rebuilds the map from
+the mp3s actually in `public/audio/el/` and writes `recordings-todo.txt` — every line the content
+asks for that has no file yet, in the recorder's format. Record those, drop the mp3s in, run it
+again, and the tasks turn up on their own. A stale map does not show a broken player; it silently
+removes tasks from a lesson, which is much harder to notice.
+
+A `sort` task has **no** recording — its words are read on the page. Do not write "listen" into a
+sort instruction; ask the student to say the words out loud instead.
 **Never fall back to browser speech synthesis** — one voice only. If a file is missing, hide
 the play button instead.
 
@@ -363,8 +374,10 @@ after it places the student at unit 4; the result survives being handed in.
    student account, not just in theory.
 3. Turn on database backups (Supabase Pro).
 4. Custom domain live on HTTPS, `*.vercel.app` still working as a fallback.
-5. Fill units 3–12: add `vocab`, `grammar`, `ex`, `speak` to each lesson, record the audio in
-   the same single voice, drop the mp3s into `public/audio/el/`, remove `locked`.
+5. Fill units 5–12: add `vocab`, `grammar`, `ex`, `speak` to each lesson, remove `locked`,
+   then record what `recordings-todo.txt` lists in the same single voice, drop the mp3s into
+   `public/audio/el/` and run `node scripts/audio.mjs`. Units 1–4 are written; units 3 and 4
+   are live but waiting on their audio, so their listening tasks stay hidden until it lands.
 6. Content licence: the syllabus follows a published coursebook, but every text, example and
    exercise in the JSON is original. Keep it that way — do not paste in coursebook text.
 

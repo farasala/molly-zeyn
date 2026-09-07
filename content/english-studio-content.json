@@ -1855,7 +1855,7 @@
                 },
                 {
                   "t": "sort",
-                  "instr": "Listen to the ending of each verb. Put it in the right group.",
+                  "instr": "Say each verb out loud. Which ending do you hear?",
                   "groups": [
                     {
                       "label": "/s/",
@@ -2474,24 +2474,832 @@
               "title": "My family",
               "g": "present simple — third person",
               "v": "The family",
-              "locked": true
+              "grammar": {
+                "h": "present simple &nbsp;·&nbsp; he, she, it",
+                "rows": [
+                  {
+                    "label": "Spelling",
+                    "items": [
+                      "most verbs — <b>+ s</b>: <i>live → lives</i>",
+                      "-ch, -sh, -ss, -x, -o — <b>+ es</b>: <i>watch → watches</i>",
+                      "consonant + y — <b>-y → -ies</b>: <i>study → studies</i>",
+                      "vowel + y — <b>+ s</b>: <i>play → plays</i>",
+                      "one irregular: <i>have → <b>has</b></i>"
+                    ]
+                  },
+                  {
+                    "label": "Questions",
+                    "items": [
+                      "<b>Does</b> your brother live here?",
+                      "<b>Does</b> she have children?",
+                      "Yes, he <b>does</b>. / No, she <b>doesn't</b>."
+                    ]
+                  },
+                  {
+                    "label": "In sentences",
+                    "items": [
+                      "My mother teaches at a school.",
+                      "My brother has two children.",
+                      "Aigerim doesn't live with her parents."
+                    ]
+                  }
+                ],
+                "notes": [
+                  "The <b>-s</b> belongs to <b>he</b>, <b>she</b> and <b>it</b> and to nobody else.",
+                  "<b>have</b> is the odd one out: <i>he <b>has</b></i>, never <i>he haves</i>.",
+                  "After <b>does</b> and <b>doesn't</b> the <b>-s</b> is already used up: <i>Does she work?</i>, <i>He doesn't watch TV.</i>",
+                  "To say whose family it is, add <b>'s</b>: <i>my sister's husband</i>, <i>Timur's parents</i>."
+                ]
+              },
+              "vocab": [
+                {
+                  "w": "parents",
+                  "ipa": "/ˈpeərənts/",
+                  "pos": "n",
+                  "def": "your mother and father",
+                  "ex": "My parents live in Shymkent."
+                },
+                {
+                  "w": "brother",
+                  "ipa": "/ˈbrʌðə/",
+                  "pos": "n",
+                  "def": "a boy or man with the same parents as you",
+                  "ex": "My brother works at the airport."
+                },
+                {
+                  "w": "sister",
+                  "ipa": "/ˈsɪstə/",
+                  "pos": "n",
+                  "def": "a girl or woman with the same parents as you",
+                  "ex": "Her sister has a small shop."
+                },
+                {
+                  "w": "son",
+                  "ipa": "/sʌn/",
+                  "pos": "n",
+                  "def": "someone's male child",
+                  "ex": "Their son is six years old."
+                },
+                {
+                  "w": "daughter",
+                  "ipa": "/ˈdɔːtə/",
+                  "pos": "n",
+                  "def": "someone's female child",
+                  "ex": "My daughter starts school in September."
+                },
+                {
+                  "w": "husband",
+                  "ipa": "/ˈhʌzbənd/",
+                  "pos": "n",
+                  "def": "the man a woman is married to",
+                  "ex": "Her husband drives a taxi."
+                },
+                {
+                  "w": "wife",
+                  "ipa": "/waɪf/",
+                  "pos": "n",
+                  "def": "the woman a man is married to",
+                  "ex": "My wife teaches maths."
+                },
+                {
+                  "w": "grandmother",
+                  "ipa": "/ˈɡrænmʌðə/",
+                  "pos": "n",
+                  "def": "the mother of your mother or father",
+                  "ex": "My grandmother makes wonderful bread."
+                },
+                {
+                  "w": "cousin",
+                  "ipa": "/ˈkʌzn/",
+                  "pos": "n",
+                  "def": "the child of your aunt or uncle",
+                  "ex": "I have four cousins in Taraz."
+                },
+                {
+                  "w": "married",
+                  "ipa": "/ˈmærid/",
+                  "pos": "adj",
+                  "def": "having a husband or a wife",
+                  "ex": "My cousin is married and lives in Astana."
+                }
+              ],
+              "ex": [
+                {
+                  "t": "mc",
+                  "q": "My sister ___ two children.",
+                  "o": [
+                    "have",
+                    "has",
+                    "haves"
+                  ],
+                  "a": 1
+                },
+                {
+                  "t": "mc",
+                  "q": "___ your brother live in Almaty?",
+                  "o": [
+                    "Do",
+                    "Does",
+                    "Is"
+                  ],
+                  "a": 1
+                },
+                {
+                  "t": "mc",
+                  "q": "She ___ watch television in the morning.",
+                  "o": [
+                    "don't",
+                    "doesn't",
+                    "isn't"
+                  ],
+                  "a": 1
+                },
+                {
+                  "t": "gap",
+                  "q": "My mother ___ at a school.",
+                  "a": "teaches",
+                  "hint": "teach"
+                },
+                {
+                  "t": "gap",
+                  "q": "He ___ his grandmother every Sunday.",
+                  "a": "visits",
+                  "hint": "visit"
+                },
+                {
+                  "t": "gap",
+                  "q": "My cousin ___ have a car.",
+                  "a": "doesn't",
+                  "hint": "negative"
+                },
+                {
+                  "t": "order",
+                  "a": "My brother works at the airport."
+                },
+                {
+                  "t": "order",
+                  "a": "Does your sister live with your parents?"
+                },
+                {
+                  "t": "transform",
+                  "instr": "Change to he.",
+                  "q": "They watch football on Saturday.",
+                  "a": [
+                    "He watches football on Saturday."
+                  ]
+                },
+                {
+                  "t": "transform",
+                  "instr": "Make it a question.",
+                  "q": "Her husband drives a taxi.",
+                  "a": [
+                    "Does her husband drive a taxi?"
+                  ]
+                },
+                {
+                  "t": "match",
+                  "pairs": [
+                    [
+                      "parents",
+                      "your mother and father"
+                    ],
+                    [
+                      "daughter",
+                      "someone's female child"
+                    ],
+                    [
+                      "husband",
+                      "the man a woman is married to"
+                    ],
+                    [
+                      "cousin",
+                      "the child of your aunt or uncle"
+                    ]
+                  ]
+                },
+                {
+                  "t": "dictation",
+                  "a": "My sister has two children and she lives in Astana."
+                },
+                {
+                  "t": "listen",
+                  "text": "This is my family. My father works at the station and my mother teaches at a school. I have one sister — she is a nurse. My brother is only nine, so he goes to school.",
+                  "q": "What does the mother do?",
+                  "o": [
+                    "She is a nurse",
+                    "She is a teacher",
+                    "She works at the station"
+                  ],
+                  "a": 1
+                },
+                {
+                  "t": "sort",
+                  "instr": "Say each verb out loud. Which ending do you hear?",
+                  "groups": [
+                    {
+                      "label": "/s/",
+                      "items": [
+                        "helps",
+                        "cooks",
+                        "waits",
+                        "sits"
+                      ]
+                    },
+                    {
+                      "label": "/z/",
+                      "items": [
+                        "calls",
+                        "runs",
+                        "opens",
+                        "reads"
+                      ]
+                    },
+                    {
+                      "label": "/ɪz/",
+                      "items": [
+                        "washes",
+                        "dances",
+                        "changes",
+                        "closes"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "speak": [
+                {
+                  "p": "Describe two people in your family: what they do and where they live.",
+                  "model": "My sister lives in Astana and she works in a bank. My brother studies at university."
+                },
+                {
+                  "p": "Say one thing somebody in your family never does.",
+                  "model": "My father never watches television in the morning."
+                },
+                {
+                  "p": "Ask your partner three questions about their family.",
+                  "model": "Does your brother live with your parents? How old is your sister? Is your cousin married?"
+                }
+              ]
             },
             {
               "id": "4B",
               "title": "A normal day",
               "g": "adverbs of frequency",
               "v": "Daily routine",
-              "locked": true
+              "grammar": {
+                "h": "adverbs of frequency &nbsp;·&nbsp; how often",
+                "rows": [
+                  {
+                    "label": "How often",
+                    "items": [
+                      "<b>always</b> — every time",
+                      "<b>usually</b> — most of the time",
+                      "<b>often</b> — many times",
+                      "<b>sometimes</b> — on some days",
+                      "<b>never</b> — not once"
+                    ]
+                  },
+                  {
+                    "label": "Where it goes",
+                    "items": [
+                      "I <b>always</b> have breakfast at home.",
+                      "She <b>never</b> drinks coffee after six.",
+                      "We <b>are usually</b> late for the first lesson.",
+                      "He <b>is often</b> tired in the evening."
+                    ]
+                  },
+                  {
+                    "label": "Asking",
+                    "items": [
+                      "<b>How often</b> do you go to the gym?",
+                      "Twice a week.",
+                      "Every day. / Once a month."
+                    ]
+                  }
+                ],
+                "notes": [
+                  "The adverb goes <b>before</b> the main verb, but <b>after</b> the verb <b>be</b>: <i>I usually walk</i>, <i>I am usually late</i>.",
+                  "<b>never</b> is already negative. Say <i>I never eat meat</i>, not <i>I don't never eat meat</i>.",
+                  "<b>every day</b>, <b>once a week</b>, <b>twice a month</b> go at the end of the sentence: <i>I swim twice a week.</i>",
+                  "One time is <b>once</b>, two times is <b>twice</b>, then <b>three times</b>, <b>four times</b>."
+                ]
+              },
+              "vocab": [
+                {
+                  "w": "wake up",
+                  "ipa": "/ˌweɪk ˈʌp/",
+                  "pos": "v",
+                  "def": "to stop sleeping",
+                  "ex": "I wake up before my alarm."
+                },
+                {
+                  "w": "have breakfast",
+                  "ipa": "/ˌhæv ˈbrekfəst/",
+                  "pos": "v",
+                  "def": "to eat your first meal of the day",
+                  "ex": "We have breakfast together on Sunday."
+                },
+                {
+                  "w": "take a shower",
+                  "ipa": "/ˌteɪk ə ˈʃaʊə/",
+                  "pos": "v",
+                  "def": "to wash under running water",
+                  "ex": "He takes a shower after the gym."
+                },
+                {
+                  "w": "leave",
+                  "ipa": "/liːv/",
+                  "pos": "v",
+                  "def": "to go away from a place",
+                  "ex": "I leave the house at half past seven."
+                },
+                {
+                  "w": "lunch",
+                  "ipa": "/lʌntʃ/",
+                  "pos": "n",
+                  "def": "the meal in the middle of the day",
+                  "ex": "Lunch is at one in our office."
+                },
+                {
+                  "w": "go to bed",
+                  "ipa": "/ˌɡəʊ tə ˈbed/",
+                  "pos": "v",
+                  "def": "to get into bed to sleep",
+                  "ex": "The children go to bed at nine."
+                },
+                {
+                  "w": "always",
+                  "ipa": "/ˈɔːlweɪz/",
+                  "pos": "adv",
+                  "def": "every time, without exception",
+                  "ex": "She always answers her phone."
+                },
+                {
+                  "w": "usually",
+                  "ipa": "/ˈjuːʒuəli/",
+                  "pos": "adv",
+                  "def": "most of the time",
+                  "ex": "I usually walk to work."
+                },
+                {
+                  "w": "sometimes",
+                  "ipa": "/ˈsʌmtaɪmz/",
+                  "pos": "adv",
+                  "def": "on some days but not on others",
+                  "ex": "Sometimes we eat out on Friday."
+                },
+                {
+                  "w": "never",
+                  "ipa": "/ˈnevə/",
+                  "pos": "adv",
+                  "def": "not at any time",
+                  "ex": "He never drinks coffee in the evening."
+                }
+              ],
+              "ex": [
+                {
+                  "t": "mc",
+                  "q": "She ___ gets up before six.",
+                  "o": [
+                    "never",
+                    "not",
+                    "no"
+                  ],
+                  "a": 0
+                },
+                {
+                  "t": "mc",
+                  "q": "We ___ late for the first lesson.",
+                  "o": [
+                    "are usually",
+                    "usually are",
+                    "usually"
+                  ],
+                  "a": 0
+                },
+                {
+                  "t": "mc",
+                  "q": "___ do you go to the swimming pool?",
+                  "o": [
+                    "How much",
+                    "How often",
+                    "How long"
+                  ],
+                  "a": 1
+                },
+                {
+                  "t": "gap",
+                  "q": "How ___ do you visit your parents?",
+                  "a": "often",
+                  "hint": "question"
+                },
+                {
+                  "t": "gap",
+                  "q": "He goes to the gym twice ___ week.",
+                  "a": "a",
+                  "hint": "how often"
+                },
+                {
+                  "t": "gap",
+                  "q": "I swim three ___ a week.",
+                  "a": "times",
+                  "hint": "once, twice, three ___"
+                },
+                {
+                  "t": "order",
+                  "a": "I always take a shower in the morning."
+                },
+                {
+                  "t": "order",
+                  "a": "She is never late for work."
+                },
+                {
+                  "t": "transform",
+                  "instr": "Add always in the right place.",
+                  "q": "We have lunch at one.",
+                  "a": [
+                    "We always have lunch at one."
+                  ]
+                },
+                {
+                  "t": "transform",
+                  "instr": "Add never in the right place.",
+                  "q": "He is late.",
+                  "a": [
+                    "He is never late."
+                  ]
+                },
+                {
+                  "t": "match",
+                  "pairs": [
+                    [
+                      "always",
+                      "every time"
+                    ],
+                    [
+                      "usually",
+                      "most of the time"
+                    ],
+                    [
+                      "sometimes",
+                      "on some days"
+                    ],
+                    [
+                      "never",
+                      "not at any time"
+                    ]
+                  ]
+                },
+                {
+                  "t": "dictation",
+                  "a": "I usually leave the house at half past seven."
+                },
+                {
+                  "t": "listen",
+                  "text": "My name is Dana. On a normal day I wake up at six and take a shower. I never have a big breakfast — just tea. I leave the house at seven and I am usually at work by eight.",
+                  "q": "What does Dana have for breakfast?",
+                  "o": [
+                    "A big breakfast",
+                    "Only tea",
+                    "Nothing at all"
+                  ],
+                  "a": 1
+                }
+              ],
+              "speak": [
+                {
+                  "p": "Describe your normal weekday from waking up to lunch.",
+                  "model": "I wake up at half past six, take a shower and have breakfast. I leave the house at seven and I usually have lunch at one."
+                },
+                {
+                  "p": "Say three things you always do and one thing you never do.",
+                  "model": "I always check my phone, always drink tea and always walk to the bus. I never go to bed before midnight."
+                },
+                {
+                  "p": "Ask your partner how often they do three things.",
+                  "model": "How often do you cook? How often do you see your parents? How often do you go to the cinema?"
+                }
+              ]
             },
             {
               "id": "4C",
               "title": "When and where",
               "g": "prepositions of time & place",
               "v": "Time expressions",
-              "locked": true
+              "grammar": {
+                "h": "prepositions &nbsp;·&nbsp; <b>at</b>, <b>on</b>, <b>in</b>",
+                "rows": [
+                  {
+                    "label": "Time",
+                    "items": [
+                      "<b>at</b> — clock times and night: <i>at seven, at midday, at night</i>",
+                      "<b>on</b> — days and dates: <i>on Monday, on 3 May, on Friday evening</i>",
+                      "<b>in</b> — months, years, parts of the day: <i>in March, in 2026, in the morning</i>"
+                    ]
+                  },
+                  {
+                    "label": "Place",
+                    "items": [
+                      "<b>at</b> — a point: <i>at home, at work, at the station</i>",
+                      "<b>in</b> — inside something: <i>in Almaty, in the room, in a taxi</i>",
+                      "<b>on</b> — a surface or a line: <i>on the table, on the fourth floor, on the bus</i>"
+                    ]
+                  },
+                  {
+                    "label": "In sentences",
+                    "items": [
+                      "The lesson starts at nine on Tuesday.",
+                      "We meet at the station in the morning.",
+                      "She lives in Astana, on Abay Street."
+                    ]
+                  }
+                ],
+                "notes": [
+                  "No preposition before <b>every</b>, <b>this</b>, <b>next</b> or <b>last</b>: <i>every day</i>, <i>next Monday</i> — not <i>on next Monday</i>.",
+                  "<b>at night</b>, but <b>in the morning</b>, <b>in the afternoon</b>, <b>in the evening</b>. That one is worth learning by heart.",
+                  "British English says <b>at the weekend</b>; American English says <i>on the weekend</i>. Both are fine.",
+                  "You sit <b>in</b> a car or a taxi, but <b>on</b> a bus, a train or a plane."
+                ]
+              },
+              "vocab": [
+                {
+                  "w": "every day",
+                  "ipa": "/ˌevri ˈdeɪ/",
+                  "pos": "adv",
+                  "def": "on all days, without a break",
+                  "ex": "She checks her email every day."
+                },
+                {
+                  "w": "at the weekend",
+                  "ipa": "/ət ðə ˈwiːkend/",
+                  "pos": "adv",
+                  "def": "on Saturday and Sunday",
+                  "ex": "We visit my parents at the weekend."
+                },
+                {
+                  "w": "in the morning",
+                  "ipa": "/ɪn ðə ˈmɔːnɪŋ/",
+                  "pos": "adv",
+                  "def": "between waking up and midday",
+                  "ex": "The market is busy in the morning."
+                },
+                {
+                  "w": "at night",
+                  "ipa": "/ət ˈnaɪt/",
+                  "pos": "adv",
+                  "def": "in the dark hours",
+                  "ex": "This street is quiet at night."
+                },
+                {
+                  "w": "once a week",
+                  "ipa": "/ˌwʌns ə ˈwiːk/",
+                  "pos": "adv",
+                  "def": "one time in seven days",
+                  "ex": "I have a Spanish lesson once a week."
+                },
+                {
+                  "w": "early",
+                  "ipa": "/ˈɜːli/",
+                  "pos": "adv",
+                  "def": "before the usual time",
+                  "ex": "The train left early."
+                },
+                {
+                  "w": "late",
+                  "ipa": "/leɪt/",
+                  "pos": "adv",
+                  "def": "after the usual time",
+                  "ex": "Sorry, I am late again."
+                },
+                {
+                  "w": "weekday",
+                  "ipa": "/ˈwiːkdeɪ/",
+                  "pos": "n",
+                  "def": "any day from Monday to Friday",
+                  "ex": "On a weekday I start at eight."
+                },
+                {
+                  "w": "midday",
+                  "ipa": "/ˌmɪdˈdeɪ/",
+                  "pos": "n",
+                  "def": "twelve o'clock in the day",
+                  "ex": "We stop for lunch at midday."
+                },
+                {
+                  "w": "free time",
+                  "ipa": "/ˈfriː taɪm/",
+                  "pos": "n",
+                  "def": "the hours when you are not working",
+                  "ex": "In my free time I play the guitar."
+                }
+              ],
+              "ex": [
+                {
+                  "t": "mc",
+                  "q": "The lesson starts ___ nine.",
+                  "o": [
+                    "in",
+                    "on",
+                    "at"
+                  ],
+                  "a": 2
+                },
+                {
+                  "t": "mc",
+                  "q": "My birthday is ___ May.",
+                  "o": [
+                    "in",
+                    "on",
+                    "at"
+                  ],
+                  "a": 0
+                },
+                {
+                  "t": "mc",
+                  "q": "We have a meeting ___ Monday morning.",
+                  "o": [
+                    "in",
+                    "on",
+                    "at"
+                  ],
+                  "a": 1
+                },
+                {
+                  "t": "gap",
+                  "q": "The keys are ___ the table.",
+                  "a": "on",
+                  "hint": "place"
+                },
+                {
+                  "t": "gap",
+                  "q": "She works ___ a bank in the centre.",
+                  "a": "in",
+                  "hint": "place"
+                },
+                {
+                  "t": "gap",
+                  "q": "I never drink coffee ___ night.",
+                  "a": "at",
+                  "hint": "time"
+                },
+                {
+                  "t": "gap",
+                  "q": "Our office is ___ the fourth floor.",
+                  "a": "on",
+                  "hint": "place"
+                },
+                {
+                  "t": "order",
+                  "a": "We meet at the station in the morning."
+                },
+                {
+                  "t": "order",
+                  "a": "I go to the swimming pool once a week."
+                },
+                {
+                  "t": "transform",
+                  "instr": "Correct the mistake.",
+                  "q": "I see my parents on every Sunday.",
+                  "a": [
+                    "I see my parents every Sunday."
+                  ]
+                },
+                {
+                  "t": "transform",
+                  "instr": "Correct the mistake.",
+                  "q": "The shop opens at the morning.",
+                  "a": [
+                    "The shop opens in the morning."
+                  ]
+                },
+                {
+                  "t": "match",
+                  "pairs": [
+                    [
+                      "at the weekend",
+                      "on Saturday and Sunday"
+                    ],
+                    [
+                      "once a week",
+                      "one time in seven days"
+                    ],
+                    [
+                      "midday",
+                      "twelve o'clock in the day"
+                    ],
+                    [
+                      "weekday",
+                      "any day from Monday to Friday"
+                    ]
+                  ]
+                },
+                {
+                  "t": "dictation",
+                  "a": "We meet at the station at midday on Saturday."
+                },
+                {
+                  "t": "listen",
+                  "text": "The shop opens at nine in the morning and closes at eight in the evening. On Sunday it opens late, at eleven, and closes at six.",
+                  "q": "When does the shop open on Sunday?",
+                  "o": [
+                    "At nine",
+                    "At eleven",
+                    "At six"
+                  ],
+                  "a": 1
+                }
+              ],
+              "speak": [
+                {
+                  "p": "Say when you do three things, using at, on and in.",
+                  "model": "I start work at eight in the morning. I have a lesson on Tuesday. In August I go to the mountains."
+                },
+                {
+                  "p": "Describe your weekend: what you do and when.",
+                  "model": "At the weekend I get up late. On Saturday I meet friends in the centre, and on Sunday I stay at home."
+                },
+                {
+                  "p": "Say where three things in this room are.",
+                  "model": "The books are on the table, my bag is on the floor and my phone is in my pocket."
+                }
+              ]
             }
           ],
-          "locked": true
+          "test": [
+            {
+              "t": "mc",
+              "q": "My brother ___ two children.",
+              "o": [
+                "have",
+                "has",
+                "haves"
+              ],
+              "a": 1
+            },
+            {
+              "t": "mc",
+              "q": "She ___ drinks coffee in the evening.",
+              "o": [
+                "never",
+                "not",
+                "no"
+              ],
+              "a": 0
+            },
+            {
+              "t": "gap",
+              "q": "___ your sister live in Astana?",
+              "a": "Does",
+              "hint": "question"
+            },
+            {
+              "t": "gap",
+              "q": "The lesson starts ___ half past eight.",
+              "a": "at",
+              "hint": "time"
+            },
+            {
+              "t": "order",
+              "a": "We always have lunch at one."
+            },
+            {
+              "t": "transform",
+              "instr": "Change to she.",
+              "q": "They watch television in the evening.",
+              "a": [
+                "She watches television in the evening."
+              ]
+            },
+            {
+              "t": "transform",
+              "instr": "Add never in the right place.",
+              "q": "He is late for work.",
+              "a": [
+                "He is never late for work."
+              ]
+            },
+            {
+              "t": "match",
+              "pairs": [
+                [
+                  "usually",
+                  "most of the time"
+                ],
+                [
+                  "once a week",
+                  "one time in seven days"
+                ],
+                [
+                  "midday",
+                  "twelve o'clock in the day"
+                ],
+                [
+                  "cousin",
+                  "the child of your aunt or uncle"
+                ]
+              ]
+            }
+          ]
         },
         {
           "n": 5,
@@ -2814,9 +3622,9 @@
           {
             "unit": 4,
             "t": "gap",
-            "q": "I like ___ to music in the evening.",
-            "a": "listening",
-            "hint": "listen"
+            "q": "How ___ do you visit your parents?",
+            "a": "often",
+            "hint": "question"
           },
           {
             "unit": 5,
@@ -2999,9 +3807,9 @@
           {
             "unit": 4,
             "t": "gap",
-            "q": "She hates ___ up early.",
-            "a": "getting",
-            "hint": "get"
+            "q": "The film starts ___ eight o'clock.",
+            "a": "at",
+            "hint": "time"
           },
           {
             "unit": 5,

@@ -104,6 +104,8 @@ export default async function LessonPage({ params, searchParams }: Props) {
     audio: urlFor(vocabSlug(entry.w, entry.ex)),
   }));
 
+  const vocabAudio = vocab.some((entry) => entry.audio !== null);
+
   const prompts: SpeakItem[] = (lesson.speak ?? []).map((prompt) => ({
     ...prompt,
     audio: urlFor(audioSlug(prompt.model)),
@@ -227,8 +229,8 @@ export default async function LessonPage({ params, searchParams }: Props) {
                   <span className="overview-step">Step 1</span>
                   <h2 className="overview-title">Vocabulary</h2>
                   <p className="overview-sub">
-                    {vocab.length} words from “{lesson.v}” with phonemics, meaning, an example and
-                    audio.
+                    {vocab.length} words from “{lesson.v}” with phonemics, meaning and an
+                    example{vocabAudio ? ', read out loud' : ''}.
                   </p>
                   <span className="overview-cta">Open flashcards →</span>
                 </Link>
@@ -237,8 +239,8 @@ export default async function LessonPage({ params, searchParams }: Props) {
                   <span className="overview-step">Step 2</span>
                   <h2 className="overview-title">Grammar</h2>
                   <p className="overview-sub">
-                    Present {lesson.g} on the big screen: forms, examples and the mistakes to head
-                    off.
+                    The rule on the big screen — {lesson.g}: forms, examples and the mistakes
+                    to head off.
                   </p>
                   <span className="overview-cta">Show the rule →</span>
                 </Link>

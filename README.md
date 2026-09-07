@@ -14,7 +14,7 @@ the exact prompt to paste per stage. `schema.sql` goes into the Supabase SQL edi
 | `SETUP.md` | Operator checklist (in Russian) — accounts, domain, stage order. |
 | `schema.sql` | Postgres schema, triggers, RLS policies, Storage buckets. |
 | `content/english-studio-content.json` | All course content — the single source of truth. |
-| `audio/el/*.mp3` | 92 recordings, one voice (ElevenLabs · Amelia Beckett, British female). |
+| `audio/el/*.mp3` | The recordings, one voice (ElevenLabs · Amelia Beckett, British female). Run `node scripts/audio.mjs` after adding any. |
 | `reference/prototype.dc.html` | Working prototype of the whole UI. |
 | `reference/_ds/` | Growland design system: colour/type/spacing tokens, Montserrat, component bundle. |
 | `reference/courses/` | How the prototype loads content and audio — read for structure. |
@@ -48,10 +48,12 @@ student roster).
 ## Content scope today
 
 12 units of Elementary (A1–A2), three lessons each, following a published coursebook syllabus.
-Units 1–2 are fully written: 60 vocabulary entries, 66 exercises, 2 unit tests, 18 speaking
-prompts, and 92 audio clips covering 100% of the spoken strings. Units 3–12 carry the syllabus
-(topic, grammar focus, lexical set per lesson) and are marked `"locked": true` — they must render
-a calm "coming soon" state, never an error. The architecture is per-level: adding
-Pre-Intermediate → Advanced or an IELTS course means adding one content file, no schema change.
+Units 1–4 are written: 120 vocabulary entries, 145 exercises, 4 unit tests and 36 speaking
+prompts, plus a 20-question placement test and a 24-question end-of-course test. Units 1–2 have
+all their audio; units 3–4 are live and waiting on theirs, so a listening task appears by itself
+once its mp3 lands (see `recordings-todo.txt`). Units 5–12 carry the syllabus (topic, grammar
+focus, lexical set per lesson) and are marked `"locked": true` — they render a calm "coming soon"
+state, never an error. The architecture is per-level: adding Pre-Intermediate → Advanced or an
+IELTS course means adding one content file, no schema change.
 
 All texts, examples, definitions and exercises in the JSON are original. Keep it that way.
