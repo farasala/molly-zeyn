@@ -1,5 +1,5 @@
 import { getLessonById, getUnit, type Exercise, type Lesson } from '@/lib/content';
-import { shuffle, toPublicItem, type PublicItem } from '@/lib/exercises';
+import { isPlayable, shuffle, toPublicItem, type PublicItem } from '@/lib/exercises';
 
 /**
  * Homework is assembled from the material the lesson already contains — the
@@ -50,12 +50,15 @@ export function planHomework(levelId: string, lessonId: string): HomeworkPlan | 
     items.push({ src: 'vocab', words: group });
   }
 
-  // Everything the lesson drills.
-  (lesson.ex ?? []).forEach((_, index) => items.push({ src: 'lesson', i: index }));
+  // Everything the lesson drills, minus anything whose recording is not in yet.
+  (lesson.ex ?? []).forEach((exercise, index) => {
+    if (isPlayable(exercise)) items.push({ src: 'lesson', i: index });
+  });
 
   // A couple from the unit test, to bring back the earlier lessons.
   const test = unit.test ?? [];
-  for (const index of shuffle(test.map((_, i) => i)).slice(0, TEST_ITEMS)) {
+  const playableTest = test.map((_, i) => i).filter((i) => isPlayable(test[i]));
+  for (const index of shuffle(playableTest).slice(0, TEST_ITEMS)) {
     items.push({ src: 'test', i: index });
   }
 

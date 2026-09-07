@@ -13,7 +13,7 @@ import { PracticeRunner } from '@/components/practice/PracticeRunner';
 import { StudentHomework, TeacherHomework } from '@/components/lesson/HomeworkStage';
 import { getGroups, getSubmissions, getTeacherHomework } from '@/lib/teaching';
 import { createClient } from '@/lib/supabase/server';
-import { EXERCISE_NAMES, shuffle, toPublicItem } from '@/lib/exercises';
+import { EXERCISE_NAMES, isPlayable, shuffle, toPublicItem } from '@/lib/exercises';
 
 const LEVEL_ID = 'elementary';
 
@@ -109,7 +109,9 @@ export default async function LessonPage({ params, searchParams }: Props) {
     audio: urlFor(audioSlug(prompt.model)),
   }));
 
-  const exercises = lesson.ex ?? [];
+  // A dictation with no recording yet is not dealt out, so the count the
+  // student is promised has to be the playable one.
+  const exercises = (lesson.ex ?? []).filter(isPlayable);
   const kinds = [...new Set(exercises.map((exercise) => EXERCISE_NAMES[exercise.t]))];
 
   // Stripped of their answers and reshuffled on every visit. `i` keeps each
@@ -132,7 +134,10 @@ export default async function LessonPage({ params, searchParams }: Props) {
   const stage = state === 'homework-only' ? 'homework' : requestedStage;
 
   const practiceItems = shuffle(
-    exercises.map((exercise, index) => toPublicItem(exercise, index, `/api/clip/${lesson.id}`)),
+    (lesson.ex ?? [])
+      .map((exercise, index) => ({ exercise, index }))
+      .filter(({ exercise }) => isPlayable(exercise))
+      .map(({ exercise, index }) => toPublicItem(exercise, index, `/api/clip/${lesson.id}`)),
   );
 
   return (

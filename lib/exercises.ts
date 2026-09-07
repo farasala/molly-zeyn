@@ -1,5 +1,5 @@
 import { audioSlug } from '@/lib/audio';
-import type { Exercise } from '@/lib/content';
+import { hasAudio, type Exercise } from '@/lib/content';
 
 /**
  * The answer key never leaves the server. Everything here that touches a
@@ -143,6 +143,19 @@ export function clipSlugFor(exercise: Exercise): string | null {
   if (exercise.t === 'dictation') return audioSlug(exercise.a);
   if (exercise.t === 'listen') return audioSlug(exercise.text);
   return null;
+}
+
+/**
+ * True when a task can actually be answered.
+ *
+ * A dictation with no recording is not a hard task, it is an impossible one —
+ * there is nothing to listen to. Filtering those out is what lets a unit go
+ * live while its audio is still being recorded: the moment the file lands in
+ * public/audio/el the task appears on its own.
+ */
+export function isPlayable(exercise: Exercise): boolean {
+  const slug = clipSlugFor(exercise);
+  return slug === null || hasAudio(slug);
 }
 
 export type CheckResult = {
