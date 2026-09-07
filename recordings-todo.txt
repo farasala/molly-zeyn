@@ -272,3 +272,93 @@ good-evening-for-the-starter-i-would-like-the-soup-and-for-t.mp3  |  Good evenin
 i-would-like-the-soup-as-a-starter-and-for-the-main-course-t.mp3  |  I would like the soup as a starter, and for the main course the chicken, please. And a glass of water.
 i-like-tea-but-right-now-i-would-like-a-coffee-i-like-cookin.mp3  |  I like tea, but right now I would like a coffee. I like cooking, but tonight I would like to eat out.
 good-evening-i-would-like-to-book-a-table-for-four-people-fo.mp3  |  Good evening. I would like to book a table for four people, for Friday at eight. The name is Aigerim.
+bus-the-bus-to-the-centre-is-number-twelve.mp3  |  bus. The bus to the centre is number twelve.
+train-the-train-to-astana-leaves-at-nine.mp3  |  train. The train to Astana leaves at nine.
+taxi-a-taxi-is-faster-but-more-expensive.mp3  |  taxi. A taxi is faster but more expensive.
+plane-the-plane-was-two-hours-late.mp3  |  plane. The plane was two hours late.
+bike-in-summer-i-go-to-work-by-bike.mp3  |  bike. In summer I go to work by bike.
+ticket-two-tickets-to-almaty-please.mp3  |  ticket. Two tickets to Almaty, please.
+station-we-meet-at-the-station-at-eight.mp3  |  station. We meet at the station at eight.
+journey-the-journey-takes-four-hours.mp3  |  journey. The journey takes four hours.
+fast-the-train-is-fast-and-comfortable.mp3  |  fast. The train is fast and comfortable.
+cheap-buses-are-cheap-here.mp3  |  cheap. Buses are cheap here.
+the-train-is-cheaper-and-more-comfortable-than-the-bus.mp3  |  The train is cheaper and more comfortable than the bus.
+i-usually-take-the-bus-because-it-is-cheaper-the-taxi-is-fas.mp3  |  I usually take the bus because it is cheaper. The taxi is faster, but it costs four times more. The train is the best, but there is only one a day.
+the-bus-is-cheaper-than-a-taxi-but-a-taxi-is-faster-and-more.mp3  |  The bus is cheaper than a taxi, but a taxi is faster and more comfortable in winter.
+my-old-flat-was-bigger-but-this-one-is-warmer-and-much-close.mp3  |  My old flat was bigger, but this one is warmer and much closer to the centre.
+is-the-train-cheaper-than-the-bus-here-which-is-faster-is-wi.mp3  |  Is the train cheaper than the bus here? Which is faster? Is winter colder in your city than in mine?
+city-almaty-is-the-largest-city-in-the-country.mp3  |  city. Almaty is the largest city in the country.
+square-we-met-on-the-main-square.mp3  |  square. We met on the main square.
+market-the-green-market-opens-at-seven.mp3  |  market. The green market opens at seven.
+museum-the-museum-is-closed-on-mondays.mp3  |  museum. The museum is closed on Mondays.
+park-there-is-a-park-behind-our-building.mp3  |  park. There is a park behind our building.
+bank-the-bank-is-next-to-the-post-office.mp3  |  bank. The bank is next to the post office.
+bridge-the-old-bridge-is-the-most-beautiful-in-the-city.mp3  |  bridge. The old bridge is the most beautiful in the city.
+pharmacy-there-is-a-pharmacy-on-the-corner.mp3  |  pharmacy. There is a pharmacy on the corner.
+library-the-library-is-quiet-in-the-morning.mp3  |  library. The library is quiet in the morning.
+busy-the-market-is-the-busiest-place-in-town.mp3  |  busy. The market is the busiest place in town.
+it-is-the-best-market-in-the-city.mp3  |  It is the best market in the city.
+the-green-market-is-the-busiest-place-in-the-city-and-it-is-.mp3  |  The green market is the busiest place in the city, and it is also the cheapest. The shops in the centre are more expensive, but they are quieter. My favourite place is the old park behind the museum.
+the-best-caf-is-on-the-main-square-the-cheapest-food-is-at-t.mp3  |  The best café is on the main square, the cheapest food is at the green market, and the busiest place is the bus station.
+the-most-beautiful-place-i-know-is-a-small-lake-in-the-mount.mp3  |  The most beautiful place I know is a small lake in the mountains. It is the quietest place I have ever been.
+what-is-the-biggest-city-you-know-where-is-the-best-coffee-w.mp3  |  What is the biggest city you know? Where is the best coffee? What was the worst journey of your life? Which is the busiest street here?
+invite-they-invited-us-to-dinner.mp3  |  invite. They invited us to dinner.
+free-are-you-free-on-saturday.mp3  |  free. Are you free on Saturday?
+meet-let-s-meet-at-the-station.mp3  |  meet. Let's meet at the station.
+idea-that-is-a-very-good-idea.mp3  |  idea. That is a very good idea.
+sorry-sorry-i-can-t-come-on-friday.mp3  |  sorry. Sorry, I can't come on Friday.
+maybe-maybe-next-week.mp3  |  maybe. Maybe next week.
+together-let-s-have-lunch-together.mp3  |  together. Let's have lunch together.
+join-can-i-join-you.mp3  |  join. Can I join you?
+weekend-what-are-your-plans-for-the-weekend.mp3  |  weekend. What are your plans for the weekend?
+plan-i-have-no-plans-for-tonight.mp3  |  plan. I have no plans for tonight.
+would-you-like-to-meet-at-the-station-on-saturday.mp3  |  Would you like to meet at the station on Saturday?
+hi-it-s-dana-we-are-going-to-the-mountains-on-sunday-would-y.mp3  |  Hi, it's Dana. We are going to the mountains on Sunday — would you like to come? We leave at seven. If Sunday is bad for you, maybe next weekend.
+would-you-like-to-come-to-the-cinema-on-friday-would-you-lik.mp3  |  Would you like to come to the cinema on Friday? Would you like to have lunch together tomorrow? How about a walk in the park at the weekend?
+i-d-like-to-but-i-m-working-on-saturday-how-about-sunday-aft.mp3  |  I'd like to, but I'm working on Saturday. How about Sunday afternoon?
+would-you-like-some-tea-would-you-like-a-piece-of-cake-shall.mp3  |  Would you like some tea? Would you like a piece of cake? Shall I take your coat?
+holiday-we-have-two-weeks-of-holiday-in-august.mp3  |  holiday. We have two weeks of holiday in August.
+trip-they-are-going-on-a-trip-to-the-lake.mp3  |  trip. They are going on a trip to the lake.
+beach-the-children-spent-all-day-on-the-beach.mp3  |  beach. The children spent all day on the beach.
+mountains-we-go-to-the-mountains-every-weekend.mp3  |  mountains. We go to the mountains every weekend.
+hotel-the-hotel-is-near-the-station.mp3  |  hotel. The hotel is near the station.
+suitcase-my-suitcase-is-too-heavy.mp3  |  suitcase. My suitcase is too heavy.
+pack-i-pack-the-night-before.mp3  |  pack. I pack the night before.
+visit-we-are-going-to-visit-my-parents.mp3  |  visit. We are going to visit my parents.
+abroad-she-has-never-been-abroad.mp3  |  abroad. She has never been abroad.
+rest-i-just-want-to-rest-for-a-week.mp3  |  rest. I just want to rest for a week.
+we-are-going-to-visit-my-parents-next-weekend.mp3  |  We are going to visit my parents next weekend.
+next-month-we-are-going-to-the-mountains-for-a-week-we-aren-.mp3  |  Next month we are going to the mountains for a week. We aren't going to book a hotel — we have a small house there. I'm going to pack on Friday evening.
+i-m-going-to-visit-my-parents-on-saturday-i-m-going-to-rest-.mp3  |  I'm going to visit my parents on Saturday, I'm going to rest on Sunday morning and I'm going to pack for my trip in the evening.
+we-re-going-to-the-mountains-for-a-week-in-august-we-aren-t-.mp3  |  We're going to the mountains for a week in August. We aren't going to book a hotel — we're going to stay with friends.
+what-are-you-going-to-do-tomorrow-are-you-going-to-travel-th.mp3  |  What are you going to do tomorrow? Are you going to travel this year? Where are you going to stay? Are you going to book anything?
+because-i-am-learning-english-because-i-need-it-for-work.mp3  |  because. I am learning English because I need it for work.
+reason-there-is-a-good-reason-for-the-delay.mp3  |  reason. There is a good reason for the delay.
+learn-she-is-learning-to-drive.mp3  |  learn. She is learning to drive.
+save-we-are-saving-money-to-buy-a-flat.mp3  |  save. We are saving money to buy a flat.
+improve-i-want-to-improve-my-pronunciation.mp3  |  improve. I want to improve my pronunciation.
+practise-he-practises-the-guitar-every-evening.mp3  |  practise. He practises the guitar every evening.
+hope-i-hope-to-finish-by-friday.mp3  |  hope. I hope to finish by Friday.
+try-try-to-speak-slowly.mp3  |  try. Try to speak slowly.
+need-you-need-a-ticket-for-the-museum.mp3  |  need. You need a ticket for the museum.
+goal-my-goal-is-to-read-a-book-in-english.mp3  |  goal. My goal is to read a book in English.
+i-am-learning-english-to-work-abroad.mp3  |  I am learning English to work abroad.
+i-go-to-the-pool-twice-a-week-to-keep-fit-and-i-practise-eng.mp3  |  I go to the pool twice a week to keep fit, and I practise English every evening to improve my pronunciation. My goal is to give a presentation at work in English next year.
+i-m-learning-english-to-travel-more-easily-to-read-what-i-wa.mp3  |  I'm learning English to travel more easily, to read what I want and to work abroad one day.
+i-went-to-the-market-to-buy-vegetables-to-the-bank-to-change.mp3  |  I went to the market to buy vegetables, to the bank to change money, to the pharmacy to get medicine and to my sister's to see the children.
+why-do-you-get-up-so-early-why-are-you-saving-money-why-did-.mp3  |  Why do you get up so early? Why are you saving money? Why did you come to this school?
+slowly-please-speak-more-slowly.mp3  |  slowly. Please speak more slowly.
+quickly-she-finished-the-test-quickly.mp3  |  quickly. She finished the test quickly.
+carefully-read-the-question-carefully.mp3  |  carefully. Read the question carefully.
+quietly-he-closed-the-door-quietly.mp3  |  quietly. He closed the door quietly.
+loudly-the-neighbours-were-talking-loudly.mp3  |  loudly. The neighbours were talking loudly.
+easily-he-passed-the-test-easily.mp3  |  easily. He passed the test easily.
+badly-i-slept-badly-last-night.mp3  |  badly. I slept badly last night.
+hard-she-works-very-hard.mp3  |  hard. She works very hard.
+suddenly-suddenly-the-lights-went-out.mp3  |  suddenly. Suddenly the lights went out.
+probably-he-is-probably-at-home-now.mp3  |  probably. He is probably at home now.
+she-speaks-english-well-but-she-writes-slowly.mp3  |  She speaks English well but she writes slowly.
+our-new-teacher-speaks-quite-quickly-but-she-explains-everyt.mp3  |  Our new teacher speaks quite quickly, but she explains everything carefully. I understand her easily now. At the start I did badly in the tests, but they are better this month.
+i-drive-carefully-i-eat-too-quickly-i-speak-english-quite-sl.mp3  |  I drive carefully, I eat too quickly, I speak English quite slowly and I sleep badly when it is hot.
+my-grandmother-speaks-very-quietly-she-cooks-well-and-she-wo.mp3  |  My grandmother speaks very quietly, she cooks well and she works hard in the garden every day.
+how-well-do-you-cook-do-you-speak-quickly-or-slowly-in-your-.mp3  |  How well do you cook? Do you speak quickly or slowly in your own language? How do you drive?

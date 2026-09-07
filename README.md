@@ -48,10 +48,10 @@ student roster).
 ## Content scope today
 
 12 units of Elementary (A1–A2), three lessons each, following a published coursebook syllabus.
-Units 1–8 are written: 240 vocabulary entries, 318 exercises, 8 unit tests and 72 speaking
+Units 1–10 are written: 300 vocabulary entries, 404 exercises, 10 unit tests and 90 speaking
 prompts, plus a 20-question placement test and a 24-question end-of-course test. Units 1–2 have
-all their audio; units 3–8 are live and waiting on theirs, so a listening task appears by itself
-once its mp3 lands (see `recordings-todo.txt`). Units 9–12 carry the syllabus (topic, grammar
+all their audio; units 3–10 are live and waiting on theirs, so a listening task appears by itself
+once its mp3 lands (see `recordings-todo.txt`). Units 11–12 carry the syllabus (topic, grammar
 focus, lexical set per lesson) and are marked `"locked": true` — they render a calm "coming soon"
 state, never an error. The architecture is per-level: adding Pre-Intermediate → Advanced or an
 IELTS course means adding one content file, no schema change.

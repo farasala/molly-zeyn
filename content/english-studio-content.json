@@ -6764,24 +6764,830 @@
               "title": "Better or worse?",
               "g": "comparative adjectives",
               "v": "Transport",
-              "locked": true
+              "grammar": {
+                "h": "comparatives &nbsp;·&nbsp; -er and more",
+                "rows": [
+                  {
+                    "label": "Short adjectives — + er",
+                    "items": [
+                      "cheap → cheap<b>er</b>",
+                      "cold → cold<b>er</b>",
+                      "nice → nic<b>er</b> — drop the e",
+                      "big → big<b>ger</b> — double the letter",
+                      "easy → eas<b>ier</b> — -y becomes -ier"
+                    ]
+                  },
+                  {
+                    "label": "Long adjectives — more",
+                    "items": [
+                      "<b>more</b> expensive",
+                      "<b>more</b> comfortable",
+                      "<b>more</b> interesting"
+                    ]
+                  },
+                  {
+                    "label": "Irregular, and the comparison itself",
+                    "items": [
+                      "good → <b>better</b>, bad → <b>worse</b>, far → <b>further</b>",
+                      "The train is cheaper <b>than</b> the plane.",
+                      "My flat isn't <b>as</b> big <b>as</b> yours."
+                    ]
+                  }
+                ],
+                "notes": [
+                  "One or two syllables take <b>-er</b>; three or more take <b>more</b>. A two-syllable word ending in <b>-y</b> takes <b>-ier</b>.",
+                  "<b>than</b> always follows the comparative: <i>cheaper than</i>, <i>more expensive than</i>.",
+                  "Never both at once — <i>more cheaper</i> is wrong. Choose <b>-er</b> or <b>more</b>.",
+                  "<b>as … as</b> says the two are the same: <i>The bus is as fast as the taxi.</i>"
+                ]
+              },
+              "vocab": [
+                {
+                  "w": "bus",
+                  "ipa": "/bʌs/",
+                  "pos": "n",
+                  "def": "a large vehicle that carries many people",
+                  "ex": "The bus to the centre is number twelve."
+                },
+                {
+                  "w": "train",
+                  "ipa": "/treɪn/",
+                  "pos": "n",
+                  "def": "a long vehicle that runs on rails",
+                  "ex": "The train to Astana leaves at nine."
+                },
+                {
+                  "w": "taxi",
+                  "ipa": "/ˈtæksi/",
+                  "pos": "n",
+                  "def": "a car you pay to travel in",
+                  "ex": "A taxi is faster but more expensive."
+                },
+                {
+                  "w": "plane",
+                  "ipa": "/pleɪn/",
+                  "pos": "n",
+                  "def": "a vehicle that flies",
+                  "ex": "The plane was two hours late."
+                },
+                {
+                  "w": "bike",
+                  "ipa": "/baɪk/",
+                  "pos": "n",
+                  "def": "a vehicle with two wheels that you push with your feet",
+                  "ex": "In summer I go to work by bike."
+                },
+                {
+                  "w": "ticket",
+                  "ipa": "/ˈtɪkɪt/",
+                  "pos": "n",
+                  "def": "the paper that lets you travel",
+                  "ex": "Two tickets to Almaty, please."
+                },
+                {
+                  "w": "station",
+                  "ipa": "/ˈsteɪʃn/",
+                  "pos": "n",
+                  "def": "the place where trains stop",
+                  "ex": "We meet at the station at eight."
+                },
+                {
+                  "w": "journey",
+                  "ipa": "/ˈdʒɜːni/",
+                  "pos": "n",
+                  "def": "the travelling from one place to another",
+                  "ex": "The journey takes four hours."
+                },
+                {
+                  "w": "fast",
+                  "ipa": "/fɑːst/",
+                  "pos": "adj",
+                  "def": "moving at high speed",
+                  "ex": "The train is fast and comfortable."
+                },
+                {
+                  "w": "cheap",
+                  "ipa": "/tʃiːp/",
+                  "pos": "adj",
+                  "def": "costing little money",
+                  "ex": "Buses are cheap here."
+                }
+              ],
+              "ex": [
+                {
+                  "t": "mc",
+                  "q": "The train is ___ than the plane.",
+                  "o": [
+                    "cheap",
+                    "cheaper",
+                    "more cheap"
+                  ],
+                  "a": 1
+                },
+                {
+                  "t": "mc",
+                  "q": "A taxi is ___ than a bus.",
+                  "o": [
+                    "more expensive",
+                    "expensiver",
+                    "most expensive"
+                  ],
+                  "a": 0
+                },
+                {
+                  "t": "mc",
+                  "q": "This road is ___ than that one.",
+                  "o": [
+                    "bad",
+                    "worse",
+                    "badder"
+                  ],
+                  "a": 1
+                },
+                {
+                  "t": "gap",
+                  "q": "Almaty is ___ than Astana in winter.",
+                  "a": "warmer",
+                  "hint": "warm"
+                },
+                {
+                  "t": "gap",
+                  "q": "This café is ___ than that one.",
+                  "a": "cheaper",
+                  "hint": "cheap"
+                },
+                {
+                  "t": "gap",
+                  "q": "The bus is not as fast ___ the train.",
+                  "a": "as",
+                  "hint": "as … ___"
+                },
+                {
+                  "t": "gap",
+                  "q": "Two ___ to Almaty, please.",
+                  "a": "tickets",
+                  "hint": "ticket"
+                },
+                {
+                  "t": "order",
+                  "a": "The train is cheaper than the plane."
+                },
+                {
+                  "t": "order",
+                  "a": "My flat is bigger than yours."
+                },
+                {
+                  "t": "transform",
+                  "instr": "Write the comparative.",
+                  "q": "This bag is (heavy) than mine.",
+                  "a": [
+                    "heavier"
+                  ]
+                },
+                {
+                  "t": "transform",
+                  "instr": "Write the comparative.",
+                  "q": "The journey was (comfortable) than I expected.",
+                  "a": [
+                    "more comfortable"
+                  ]
+                },
+                {
+                  "t": "match",
+                  "pairs": [
+                    [
+                      "ticket",
+                      "the paper that lets you travel"
+                    ],
+                    [
+                      "station",
+                      "the place where trains stop"
+                    ],
+                    [
+                      "journey",
+                      "the travelling from one place to another"
+                    ],
+                    [
+                      "plane",
+                      "a vehicle that flies"
+                    ]
+                  ]
+                },
+                {
+                  "t": "sort",
+                  "instr": "Does it take -er or more?",
+                  "groups": [
+                    {
+                      "label": "-er",
+                      "items": [
+                        "cheap",
+                        "big",
+                        "easy",
+                        "fast"
+                      ]
+                    },
+                    {
+                      "label": "more",
+                      "items": [
+                        "expensive",
+                        "comfortable",
+                        "interesting",
+                        "difficult"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "t": "dictation",
+                  "a": "The train is cheaper and more comfortable than the bus."
+                },
+                {
+                  "t": "listen",
+                  "text": "I usually take the bus because it is cheaper. The taxi is faster, but it costs four times more. The train is the best, but there is only one a day.",
+                  "q": "Why does the speaker take the bus?",
+                  "o": [
+                    "It is faster",
+                    "It is cheaper",
+                    "It is the only one"
+                  ],
+                  "a": 1
+                }
+              ],
+              "speak": [
+                {
+                  "p": "Compare two ways of travelling in your city.",
+                  "model": "The bus is cheaper than a taxi, but a taxi is faster and more comfortable in winter."
+                },
+                {
+                  "p": "Compare where you live now with where you lived before.",
+                  "model": "My old flat was bigger, but this one is warmer and much closer to the centre."
+                },
+                {
+                  "p": "Ask your partner three questions with comparatives.",
+                  "model": "Is the train cheaper than the bus here? Which is faster? Is winter colder in your city than in mine?"
+                }
+              ]
             },
             {
               "id": "9B",
               "title": "The best in town",
               "g": "superlative adjectives",
               "v": "City places",
-              "locked": true
+              "grammar": {
+                "h": "superlatives &nbsp;·&nbsp; the -est and the most",
+                "rows": [
+                  {
+                    "label": "Short — the … est",
+                    "items": [
+                      "cheap → <b>the</b> cheap<b>est</b>",
+                      "big → <b>the</b> big<b>gest</b>",
+                      "easy → <b>the</b> eas<b>iest</b>"
+                    ]
+                  },
+                  {
+                    "label": "Long — the most",
+                    "items": [
+                      "<b>the most</b> expensive",
+                      "<b>the most</b> beautiful",
+                      "<b>the most</b> interesting"
+                    ]
+                  },
+                  {
+                    "label": "Irregular, and what follows",
+                    "items": [
+                      "good → <b>the best</b>, bad → <b>the worst</b>",
+                      "the best café <b>in</b> the city",
+                      "the worst day <b>of</b> my life"
+                    ]
+                  }
+                ],
+                "notes": [
+                  "A superlative almost always carries <b>the</b>: <i>the cheapest</i>, <i>the most expensive</i>.",
+                  "<b>in</b> goes with a place, <b>of</b> with a group or a period: <i>the tallest building in Almaty</i>, <i>the best day of the year</i>.",
+                  "The spelling rules are the comparative's: drop the <b>e</b>, double the letter, <b>-y → -iest</b>.",
+                  "Two things are compared with a comparative; three or more with a superlative."
+                ]
+              },
+              "vocab": [
+                {
+                  "w": "city",
+                  "ipa": "/ˈsɪti/",
+                  "pos": "n",
+                  "def": "a large town",
+                  "ex": "Almaty is the largest city in the country."
+                },
+                {
+                  "w": "square",
+                  "ipa": "/skweə/",
+                  "pos": "n",
+                  "def": "an open place in a city with buildings around it",
+                  "ex": "We met on the main square."
+                },
+                {
+                  "w": "market",
+                  "ipa": "/ˈmɑːkɪt/",
+                  "pos": "n",
+                  "def": "a place where people sell food and goods",
+                  "ex": "The green market opens at seven."
+                },
+                {
+                  "w": "museum",
+                  "ipa": "/mjuˈziːəm/",
+                  "pos": "n",
+                  "def": "a building with old or important things to see",
+                  "ex": "The museum is closed on Mondays."
+                },
+                {
+                  "w": "park",
+                  "ipa": "/pɑːk/",
+                  "pos": "n",
+                  "def": "a public place with grass and trees",
+                  "ex": "There is a park behind our building."
+                },
+                {
+                  "w": "bank",
+                  "ipa": "/bæŋk/",
+                  "pos": "n",
+                  "def": "the place where you keep or change money",
+                  "ex": "The bank is next to the post office."
+                },
+                {
+                  "w": "bridge",
+                  "ipa": "/brɪdʒ/",
+                  "pos": "n",
+                  "def": "a structure that takes a road over a river",
+                  "ex": "The old bridge is the most beautiful in the city."
+                },
+                {
+                  "w": "pharmacy",
+                  "ipa": "/ˈfɑːməsi/",
+                  "pos": "n",
+                  "def": "the shop that sells medicine",
+                  "ex": "There is a pharmacy on the corner."
+                },
+                {
+                  "w": "library",
+                  "ipa": "/ˈlaɪbrəri/",
+                  "pos": "n",
+                  "def": "the building where you borrow books",
+                  "ex": "The library is quiet in the morning."
+                },
+                {
+                  "w": "busy",
+                  "ipa": "/ˈbɪzi/",
+                  "pos": "adj",
+                  "def": "full of people and activity",
+                  "ex": "The market is the busiest place in town."
+                }
+              ],
+              "ex": [
+                {
+                  "t": "mc",
+                  "q": "It's the ___ café in the city.",
+                  "o": [
+                    "good",
+                    "better",
+                    "best"
+                  ],
+                  "a": 2
+                },
+                {
+                  "t": "mc",
+                  "q": "This is ___ building in Almaty.",
+                  "o": [
+                    "the tallest",
+                    "the most tall",
+                    "tallest"
+                  ],
+                  "a": 0
+                },
+                {
+                  "t": "mc",
+                  "q": "It was the ___ day of my life.",
+                  "o": [
+                    "worse",
+                    "worst",
+                    "most bad"
+                  ],
+                  "a": 1
+                },
+                {
+                  "t": "gap",
+                  "q": "The market is the ___ place in town.",
+                  "a": "busiest",
+                  "hint": "busy"
+                },
+                {
+                  "t": "gap",
+                  "q": "This is the ___ restaurant in the street.",
+                  "a": "cheapest",
+                  "hint": "cheap"
+                },
+                {
+                  "t": "gap",
+                  "q": "It is the most beautiful bridge ___ the city.",
+                  "a": "in",
+                  "hint": "a place"
+                },
+                {
+                  "t": "gap",
+                  "q": "Turn left and the ___ is on the corner.",
+                  "a": "pharmacy",
+                  "hint": "sells medicine"
+                },
+                {
+                  "t": "order",
+                  "a": "It is the best café in the city."
+                },
+                {
+                  "t": "order",
+                  "a": "This is the most beautiful park in Almaty."
+                },
+                {
+                  "t": "transform",
+                  "instr": "Write the superlative.",
+                  "q": "This is the (expensive) hotel in town.",
+                  "a": [
+                    "most expensive"
+                  ]
+                },
+                {
+                  "t": "transform",
+                  "instr": "Write the superlative.",
+                  "q": "It was the (bad) day of the year.",
+                  "a": [
+                    "worst"
+                  ]
+                },
+                {
+                  "t": "match",
+                  "pairs": [
+                    [
+                      "museum",
+                      "a building with old things to see"
+                    ],
+                    [
+                      "library",
+                      "the building where you borrow books"
+                    ],
+                    [
+                      "square",
+                      "an open place with buildings around it"
+                    ],
+                    [
+                      "pharmacy",
+                      "the shop that sells medicine"
+                    ]
+                  ]
+                },
+                {
+                  "t": "dictation",
+                  "a": "It is the best market in the city."
+                },
+                {
+                  "t": "listen",
+                  "text": "The green market is the busiest place in the city, and it is also the cheapest. The shops in the centre are more expensive, but they are quieter. My favourite place is the old park behind the museum.",
+                  "q": "What is the speaker's favourite place?",
+                  "o": [
+                    "The market",
+                    "The shops in the centre",
+                    "The old park"
+                  ],
+                  "a": 2
+                }
+              ],
+              "speak": [
+                {
+                  "p": "Say what is the best, the cheapest and the busiest place in your city.",
+                  "model": "The best café is on the main square, the cheapest food is at the green market, and the busiest place is the bus station."
+                },
+                {
+                  "p": "Describe the most beautiful place you know.",
+                  "model": "The most beautiful place I know is a small lake in the mountains. It is the quietest place I have ever been."
+                },
+                {
+                  "p": "Ask your partner four questions with superlatives.",
+                  "model": "What is the biggest city you know? Where is the best coffee? What was the worst journey of your life? Which is the busiest street here?"
+                }
+              ]
             },
             {
               "id": "9C",
               "title": "Making plans",
               "g": "would like + infinitive",
               "v": "Offers & invitations",
-              "locked": true
+              "grammar": {
+                "h": "would like to &nbsp;·&nbsp; offers and invitations",
+                "rows": [
+                  {
+                    "label": "Inviting",
+                    "items": [
+                      "<b>Would you like to</b> come with us?",
+                      "<b>Would you like to</b> meet on Friday?",
+                      "Yes, I'<b>d love to</b>. / I'd like to, but I can't."
+                    ]
+                  },
+                  {
+                    "label": "Offering",
+                    "items": [
+                      "<b>Would you like</b> some tea?",
+                      "<b>Shall I</b> call a taxi?",
+                      "Yes, please. / No, thank you."
+                    ]
+                  },
+                  {
+                    "label": "Suggesting",
+                    "items": [
+                      "<b>Let's</b> meet at six.",
+                      "<b>How about</b> Saturday?",
+                      "Good idea. / Sorry, I'm busy."
+                    ]
+                  }
+                ],
+                "notes": [
+                  "<b>Would you like to</b> + verb invites; <b>Would you like</b> + noun offers. The <b>to</b> is the whole difference.",
+                  "<b>I'd love to</b> is the warm yes, and it stops there — you do not repeat the verb.",
+                  "To refuse politely, give a reason: <i>I'd like to, but I'm working on Friday.</i>",
+                  "<b>Let's</b> takes the plain verb: <i>Let's go</i>, never <i>Let's to go</i>."
+                ]
+              },
+              "vocab": [
+                {
+                  "w": "invite",
+                  "ipa": "/ɪnˈvaɪt/",
+                  "pos": "v",
+                  "def": "to ask somebody to come",
+                  "ex": "They invited us to dinner."
+                },
+                {
+                  "w": "free",
+                  "ipa": "/friː/",
+                  "pos": "adj",
+                  "def": "with no plans, not busy",
+                  "ex": "Are you free on Saturday?"
+                },
+                {
+                  "w": "meet",
+                  "ipa": "/miːt/",
+                  "pos": "v",
+                  "def": "to come together with somebody",
+                  "ex": "Let's meet at the station."
+                },
+                {
+                  "w": "idea",
+                  "ipa": "/aɪˈdɪə/",
+                  "pos": "n",
+                  "def": "a thought or a plan",
+                  "ex": "That is a very good idea."
+                },
+                {
+                  "w": "sorry",
+                  "ipa": "/ˈsɒri/",
+                  "pos": "adj",
+                  "def": "feeling bad about something",
+                  "ex": "Sorry, I can't come on Friday."
+                },
+                {
+                  "w": "maybe",
+                  "ipa": "/ˈmeɪbi/",
+                  "pos": "adv",
+                  "def": "perhaps, but not certainly",
+                  "ex": "Maybe next week."
+                },
+                {
+                  "w": "together",
+                  "ipa": "/təˈɡeðə/",
+                  "pos": "adv",
+                  "def": "with each other, in one group",
+                  "ex": "Let's have lunch together."
+                },
+                {
+                  "w": "join",
+                  "ipa": "/dʒɔɪn/",
+                  "pos": "v",
+                  "def": "to come and be with a group that is already there",
+                  "ex": "Can I join you?"
+                },
+                {
+                  "w": "weekend",
+                  "ipa": "/ˈwiːkend/",
+                  "pos": "n",
+                  "def": "Saturday and Sunday",
+                  "ex": "What are your plans for the weekend?"
+                },
+                {
+                  "w": "plan",
+                  "ipa": "/plæn/",
+                  "pos": "n",
+                  "def": "what you intend to do",
+                  "ex": "I have no plans for tonight."
+                }
+              ],
+              "ex": [
+                {
+                  "t": "mc",
+                  "q": "Would you like ___ come with us?",
+                  "o": [
+                    "to",
+                    "for",
+                    "that"
+                  ],
+                  "a": 0
+                },
+                {
+                  "t": "mc",
+                  "q": "___ you like some tea?",
+                  "o": [
+                    "Do",
+                    "Would",
+                    "Are"
+                  ],
+                  "a": 1
+                },
+                {
+                  "t": "mc",
+                  "q": "Let's ___ at six.",
+                  "o": [
+                    "to meet",
+                    "meet",
+                    "meeting"
+                  ],
+                  "a": 1
+                },
+                {
+                  "t": "gap",
+                  "q": "Would you like ___ join us for dinner?",
+                  "a": "to",
+                  "hint": "invite + ___ + verb"
+                },
+                {
+                  "t": "gap",
+                  "q": "Are you ___ on Saturday?",
+                  "a": "free",
+                  "hint": "not busy"
+                },
+                {
+                  "t": "gap",
+                  "q": "That is a very good ___.",
+                  "a": "idea",
+                  "hint": "a thought or plan"
+                },
+                {
+                  "t": "gap",
+                  "q": "___ about Saturday instead?",
+                  "a": "How",
+                  "hint": "suggesting"
+                },
+                {
+                  "t": "order",
+                  "a": "Would you like to meet on Friday?"
+                },
+                {
+                  "t": "order",
+                  "a": "Let's have lunch together."
+                },
+                {
+                  "t": "transform",
+                  "instr": "Turn it into an invitation with would like.",
+                  "q": "Come with us.",
+                  "a": [
+                    "Would you like to come with us?"
+                  ]
+                },
+                {
+                  "t": "transform",
+                  "instr": "Turn it into an offer with would like.",
+                  "q": "Have some tea.",
+                  "a": [
+                    "Would you like some tea?"
+                  ]
+                },
+                {
+                  "t": "match",
+                  "pairs": [
+                    [
+                      "invite",
+                      "to ask somebody to come"
+                    ],
+                    [
+                      "join",
+                      "to come and be with a group"
+                    ],
+                    [
+                      "maybe",
+                      "perhaps, but not certainly"
+                    ],
+                    [
+                      "plan",
+                      "what you intend to do"
+                    ]
+                  ]
+                },
+                {
+                  "t": "dictation",
+                  "a": "Would you like to meet at the station on Saturday?"
+                },
+                {
+                  "t": "listen",
+                  "text": "Hi, it's Dana. We are going to the mountains on Sunday — would you like to come? We leave at seven. If Sunday is bad for you, maybe next weekend.",
+                  "q": "When are they going?",
+                  "o": [
+                    "Saturday",
+                    "Sunday",
+                    "Next weekend"
+                  ],
+                  "a": 1
+                }
+              ],
+              "speak": [
+                {
+                  "p": "Invite your partner to three different things.",
+                  "model": "Would you like to come to the cinema on Friday? Would you like to have lunch together tomorrow? How about a walk in the park at the weekend?"
+                },
+                {
+                  "p": "Refuse an invitation politely, with a reason, and suggest another day.",
+                  "model": "I'd like to, but I'm working on Saturday. How about Sunday afternoon?"
+                },
+                {
+                  "p": "Somebody has come to your home. Offer them three things.",
+                  "model": "Would you like some tea? Would you like a piece of cake? Shall I take your coat?"
+                }
+              ]
             }
           ],
-          "locked": true
+          "test": [
+            {
+              "t": "mc",
+              "q": "It's the ___ café in the city.",
+              "o": [
+                "good",
+                "better",
+                "best"
+              ],
+              "a": 2
+            },
+            {
+              "t": "mc",
+              "q": "A taxi is ___ than a bus.",
+              "o": [
+                "more expensive",
+                "expensiver",
+                "most expensive"
+              ],
+              "a": 0
+            },
+            {
+              "t": "gap",
+              "q": "Almaty is ___ than Astana in winter.",
+              "a": "warmer",
+              "hint": "warm"
+            },
+            {
+              "t": "gap",
+              "q": "The market is the ___ place in town.",
+              "a": "busiest",
+              "hint": "busy"
+            },
+            {
+              "t": "gap",
+              "q": "Would you like ___ join us for dinner?",
+              "a": "to",
+              "hint": "invite + ___ + verb"
+            },
+            {
+              "t": "order",
+              "a": "The train is cheaper than the plane."
+            },
+            {
+              "t": "transform",
+              "instr": "Write the superlative.",
+              "q": "This is the (expensive) hotel in town.",
+              "a": [
+                "most expensive"
+              ]
+            },
+            {
+              "t": "match",
+              "pairs": [
+                [
+                  "ticket",
+                  "the paper that lets you travel"
+                ],
+                [
+                  "museum",
+                  "a building with old things to see"
+                ],
+                [
+                  "invite",
+                  "to ask somebody to come"
+                ],
+                [
+                  "journey",
+                  "the travelling from one place to another"
+                ]
+              ]
+            }
+          ]
         },
         {
           "n": 10,
@@ -6795,24 +7601,839 @@
               "title": "Next weekend",
               "g": "be going to — plans",
               "v": "Holiday activities",
-              "locked": true
+              "grammar": {
+                "h": "be going to &nbsp;·&nbsp; plans and intentions",
+                "rows": [
+                  {
+                    "label": "The form",
+                    "items": [
+                      "I <b>am going to</b> visit my parents",
+                      "she <b>is going to</b> stay at home",
+                      "we <b>are going to</b> travel in August",
+                      "they <b>aren't going to</b> come"
+                    ]
+                  },
+                  {
+                    "label": "Questions",
+                    "items": [
+                      "<b>Are</b> you <b>going to</b> book a hotel?",
+                      "<b>What are</b> you <b>going to</b> do tomorrow?",
+                      "Yes, I <b>am</b>. / No, I'<b>m not</b>."
+                    ]
+                  },
+                  {
+                    "label": "Two kinds of future",
+                    "items": [
+                      "an arrangement — <i>I'm meeting Dana at six.</i>",
+                      "an intention — <i>I'm going to learn to drive.</i>"
+                    ]
+                  }
+                ],
+                "notes": [
+                  "The part that changes is <b>be</b>: <i>I am</i>, <i>she is</i>, <i>we are</i>. <b>going to</b> stays as it is.",
+                  "After <b>going to</b> comes the plain verb: <i>going to visit</i>, never <i>going to visiting</i>.",
+                  "With <b>go</b> itself people shorten it: <i>I'm going to the mountains</i> rather than <i>I'm going to go to the mountains</i>.",
+                  "<b>going to</b> also predicts what you can already see coming: <i>Look at those clouds — it's going to rain.</i>"
+                ]
+              },
+              "vocab": [
+                {
+                  "w": "holiday",
+                  "ipa": "/ˈhɒlədeɪ/",
+                  "pos": "n",
+                  "def": "time away from work or school",
+                  "ex": "We have two weeks of holiday in August."
+                },
+                {
+                  "w": "trip",
+                  "ipa": "/trɪp/",
+                  "pos": "n",
+                  "def": "a short journey to a place and back",
+                  "ex": "They are going on a trip to the lake."
+                },
+                {
+                  "w": "beach",
+                  "ipa": "/biːtʃ/",
+                  "pos": "n",
+                  "def": "the sand at the edge of the sea",
+                  "ex": "The children spent all day on the beach."
+                },
+                {
+                  "w": "mountains",
+                  "ipa": "/ˈmaʊntɪnz/",
+                  "pos": "n",
+                  "def": "very high land with rock and snow",
+                  "ex": "We go to the mountains every weekend."
+                },
+                {
+                  "w": "hotel",
+                  "ipa": "/həʊˈtel/",
+                  "pos": "n",
+                  "def": "a building where you pay to sleep",
+                  "ex": "The hotel is near the station."
+                },
+                {
+                  "w": "suitcase",
+                  "ipa": "/ˈsuːtkeɪs/",
+                  "pos": "n",
+                  "def": "a bag for clothes when you travel",
+                  "ex": "My suitcase is too heavy."
+                },
+                {
+                  "w": "pack",
+                  "ipa": "/pæk/",
+                  "pos": "v",
+                  "def": "to put things into a bag for a journey",
+                  "ex": "I pack the night before."
+                },
+                {
+                  "w": "visit",
+                  "ipa": "/ˈvɪzɪt/",
+                  "pos": "v",
+                  "def": "to go and see a person or a place",
+                  "ex": "We are going to visit my parents."
+                },
+                {
+                  "w": "abroad",
+                  "ipa": "/əˈbrɔːd/",
+                  "pos": "adv",
+                  "def": "in or to another country",
+                  "ex": "She has never been abroad."
+                },
+                {
+                  "w": "rest",
+                  "ipa": "/rest/",
+                  "pos": "v",
+                  "def": "to stop working and relax",
+                  "ex": "I just want to rest for a week."
+                }
+              ],
+              "ex": [
+                {
+                  "t": "mc",
+                  "q": "We ___ going to travel in August.",
+                  "o": [
+                    "is",
+                    "are",
+                    "be"
+                  ],
+                  "a": 1
+                },
+                {
+                  "t": "mc",
+                  "q": "She is going to ___ at home.",
+                  "o": [
+                    "stay",
+                    "stays",
+                    "staying"
+                  ],
+                  "a": 0
+                },
+                {
+                  "t": "mc",
+                  "q": "___ you going to book a hotel?",
+                  "o": [
+                    "Do",
+                    "Are",
+                    "Will"
+                  ],
+                  "a": 1
+                },
+                {
+                  "t": "gap",
+                  "q": "I ___ going to visit my parents.",
+                  "a": "am",
+                  "hint": "be"
+                },
+                {
+                  "t": "gap",
+                  "q": "They aren't going to ___ abroad this year.",
+                  "a": "go",
+                  "hint": "plain verb"
+                },
+                {
+                  "t": "gap",
+                  "q": "My ___ is too heavy.",
+                  "a": "suitcase",
+                  "hint": "a bag for clothes"
+                },
+                {
+                  "t": "gap",
+                  "q": "We have two weeks of ___ in August.",
+                  "a": "holiday",
+                  "hint": "time away from work"
+                },
+                {
+                  "t": "order",
+                  "a": "What are you going to do tomorrow?"
+                },
+                {
+                  "t": "order",
+                  "a": "We are going to stay in a small hotel."
+                },
+                {
+                  "t": "transform",
+                  "instr": "Write the plan with going to.",
+                  "q": "I / visit / my parents",
+                  "a": [
+                    "I'm going to visit my parents.",
+                    "I am going to visit my parents."
+                  ]
+                },
+                {
+                  "t": "transform",
+                  "instr": "Write the plan with going to.",
+                  "q": "they / not / travel / this year",
+                  "a": [
+                    "They aren't going to travel this year.",
+                    "They are not going to travel this year."
+                  ]
+                },
+                {
+                  "t": "match",
+                  "pairs": [
+                    [
+                      "trip",
+                      "a short journey to a place and back"
+                    ],
+                    [
+                      "suitcase",
+                      "a bag for clothes when you travel"
+                    ],
+                    [
+                      "abroad",
+                      "in another country"
+                    ],
+                    [
+                      "pack",
+                      "to put things into a bag for a journey"
+                    ]
+                  ]
+                },
+                {
+                  "t": "dictation",
+                  "a": "We are going to visit my parents next weekend."
+                },
+                {
+                  "t": "listen",
+                  "text": "Next month we are going to the mountains for a week. We aren't going to book a hotel — we have a small house there. I'm going to pack on Friday evening.",
+                  "q": "What are they not going to do?",
+                  "o": [
+                    "Go to the mountains",
+                    "Book a hotel",
+                    "Pack on Friday"
+                  ],
+                  "a": 1
+                }
+              ],
+              "speak": [
+                {
+                  "p": "Say three things you are going to do next weekend.",
+                  "model": "I'm going to visit my parents on Saturday, I'm going to rest on Sunday morning and I'm going to pack for my trip in the evening."
+                },
+                {
+                  "p": "Describe a holiday you are planning, or would like to plan.",
+                  "model": "We're going to the mountains for a week in August. We aren't going to book a hotel — we're going to stay with friends."
+                },
+                {
+                  "p": "Ask your partner four questions about their plans.",
+                  "model": "What are you going to do tomorrow? Are you going to travel this year? Where are you going to stay? Are you going to book anything?"
+                }
+              ]
             },
             {
               "id": "10B",
               "title": "Why?",
               "g": "infinitive of purpose",
               "v": "Reasons & goals",
-              "locked": true
+              "grammar": {
+                "h": "the infinitive of purpose &nbsp;·&nbsp; saying why",
+                "rows": [
+                  {
+                    "label": "Why? — to + verb",
+                    "items": [
+                      "I went to the shop <b>to buy</b> bread.",
+                      "She is saving money <b>to travel</b>.",
+                      "We came early <b>to get</b> good seats."
+                    ]
+                  },
+                  {
+                    "label": "The question",
+                    "items": [
+                      "<b>Why</b> did you call? — <b>To ask</b> about the ticket.",
+                      "<b>Why</b> are you learning English? — <b>To work</b> abroad."
+                    ]
+                  },
+                  {
+                    "label": "to or for?",
+                    "items": [
+                      "I went to the shop <b>to buy</b> bread. ✓",
+                      "<i>I went to the shop for buy bread.</i> ✗",
+                      "<b>for</b> takes a noun: <i>I went to the shop <b>for</b> bread.</i> ✓"
+                    ]
+                  }
+                ],
+                "notes": [
+                  "To answer <b>why</b>, use <b>to</b> + plain verb. It is the shortest full answer English has.",
+                  "<b>for</b> goes with a noun, <b>to</b> with a verb: <i>for bread</i>, but <i>to buy bread</i>.",
+                  "<b>in order to</b> and <b>so that</b> exist, but plain <b>to</b> is what people actually say.",
+                  "The subject is not repeated: <i>I came here to study</i>, never <i>I came here that I study</i>."
+                ]
+              },
+              "vocab": [
+                {
+                  "w": "because",
+                  "ipa": "/bɪˈkɒz/",
+                  "pos": "conj",
+                  "def": "for the reason that",
+                  "ex": "I am learning English because I need it for work."
+                },
+                {
+                  "w": "reason",
+                  "ipa": "/ˈriːzn/",
+                  "pos": "n",
+                  "def": "why something happens",
+                  "ex": "There is a good reason for the delay."
+                },
+                {
+                  "w": "learn",
+                  "ipa": "/lɜːn/",
+                  "pos": "v",
+                  "def": "to get knowledge or a skill",
+                  "ex": "She is learning to drive."
+                },
+                {
+                  "w": "save",
+                  "ipa": "/seɪv/",
+                  "pos": "v",
+                  "def": "to keep money for later",
+                  "ex": "We are saving money to buy a flat."
+                },
+                {
+                  "w": "improve",
+                  "ipa": "/ɪmˈpruːv/",
+                  "pos": "v",
+                  "def": "to make something better",
+                  "ex": "I want to improve my pronunciation."
+                },
+                {
+                  "w": "practise",
+                  "ipa": "/ˈpræktɪs/",
+                  "pos": "v",
+                  "def": "to do something often in order to get better at it",
+                  "ex": "He practises the guitar every evening."
+                },
+                {
+                  "w": "hope",
+                  "ipa": "/həʊp/",
+                  "pos": "v",
+                  "def": "to want something to happen",
+                  "ex": "I hope to finish by Friday."
+                },
+                {
+                  "w": "try",
+                  "ipa": "/traɪ/",
+                  "pos": "v",
+                  "def": "to make an effort to do something",
+                  "ex": "Try to speak slowly."
+                },
+                {
+                  "w": "need",
+                  "ipa": "/niːd/",
+                  "pos": "v",
+                  "def": "to have to have something",
+                  "ex": "You need a ticket for the museum."
+                },
+                {
+                  "w": "goal",
+                  "ipa": "/ɡəʊl/",
+                  "pos": "n",
+                  "def": "what you are working towards",
+                  "ex": "My goal is to read a book in English."
+                }
+              ],
+              "ex": [
+                {
+                  "t": "mc",
+                  "q": "I went to the shop ___ bread.",
+                  "o": [
+                    "to buy",
+                    "for buy",
+                    "buying"
+                  ],
+                  "a": 0
+                },
+                {
+                  "t": "mc",
+                  "q": "She is saving money ___ a flat.",
+                  "o": [
+                    "for buy",
+                    "to buy",
+                    "buy"
+                  ],
+                  "a": 1
+                },
+                {
+                  "t": "mc",
+                  "q": "Why are you learning English? — ___ abroad.",
+                  "o": [
+                    "For work",
+                    "To work",
+                    "Working"
+                  ],
+                  "a": 1
+                },
+                {
+                  "t": "gap",
+                  "q": "We came early ___ get good seats.",
+                  "a": "to",
+                  "hint": "why"
+                },
+                {
+                  "t": "gap",
+                  "q": "I need a ticket ___ the museum.",
+                  "a": "for",
+                  "hint": "before a noun"
+                },
+                {
+                  "t": "gap",
+                  "q": "He ___ the guitar every evening.",
+                  "a": "practises",
+                  "hint": "practise"
+                },
+                {
+                  "t": "gap",
+                  "q": "My ___ is to read a book in English.",
+                  "a": "goal",
+                  "hint": "what you work towards"
+                },
+                {
+                  "t": "order",
+                  "a": "I went to the shop to buy bread."
+                },
+                {
+                  "t": "order",
+                  "a": "She is saving money to travel abroad."
+                },
+                {
+                  "t": "transform",
+                  "instr": "Answer with to + verb.",
+                  "q": "Why did you call? (ask about the ticket)",
+                  "a": [
+                    "To ask about the ticket."
+                  ]
+                },
+                {
+                  "t": "transform",
+                  "instr": "Correct the mistake.",
+                  "q": "I came here for study English.",
+                  "a": [
+                    "I came here to study English."
+                  ]
+                },
+                {
+                  "t": "match",
+                  "pairs": [
+                    [
+                      "improve",
+                      "to make something better"
+                    ],
+                    [
+                      "practise",
+                      "to do something often to get better"
+                    ],
+                    [
+                      "save",
+                      "to keep money for later"
+                    ],
+                    [
+                      "goal",
+                      "what you are working towards"
+                    ]
+                  ]
+                },
+                {
+                  "t": "dictation",
+                  "a": "I am learning English to work abroad."
+                },
+                {
+                  "t": "listen",
+                  "text": "I go to the pool twice a week to keep fit, and I practise English every evening to improve my pronunciation. My goal is to give a presentation at work in English next year.",
+                  "q": "Why does the speaker practise English?",
+                  "o": [
+                    "To keep fit",
+                    "To improve pronunciation",
+                    "To find a new job"
+                  ],
+                  "a": 1
+                }
+              ],
+              "speak": [
+                {
+                  "p": "Say why you are learning English. Give three reasons with to + verb.",
+                  "model": "I'm learning English to travel more easily, to read what I want and to work abroad one day."
+                },
+                {
+                  "p": "Say why you went to four different places this week.",
+                  "model": "I went to the market to buy vegetables, to the bank to change money, to the pharmacy to get medicine and to my sister's to see the children."
+                },
+                {
+                  "p": "Ask your partner why they do three things.",
+                  "model": "Why do you get up so early? Why are you saving money? Why did you come to this school?"
+                }
+              ]
             },
             {
               "id": "10C",
               "title": "How well?",
               "g": "adverbs of manner",
               "v": "Adverbs",
-              "locked": true
+              "grammar": {
+                "h": "adverbs of manner &nbsp;·&nbsp; how you do something",
+                "rows": [
+                  {
+                    "label": "Making the adverb",
+                    "items": [
+                      "slow → slow<b>ly</b>",
+                      "quiet → quiet<b>ly</b>",
+                      "careful → careful<b>ly</b>",
+                      "easy → eas<b>ily</b> — -y becomes -ily"
+                    ]
+                  },
+                  {
+                    "label": "The irregular ones",
+                    "items": [
+                      "good → <b>well</b>",
+                      "fast → <b>fast</b>",
+                      "hard → <b>hard</b>",
+                      "early and late do not change either"
+                    ]
+                  },
+                  {
+                    "label": "Adjective or adverb?",
+                    "items": [
+                      "She is a <b>careful</b> driver. — adjective, about the person",
+                      "She drives <b>carefully</b>. — adverb, about the driving"
+                    ]
+                  }
+                ],
+                "notes": [
+                  "An adjective describes a thing, an adverb describes an action: <i>a quick answer</i>, but <i>answer quickly</i>.",
+                  "<b>good</b> is the adjective and <b>well</b> is the adverb: <i>good English</i>, but <i>she speaks English well</i>.",
+                  "<b>fast</b> and <b>hard</b> take no <b>-ly</b>. <i>hardly</i> does exist, but it means almost not at all — a different word.",
+                  "The adverb goes after the verb, or after the object: <i>He speaks slowly</i>, <i>He drives the car carefully</i>."
+                ]
+              },
+              "vocab": [
+                {
+                  "w": "slowly",
+                  "ipa": "/ˈsləʊli/",
+                  "pos": "adv",
+                  "def": "at low speed",
+                  "ex": "Please speak more slowly."
+                },
+                {
+                  "w": "quickly",
+                  "ipa": "/ˈkwɪkli/",
+                  "pos": "adv",
+                  "def": "at high speed, in little time",
+                  "ex": "She finished the test quickly."
+                },
+                {
+                  "w": "carefully",
+                  "ipa": "/ˈkeəfəli/",
+                  "pos": "adv",
+                  "def": "with attention, so as not to make a mistake",
+                  "ex": "Read the question carefully."
+                },
+                {
+                  "w": "quietly",
+                  "ipa": "/ˈkwaɪətli/",
+                  "pos": "adv",
+                  "def": "without noise",
+                  "ex": "He closed the door quietly."
+                },
+                {
+                  "w": "loudly",
+                  "ipa": "/ˈlaʊdli/",
+                  "pos": "adv",
+                  "def": "with a lot of noise",
+                  "ex": "The neighbours were talking loudly."
+                },
+                {
+                  "w": "easily",
+                  "ipa": "/ˈiːzɪli/",
+                  "pos": "adv",
+                  "def": "without difficulty",
+                  "ex": "He passed the test easily."
+                },
+                {
+                  "w": "badly",
+                  "ipa": "/ˈbædli/",
+                  "pos": "adv",
+                  "def": "not well",
+                  "ex": "I slept badly last night."
+                },
+                {
+                  "w": "hard",
+                  "ipa": "/hɑːd/",
+                  "pos": "adv",
+                  "def": "with a lot of effort",
+                  "ex": "She works very hard."
+                },
+                {
+                  "w": "suddenly",
+                  "ipa": "/ˈsʌdnli/",
+                  "pos": "adv",
+                  "def": "quickly and without warning",
+                  "ex": "Suddenly the lights went out."
+                },
+                {
+                  "w": "probably",
+                  "ipa": "/ˈprɒbəbli/",
+                  "pos": "adv",
+                  "def": "most likely, but not for certain",
+                  "ex": "He is probably at home now."
+                }
+              ],
+              "ex": [
+                {
+                  "t": "mc",
+                  "q": "Please speak more ___.",
+                  "o": [
+                    "slow",
+                    "slowly",
+                    "slowlier"
+                  ],
+                  "a": 1
+                },
+                {
+                  "t": "mc",
+                  "q": "She speaks English very ___.",
+                  "o": [
+                    "good",
+                    "well",
+                    "goodly"
+                  ],
+                  "a": 1
+                },
+                {
+                  "t": "mc",
+                  "q": "She works very ___.",
+                  "o": [
+                    "hard",
+                    "hardly",
+                    "hardily"
+                  ],
+                  "a": 0
+                },
+                {
+                  "t": "gap",
+                  "q": "Read the question ___.",
+                  "a": "carefully",
+                  "hint": "careful"
+                },
+                {
+                  "t": "gap",
+                  "q": "He passed the test ___.",
+                  "a": "easily",
+                  "hint": "easy"
+                },
+                {
+                  "t": "gap",
+                  "q": "I slept ___ last night.",
+                  "a": "badly",
+                  "hint": "bad"
+                },
+                {
+                  "t": "gap",
+                  "q": "___ the lights went out.",
+                  "a": "Suddenly",
+                  "hint": "without warning"
+                },
+                {
+                  "t": "order",
+                  "a": "He closed the door quietly."
+                },
+                {
+                  "t": "order",
+                  "a": "She finished the test very quickly."
+                },
+                {
+                  "t": "transform",
+                  "instr": "Change the adjective to an adverb.",
+                  "q": "She is a careful driver. She drives ___.",
+                  "a": [
+                    "She drives carefully."
+                  ]
+                },
+                {
+                  "t": "transform",
+                  "instr": "Change the adjective to an adverb.",
+                  "q": "He is a good cook. He cooks ___.",
+                  "a": [
+                    "He cooks well."
+                  ]
+                },
+                {
+                  "t": "match",
+                  "pairs": [
+                    [
+                      "slowly",
+                      "at low speed"
+                    ],
+                    [
+                      "quietly",
+                      "without noise"
+                    ],
+                    [
+                      "easily",
+                      "without difficulty"
+                    ],
+                    [
+                      "probably",
+                      "most likely"
+                    ]
+                  ]
+                },
+                {
+                  "t": "sort",
+                  "instr": "How does each adjective become an adverb?",
+                  "groups": [
+                    {
+                      "label": "+ ly",
+                      "items": [
+                        "slow",
+                        "quiet",
+                        "careful",
+                        "loud"
+                      ]
+                    },
+                    {
+                      "label": "-y → -ily",
+                      "items": [
+                        "easy",
+                        "happy",
+                        "angry",
+                        "busy"
+                      ]
+                    },
+                    {
+                      "label": "no change",
+                      "items": [
+                        "fast",
+                        "hard",
+                        "early",
+                        "late"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "t": "dictation",
+                  "a": "She speaks English well but she writes slowly."
+                },
+                {
+                  "t": "listen",
+                  "text": "Our new teacher speaks quite quickly, but she explains everything carefully. I understand her easily now. At the start I did badly in the tests, but they are better this month.",
+                  "q": "How did the speaker do at the start?",
+                  "o": [
+                    "Well",
+                    "Badly",
+                    "Easily"
+                  ],
+                  "a": 1
+                }
+              ],
+              "speak": [
+                {
+                  "p": "Say how you do four everyday things.",
+                  "model": "I drive carefully, I eat too quickly, I speak English quite slowly and I sleep badly when it is hot."
+                },
+                {
+                  "p": "Describe somebody you know, using three adverbs.",
+                  "model": "My grandmother speaks very quietly, she cooks well and she works hard in the garden every day."
+                },
+                {
+                  "p": "Ask your partner how they do three things.",
+                  "model": "How well do you cook? Do you speak quickly or slowly in your own language? How do you drive?"
+                }
+              ]
             }
           ],
-          "locked": true
+          "test": [
+            {
+              "t": "mc",
+              "q": "We ___ going to travel in August.",
+              "o": [
+                "is",
+                "are",
+                "be"
+              ],
+              "a": 1
+            },
+            {
+              "t": "mc",
+              "q": "I went to the shop ___ bread.",
+              "o": [
+                "to buy",
+                "for buy",
+                "buying"
+              ],
+              "a": 0
+            },
+            {
+              "t": "gap",
+              "q": "I ___ going to visit my parents.",
+              "a": "am",
+              "hint": "be"
+            },
+            {
+              "t": "gap",
+              "q": "Read the question ___.",
+              "a": "carefully",
+              "hint": "careful"
+            },
+            {
+              "t": "gap",
+              "q": "We came early ___ get good seats.",
+              "a": "to",
+              "hint": "why"
+            },
+            {
+              "t": "order",
+              "a": "What are you going to do tomorrow?"
+            },
+            {
+              "t": "transform",
+              "instr": "Change the adjective to an adverb.",
+              "q": "He is a good cook. He cooks ___.",
+              "a": [
+                "He cooks well."
+              ]
+            },
+            {
+              "t": "match",
+              "pairs": [
+                [
+                  "suitcase",
+                  "a bag for clothes when you travel"
+                ],
+                [
+                  "improve",
+                  "to make something better"
+                ],
+                [
+                  "quietly",
+                  "without noise"
+                ],
+                [
+                  "abroad",
+                  "in another country"
+                ]
+              ]
+            }
+          ]
         },
         {
           "n": 11,
