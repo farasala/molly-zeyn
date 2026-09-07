@@ -7,6 +7,9 @@ export type Draft = {
   picked: number[];
   pairs: [string, string][];
   activeLeft: string | null;
+  /** Sorting: which group each word has been dropped into. */
+  sorted: [string, string][];
+  activeWord: string | null;
 };
 
 export const emptyDraft: Draft = {
@@ -15,6 +18,8 @@ export const emptyDraft: Draft = {
   picked: [],
   pairs: [],
   activeLeft: null,
+  sorted: [],
+  activeWord: null,
 };
 
 /**
@@ -36,5 +41,7 @@ export function givenFrom(item: PublicItem, draft: Draft): string | null {
         : null;
     case 'match':
       return draft.pairs.length === item.lefts.length ? JSON.stringify(draft.pairs) : null;
+    case 'sort':
+      return draft.sorted.length === item.words.length ? JSON.stringify(draft.sorted) : null;
   }
 }

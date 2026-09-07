@@ -1852,6 +1852,39 @@
                     "He walks"
                   ],
                   "a": 1
+                },
+                {
+                  "t": "sort",
+                  "instr": "Listen to the ending of each verb. Put it in the right group.",
+                  "groups": [
+                    {
+                      "label": "/s/",
+                      "items": [
+                        "works",
+                        "starts",
+                        "speaks",
+                        "gets"
+                      ]
+                    },
+                    {
+                      "label": "/z/",
+                      "items": [
+                        "lives",
+                        "drives",
+                        "studies",
+                        "plays"
+                      ]
+                    },
+                    {
+                      "label": "/ɪz/",
+                      "items": [
+                        "finishes",
+                        "watches",
+                        "teaches",
+                        "uses"
+                      ]
+                    }
+                  ]
                 }
               ],
               "speak": [
@@ -2311,6 +2344,30 @@
                     "At half past two"
                   ],
                   "a": 2
+                },
+                {
+                  "t": "sort",
+                  "instr": "Put each time in the right group.",
+                  "groups": [
+                    {
+                      "label": "past",
+                      "items": [
+                        "6:15",
+                        "7:20",
+                        "9:30",
+                        "2:10"
+                      ]
+                    },
+                    {
+                      "label": "to",
+                      "items": [
+                        "5:45",
+                        "8:50",
+                        "11:40",
+                        "3:55"
+                      ]
+                    }
+                  ]
                 }
               ],
               "speak": [

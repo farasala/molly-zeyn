@@ -276,6 +276,12 @@ Seven types, all present in the JSON:
 | `match` | `pairs[[left,right]]` | two columns, click left then right; shuffle the right column |
 | `dictation` | `a` | play button + text input |
 | `listen` | `text, q, o[], a` | play button + option buttons |
+| `sort` | `instr, groups[{label, items[]}]` | loose word chips above, labelled bins below |
+
+`sort` trains sound against spelling: the student hears past the written form
+and drops each word into the group it belongs to. Added in unit 3 for the
+third-person `-s` (/s/, /z/, /ɪz/) and for `past` against `to` in times. The
+browser receives one shuffled pile and the group labels, never the grouping.
 
 Answer comparison: lowercase, straighten quotes, fold accents, strip `. , ! ? ; : "`, write
 contractions out on both sides, drop apostrophes, collapse spaces, trim — so "I am", "I'm"

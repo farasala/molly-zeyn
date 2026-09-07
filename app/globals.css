@@ -2389,3 +2389,49 @@ select.field-input {
   color: var(--text-tertiary);
   white-space: nowrap;
 }
+
+/* sound sorting: loose words above, labelled bins below */
+
+.bin-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--space-3);
+}
+
+.bin {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  border-radius: var(--radius-md);
+  background: var(--mint-100);
+  border: 1px dashed var(--mint-400);
+  min-height: 130px;
+}
+
+.bin-label {
+  border: none;
+  background: var(--mint-200);
+  color: var(--green-900);
+  border-radius: var(--radius-pill);
+  padding: 10px var(--space-4);
+  font-size: 19px;
+  font-weight: var(--fw-bold);
+  cursor: pointer;
+  transition: background var(--duration-fast) var(--ease-standard);
+}
+
+.bin-label:hover:not(:disabled) {
+  background: var(--mint-400);
+}
+
+.bin-label:disabled {
+  cursor: default;
+  opacity: 0.75;
+}
+
+.bin-words {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}

@@ -41,7 +41,9 @@ export type Exercise =
   | { t: 'transform'; instr: string; q: string; a: string[] }
   | { t: 'match'; pairs: [string, string][] }
   | { t: 'dictation'; a: string }
-  | { t: 'listen'; text: string; q: string; o: string[]; a: number };
+  | { t: 'listen'; text: string; q: string; o: string[]; a: number }
+  /** Sort words into groups by the sound they carry. */
+  | { t: 'sort'; instr: string; groups: { label: string; items: string[] }[] };
 
 export type Lesson = {
   id: string;

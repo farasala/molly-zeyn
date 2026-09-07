@@ -102,7 +102,8 @@ export type PublicItem =
   | { i: number; t: 'transform'; instr: string; q: string }
   | { i: number; t: 'match'; lefts: string[]; rights: string[] }
   | { i: number; t: 'dictation'; clip: string }
-  | { i: number; t: 'listen'; q: string; o: string[]; clip: string };
+  | { i: number; t: 'listen'; q: string; o: string[]; clip: string }
+  | { i: number; t: 'sort'; instr: string; labels: string[]; words: string[] };
 
 /**
  * Strips an exercise down to what the student needs to answer it.
@@ -135,6 +136,15 @@ export function toPublicItem(exercise: Exercise, i: number, clipPrefix: string):
       return { i, t: 'dictation', clip };
     case 'listen':
       return { i, t: 'listen', q: exercise.q, o: exercise.o, clip };
+    case 'sort':
+      return {
+        i,
+        t: 'sort',
+        instr: exercise.instr,
+        labels: exercise.groups.map((group) => group.label),
+        // Every word in one pile: which group it belongs to is the answer.
+        words: shuffle(exercise.groups.flatMap((group) => group.items)),
+      };
   }
 }
 
@@ -212,6 +222,35 @@ export function checkExercise(exercise: Exercise, given: string): CheckResult {
       );
       return { correct, expected };
     }
+    case 'sort': {
+      const expected = exercise.groups
+        .map((group) => `${group.label}: ${group.items.join(', ')}`)
+        .join(' · ');
+
+      const truth = new Map<string, string>();
+      for (const group of exercise.groups) {
+        for (const word of group.items) truth.set(word, group.label);
+      }
+
+      let submitted: unknown;
+      try {
+        submitted = JSON.parse(given);
+      } catch {
+        return { correct: false, expected };
+      }
+      if (!Array.isArray(submitted) || submitted.length !== truth.size) {
+        return { correct: false, expected };
+      }
+
+      const correct = submitted.every(
+        (pair) =>
+          Array.isArray(pair) &&
+          typeof pair[0] === 'string' &&
+          typeof pair[1] === 'string' &&
+          truth.get(pair[0]) === pair[1],
+      );
+      return { correct, expected };
+    }
   }
 }
 
@@ -238,6 +277,11 @@ export function describeExercise(exercise: Exercise): { prompt: string; answer: 
         prompt: `Matching — ${exercise.pairs.map((pair) => pair[0]).join(', ')}`,
         answer: exercise.pairs.map(([left, right]) => `${left} — ${right}`).join(' · '),
       };
+    case 'sort':
+      return {
+        prompt: `${exercise.instr} — ${exercise.groups.flatMap((g) => g.items).join(', ')}`,
+        answer: exercise.groups.map((g) => `${g.label}: ${g.items.join(', ')}`).join(' · '),
+      };
   }
 }
 
@@ -248,7 +292,7 @@ export function describeGiven(exercise: Exercise, given: string): string {
     return exercise.o[chosen] ?? given;
   }
 
-  if (exercise.t === 'match') {
+  if (exercise.t === 'match' || exercise.t === 'sort') {
     try {
       const pairs = JSON.parse(given) as [string, string][];
       return Array.isArray(pairs)
@@ -264,6 +308,7 @@ export function describeGiven(exercise: Exercise, given: string): string {
 
 /** One-line description of a task type, for the practice intro. */
 export const EXERCISE_NAMES: Record<Exercise['t'], string> = {
+  sort: 'sound sorting',
   mc: 'multiple choice',
   gap: 'gap fill',
   order: 'word order',

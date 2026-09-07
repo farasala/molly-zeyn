@@ -131,6 +131,74 @@ export function TaskBody({ item, draft, onChange, locked }: Props) {
     );
   }
 
+  if (item.t === 'sort') {
+    const placed = new Map(item.words.map((word) => [word, undefined as string | undefined]));
+    for (const [word, label] of draft.sorted) placed.set(word, label);
+    const loose = item.words.filter((word) => !placed.get(word));
+
+    return (
+      <div className="task">
+        <p className="task-instr">{item.instr}</p>
+
+        <div className="chip-tray">
+          {loose.length === 0 ? (
+            <span className="strip-empty">Every word is in a group</span>
+          ) : (
+            loose.map((word) => (
+              <button
+                key={word}
+                type="button"
+                className={`chip${draft.activeWord === word ? ' is-placed' : ''}`}
+                disabled={locked}
+                onClick={() => set({ activeWord: draft.activeWord === word ? null : word })}
+              >
+                {word}
+              </button>
+            ))
+          )}
+        </div>
+
+        <div className="bin-grid">
+          {item.labels.map((label) => (
+            <div className="bin" key={label}>
+              <button
+                type="button"
+                className="bin-label"
+                disabled={locked || !draft.activeWord}
+                onClick={() => {
+                  if (!draft.activeWord) return;
+                  set({
+                    sorted: [...draft.sorted, [draft.activeWord, label]],
+                    activeWord: null,
+                  });
+                }}
+              >
+                {label}
+              </button>
+              <div className="bin-words">
+                {draft.sorted
+                  .filter((pair) => pair[1] === label)
+                  .map(([word]) => (
+                    <button
+                      key={word}
+                      type="button"
+                      className="chip is-placed"
+                      disabled={locked}
+                      onClick={() =>
+                        set({ sorted: draft.sorted.filter((pair) => pair[0] !== word) })
+                      }
+                    >
+                      {word}
+                    </button>
+                  ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="task">
       <p className="task-instr">Match each word to its meaning.</p>
