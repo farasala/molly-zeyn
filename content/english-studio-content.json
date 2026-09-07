@@ -2741,7 +2741,408 @@
           ],
           "locked": true
         }
-      ]
+      ],
+      "entryTest": {
+        "title": "Where to start",
+        "blurb": "Twenty questions across the whole Elementary course. Answer what you can and skip what you do not know — the point is to find the right place to begin, not to score well.",
+        "items": [
+          {
+            "unit": 1,
+            "t": "gap",
+            "q": "I ___ from Kazakhstan.",
+            "a": "am",
+            "hint": "be"
+          },
+          {
+            "unit": 1,
+            "t": "mc",
+            "q": "This is my friend. ___ name is Timur.",
+            "o": [
+              "He",
+              "His",
+              "Him"
+            ],
+            "a": 1
+          },
+          {
+            "unit": 2,
+            "t": "mc",
+            "q": "Look at ___ books on the desk.",
+            "o": [
+              "this",
+              "these",
+              "that"
+            ],
+            "a": 1
+          },
+          {
+            "unit": 2,
+            "t": "gap",
+            "q": "It's ___ umbrella, not a bag.",
+            "a": "an",
+            "hint": "a / an"
+          },
+          {
+            "unit": 3,
+            "t": "gap",
+            "q": "My sister ___ at university.",
+            "a": "studies",
+            "hint": "study"
+          },
+          {
+            "unit": 3,
+            "t": "mc",
+            "q": "___ your brother work in an office?",
+            "o": [
+              "Do",
+              "Does",
+              "Is"
+            ],
+            "a": 1
+          },
+          {
+            "unit": 4,
+            "t": "mc",
+            "q": "She ___ gets up before seven.",
+            "o": [
+              "never",
+              "not",
+              "no"
+            ],
+            "a": 0
+          },
+          {
+            "unit": 4,
+            "t": "gap",
+            "q": "I like ___ to music in the evening.",
+            "a": "listening",
+            "hint": "listen"
+          },
+          {
+            "unit": 5,
+            "t": "mc",
+            "q": "___ you swim?",
+            "o": [
+              "Can",
+              "Are",
+              "Do you can"
+            ],
+            "a": 0
+          },
+          {
+            "unit": 5,
+            "t": "gap",
+            "q": "It's cold today. Take your ___.",
+            "a": "coat",
+            "hint": "clothes"
+          },
+          {
+            "unit": 6,
+            "t": "gap",
+            "q": "We ___ at home yesterday.",
+            "a": "were",
+            "hint": "be, past"
+          },
+          {
+            "unit": 6,
+            "t": "mc",
+            "q": "They ___ to the cinema last night.",
+            "o": [
+              "go",
+              "goed",
+              "went"
+            ],
+            "a": 2
+          },
+          {
+            "unit": 7,
+            "t": "mc",
+            "q": "___ two windows in my kitchen.",
+            "o": [
+              "There is",
+              "There are",
+              "It is"
+            ],
+            "a": 1
+          },
+          {
+            "unit": 7,
+            "t": "gap",
+            "q": "The keys are ___ the table.",
+            "a": "on",
+            "hint": "place"
+          },
+          {
+            "unit": 8,
+            "t": "mc",
+            "q": "Is there ___ milk in the fridge?",
+            "o": [
+              "some",
+              "any",
+              "a"
+            ],
+            "a": 1
+          },
+          {
+            "unit": 8,
+            "t": "gap",
+            "q": "How ___ sugar do you take?",
+            "a": "much",
+            "hint": "uncountable"
+          },
+          {
+            "unit": 9,
+            "t": "gap",
+            "q": "Almaty is ___ than Astana in winter.",
+            "a": "warmer",
+            "hint": "warm"
+          },
+          {
+            "unit": 9,
+            "t": "mc",
+            "q": "It's the ___ café in the city.",
+            "o": [
+              "good",
+              "better",
+              "best"
+            ],
+            "a": 2
+          },
+          {
+            "unit": 10,
+            "t": "transform",
+            "instr": "Write the plan with going to.",
+            "q": "I / visit / my parents",
+            "a": [
+              "I'm going to visit my parents.",
+              "I am going to visit my parents."
+            ]
+          },
+          {
+            "unit": 11,
+            "t": "mc",
+            "q": "Be quiet — the baby ___.",
+            "o": [
+              "sleeps",
+              "is sleeping",
+              "sleep"
+            ],
+            "a": 1
+          }
+        ]
+      },
+      "finalTest": {
+        "title": "End of Elementary",
+        "blurb": "Twenty-four questions over everything in the course. Take it when you have finished the last unit.",
+        "pass": 17,
+        "items": [
+          {
+            "unit": 1,
+            "t": "gap",
+            "q": "My name ___ Dana and I'm a nurse.",
+            "a": "is",
+            "hint": "be"
+          },
+          {
+            "unit": 1,
+            "t": "transform",
+            "instr": "Make it negative.",
+            "q": "They are teachers.",
+            "a": [
+              "They aren't teachers.",
+              "They are not teachers."
+            ]
+          },
+          {
+            "unit": 2,
+            "t": "mc",
+            "q": "___ are my keys.",
+            "o": [
+              "This",
+              "These",
+              "That"
+            ],
+            "a": 1
+          },
+          {
+            "unit": 2,
+            "t": "transform",
+            "instr": "Make it plural.",
+            "q": "a watch",
+            "a": [
+              "watches"
+            ]
+          },
+          {
+            "unit": 3,
+            "t": "gap",
+            "q": "He ___ speak Turkish.",
+            "a": "doesn't",
+            "hint": "negative"
+          },
+          {
+            "unit": 3,
+            "t": "order",
+            "a": "What time does the lesson start?"
+          },
+          {
+            "unit": 4,
+            "t": "mc",
+            "q": "I ___ have breakfast at home.",
+            "o": [
+              "always",
+              "am always",
+              "always am"
+            ],
+            "a": 0
+          },
+          {
+            "unit": 4,
+            "t": "gap",
+            "q": "She hates ___ up early.",
+            "a": "getting",
+            "hint": "get"
+          },
+          {
+            "unit": 5,
+            "t": "transform",
+            "instr": "Make it a question.",
+            "q": "He can drive.",
+            "a": [
+              "Can he drive?"
+            ]
+          },
+          {
+            "unit": 5,
+            "t": "gap",
+            "q": "In summer it's usually hot and ___.",
+            "a": "sunny",
+            "hint": "weather"
+          },
+          {
+            "unit": 6,
+            "t": "gap",
+            "q": "I ___ born in Shymkent.",
+            "a": "was",
+            "hint": "be, past"
+          },
+          {
+            "unit": 6,
+            "t": "mc",
+            "q": "We ___ television all evening.",
+            "o": [
+              "watch",
+              "watched",
+              "watching"
+            ],
+            "a": 1
+          },
+          {
+            "unit": 7,
+            "t": "gap",
+            "q": "___ there a lift in your building?",
+            "a": "Is",
+            "hint": "there is / are"
+          },
+          {
+            "unit": 7,
+            "t": "mc",
+            "q": "The café is ___ the bank and the shop.",
+            "o": [
+              "between",
+              "under",
+              "behind"
+            ],
+            "a": 0
+          },
+          {
+            "unit": 8,
+            "t": "mc",
+            "q": "We haven't got ___ bread.",
+            "o": [
+              "some",
+              "any",
+              "a"
+            ],
+            "a": 1
+          },
+          {
+            "unit": 8,
+            "t": "gap",
+            "q": "How ___ people are in your class?",
+            "a": "many",
+            "hint": "countable"
+          },
+          {
+            "unit": 9,
+            "t": "transform",
+            "instr": "Write the comparative.",
+            "q": "This café is (cheap) than that one.",
+            "a": [
+              "cheaper"
+            ]
+          },
+          {
+            "unit": 9,
+            "t": "gap",
+            "q": "It was the ___ day of my life.",
+            "a": "best",
+            "hint": "good"
+          },
+          {
+            "unit": 10,
+            "t": "mc",
+            "q": "We ___ going to travel in August.",
+            "o": [
+              "is",
+              "are",
+              "be"
+            ],
+            "a": 1
+          },
+          {
+            "unit": 10,
+            "t": "order",
+            "a": "What are you going to do tomorrow?"
+          },
+          {
+            "unit": 11,
+            "t": "gap",
+            "q": "Look — it ___ outside.",
+            "a": "is raining",
+            "hint": "rain, now"
+          },
+          {
+            "unit": 11,
+            "t": "mc",
+            "q": "She usually ___ to work, but today she ___ the bus.",
+            "o": [
+              "drives / is taking",
+              "is driving / takes",
+              "drive / take"
+            ],
+            "a": 0
+          },
+          {
+            "unit": 12,
+            "t": "mc",
+            "q": "___ you ever been to Turkey?",
+            "o": [
+              "Did",
+              "Have",
+              "Are"
+            ],
+            "a": 1
+          },
+          {
+            "unit": 12,
+            "t": "gap",
+            "q": "I have never ___ sushi.",
+            "a": "eaten",
+            "hint": "eat"
+          }
+        ]
+      }
     }
   }
 }

@@ -148,3 +148,41 @@ export async function getLessonAccess(studentId: string, levelId: string) {
 
   return data ?? [];
 }
+
+export type StudentTests = {
+  entry: { score: number; total: number; startAt: number } | null;
+  final: { score: number; total: number; startAt: number } | null;
+};
+
+/**
+ * The latest entry and end-of-course test for each of the teacher's students.
+ *
+ * RLS decides who is visible here: ar_teacher lets a teacher read the results
+ * of the students they teach and nobody else's.
+ */
+export async function getStudentTests(
+  studentIds: string[],
+  levelId: string,
+): Promise<Map<string, StudentTests>> {
+  const out = new Map<string, StudentTests>();
+  if (studentIds.length === 0) return out;
+
+  const supabase = await createClient();
+  const { data } = await supabase
+    .from('activity_results')
+    .select('user_id, kind, score, total, unit_n, created_at')
+    .in('user_id', studentIds)
+    .eq('level_id', levelId)
+    .in('kind', ['entry', 'final'])
+    // Newest first, so the first row seen for a student is the one kept.
+    .order('created_at', { ascending: false });
+
+  for (const row of data ?? []) {
+    const entry = out.get(row.user_id) ?? { entry: null, final: null };
+    const kind = row.kind as 'entry' | 'final';
+    if (!entry[kind]) entry[kind] = { score: row.score, total: row.total, startAt: row.unit_n };
+    out.set(row.user_id, entry);
+  }
+
+  return out;
+}

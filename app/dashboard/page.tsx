@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import { AppHeader } from '@/components/AppHeader';
 import { logOut } from '@/app/auth-actions';
 import { requireAccount } from '@/lib/auth';
-import { getTotals } from '@/lib/progress';
+import { getTestResults, getTotals } from '@/lib/progress';
 import { EMPTY_ACCESS, getStudentAccess } from '@/lib/access';
 import { getUnitProgress } from '@/lib/vocabulary';
 import { createClient } from '@/lib/supabase/server';
@@ -73,10 +73,17 @@ export default async function DashboardPage() {
   const access = isTeacher ? EMPTY_ACCESS : await getStudentAccess('elementary');
   const totals = await getTotals(user.profile.id, 'elementary');
   const homework = isTeacher ? [] : await getStudentDashboardHomework(user.profile.id);
+  const tests = isTeacher ? [] : await getTestResults(user.profile.id, 'elementary');
+  const entryTaken = tests.find((row) => row.kind === 'entry') ?? null;
+  const finalTaken = tests.find((row) => row.kind === 'final') ?? null;
 
   // Read the same way the progress page and the account page read them, so the
   // three screens cannot drift apart.
   const units = await getUnitProgress('elementary', isTeacher, access);
+  // The end-of-course test only makes sense once the last unit has been worked
+  // through, so it stays out of the way until then.
+  const lastUnit = units.find((unit) => unit.n === 12);
+  const finalOpen = Boolean(lastUnit && lastUnit.lessons > 0 && lastUnit.open === lastUnit.lessons);
   const wordsKnown = units.reduce((sum, unit) => sum + unit.wordsKnown, 0);
   const mastered = units.filter(
     (unit) => !unit.planned && unit.lessons > 0 && unit.open === unit.lessons,
@@ -120,6 +127,57 @@ export default async function DashboardPage() {
             ) : (
               <StudentHomework rows={homework} lessonId={homework[0].homework.lesson_id} />
             )}
+          </section>
+        )}
+
+        {!isTeacher && (
+          <section className="card">
+            <h2 className="card-title">{entryTaken ? 'Your placement' : 'Where to start'}</h2>
+            <p className="card-text">
+              {entryTaken
+                ? `You scored ${entryTaken.score} of ${entryTaken.total} on the placement test. Your teacher reads it to decide which unit to begin with.`
+                : 'A short paper across the whole course, for before your first lesson. There is no pass mark — it is there to find the right unit to start you on.'}
+            </p>
+            <p>
+              <Link className="pill-button is-wide" href="/tests/entry">
+                {entryTaken ? 'See your result' : 'Take the placement test'}
+              </Link>
+            </p>
+          </section>
+        )}
+
+        {!isTeacher && (finalOpen || finalTaken) && (
+          <section className="card">
+            <h2 className="card-title">End of Elementary</h2>
+            <p className="card-text">
+              {finalTaken
+                ? `You scored ${finalTaken.score} of ${finalTaken.total}.`
+                : 'You have finished every unit. The end-of-course test covers all twelve of them in one pass.'}
+            </p>
+            <p>
+              <Link className="pill-button is-wide" href="/tests/final">
+                {finalTaken ? 'See your result' : 'Take the end-of-course test'}
+              </Link>
+            </p>
+          </section>
+        )}
+
+        {isTeacher && (
+          <section className="card">
+            <h2 className="card-title">Course tests</h2>
+            <p className="card-text">
+              Two papers sit above the units: a placement test a new student takes before their
+              first lesson, and the end-of-course test. Both are marked on the server and land on
+              the student’s record. Open either to read through it — no answers are shown.
+            </p>
+            <div className="score-actions">
+              <Link className="pill-button" href="/tests/entry">
+                Placement test
+              </Link>
+              <Link className="pill-button" href="/tests/final">
+                End-of-course test
+              </Link>
+            </div>
           </section>
         )}
 

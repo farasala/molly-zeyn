@@ -64,9 +64,9 @@ create table if not exists public.activity_results (
   id         uuid primary key default gen_random_uuid(),
   user_id    uuid not null references public.profiles(id) on delete cascade,
   level_id   text not null,
-  unit_n     int  not null,
-  lesson_id  text,                       -- '1A' for practice, null for a unit test
-  kind       text not null check (kind in ('practice','test')),
+  unit_n     int  not null check (unit_n >= 0),  -- 0 for a course-level test
+  lesson_id  text,                       -- '1A' for practice, null for a test
+  kind       text not null check (kind in ('practice','test','entry','final')),
   score      int  not null check (score >= 0),
   total      int  not null check (total > 0),
   xp         int  not null default 0,

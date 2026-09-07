@@ -6,7 +6,7 @@ import { ActionForm } from '@/components/ActionForm';
 import { AppHeader } from '@/components/AppHeader';
 import { InviteLink } from '@/components/teacher/InviteLink';
 import { getTeacher } from '@/lib/auth';
-import { getGroups, getInvites } from '@/lib/teaching';
+import { getGroups, getInvites, getStudentTests } from '@/lib/teaching';
 
 export const metadata: Metadata = { title: 'Groups · English Studio' };
 
@@ -16,6 +16,10 @@ export default async function TeacherPage() {
 
   const groups = await getGroups(teacher.profile.id);
   const invites = await getInvites(teacher.profile.id);
+  const tests = await getStudentTests(
+    groups.flatMap((group) => group.students.map((student) => student.id)),
+    'elementary',
+  );
 
   return (
     <div className="shell">
@@ -78,6 +82,17 @@ export default async function TeacherPage() {
                           {student.full_name.trim().charAt(0).toUpperCase()}
                         </span>
                         <span className="student-name">{student.full_name}</span>
+                        <span className="student-score">
+                          {tests.get(student.id)?.entry
+                            ? `Placement ${tests.get(student.id)!.entry!.score}/${tests.get(student.id)!.entry!.total} · start unit ${tests.get(student.id)!.entry!.startAt}`
+                            : 'No placement test'}
+                        </span>
+                        {tests.get(student.id)?.final && (
+                          <span className="student-score">
+                            End of course {tests.get(student.id)!.final!.score}/
+                            {tests.get(student.id)!.final!.total}
+                          </span>
+                        )}
                       </li>
                     ))}
                   </ul>

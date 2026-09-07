@@ -82,7 +82,13 @@ To view it: it needs `support.js` and `_ds/` next to it, so open it from
           "speak":   [ { "p": "prompt", "model": "model answer" } ]
         } ]
       } ],
-      "test": [ /* same exercise shapes, per unit */ ]
+      "test": [ /* same exercise shapes, per unit */ ],
+
+      // Above the units: one placement paper and one end-of-course paper.
+      // Same exercise shapes, plus "unit" on every item — that tag is what
+      // makes a placement result readable band by band.
+      "entryTest": { "title", "blurb", "items": [ { "unit": 1, /* exercise */ } ] },
+      "finalTest": { "title", "blurb", "pass": 17, "items": [ /* same */ ] }
     }
   }
 }
@@ -188,8 +194,13 @@ Already live:
 
 - `profiles` — `full_name`, `role` (`student` | `teacher`), `avatar_color`, `created_at`.
 - `groups`, `group_members` — a teacher's classes.
-- `activity_results` — one row per finished practice or unit test. Keep every attempt; show
-  the best per activity, and use the sum of `xp` for total XP.
+- `activity_results` — one row per finished practice, unit test or course test. Keep every
+  attempt; show the best per activity, and use the sum of `xp` for total XP.
+  `kind` is `practice` | `test` | `entry` | `final`. The two course tests store
+  `lesson_id: null`, no XP (a test measures, it does not reward), and put the unit the result
+  points at in `unit_n` — the placement start unit, or 0 for the end-of-course paper.
+  Everything that counts practice must filter on `kind = 'practice'`, or a test inflates the
+  cabinet.
 - `known_words` — `(user_id, level_id, word)`.
 
 To come:
@@ -321,6 +332,27 @@ The bank holds only words from lessons the student has open — it must not beco
 round the gate. All three screens read the records rather than keeping their own count.
 
 **Check:** the numbers on the dashboard, progress page and cabinet agree with each other.
+
+### Stage 8 — the two course tests — DONE
+`entryTest` (placement, 20 items) and `finalTest` (end of course, 24 items, pass 17) in the
+content JSON, marked by `lib/coursetest.ts` and recorded by `app/test-actions.ts`.
+`/tests/entry` and `/tests/final`; a card on the student dashboard, and the latest placement
+next to each student's name on `/teacher`.
+
+A test is **one pass**: no right-or-wrong between questions, no second attempt at an item,
+skipping allowed. So it must not reuse the re-queue behaviour of `PracticeRunner` —
+`TestRunner` collects every answer and hands the whole paper in with one call to
+`submitTest`, which marks it server-side.
+
+Placement works **band by band**, not on the total: `startAt` is the unit after the last one
+answered fully correctly, so a lucky guess late in the paper cannot promote a beginner.
+
+Server actions on this page must not call `revalidatePath` — that re-renders the page and
+throws away the result the student is reading. Both pages showing test results are dynamic
+and are fresh on the next navigation anyway.
+
+**Check:** the answer key never reaches the browser; a paper right through unit 3 and blank
+after it places the student at unit 4; the result survives being handed in.
 
 ---
 

@@ -22,7 +22,9 @@ export async function getTotals(userId: string, levelId: string): Promise<Totals
     .from('activity_results')
     .select('lesson_id, score, total, xp')
     .eq('user_id', userId)
-    .eq('level_id', levelId);
+    .eq('level_id', levelId)
+    // Course tests live in the same table but are not practice runs.
+    .eq('kind', 'practice');
 
   const empty: Totals = { xp: 0, activities: 0, lessonsPractised: 0, best: new Map() };
   if (error || !data) return empty;
@@ -42,4 +44,34 @@ export async function getTotals(userId: string, levelId: string): Promise<Totals
   }
 
   return { xp, activities: data.length, lessonsPractised: best.size, best };
+}
+
+/** One sitting of the entry or end-of-course test. */
+export type TestResult = {
+  kind: 'entry' | 'final';
+  score: number;
+  total: number;
+  /** Placement: the unit the result points at. 0 on the end-of-course test. */
+  unit_n: number;
+  created_at: string;
+};
+
+/**
+ * The course-level tests a student has sat, newest first.
+ *
+ * Every attempt is kept — a placement test taken again a term later is worth
+ * seeing next to the first one, not on top of it.
+ */
+export async function getTestResults(userId: string, levelId: string): Promise<TestResult[]> {
+  const supabase = await createClient();
+
+  const { data } = await supabase
+    .from('activity_results')
+    .select('kind, score, total, unit_n, created_at')
+    .eq('user_id', userId)
+    .eq('level_id', levelId)
+    .in('kind', ['entry', 'final'])
+    .order('created_at', { ascending: false });
+
+  return (data ?? []) as TestResult[];
 }

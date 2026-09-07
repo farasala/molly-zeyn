@@ -2179,6 +2179,15 @@ select.field-input {
   font-variant-numeric: tabular-nums;
 }
 
+/* On a test result the same tally reads as a score, so it is not red. */
+.task-miss.is-ok {
+  color: var(--green-700);
+}
+
+.task-miss.is-mixed {
+  color: var(--text-secondary);
+}
+
 .task-detail {
   display: flex;
   flex-direction: column;
