@@ -137,3 +137,48 @@ i-am-looking-for-a-jacket-for-my-brother-he-is-quite-tall-so.mp3  |  I am lookin
 i-am-wearing-jeans-a-white-shirt-and-black-shoes-my-jacket-i.mp3  |  I am wearing jeans, a white shirt and black shoes. My jacket is on the chair.
 in-winter-i-wear-a-heavy-coat-a-hat-and-warm-shoes-in-summer.mp3  |  In winter I wear a heavy coat, a hat and warm shoes. In summer I wear a light shirt and jeans.
 can-i-try-on-this-jacket-do-you-have-it-in-black-is-there-a-.mp3  |  Can I try on this jacket? Do you have it in black? Is there a bigger size for me?
+first-the-first-of-january-is-a-holiday.mp3  |  first. The first of January is a holiday.
+second-our-office-is-on-the-second-floor.mp3  |  second. Our office is on the second floor.
+third-she-came-third-in-the-race.mp3  |  third. She came third in the race.
+fifth-my-birthday-is-on-the-fifth-of-march.mp3  |  fifth. My birthday is on the fifth of March.
+twentieth-we-meet-on-the-twentieth-of-june.mp3  |  twentieth. We meet on the twentieth of June.
+month-march-is-a-windy-month-here.mp3  |  month. March is a windy month here.
+year-last-year-we-lived-in-astana.mp3  |  year. Last year we lived in Astana.
+birthday-her-birthday-is-in-autumn.mp3  |  birthday. Her birthday is in autumn.
+date-what-is-the-date-today.mp3  |  date. What is the date today?
+born-he-was-born-in-a-small-village.mp3  |  born. He was born in a small village.
+i-was-born-in-shymkent-in-the-spring.mp3  |  I was born in Shymkent in the spring.
+i-was-born-on-the-third-of-may-last-year-my-birthday-was-on-.mp3  |  I was born on the third of May. Last year my birthday was on a Saturday, so we were all at my parents' house. It was a very good day.
+at-eight-i-was-at-home-at-midday-i-was-at-work-and-in-the-ev.mp3  |  At eight I was at home, at midday I was at work, and in the evening I was at my sister's.
+i-was-born-on-the-fifth-of-march-in-a-small-town-near-almaty.mp3  |  I was born on the fifth of March in a small town near Almaty.
+where-were-you-on-saturday-was-the-weather-good-were-your-fr.mp3  |  Where were you on Saturday? Was the weather good? Were your friends with you?
+yesterday-yesterday-we-finished-at-six.mp3  |  yesterday. Yesterday we finished at six.
+last-night-i-watched-a-film-last-night.mp3  |  last night. I watched a film last night.
+last-week-last-week-she-was-in-astana.mp3  |  last week. Last week she was in Astana.
+ago-we-moved-here-two-years-ago.mp3  |  ago. We moved here two years ago.
+this-morning-this-morning-the-bus-was-late.mp3  |  this morning. This morning the bus was late.
+arrive-the-train-arrived-at-midnight.mp3  |  arrive. The train arrived at midnight.
+wait-we-waited-an-hour-for-a-taxi.mp3  |  wait. We waited an hour for a taxi.
+want-she-wanted-a-quiet-evening.mp3  |  want. She wanted a quiet evening.
+call-he-called-me-twice.mp3  |  call. He called me twice.
+stay-we-stayed-at-my-aunt-s-house.mp3  |  stay. We stayed at my aunt's house.
+we-waited-an-hour-and-then-we-called-a-taxi.mp3  |  We waited an hour and then we called a taxi.
+yesterday-was-a-long-day-i-started-at-eight-and-finished-at-.mp3  |  Yesterday was a long day. I started at eight and finished at seven. After work I wanted to go home, but I waited forty minutes for the bus.
+i-started-work-at-nine-i-called-my-sister-at-lunch-i-finishe.mp3  |  I started work at nine, I called my sister at lunch, I finished at six and I watched a film in the evening.
+i-didn-t-cook-i-didn-t-call-my-parents-and-i-didn-t-study-fo.mp3  |  I didn't cook, I didn't call my parents and I didn't study for the test.
+did-you-stay-at-home-did-you-watch-anything-who-did-you-call.mp3  |  Did you stay at home? Did you watch anything? Who did you call? Where did you walk? Did you cook?
+go-we-went-to-the-mountains-on-sunday.mp3  |  go. We went to the mountains on Sunday.
+have-we-had-a-long-lunch.mp3  |  have. We had a long lunch.
+see-i-saw-him-at-the-station.mp3  |  see. I saw him at the station.
+get-she-got-a-message-from-her-sister.mp3  |  get. She got a message from her sister.
+take-we-took-a-taxi-home.mp3  |  take. We took a taxi home.
+come-my-cousin-came-at-eight.mp3  |  come. My cousin came at eight.
+make-my-grandmother-made-bread.mp3  |  make. My grandmother made bread.
+say-he-said-nothing-all-evening.mp3  |  say. He said nothing all evening.
+find-i-found-my-keys-under-the-sofa.mp3  |  find. I found my keys under the sofa.
+leave-they-left-before-midnight.mp3  |  leave. They left before midnight.
+we-took-a-taxi-and-got-home-before-midnight.mp3  |  We took a taxi and got home before midnight.
+on-saturday-we-went-to-the-mountains-we-left-at-seven-and-go.mp3  |  On Saturday we went to the mountains. We left at seven and got there at nine. My friend made tea and we had lunch outside. It was cold, but we had a very good day.
+on-saturday-i-went-to-the-market-then-i-made-lunch-for-my-fa.mp3  |  On Saturday I went to the market. Then I made lunch for my family. After that we took a walk in the park, but it got cold, so we came home early.
+i-saw-an-old-friend-on-the-bus-i-found-a-good-caf-near-the-o.mp3  |  I saw an old friend on the bus. I found a good café near the office. I saw a very long queue at the bank.
+where-did-you-go-when-did-you-leave-what-did-you-see-did-you.mp3  |  Where did you go? When did you leave? What did you see? Did you have a good time?

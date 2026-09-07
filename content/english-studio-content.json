@@ -4162,24 +4162,868 @@
               "title": "Where were you?",
               "g": "past simple of be — was / were",
               "v": "The date & ordinals",
-              "locked": true
+              "grammar": {
+                "h": "past simple of <b>be</b> &nbsp;·&nbsp; was / were",
+                "rows": [
+                  {
+                    "label": "Positive",
+                    "items": [
+                      "I <b>was</b>",
+                      "you <b>were</b>",
+                      "he / she / it <b>was</b>",
+                      "we <b>were</b>",
+                      "they <b>were</b>"
+                    ]
+                  },
+                  {
+                    "label": "Negative and questions",
+                    "items": [
+                      "I <b>wasn't</b> at home.",
+                      "They <b>weren't</b> late.",
+                      "<b>Were</b> you at the office?",
+                      "<b>Was</b> she there? — Yes, she <b>was</b>. / No, she <b>wasn't</b>."
+                    ]
+                  },
+                  {
+                    "label": "In sentences",
+                    "items": [
+                      "I was born in Shymkent.",
+                      "Where were you yesterday?",
+                      "It wasn't cold — it was quite warm."
+                    ]
+                  }
+                ],
+                "notes": [
+                  "<b>was</b> goes with I, he, she and it. <b>were</b> goes with you, we and they.",
+                  "<b>born</b> never travels alone: <i>I <b>was</b> born</i>, never <i>I born</i>.",
+                  "Dates are read as ordinals — <b>the third of May</b> — but written <i>3 May</i>.",
+                  "First, second and third are irregular; after that add <b>-th</b>: <i>fourth</i>, <i>fifth</i>, <i>twentieth</i>."
+                ]
+              },
+              "vocab": [
+                {
+                  "w": "first",
+                  "ipa": "/fɜːst/",
+                  "pos": "adj",
+                  "def": "number one in an order",
+                  "ex": "The first of January is a holiday."
+                },
+                {
+                  "w": "second",
+                  "ipa": "/ˈsekənd/",
+                  "pos": "adj",
+                  "def": "number two in an order",
+                  "ex": "Our office is on the second floor."
+                },
+                {
+                  "w": "third",
+                  "ipa": "/θɜːd/",
+                  "pos": "adj",
+                  "def": "number three in an order",
+                  "ex": "She came third in the race."
+                },
+                {
+                  "w": "fifth",
+                  "ipa": "/fɪfθ/",
+                  "pos": "adj",
+                  "def": "number five in an order",
+                  "ex": "My birthday is on the fifth of March."
+                },
+                {
+                  "w": "twentieth",
+                  "ipa": "/ˈtwentiəθ/",
+                  "pos": "adj",
+                  "def": "number twenty in an order",
+                  "ex": "We meet on the twentieth of June."
+                },
+                {
+                  "w": "month",
+                  "ipa": "/mʌnθ/",
+                  "pos": "n",
+                  "def": "one of the twelve parts of a year",
+                  "ex": "March is a windy month here."
+                },
+                {
+                  "w": "year",
+                  "ipa": "/jɪə/",
+                  "pos": "n",
+                  "def": "a period of twelve months",
+                  "ex": "Last year we lived in Astana."
+                },
+                {
+                  "w": "birthday",
+                  "ipa": "/ˈbɜːθdeɪ/",
+                  "pos": "n",
+                  "def": "the day of the year you were born",
+                  "ex": "Her birthday is in autumn."
+                },
+                {
+                  "w": "date",
+                  "ipa": "/deɪt/",
+                  "pos": "n",
+                  "def": "the day, the month and the year",
+                  "ex": "What is the date today?"
+                },
+                {
+                  "w": "born",
+                  "ipa": "/bɔːn/",
+                  "pos": "adj",
+                  "def": "brought into life",
+                  "ex": "He was born in a small village."
+                }
+              ],
+              "ex": [
+                {
+                  "t": "mc",
+                  "q": "I ___ at work yesterday.",
+                  "o": [
+                    "was",
+                    "were",
+                    "is"
+                  ],
+                  "a": 0
+                },
+                {
+                  "t": "mc",
+                  "q": "They ___ at the party.",
+                  "o": [
+                    "wasn't",
+                    "weren't",
+                    "aren't"
+                  ],
+                  "a": 1
+                },
+                {
+                  "t": "mc",
+                  "q": "___ you at home last night?",
+                  "o": [
+                    "Was",
+                    "Were",
+                    "Did"
+                  ],
+                  "a": 1
+                },
+                {
+                  "t": "gap",
+                  "q": "She ___ born in 1998.",
+                  "a": "was",
+                  "hint": "be, past"
+                },
+                {
+                  "t": "gap",
+                  "q": "We ___ tired after the trip.",
+                  "a": "were",
+                  "hint": "be, past"
+                },
+                {
+                  "t": "gap",
+                  "q": "My birthday is on the ___ of March.",
+                  "a": "fifth",
+                  "hint": "5"
+                },
+                {
+                  "t": "order",
+                  "a": "Where were you yesterday evening?"
+                },
+                {
+                  "t": "order",
+                  "a": "It wasn't cold on Saturday."
+                },
+                {
+                  "t": "transform",
+                  "instr": "Make it negative.",
+                  "q": "The shop was open.",
+                  "a": [
+                    "The shop wasn't open.",
+                    "The shop was not open."
+                  ]
+                },
+                {
+                  "t": "transform",
+                  "instr": "Make it a question.",
+                  "q": "They were at the station.",
+                  "a": [
+                    "Were they at the station?"
+                  ]
+                },
+                {
+                  "t": "match",
+                  "pairs": [
+                    [
+                      "birthday",
+                      "the day of the year you were born"
+                    ],
+                    [
+                      "month",
+                      "one of the twelve parts of a year"
+                    ],
+                    [
+                      "date",
+                      "the day, the month and the year"
+                    ],
+                    [
+                      "third",
+                      "number three in an order"
+                    ]
+                  ]
+                },
+                {
+                  "t": "sort",
+                  "instr": "Which form of be goes with each subject?",
+                  "groups": [
+                    {
+                      "label": "was",
+                      "items": [
+                        "I",
+                        "she",
+                        "the film",
+                        "my sister"
+                      ]
+                    },
+                    {
+                      "label": "were",
+                      "items": [
+                        "you",
+                        "they",
+                        "my parents",
+                        "the shops"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "t": "dictation",
+                  "a": "I was born in Shymkent in the spring."
+                },
+                {
+                  "t": "listen",
+                  "text": "I was born on the third of May. Last year my birthday was on a Saturday, so we were all at my parents' house. It was a very good day.",
+                  "q": "When was the speaker born?",
+                  "o": [
+                    "The third of March",
+                    "The third of May",
+                    "The fifth of May"
+                  ],
+                  "a": 1
+                }
+              ],
+              "speak": [
+                {
+                  "p": "Say where you were at three different times yesterday.",
+                  "model": "At eight I was at home, at midday I was at work, and in the evening I was at my sister's."
+                },
+                {
+                  "p": "Say when and where you were born.",
+                  "model": "I was born on the fifth of March in a small town near Almaty."
+                },
+                {
+                  "p": "Ask your partner about last weekend with was and were.",
+                  "model": "Where were you on Saturday? Was the weather good? Were your friends with you?"
+                }
+              ]
             },
             {
               "id": "6B",
               "title": "Yesterday",
               "g": "past simple — regular verbs",
               "v": "Past time expressions",
-              "locked": true
+              "grammar": {
+                "h": "past simple &nbsp;·&nbsp; regular verbs",
+                "rows": [
+                  {
+                    "label": "One form for everybody",
+                    "items": [
+                      "I work<b>ed</b>",
+                      "you work<b>ed</b>",
+                      "she work<b>ed</b>",
+                      "we work<b>ed</b>",
+                      "they work<b>ed</b>"
+                    ]
+                  },
+                  {
+                    "label": "Spelling",
+                    "items": [
+                      "most verbs — <b>+ ed</b>: <i>watch → watched</i>",
+                      "ends in -e — <b>+ d</b>: <i>live → lived</i>",
+                      "consonant + y — <b>-y → -ied</b>: <i>study → studied</i>",
+                      "one vowel + one consonant — <b>double it</b>: <i>stop → stopped</i>"
+                    ]
+                  },
+                  {
+                    "label": "Negative and questions",
+                    "items": [
+                      "I <b>didn't</b> work yesterday.",
+                      "<b>Did</b> you watch the film?",
+                      "Yes, I <b>did</b>. / No, I <b>didn't</b>."
+                    ]
+                  }
+                ],
+                "notes": [
+                  "The <b>-ed</b> form is the same for every person. There is no <b>-s</b> in the past.",
+                  "After <b>did</b> and <b>didn't</b> the verb goes back to its plain form: <i>Did you watch?</i>, <i>She didn't watch</i>.",
+                  "A past time expression sits at either end: <i>Yesterday I worked late.</i> or <i>I worked late yesterday.</i>",
+                  "The <b>-ed</b> ending has three sounds: /t/ in <i>watched</i>, /d/ in <i>lived</i>, /ɪd/ in <i>wanted</i>."
+                ]
+              },
+              "vocab": [
+                {
+                  "w": "yesterday",
+                  "ipa": "/ˈjestədeɪ/",
+                  "pos": "adv",
+                  "def": "the day before today",
+                  "ex": "Yesterday we finished at six."
+                },
+                {
+                  "w": "last night",
+                  "ipa": "/ˌlɑːst ˈnaɪt/",
+                  "pos": "adv",
+                  "def": "the evening or night before today",
+                  "ex": "I watched a film last night."
+                },
+                {
+                  "w": "last week",
+                  "ipa": "/ˌlɑːst ˈwiːk/",
+                  "pos": "adv",
+                  "def": "the week before this one",
+                  "ex": "Last week she was in Astana."
+                },
+                {
+                  "w": "ago",
+                  "ipa": "/əˈɡəʊ/",
+                  "pos": "adv",
+                  "def": "before now, counting back",
+                  "ex": "We moved here two years ago."
+                },
+                {
+                  "w": "this morning",
+                  "ipa": "/ðɪs ˈmɔːnɪŋ/",
+                  "pos": "adv",
+                  "def": "earlier today, before midday",
+                  "ex": "This morning the bus was late."
+                },
+                {
+                  "w": "arrive",
+                  "ipa": "/əˈraɪv/",
+                  "pos": "v",
+                  "def": "to get to a place",
+                  "ex": "The train arrived at midnight."
+                },
+                {
+                  "w": "wait",
+                  "ipa": "/weɪt/",
+                  "pos": "v",
+                  "def": "to stay somewhere until something happens",
+                  "ex": "We waited an hour for a taxi."
+                },
+                {
+                  "w": "want",
+                  "ipa": "/wɒnt/",
+                  "pos": "v",
+                  "def": "to wish for something",
+                  "ex": "She wanted a quiet evening."
+                },
+                {
+                  "w": "call",
+                  "ipa": "/kɔːl/",
+                  "pos": "v",
+                  "def": "to telephone somebody",
+                  "ex": "He called me twice."
+                },
+                {
+                  "w": "stay",
+                  "ipa": "/steɪ/",
+                  "pos": "v",
+                  "def": "to remain in a place",
+                  "ex": "We stayed at my aunt's house."
+                }
+              ],
+              "ex": [
+                {
+                  "t": "mc",
+                  "q": "We ___ television all evening.",
+                  "o": [
+                    "watch",
+                    "watched",
+                    "watching"
+                  ],
+                  "a": 1
+                },
+                {
+                  "t": "mc",
+                  "q": "She ___ go to work yesterday.",
+                  "o": [
+                    "wasn't",
+                    "didn't",
+                    "doesn't"
+                  ],
+                  "a": 1
+                },
+                {
+                  "t": "mc",
+                  "q": "___ you call him last night?",
+                  "o": [
+                    "Do",
+                    "Did",
+                    "Were"
+                  ],
+                  "a": 1
+                },
+                {
+                  "t": "gap",
+                  "q": "They ___ at my aunt's house last week.",
+                  "a": "stayed",
+                  "hint": "stay"
+                },
+                {
+                  "t": "gap",
+                  "q": "The train ___ at midnight.",
+                  "a": "arrived",
+                  "hint": "arrive"
+                },
+                {
+                  "t": "gap",
+                  "q": "We moved here two years ___.",
+                  "a": "ago",
+                  "hint": "before now"
+                },
+                {
+                  "t": "gap",
+                  "q": "He ___ study for the test.",
+                  "a": "didn't",
+                  "hint": "negative"
+                },
+                {
+                  "t": "order",
+                  "a": "We waited an hour for a taxi."
+                },
+                {
+                  "t": "order",
+                  "a": "Did you watch the film last night?"
+                },
+                {
+                  "t": "transform",
+                  "instr": "Put it in the past.",
+                  "q": "I work late on Friday.",
+                  "a": [
+                    "I worked late on Friday."
+                  ]
+                },
+                {
+                  "t": "transform",
+                  "instr": "Make it negative.",
+                  "q": "She called me yesterday.",
+                  "a": [
+                    "She didn't call me yesterday.",
+                    "She did not call me yesterday."
+                  ]
+                },
+                {
+                  "t": "match",
+                  "pairs": [
+                    [
+                      "yesterday",
+                      "the day before today"
+                    ],
+                    [
+                      "ago",
+                      "before now"
+                    ],
+                    [
+                      "arrive",
+                      "to get to a place"
+                    ],
+                    [
+                      "stay",
+                      "to remain in a place"
+                    ]
+                  ]
+                },
+                {
+                  "t": "sort",
+                  "instr": "Which sound does the -ed ending have?",
+                  "groups": [
+                    {
+                      "label": "/t/",
+                      "items": [
+                        "watched",
+                        "stopped",
+                        "worked",
+                        "finished"
+                      ]
+                    },
+                    {
+                      "label": "/d/",
+                      "items": [
+                        "lived",
+                        "called",
+                        "stayed",
+                        "arrived"
+                      ]
+                    },
+                    {
+                      "label": "/ɪd/",
+                      "items": [
+                        "wanted",
+                        "waited",
+                        "started",
+                        "needed"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "t": "dictation",
+                  "a": "We waited an hour and then we called a taxi."
+                },
+                {
+                  "t": "listen",
+                  "text": "Yesterday was a long day. I started at eight and finished at seven. After work I wanted to go home, but I waited forty minutes for the bus.",
+                  "q": "How long did the speaker wait for the bus?",
+                  "o": [
+                    "Eight minutes",
+                    "Forty minutes",
+                    "An hour"
+                  ],
+                  "a": 1
+                }
+              ],
+              "speak": [
+                {
+                  "p": "Say four things you did yesterday, in order.",
+                  "model": "I started work at nine, I called my sister at lunch, I finished at six and I watched a film in the evening."
+                },
+                {
+                  "p": "Say three things you didn't do last week.",
+                  "model": "I didn't cook, I didn't call my parents and I didn't study for the test."
+                },
+                {
+                  "p": "Ask your partner five questions about last weekend.",
+                  "model": "Did you stay at home? Did you watch anything? Who did you call? Where did you walk? Did you cook?"
+                }
+              ]
             },
             {
               "id": "6C",
               "title": "A good story",
               "g": "past simple — irregular verbs",
               "v": "Verbs for stories",
-              "locked": true
+              "grammar": {
+                "h": "past simple &nbsp;·&nbsp; irregular verbs",
+                "rows": [
+                  {
+                    "label": "The first five to learn",
+                    "items": [
+                      "go → <b>went</b>",
+                      "have → <b>had</b>",
+                      "see → <b>saw</b>",
+                      "get → <b>got</b>",
+                      "take → <b>took</b>"
+                    ]
+                  },
+                  {
+                    "label": "Five more",
+                    "items": [
+                      "come → <b>came</b>",
+                      "make → <b>made</b>",
+                      "say → <b>said</b>",
+                      "find → <b>found</b>",
+                      "leave → <b>left</b>"
+                    ]
+                  },
+                  {
+                    "label": "Negative and questions — no different",
+                    "items": [
+                      "I <b>didn't go</b>.",
+                      "<b>Did</b> you see it?",
+                      "She <b>didn't take</b> the bus."
+                    ]
+                  }
+                ],
+                "notes": [
+                  "An irregular verb only changes in the positive. After <b>did</b> or <b>didn't</b> it is plain again: <i>I went</i>, but <i>I didn't go</i>.",
+                  "<b>said</b> sounds like /sed/, not /seɪd/. Learn the sound together with the word.",
+                  "There is no rule for these — they are learned one by one. These ten carry most ordinary conversation.",
+                  "To tell a story, join the sentences with <b>then</b>, <b>after that</b>, <b>so</b> and <b>but</b>."
+                ]
+              },
+              "vocab": [
+                {
+                  "w": "go",
+                  "ipa": "/ɡəʊ/",
+                  "pos": "v",
+                  "def": "past: went — to move from one place to another",
+                  "ex": "We went to the mountains on Sunday."
+                },
+                {
+                  "w": "have",
+                  "ipa": "/hæv/",
+                  "pos": "v",
+                  "def": "past: had — to own something, or to experience it",
+                  "ex": "We had a long lunch."
+                },
+                {
+                  "w": "see",
+                  "ipa": "/siː/",
+                  "pos": "v",
+                  "def": "past: saw — to notice with your eyes",
+                  "ex": "I saw him at the station."
+                },
+                {
+                  "w": "get",
+                  "ipa": "/ɡet/",
+                  "pos": "v",
+                  "def": "past: got — to receive something, or to become",
+                  "ex": "She got a message from her sister."
+                },
+                {
+                  "w": "take",
+                  "ipa": "/teɪk/",
+                  "pos": "v",
+                  "def": "past: took — to carry something, or to use transport",
+                  "ex": "We took a taxi home."
+                },
+                {
+                  "w": "come",
+                  "ipa": "/kʌm/",
+                  "pos": "v",
+                  "def": "past: came — to move towards the speaker",
+                  "ex": "My cousin came at eight."
+                },
+                {
+                  "w": "make",
+                  "ipa": "/meɪk/",
+                  "pos": "v",
+                  "def": "past: made — to create something",
+                  "ex": "My grandmother made bread."
+                },
+                {
+                  "w": "say",
+                  "ipa": "/seɪ/",
+                  "pos": "v",
+                  "def": "past: said /sed/ — to speak words",
+                  "ex": "He said nothing all evening."
+                },
+                {
+                  "w": "find",
+                  "ipa": "/faɪnd/",
+                  "pos": "v",
+                  "def": "past: found — to discover where something is",
+                  "ex": "I found my keys under the sofa."
+                },
+                {
+                  "w": "leave",
+                  "ipa": "/liːv/",
+                  "pos": "v",
+                  "def": "past: left — to go away from a place",
+                  "ex": "They left before midnight."
+                }
+              ],
+              "ex": [
+                {
+                  "t": "mc",
+                  "q": "They ___ to the cinema last night.",
+                  "o": [
+                    "go",
+                    "goed",
+                    "went"
+                  ],
+                  "a": 2
+                },
+                {
+                  "t": "mc",
+                  "q": "I ___ him at the station.",
+                  "o": [
+                    "saw",
+                    "seen",
+                    "seed"
+                  ],
+                  "a": 0
+                },
+                {
+                  "t": "mc",
+                  "q": "She ___ take the bus.",
+                  "o": [
+                    "wasn't",
+                    "didn't",
+                    "doesn't"
+                  ],
+                  "a": 1
+                },
+                {
+                  "t": "gap",
+                  "q": "We ___ a taxi home.",
+                  "a": "took",
+                  "hint": "take"
+                },
+                {
+                  "t": "gap",
+                  "q": "My grandmother ___ bread yesterday.",
+                  "a": "made",
+                  "hint": "make"
+                },
+                {
+                  "t": "gap",
+                  "q": "I ___ my keys under the sofa.",
+                  "a": "found",
+                  "hint": "find"
+                },
+                {
+                  "t": "gap",
+                  "q": "He ___ nothing all evening.",
+                  "a": "said",
+                  "hint": "say"
+                },
+                {
+                  "t": "order",
+                  "a": "We went to the mountains on Sunday."
+                },
+                {
+                  "t": "order",
+                  "a": "Did you see the film yesterday?"
+                },
+                {
+                  "t": "transform",
+                  "instr": "Put it in the past.",
+                  "q": "I take the bus to work.",
+                  "a": [
+                    "I took the bus to work."
+                  ]
+                },
+                {
+                  "t": "transform",
+                  "instr": "Make it negative.",
+                  "q": "She came at eight.",
+                  "a": [
+                    "She didn't come at eight.",
+                    "She did not come at eight."
+                  ]
+                },
+                {
+                  "t": "match",
+                  "pairs": [
+                    [
+                      "go",
+                      "went"
+                    ],
+                    [
+                      "see",
+                      "saw"
+                    ],
+                    [
+                      "take",
+                      "took"
+                    ],
+                    [
+                      "find",
+                      "found"
+                    ]
+                  ]
+                },
+                {
+                  "t": "dictation",
+                  "a": "We took a taxi and got home before midnight."
+                },
+                {
+                  "t": "listen",
+                  "text": "On Saturday we went to the mountains. We left at seven and got there at nine. My friend made tea and we had lunch outside. It was cold, but we had a very good day.",
+                  "q": "What time did they get there?",
+                  "o": [
+                    "At seven",
+                    "At nine",
+                    "At lunch"
+                  ],
+                  "a": 1
+                }
+              ],
+              "speak": [
+                {
+                  "p": "Tell the story of your last weekend in five sentences.",
+                  "model": "On Saturday I went to the market. Then I made lunch for my family. After that we took a walk in the park, but it got cold, so we came home early."
+                },
+                {
+                  "p": "Say three things you saw or found this week.",
+                  "model": "I saw an old friend on the bus. I found a good café near the office. I saw a very long queue at the bank."
+                },
+                {
+                  "p": "Ask your partner about a trip they took.",
+                  "model": "Where did you go? When did you leave? What did you see? Did you have a good time?"
+                }
+              ]
             }
           ],
-          "locked": true
+          "test": [
+            {
+              "t": "mc",
+              "q": "We ___ at home yesterday.",
+              "o": [
+                "was",
+                "were",
+                "are"
+              ],
+              "a": 1
+            },
+            {
+              "t": "mc",
+              "q": "They ___ to the cinema last night.",
+              "o": [
+                "go",
+                "goed",
+                "went"
+              ],
+              "a": 2
+            },
+            {
+              "t": "gap",
+              "q": "I ___ born in Shymkent.",
+              "a": "was",
+              "hint": "be, past"
+            },
+            {
+              "t": "gap",
+              "q": "She ___ call me yesterday.",
+              "a": "didn't",
+              "hint": "negative"
+            },
+            {
+              "t": "gap",
+              "q": "We moved here two years ___.",
+              "a": "ago",
+              "hint": "before now"
+            },
+            {
+              "t": "order",
+              "a": "Did you watch the film last night?"
+            },
+            {
+              "t": "transform",
+              "instr": "Put it in the past.",
+              "q": "I take the bus to work.",
+              "a": [
+                "I took the bus to work."
+              ]
+            },
+            {
+              "t": "match",
+              "pairs": [
+                [
+                  "yesterday",
+                  "the day before today"
+                ],
+                [
+                  "ago",
+                  "before now"
+                ],
+                [
+                  "see",
+                  "saw"
+                ],
+                [
+                  "birthday",
+                  "the day of the year you were born"
+                ]
+              ]
+            }
+          ]
         },
         {
           "n": 7,
