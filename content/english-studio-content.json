@@ -5900,24 +5900,857 @@
               "title": "In the kitchen",
               "g": "countable & uncountable nouns",
               "v": "Food",
-              "locked": true
+              "grammar": {
+                "h": "countable and uncountable &nbsp;·&nbsp; a, some, any",
+                "rows": [
+                  {
+                    "label": "Countable — you can count them",
+                    "items": [
+                      "<b>an</b> apple → two apple<b>s</b>",
+                      "<b>a</b> potato → some potato<b>es</b>",
+                      "There <b>are</b> some eggs in the fridge."
+                    ]
+                  },
+                  {
+                    "label": "Uncountable — no plural, no a",
+                    "items": [
+                      "<b>some</b> bread, <b>some</b> rice, <b>some</b> water",
+                      "There <b>is</b> some cheese on the table.",
+                      "never <i>a bread</i>, never <i>two breads</i>"
+                    ]
+                  },
+                  {
+                    "label": "some and any",
+                    "items": [
+                      "We have <b>some</b> milk. (+)",
+                      "We haven't got <b>any</b> milk. (−)",
+                      "Is there <b>any</b> milk? (?)"
+                    ]
+                  }
+                ],
+                "notes": [
+                  "<b>a</b> and <b>an</b> go only with a countable noun in the singular. An uncountable noun takes <b>some</b> or nothing at all.",
+                  "<b>some</b> in positive sentences, <b>any</b> in negatives and questions. The exception is an offer: <i>Would you like some tea?</i>",
+                  "An uncountable noun is always singular: <i>the rice <b>is</b> ready</i>, never <i>are</i>.",
+                  "To count an uncountable noun, put a container or a piece in front of it: <i>a bottle of water</i>, <i>a piece of cheese</i>."
+                ]
+              },
+              "vocab": [
+                {
+                  "w": "bread",
+                  "ipa": "/bred/",
+                  "pos": "n",
+                  "def": "food made from flour and baked in an oven",
+                  "ex": "There is fresh bread in the kitchen."
+                },
+                {
+                  "w": "cheese",
+                  "ipa": "/tʃiːz/",
+                  "pos": "n",
+                  "def": "a solid food made from milk",
+                  "ex": "I would like some cheese with the bread."
+                },
+                {
+                  "w": "rice",
+                  "ipa": "/raɪs/",
+                  "pos": "n",
+                  "def": "small white grains that you boil",
+                  "ex": "We eat rice with almost everything."
+                },
+                {
+                  "w": "meat",
+                  "ipa": "/miːt/",
+                  "pos": "n",
+                  "def": "the flesh of an animal, eaten as food",
+                  "ex": "He doesn't eat meat."
+                },
+                {
+                  "w": "egg",
+                  "ipa": "/eɡ/",
+                  "pos": "n",
+                  "def": "a round food that comes from a bird",
+                  "ex": "There are six eggs in the fridge."
+                },
+                {
+                  "w": "apple",
+                  "ipa": "/ˈæpl/",
+                  "pos": "n",
+                  "def": "a round hard fruit, red or green",
+                  "ex": "She has an apple every morning."
+                },
+                {
+                  "w": "potato",
+                  "ipa": "/pəˈteɪtəʊ/",
+                  "pos": "n",
+                  "def": "a vegetable that grows in the ground",
+                  "ex": "Buy two kilos of potatoes."
+                },
+                {
+                  "w": "milk",
+                  "ipa": "/mɪlk/",
+                  "pos": "n",
+                  "def": "the white drink that comes from a cow",
+                  "ex": "Is there any milk left?"
+                },
+                {
+                  "w": "sugar",
+                  "ipa": "/ˈʃʊɡə/",
+                  "pos": "n",
+                  "def": "the sweet white food you put in tea",
+                  "ex": "I don't take sugar."
+                },
+                {
+                  "w": "fridge",
+                  "ipa": "/frɪdʒ/",
+                  "pos": "n",
+                  "def": "the cold cupboard that keeps food fresh",
+                  "ex": "The cheese is in the fridge."
+                }
+              ],
+              "ex": [
+                {
+                  "t": "mc",
+                  "q": "Is there ___ milk in the fridge?",
+                  "o": [
+                    "some",
+                    "any",
+                    "a"
+                  ],
+                  "a": 1
+                },
+                {
+                  "t": "mc",
+                  "q": "There ___ some cheese on the table.",
+                  "o": [
+                    "is",
+                    "are",
+                    "be"
+                  ],
+                  "a": 0
+                },
+                {
+                  "t": "mc",
+                  "q": "I would like ___ apple.",
+                  "o": [
+                    "a",
+                    "an",
+                    "some"
+                  ],
+                  "a": 1
+                },
+                {
+                  "t": "gap",
+                  "q": "We haven't got ___ bread.",
+                  "a": "any",
+                  "hint": "negative"
+                },
+                {
+                  "t": "gap",
+                  "q": "There are six ___ in the fridge.",
+                  "a": "eggs",
+                  "hint": "egg"
+                },
+                {
+                  "t": "gap",
+                  "q": "Buy two kilos of ___.",
+                  "a": "potatoes",
+                  "hint": "potato"
+                },
+                {
+                  "t": "gap",
+                  "q": "I don't take ___ in my tea.",
+                  "a": "sugar",
+                  "hint": "sweet and white"
+                },
+                {
+                  "t": "order",
+                  "a": "There is some cheese in the fridge."
+                },
+                {
+                  "t": "order",
+                  "a": "Are there any eggs in the kitchen?"
+                },
+                {
+                  "t": "transform",
+                  "instr": "Make it negative.",
+                  "q": "We have some rice.",
+                  "a": [
+                    "We don't have any rice.",
+                    "We do not have any rice."
+                  ]
+                },
+                {
+                  "t": "transform",
+                  "instr": "Make it a question.",
+                  "q": "There is some milk.",
+                  "a": [
+                    "Is there any milk?"
+                  ]
+                },
+                {
+                  "t": "match",
+                  "pairs": [
+                    [
+                      "fridge",
+                      "the cold cupboard for food"
+                    ],
+                    [
+                      "sugar",
+                      "the sweet white food for tea"
+                    ],
+                    [
+                      "potato",
+                      "a vegetable from the ground"
+                    ],
+                    [
+                      "cheese",
+                      "a food made from milk"
+                    ]
+                  ]
+                },
+                {
+                  "t": "sort",
+                  "instr": "Can you count it?",
+                  "groups": [
+                    {
+                      "label": "countable",
+                      "items": [
+                        "egg",
+                        "apple",
+                        "potato",
+                        "sandwich"
+                      ]
+                    },
+                    {
+                      "label": "uncountable",
+                      "items": [
+                        "bread",
+                        "rice",
+                        "milk",
+                        "sugar"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "t": "dictation",
+                  "a": "There is some cheese and there are six eggs."
+                },
+                {
+                  "t": "listen",
+                  "text": "Let me look in the fridge. There is some milk and there are three eggs, but there isn't any cheese. We have bread, so I can make sandwiches.",
+                  "q": "What is not in the fridge?",
+                  "o": [
+                    "Milk",
+                    "Eggs",
+                    "Cheese"
+                  ],
+                  "a": 2
+                }
+              ],
+              "speak": [
+                {
+                  "p": "Say what is in your fridge right now.",
+                  "model": "There is some milk and some cheese, there are four eggs, but there isn't any meat."
+                },
+                {
+                  "p": "Say three foods you eat often and one you never eat.",
+                  "model": "I eat bread, rice and eggs almost every day. I never eat meat."
+                },
+                {
+                  "p": "Ask your partner five questions about food at their home.",
+                  "model": "Is there any bread? Are there any apples? Do you eat rice? Is there any sugar in your tea? Who cooks?"
+                }
+              ]
             },
             {
               "id": "8B",
               "title": "How much?",
               "g": "how much / how many; quantifiers",
               "v": "Containers & quantity",
-              "locked": true
+              "grammar": {
+                "h": "how much / how many &nbsp;·&nbsp; saying the amount",
+                "rows": [
+                  {
+                    "label": "Asking",
+                    "items": [
+                      "<b>How many</b> eggs do we need? — countable",
+                      "<b>How much</b> sugar do you take? — uncountable"
+                    ]
+                  },
+                  {
+                    "label": "Saying the amount",
+                    "items": [
+                      "<b>a lot of</b> — both: <i>a lot of people</i>, <i>a lot of water</i>",
+                      "<b>a few</b> — countable: <i>a few apples</i>",
+                      "<b>a little</b> — uncountable: <i>a little milk</i>",
+                      "<b>not many</b> / <b>not much</b>: <i>not many shops</i>, <i>not much time</i>"
+                    ]
+                  },
+                  {
+                    "label": "Containers",
+                    "items": [
+                      "a <b>bottle</b> of water",
+                      "a <b>cup</b> of tea",
+                      "a <b>piece</b> of cheese",
+                      "a <b>kilo</b> of potatoes"
+                    ]
+                  }
+                ],
+                "notes": [
+                  "<b>many</b> and <b>a few</b> go with things you count; <b>much</b> and <b>a little</b> with things you do not.",
+                  "<b>a lot of</b> works with both, which makes it the safe choice when you are not sure.",
+                  "In a positive sentence <b>a lot of</b> sounds far more natural than <b>much</b>: <i>We have a lot of time.</i>",
+                  "A container makes an uncountable noun countable: <i>two bottles of water</i>, <i>three cups of tea</i>."
+                ]
+              },
+              "vocab": [
+                {
+                  "w": "bottle",
+                  "ipa": "/ˈbɒtl/",
+                  "pos": "n",
+                  "def": "a tall glass or plastic container for drinks",
+                  "ex": "Buy two bottles of water."
+                },
+                {
+                  "w": "cup",
+                  "ipa": "/kʌp/",
+                  "pos": "n",
+                  "def": "a small container you drink hot things from",
+                  "ex": "She had three cups of coffee."
+                },
+                {
+                  "w": "glass",
+                  "ipa": "/ɡlɑːs/",
+                  "pos": "n",
+                  "def": "a container you drink cold things from",
+                  "ex": "A glass of water, please."
+                },
+                {
+                  "w": "packet",
+                  "ipa": "/ˈpækɪt/",
+                  "pos": "n",
+                  "def": "a small paper or plastic container from a shop",
+                  "ex": "We need a packet of tea."
+                },
+                {
+                  "w": "kilo",
+                  "ipa": "/ˈkiːləʊ/",
+                  "pos": "n",
+                  "def": "a thousand grams",
+                  "ex": "Half a kilo of cheese, please."
+                },
+                {
+                  "w": "piece",
+                  "ipa": "/piːs/",
+                  "pos": "n",
+                  "def": "a part of something bigger",
+                  "ex": "Would you like a piece of bread?"
+                },
+                {
+                  "w": "a few",
+                  "ipa": "/ə ˈfjuː/",
+                  "pos": "det",
+                  "def": "a small number of things you can count",
+                  "ex": "There are a few apples left."
+                },
+                {
+                  "w": "enough",
+                  "ipa": "/ɪˈnʌf/",
+                  "pos": "adj",
+                  "def": "as much or as many as you need",
+                  "ex": "We don't have enough chairs."
+                },
+                {
+                  "w": "a lot of",
+                  "ipa": "/ə ˈlɒt əv/",
+                  "pos": "det",
+                  "def": "a large amount or a large number",
+                  "ex": "There were a lot of people at the market."
+                },
+                {
+                  "w": "full",
+                  "ipa": "/fʊl/",
+                  "pos": "adj",
+                  "def": "with no space left inside",
+                  "ex": "The bottle is full."
+                }
+              ],
+              "ex": [
+                {
+                  "t": "mc",
+                  "q": "How ___ sugar do you take?",
+                  "o": [
+                    "many",
+                    "much",
+                    "lot"
+                  ],
+                  "a": 1
+                },
+                {
+                  "t": "mc",
+                  "q": "How ___ people are in your class?",
+                  "o": [
+                    "many",
+                    "much",
+                    "lot"
+                  ],
+                  "a": 0
+                },
+                {
+                  "t": "mc",
+                  "q": "There are ___ apples left.",
+                  "o": [
+                    "a little",
+                    "a few",
+                    "much"
+                  ],
+                  "a": 1
+                },
+                {
+                  "t": "gap",
+                  "q": "Just ___ little milk, thank you.",
+                  "a": "a",
+                  "hint": "___ little"
+                },
+                {
+                  "t": "gap",
+                  "q": "We don't have ___ chairs for everybody.",
+                  "a": "enough",
+                  "hint": "as many as you need"
+                },
+                {
+                  "t": "gap",
+                  "q": "Buy two ___ of water.",
+                  "a": "bottles",
+                  "hint": "bottle"
+                },
+                {
+                  "t": "gap",
+                  "q": "Would you like a ___ of bread?",
+                  "a": "piece",
+                  "hint": "a part of something"
+                },
+                {
+                  "t": "order",
+                  "a": "How many eggs do we need?"
+                },
+                {
+                  "t": "order",
+                  "a": "There were a lot of people at the market."
+                },
+                {
+                  "t": "transform",
+                  "instr": "Write the question with how much or how many.",
+                  "q": "___ time do we have?",
+                  "a": [
+                    "How much time do we have?"
+                  ]
+                },
+                {
+                  "t": "transform",
+                  "instr": "Write the question with how much or how many.",
+                  "q": "___ chairs are there?",
+                  "a": [
+                    "How many chairs are there?"
+                  ]
+                },
+                {
+                  "t": "match",
+                  "pairs": [
+                    [
+                      "bottle",
+                      "a tall container for drinks"
+                    ],
+                    [
+                      "packet",
+                      "a small paper or plastic container"
+                    ],
+                    [
+                      "kilo",
+                      "a thousand grams"
+                    ],
+                    [
+                      "full",
+                      "with no space left"
+                    ]
+                  ]
+                },
+                {
+                  "t": "sort",
+                  "instr": "Which question word goes with each one?",
+                  "groups": [
+                    {
+                      "label": "how much",
+                      "items": [
+                        "water",
+                        "time",
+                        "sugar",
+                        "bread"
+                      ]
+                    },
+                    {
+                      "label": "how many",
+                      "items": [
+                        "eggs",
+                        "people",
+                        "bottles",
+                        "chairs"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "t": "dictation",
+                  "a": "How much sugar do you take in your tea?"
+                },
+                {
+                  "t": "listen",
+                  "text": "For the salad we need a kilo of tomatoes, a packet of cheese and a little oil. We have a few onions at home, so don't buy any.",
+                  "q": "What should they not buy?",
+                  "o": [
+                    "Tomatoes",
+                    "Cheese",
+                    "Onions"
+                  ],
+                  "a": 2
+                }
+              ],
+              "speak": [
+                {
+                  "p": "You are making a shopping list for a dinner. Say what you need and how much.",
+                  "model": "We need a kilo of potatoes, two bottles of water, a packet of tea and a few apples."
+                },
+                {
+                  "p": "Ask your partner four questions with how much and how many.",
+                  "model": "How much tea do you drink? How many cups a day? How much time do you have for lunch? How many people live with you?"
+                },
+                {
+                  "p": "Say three things you have a lot of and three you don't have enough of.",
+                  "model": "I have a lot of books, a lot of photographs and a lot of tea. I don't have enough time, enough chairs or enough sleep."
+                }
+              ]
             },
             {
               "id": "8C",
               "title": "Eating out",
               "g": "would like vs like",
               "v": "Restaurant language",
-              "locked": true
+              "grammar": {
+                "h": "would like &nbsp;·&nbsp; and how it differs from like",
+                "rows": [
+                  {
+                    "label": "would like = want, politely",
+                    "items": [
+                      "I<b>'d like</b> a coffee, please.",
+                      "She<b>'d like</b> the soup.",
+                      "<b>Would</b> you <b>like</b> a dessert?",
+                      "Yes, please. / No, thank you."
+                    ]
+                  },
+                  {
+                    "label": "like = enjoy, in general",
+                    "items": [
+                      "I <b>like</b> coffee. — always, in general",
+                      "I<b>'d like</b> a coffee. — now, this once"
+                    ]
+                  },
+                  {
+                    "label": "In the restaurant",
+                    "items": [
+                      "Can I have the menu, please?",
+                      "I'd like the chicken, please.",
+                      "Could we have the bill?"
+                    ]
+                  }
+                ],
+                "notes": [
+                  "<b>would like</b> takes a noun or <b>to</b> + verb: <i>I'd like a table</i>, <i>I'd like to book a table</i>.",
+                  "After <b>like</b> comes <b>-ing</b>, after <b>would like</b> comes <b>to</b>: <i>I like cooking</i>, but <i>I'd like to cook tonight</i>.",
+                  "<b>'d</b> is short for <b>would</b>. It looks the same as the <b>'d</b> in <i>had</i>, and only the sentence tells you which one it is.",
+                  "An offer keeps <b>some</b>, not <b>any</b>: <i>Would you like some water?</i>"
+                ]
+              },
+              "vocab": [
+                {
+                  "w": "menu",
+                  "ipa": "/ˈmenjuː/",
+                  "pos": "n",
+                  "def": "the list of dishes in a restaurant",
+                  "ex": "Can I have the menu, please?"
+                },
+                {
+                  "w": "order",
+                  "ipa": "/ˈɔːdə/",
+                  "pos": "v",
+                  "def": "to ask for food in a restaurant",
+                  "ex": "We ordered soup and bread."
+                },
+                {
+                  "w": "bill",
+                  "ipa": "/bɪl/",
+                  "pos": "n",
+                  "def": "the paper that says what you must pay",
+                  "ex": "Could we have the bill, please?"
+                },
+                {
+                  "w": "waiter",
+                  "ipa": "/ˈweɪtə/",
+                  "pos": "n",
+                  "def": "the person who brings your food",
+                  "ex": "The waiter was very quick."
+                },
+                {
+                  "w": "starter",
+                  "ipa": "/ˈstɑːtə/",
+                  "pos": "n",
+                  "def": "the first small dish of a meal",
+                  "ex": "I would like a salad as a starter."
+                },
+                {
+                  "w": "main course",
+                  "ipa": "/ˌmeɪn ˈkɔːs/",
+                  "pos": "n",
+                  "def": "the biggest dish of a meal",
+                  "ex": "For the main course I would like the fish."
+                },
+                {
+                  "w": "dessert",
+                  "ipa": "/dɪˈzɜːt/",
+                  "pos": "n",
+                  "def": "the sweet dish at the end of a meal",
+                  "ex": "Would you like a dessert?"
+                },
+                {
+                  "w": "book",
+                  "ipa": "/bʊk/",
+                  "pos": "v",
+                  "def": "to keep a place or a table for later",
+                  "ex": "I would like to book a table for four."
+                },
+                {
+                  "w": "soup",
+                  "ipa": "/suːp/",
+                  "pos": "n",
+                  "def": "a hot liquid food you eat with a spoon",
+                  "ex": "The soup of the day is tomato."
+                },
+                {
+                  "w": "delicious",
+                  "ipa": "/dɪˈlɪʃəs/",
+                  "pos": "adj",
+                  "def": "very good to eat",
+                  "ex": "Everything was delicious, thank you."
+                }
+              ],
+              "ex": [
+                {
+                  "t": "mc",
+                  "q": "I ___ a coffee, please.",
+                  "o": [
+                    "like",
+                    "'d like",
+                    "am liking"
+                  ],
+                  "a": 1
+                },
+                {
+                  "t": "mc",
+                  "q": "___ you like a dessert?",
+                  "o": [
+                    "Do",
+                    "Would",
+                    "Are"
+                  ],
+                  "a": 1
+                },
+                {
+                  "t": "mc",
+                  "q": "I like ___, but tonight I'd like to eat out.",
+                  "o": [
+                    "cook",
+                    "cooking",
+                    "to cook"
+                  ],
+                  "a": 1
+                },
+                {
+                  "t": "gap",
+                  "q": "I'd like ___ book a table for four.",
+                  "a": "to",
+                  "hint": "would like ___ + verb"
+                },
+                {
+                  "t": "gap",
+                  "q": "Could we have the ___, please?",
+                  "a": "bill",
+                  "hint": "what you pay"
+                },
+                {
+                  "t": "gap",
+                  "q": "Would you like ___ water?",
+                  "a": "some",
+                  "hint": "an offer"
+                },
+                {
+                  "t": "gap",
+                  "q": "For the main ___ I would like the fish.",
+                  "a": "course",
+                  "hint": "the biggest dish"
+                },
+                {
+                  "t": "order",
+                  "a": "I would like to book a table for four."
+                },
+                {
+                  "t": "order",
+                  "a": "Would you like a dessert?"
+                },
+                {
+                  "t": "transform",
+                  "instr": "Say it politely with would like.",
+                  "q": "I want a glass of water.",
+                  "a": [
+                    "I'd like a glass of water.",
+                    "I would like a glass of water."
+                  ]
+                },
+                {
+                  "t": "transform",
+                  "instr": "Say it politely with would like.",
+                  "q": "We want to order now.",
+                  "a": [
+                    "We'd like to order now.",
+                    "We would like to order now."
+                  ]
+                },
+                {
+                  "t": "match",
+                  "pairs": [
+                    [
+                      "menu",
+                      "the list of dishes"
+                    ],
+                    [
+                      "bill",
+                      "the paper that says what you must pay"
+                    ],
+                    [
+                      "starter",
+                      "the first small dish of a meal"
+                    ],
+                    [
+                      "dessert",
+                      "the sweet dish at the end"
+                    ]
+                  ]
+                },
+                {
+                  "t": "dictation",
+                  "a": "I would like the soup and a glass of water."
+                },
+                {
+                  "t": "listen",
+                  "text": "Good evening. For the starter I would like the soup, and for the main course the chicken, please. No dessert, thank you — just a coffee at the end.",
+                  "q": "What does the customer not want?",
+                  "o": [
+                    "Soup",
+                    "Chicken",
+                    "Dessert"
+                  ],
+                  "a": 2
+                }
+              ],
+              "speak": [
+                {
+                  "p": "You are in a restaurant. Order a starter, a main course and something to drink.",
+                  "model": "I would like the soup as a starter, and for the main course the chicken, please. And a glass of water."
+                },
+                {
+                  "p": "Say the difference between what you like and what you would like right now.",
+                  "model": "I like tea, but right now I would like a coffee. I like cooking, but tonight I would like to eat out."
+                },
+                {
+                  "p": "Phone a restaurant and book a table.",
+                  "model": "Good evening. I would like to book a table for four people, for Friday at eight. The name is Aigerim."
+                }
+              ]
             }
           ],
-          "locked": true
+          "test": [
+            {
+              "t": "mc",
+              "q": "Is there ___ milk in the fridge?",
+              "o": [
+                "some",
+                "any",
+                "a"
+              ],
+              "a": 1
+            },
+            {
+              "t": "mc",
+              "q": "How ___ people are in your class?",
+              "o": [
+                "many",
+                "much",
+                "lot"
+              ],
+              "a": 0
+            },
+            {
+              "t": "gap",
+              "q": "We haven't got ___ bread.",
+              "a": "any",
+              "hint": "negative"
+            },
+            {
+              "t": "gap",
+              "q": "How ___ sugar do you take?",
+              "a": "much",
+              "hint": "uncountable"
+            },
+            {
+              "t": "gap",
+              "q": "I'd like ___ book a table for four.",
+              "a": "to",
+              "hint": "would like ___ + verb"
+            },
+            {
+              "t": "order",
+              "a": "There is some cheese in the fridge."
+            },
+            {
+              "t": "transform",
+              "instr": "Say it politely with would like.",
+              "q": "I want a glass of water.",
+              "a": [
+                "I'd like a glass of water.",
+                "I would like a glass of water."
+              ]
+            },
+            {
+              "t": "match",
+              "pairs": [
+                [
+                  "fridge",
+                  "the cold cupboard for food"
+                ],
+                [
+                  "bottle",
+                  "a tall container for drinks"
+                ],
+                [
+                  "bill",
+                  "the paper that says what you must pay"
+                ],
+                [
+                  "dessert",
+                  "the sweet dish at the end"
+                ]
+              ]
+            }
+          ]
         },
         {
           "n": 9,

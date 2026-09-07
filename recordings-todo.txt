@@ -227,3 +227,48 @@ twenty-years-ago-this-street-was-very-quiet-there-were-no-ca.mp3  |  Twenty year
 ten-years-ago-there-were-two-small-shops-and-it-was-quiet-no.mp3  |  Ten years ago there were two small shops and it was quiet. Now there is a supermarket and it is very noisy.
 it-was-an-old-house-with-three-rooms-there-wasn-t-a-bathroom.mp3  |  It was an old house with three rooms. There wasn't a bathroom inside, but there was a big garden behind it.
 was-it-quiet-or-noisy-were-there-many-children-in-the-street.mp3  |  Was it quiet or noisy? Were there many children in the street? Was there a park near your house?
+bread-there-is-fresh-bread-in-the-kitchen.mp3  |  bread. There is fresh bread in the kitchen.
+cheese-i-would-like-some-cheese-with-the-bread.mp3  |  cheese. I would like some cheese with the bread.
+rice-we-eat-rice-with-almost-everything.mp3  |  rice. We eat rice with almost everything.
+meat-he-doesn-t-eat-meat.mp3  |  meat. He doesn't eat meat.
+egg-there-are-six-eggs-in-the-fridge.mp3  |  egg. There are six eggs in the fridge.
+apple-she-has-an-apple-every-morning.mp3  |  apple. She has an apple every morning.
+potato-buy-two-kilos-of-potatoes.mp3  |  potato. Buy two kilos of potatoes.
+milk-is-there-any-milk-left.mp3  |  milk. Is there any milk left?
+sugar-i-don-t-take-sugar.mp3  |  sugar. I don't take sugar.
+fridge-the-cheese-is-in-the-fridge.mp3  |  fridge. The cheese is in the fridge.
+there-is-some-cheese-and-there-are-six-eggs.mp3  |  There is some cheese and there are six eggs.
+let-me-look-in-the-fridge-there-is-some-milk-and-there-are-t.mp3  |  Let me look in the fridge. There is some milk and there are three eggs, but there isn't any cheese. We have bread, so I can make sandwiches.
+there-is-some-milk-and-some-cheese-there-are-four-eggs-but-t.mp3  |  There is some milk and some cheese, there are four eggs, but there isn't any meat.
+i-eat-bread-rice-and-eggs-almost-every-day-i-never-eat-meat.mp3  |  I eat bread, rice and eggs almost every day. I never eat meat.
+is-there-any-bread-are-there-any-apples-do-you-eat-rice-is-t.mp3  |  Is there any bread? Are there any apples? Do you eat rice? Is there any sugar in your tea? Who cooks?
+bottle-buy-two-bottles-of-water.mp3  |  bottle. Buy two bottles of water.
+cup-she-had-three-cups-of-coffee.mp3  |  cup. She had three cups of coffee.
+glass-a-glass-of-water-please.mp3  |  glass. A glass of water, please.
+packet-we-need-a-packet-of-tea.mp3  |  packet. We need a packet of tea.
+kilo-half-a-kilo-of-cheese-please.mp3  |  kilo. Half a kilo of cheese, please.
+piece-would-you-like-a-piece-of-bread.mp3  |  piece. Would you like a piece of bread?
+a-few-there-are-a-few-apples-left.mp3  |  a few. There are a few apples left.
+enough-we-don-t-have-enough-chairs.mp3  |  enough. We don't have enough chairs.
+a-lot-of-there-were-a-lot-of-people-at-the-market.mp3  |  a lot of. There were a lot of people at the market.
+full-the-bottle-is-full.mp3  |  full. The bottle is full.
+how-much-sugar-do-you-take-in-your-tea.mp3  |  How much sugar do you take in your tea?
+for-the-salad-we-need-a-kilo-of-tomatoes-a-packet-of-cheese-.mp3  |  For the salad we need a kilo of tomatoes, a packet of cheese and a little oil. We have a few onions at home, so don't buy any.
+we-need-a-kilo-of-potatoes-two-bottles-of-water-a-packet-of-.mp3  |  We need a kilo of potatoes, two bottles of water, a packet of tea and a few apples.
+how-much-tea-do-you-drink-how-many-cups-a-day-how-much-time-.mp3  |  How much tea do you drink? How many cups a day? How much time do you have for lunch? How many people live with you?
+i-have-a-lot-of-books-a-lot-of-photographs-and-a-lot-of-tea-.mp3  |  I have a lot of books, a lot of photographs and a lot of tea. I don't have enough time, enough chairs or enough sleep.
+menu-can-i-have-the-menu-please.mp3  |  menu. Can I have the menu, please?
+order-we-ordered-soup-and-bread.mp3  |  order. We ordered soup and bread.
+bill-could-we-have-the-bill-please.mp3  |  bill. Could we have the bill, please?
+waiter-the-waiter-was-very-quick.mp3  |  waiter. The waiter was very quick.
+starter-i-would-like-a-salad-as-a-starter.mp3  |  starter. I would like a salad as a starter.
+main-course-for-the-main-course-i-would-like-the-fish.mp3  |  main course. For the main course I would like the fish.
+dessert-would-you-like-a-dessert.mp3  |  dessert. Would you like a dessert?
+book-i-would-like-to-book-a-table-for-four.mp3  |  book. I would like to book a table for four.
+soup-the-soup-of-the-day-is-tomato.mp3  |  soup. The soup of the day is tomato.
+delicious-everything-was-delicious-thank-you.mp3  |  delicious. Everything was delicious, thank you.
+i-would-like-the-soup-and-a-glass-of-water.mp3  |  I would like the soup and a glass of water.
+good-evening-for-the-starter-i-would-like-the-soup-and-for-t.mp3  |  Good evening. For the starter I would like the soup, and for the main course the chicken, please. No dessert, thank you — just a coffee at the end.
+i-would-like-the-soup-as-a-starter-and-for-the-main-course-t.mp3  |  I would like the soup as a starter, and for the main course the chicken, please. And a glass of water.
+i-like-tea-but-right-now-i-would-like-a-coffee-i-like-cookin.mp3  |  I like tea, but right now I would like a coffee. I like cooking, but tonight I would like to eat out.
+good-evening-i-would-like-to-book-a-table-for-four-people-fo.mp3  |  Good evening. I would like to book a table for four people, for Friday at eight. The name is Aigerim.

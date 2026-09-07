@@ -38,6 +38,9 @@ const CONTRACTIONS: [RegExp, string][] = [
   [/\b(you|we|they)'?re\b/g, '$1 are'],
   [/\b(i|you|we|they)'?ve\b/g, '$1 have'],
   [/\b(i|you|we|they|he|she|it)'?ll\b/g, '$1 will'],
+  // Unit 8C teaches "I'd like". Only that sense is expanded: 'd is also
+  // "had", and guessing which one is meant would break more than it fixes.
+  [/\b(i|you|we|they|he|she|it)'?d like\b/g, '$1 would like'],
   [/\b(he|she|it|that|this|there|what|who|where)'?s\b/g, '$1 is'],
 ];
 
