@@ -5037,24 +5037,856 @@
               "title": "My place",
               "g": "there is / there are",
               "v": "The house & rooms",
-              "locked": true
+              "grammar": {
+                "h": "there is / there are &nbsp;·&nbsp; what a place has",
+                "rows": [
+                  {
+                    "label": "Positive",
+                    "items": [
+                      "<b>There is</b> a lift in the building.",
+                      "<b>There's</b> a big window in the kitchen.",
+                      "<b>There are</b> two bedrooms.",
+                      "<b>There are</b> some chairs on the balcony."
+                    ]
+                  },
+                  {
+                    "label": "Negative and questions",
+                    "items": [
+                      "<b>There isn't</b> a garage.",
+                      "<b>There aren't</b> any shops near here.",
+                      "<b>Is there</b> a lift? — Yes, there <b>is</b>. / No, there <b>isn't</b>.",
+                      "<b>Are there</b> any windows? — Yes, there <b>are</b>."
+                    ]
+                  },
+                  {
+                    "label": "In sentences",
+                    "items": [
+                      "There are three rooms and a small kitchen.",
+                      "Is there a shop in your street?",
+                      "There isn't any furniture in the flat yet."
+                    ]
+                  }
+                ],
+                "notes": [
+                  "<b>There is</b> for one thing, <b>there are</b> for two or more. The verb agrees with what comes <b>after</b> it, not with <i>there</i>.",
+                  "Questions and negatives take <b>any</b>: <i>Are there any shops?</i>, <i>There aren't any chairs.</i>",
+                  "<b>There's</b> is short for <i>there is</i>. <i>There are</i> has no short form.",
+                  "<b>there</b> is this structure; <b>their</b> means belonging to them. They sound the same and are not the same word."
+                ]
+              },
+              "vocab": [
+                {
+                  "w": "flat",
+                  "ipa": "/flæt/",
+                  "pos": "n",
+                  "def": "a home on one floor inside a building",
+                  "ex": "Our flat is on the fourth floor."
+                },
+                {
+                  "w": "house",
+                  "ipa": "/haʊs/",
+                  "pos": "n",
+                  "def": "a building where one family lives",
+                  "ex": "They have a small house outside the city."
+                },
+                {
+                  "w": "kitchen",
+                  "ipa": "/ˈkɪtʃɪn/",
+                  "pos": "n",
+                  "def": "the room where you cook",
+                  "ex": "The kitchen is the warmest room."
+                },
+                {
+                  "w": "bedroom",
+                  "ipa": "/ˈbedruːm/",
+                  "pos": "n",
+                  "def": "the room where you sleep",
+                  "ex": "There are two bedrooms in our flat."
+                },
+                {
+                  "w": "bathroom",
+                  "ipa": "/ˈbɑːθruːm/",
+                  "pos": "n",
+                  "def": "the room with a bath or a shower",
+                  "ex": "The bathroom is at the end of the corridor."
+                },
+                {
+                  "w": "living room",
+                  "ipa": "/ˈlɪvɪŋ ruːm/",
+                  "pos": "n",
+                  "def": "the room where the family sits together",
+                  "ex": "We watch films in the living room."
+                },
+                {
+                  "w": "balcony",
+                  "ipa": "/ˈbælkəni/",
+                  "pos": "n",
+                  "def": "a small outside floor on the wall of a building",
+                  "ex": "In summer we have breakfast on the balcony."
+                },
+                {
+                  "w": "floor",
+                  "ipa": "/flɔː/",
+                  "pos": "n",
+                  "def": "one level of a building",
+                  "ex": "Our office is on the second floor."
+                },
+                {
+                  "w": "lift",
+                  "ipa": "/lɪft/",
+                  "pos": "n",
+                  "def": "a machine that takes people up and down a building",
+                  "ex": "The lift is broken again."
+                },
+                {
+                  "w": "rent",
+                  "ipa": "/rent/",
+                  "pos": "n",
+                  "def": "money you pay every month to live somewhere",
+                  "ex": "The rent is high in the centre."
+                }
+              ],
+              "ex": [
+                {
+                  "t": "mc",
+                  "q": "___ two windows in my kitchen.",
+                  "o": [
+                    "There is",
+                    "There are",
+                    "It is"
+                  ],
+                  "a": 1
+                },
+                {
+                  "t": "mc",
+                  "q": "___ a lift in your building?",
+                  "o": [
+                    "Is there",
+                    "Are there",
+                    "There is"
+                  ],
+                  "a": 0
+                },
+                {
+                  "t": "mc",
+                  "q": "There ___ any shops near here.",
+                  "o": [
+                    "isn't",
+                    "aren't",
+                    "not"
+                  ],
+                  "a": 1
+                },
+                {
+                  "t": "gap",
+                  "q": "___ there a balcony in the flat?",
+                  "a": "Is",
+                  "hint": "one thing"
+                },
+                {
+                  "t": "gap",
+                  "q": "There ___ three rooms and a kitchen.",
+                  "a": "are",
+                  "hint": "more than one"
+                },
+                {
+                  "t": "gap",
+                  "q": "We watch films in the ___ room.",
+                  "a": "living",
+                  "hint": "the room"
+                },
+                {
+                  "t": "gap",
+                  "q": "The ___ is high in the centre.",
+                  "a": "rent",
+                  "hint": "money every month"
+                },
+                {
+                  "t": "order",
+                  "a": "There are two bedrooms in our flat."
+                },
+                {
+                  "t": "order",
+                  "a": "Is there a shop in your street?"
+                },
+                {
+                  "t": "transform",
+                  "instr": "Make it negative.",
+                  "q": "There is a garage.",
+                  "a": [
+                    "There isn't a garage.",
+                    "There is not a garage."
+                  ]
+                },
+                {
+                  "t": "transform",
+                  "instr": "Make it a question.",
+                  "q": "There are three rooms.",
+                  "a": [
+                    "Are there three rooms?"
+                  ]
+                },
+                {
+                  "t": "match",
+                  "pairs": [
+                    [
+                      "kitchen",
+                      "the room where you cook"
+                    ],
+                    [
+                      "bathroom",
+                      "the room with a bath or a shower"
+                    ],
+                    [
+                      "balcony",
+                      "a small outside floor on a wall"
+                    ],
+                    [
+                      "lift",
+                      "a machine that takes people up and down"
+                    ]
+                  ]
+                },
+                {
+                  "t": "sort",
+                  "instr": "One thing or more than one?",
+                  "groups": [
+                    {
+                      "label": "There is",
+                      "items": [
+                        "a lift",
+                        "a balcony",
+                        "one bathroom",
+                        "a big kitchen"
+                      ]
+                    },
+                    {
+                      "label": "There are",
+                      "items": [
+                        "two bedrooms",
+                        "some chairs",
+                        "three windows",
+                        "four floors"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "t": "dictation",
+                  "a": "There are two bedrooms and a small balcony."
+                },
+                {
+                  "t": "listen",
+                  "text": "Our flat is on the fourth floor. There are three rooms — two bedrooms and a living room. There isn't a balcony, but the kitchen is big and there is a lift in the building.",
+                  "q": "What does the flat not have?",
+                  "o": [
+                    "A lift",
+                    "A balcony",
+                    "A big kitchen"
+                  ],
+                  "a": 1
+                }
+              ],
+              "speak": [
+                {
+                  "p": "Describe your home: how many rooms and what is in them.",
+                  "model": "We live in a flat on the third floor. There are two bedrooms, a living room and a small kitchen. There isn't a balcony."
+                },
+                {
+                  "p": "Say three things there are in your street and one thing there isn't.",
+                  "model": "There is a bakery, there are two cafés and there is a small park. There isn't a supermarket."
+                },
+                {
+                  "p": "Ask your partner five questions about their home.",
+                  "model": "Is there a lift in your building? How many rooms are there? Is there a balcony? Are there shops near you? Is the rent high?"
+                }
+              ]
             },
             {
               "id": "7B",
               "title": "Where is it?",
               "g": "prepositions of place",
               "v": "Furniture",
-              "locked": true
+              "grammar": {
+                "h": "prepositions of place &nbsp;·&nbsp; where something is",
+                "rows": [
+                  {
+                    "label": "Position",
+                    "items": [
+                      "<b>in</b> — inside: <i>in the drawer</i>",
+                      "<b>on</b> — on a surface: <i>on the shelf</i>",
+                      "<b>under</b> — below: <i>under the bed</i>",
+                      "<b>above</b> — higher, not touching: <i>above the sofa</i>"
+                    ]
+                  },
+                  {
+                    "label": "Relations",
+                    "items": [
+                      "<b>next to</b> — at the side of: <i>next to the window</i>",
+                      "<b>between</b> — one on each side: <i>between the bank and the shop</i>",
+                      "<b>in front of</b> — before it: <i>in front of the house</i>",
+                      "<b>behind</b> — at the back of: <i>behind the door</i>"
+                    ]
+                  },
+                  {
+                    "label": "In sentences",
+                    "items": [
+                      "The lamp is on the table, next to the window.",
+                      "My shoes are under the bed.",
+                      "There is a small park behind our building."
+                    ]
+                  }
+                ],
+                "notes": [
+                  "<b>in front of</b> is three words and always keeps its <b>of</b>. Its opposite, <b>behind</b>, takes none.",
+                  "<b>between</b> needs two things: <i>between the sofa and the wall</i>.",
+                  "<b>next to</b> and <b>beside</b> mean the same thing; <b>next to</b> is the everyday one.",
+                  "<b>above</b> does not touch, <b>on</b> does: the picture is <i>above</i> the sofa, the cushion is <i>on</i> it."
+                ]
+              },
+              "vocab": [
+                {
+                  "w": "table",
+                  "ipa": "/ˈteɪbl/",
+                  "pos": "n",
+                  "def": "a flat surface on legs",
+                  "ex": "We eat at the table in the kitchen."
+                },
+                {
+                  "w": "chair",
+                  "ipa": "/tʃeə/",
+                  "pos": "n",
+                  "def": "a seat for one person",
+                  "ex": "Take a chair from the kitchen."
+                },
+                {
+                  "w": "sofa",
+                  "ipa": "/ˈsəʊfə/",
+                  "pos": "n",
+                  "def": "a long soft seat for two or three people",
+                  "ex": "The cat sleeps on the sofa."
+                },
+                {
+                  "w": "bed",
+                  "ipa": "/bed/",
+                  "pos": "n",
+                  "def": "the furniture you sleep on",
+                  "ex": "My bed is next to the window."
+                },
+                {
+                  "w": "wardrobe",
+                  "ipa": "/ˈwɔːdrəʊb/",
+                  "pos": "n",
+                  "def": "a tall cupboard for clothes",
+                  "ex": "Her clothes are in the wardrobe."
+                },
+                {
+                  "w": "shelf",
+                  "ipa": "/ʃelf/",
+                  "pos": "n",
+                  "def": "a flat board on a wall for books or things",
+                  "ex": "There are photographs on the shelf."
+                },
+                {
+                  "w": "lamp",
+                  "ipa": "/læmp/",
+                  "pos": "n",
+                  "def": "a small light you can move",
+                  "ex": "The lamp is on the table."
+                },
+                {
+                  "w": "mirror",
+                  "ipa": "/ˈmɪrə/",
+                  "pos": "n",
+                  "def": "glass that shows you yourself",
+                  "ex": "There is a mirror above the sink."
+                },
+                {
+                  "w": "carpet",
+                  "ipa": "/ˈkɑːpɪt/",
+                  "pos": "n",
+                  "def": "a thick soft cover for the floor",
+                  "ex": "The carpet is old but warm."
+                },
+                {
+                  "w": "curtains",
+                  "ipa": "/ˈkɜːtnz/",
+                  "pos": "n",
+                  "def": "cloth that covers a window",
+                  "ex": "Close the curtains, please."
+                }
+              ],
+              "ex": [
+                {
+                  "t": "mc",
+                  "q": "The café is ___ the bank and the shop.",
+                  "o": [
+                    "between",
+                    "under",
+                    "behind"
+                  ],
+                  "a": 0
+                },
+                {
+                  "t": "mc",
+                  "q": "My shoes are ___ the bed.",
+                  "o": [
+                    "above",
+                    "under",
+                    "next"
+                  ],
+                  "a": 1
+                },
+                {
+                  "t": "mc",
+                  "q": "There is a small park ___ our building.",
+                  "o": [
+                    "in front",
+                    "behind of",
+                    "behind"
+                  ],
+                  "a": 2
+                },
+                {
+                  "t": "gap",
+                  "q": "The lamp is ___ the table.",
+                  "a": "on",
+                  "hint": "a surface"
+                },
+                {
+                  "t": "gap",
+                  "q": "Her clothes are ___ the wardrobe.",
+                  "a": "in",
+                  "hint": "inside"
+                },
+                {
+                  "t": "gap",
+                  "q": "My bed is next ___ the window.",
+                  "a": "to",
+                  "hint": "next ___"
+                },
+                {
+                  "t": "gap",
+                  "q": "There is a mirror ___ the sink.",
+                  "a": "above",
+                  "hint": "higher, not touching"
+                },
+                {
+                  "t": "order",
+                  "a": "The lamp is on the table next to the window."
+                },
+                {
+                  "t": "order",
+                  "a": "There are photographs on the shelf."
+                },
+                {
+                  "t": "transform",
+                  "instr": "Correct the mistake.",
+                  "q": "The car is in front the house.",
+                  "a": [
+                    "The car is in front of the house."
+                  ]
+                },
+                {
+                  "t": "transform",
+                  "instr": "Correct the mistake.",
+                  "q": "The cat sleeps in the sofa.",
+                  "a": [
+                    "The cat sleeps on the sofa."
+                  ]
+                },
+                {
+                  "t": "match",
+                  "pairs": [
+                    [
+                      "wardrobe",
+                      "a tall cupboard for clothes"
+                    ],
+                    [
+                      "shelf",
+                      "a flat board on a wall"
+                    ],
+                    [
+                      "curtains",
+                      "cloth that covers a window"
+                    ],
+                    [
+                      "carpet",
+                      "a thick cover for the floor"
+                    ]
+                  ]
+                },
+                {
+                  "t": "dictation",
+                  "a": "The lamp is on the table next to the sofa."
+                },
+                {
+                  "t": "listen",
+                  "text": "My room is small. The bed is next to the window and there is a wardrobe behind the door. Above the bed there is a shelf with books, and my shoes are under the bed.",
+                  "q": "Where is the wardrobe?",
+                  "o": [
+                    "Next to the window",
+                    "Behind the door",
+                    "Under the bed"
+                  ],
+                  "a": 1
+                }
+              ],
+              "speak": [
+                {
+                  "p": "Describe where five things are in the room you are in now.",
+                  "model": "The lamp is on the table, my bag is under the chair, and there is a picture above the sofa."
+                },
+                {
+                  "p": "Describe your bedroom to somebody who has never seen it.",
+                  "model": "The bed is next to the window. There is a wardrobe behind the door and a small shelf above the bed."
+                },
+                {
+                  "p": "Your partner has lost their keys. Ask five questions to find them.",
+                  "model": "Are they on the table? Are they in your jacket? Did you look under the sofa? Are they behind the door? On the shelf?"
+                }
+              ]
             },
             {
               "id": "7C",
               "title": "It was different",
               "g": "there was / there were",
               "v": "Describing places",
-              "locked": true
+              "grammar": {
+                "h": "there was / there were &nbsp;·&nbsp; a place in the past",
+                "rows": [
+                  {
+                    "label": "Positive",
+                    "items": [
+                      "<b>There was</b> a small shop on the corner.",
+                      "<b>There were</b> trees in front of the house."
+                    ]
+                  },
+                  {
+                    "label": "Negative and questions",
+                    "items": [
+                      "<b>There wasn't</b> a lift.",
+                      "<b>There weren't</b> any cafés.",
+                      "<b>Was there</b> a market here? — Yes, there <b>was</b>.",
+                      "<b>Were there</b> many people? — No, there <b>weren't</b>."
+                    ]
+                  },
+                  {
+                    "label": "Then and now",
+                    "items": [
+                      "There <b>was</b> a cinema here. Now there <b>is</b> a bank.",
+                      "There <b>were</b> no shops. Now there <b>are</b> five."
+                    ]
+                  }
+                ],
+                "notes": [
+                  "Same rule as the present: <b>was</b> for one thing, <b>were</b> for two or more.",
+                  "<b>any</b> again in negatives and questions: <i>There weren't any cafés.</i>",
+                  "<b>many</b> goes with things you can count: <i>Were there many people?</i>",
+                  "To compare then and now, keep the sentence and change only the verb. That is the whole trick."
+                ]
+              },
+              "vocab": [
+                {
+                  "w": "quiet",
+                  "ipa": "/ˈkwaɪət/",
+                  "pos": "adj",
+                  "def": "with little or no noise",
+                  "ex": "The street was quiet at night."
+                },
+                {
+                  "w": "noisy",
+                  "ipa": "/ˈnɔɪzi/",
+                  "pos": "adj",
+                  "def": "with a lot of noise",
+                  "ex": "The market is noisy in the morning."
+                },
+                {
+                  "w": "modern",
+                  "ipa": "/ˈmɒdn/",
+                  "pos": "adj",
+                  "def": "new in style",
+                  "ex": "They live in a modern building."
+                },
+                {
+                  "w": "old",
+                  "ipa": "/əʊld/",
+                  "pos": "adj",
+                  "def": "from a long time ago",
+                  "ex": "Our house is old but comfortable."
+                },
+                {
+                  "w": "comfortable",
+                  "ipa": "/ˈkʌmftəbl/",
+                  "pos": "adj",
+                  "def": "pleasant to be in or to use",
+                  "ex": "This chair is very comfortable."
+                },
+                {
+                  "w": "crowded",
+                  "ipa": "/ˈkraʊdɪd/",
+                  "pos": "adj",
+                  "def": "full of people",
+                  "ex": "The bus was crowded this morning."
+                },
+                {
+                  "w": "empty",
+                  "ipa": "/ˈempti/",
+                  "pos": "adj",
+                  "def": "with nothing and nobody inside",
+                  "ex": "The flat was empty for a year."
+                },
+                {
+                  "w": "building",
+                  "ipa": "/ˈbɪldɪŋ/",
+                  "pos": "n",
+                  "def": "a structure with walls and a roof",
+                  "ex": "There is a new building on the corner."
+                },
+                {
+                  "w": "street",
+                  "ipa": "/striːt/",
+                  "pos": "n",
+                  "def": "a road in a town with houses along it",
+                  "ex": "We live on a narrow street."
+                },
+                {
+                  "w": "neighbour",
+                  "ipa": "/ˈneɪbə/",
+                  "pos": "n",
+                  "def": "a person who lives near you",
+                  "ex": "Our neighbours are very quiet."
+                }
+              ],
+              "ex": [
+                {
+                  "t": "mc",
+                  "q": "___ a cinema here ten years ago.",
+                  "o": [
+                    "There was",
+                    "There were",
+                    "There is"
+                  ],
+                  "a": 0
+                },
+                {
+                  "t": "mc",
+                  "q": "There ___ any shops in this street.",
+                  "o": [
+                    "wasn't",
+                    "weren't",
+                    "aren't"
+                  ],
+                  "a": 1
+                },
+                {
+                  "t": "mc",
+                  "q": "___ there many people at the market?",
+                  "o": [
+                    "Was",
+                    "Were",
+                    "Did"
+                  ],
+                  "a": 1
+                },
+                {
+                  "t": "gap",
+                  "q": "There ___ a small shop on the corner.",
+                  "a": "was",
+                  "hint": "one thing, past"
+                },
+                {
+                  "t": "gap",
+                  "q": "There ___ trees in front of the house.",
+                  "a": "were",
+                  "hint": "more than one, past"
+                },
+                {
+                  "t": "gap",
+                  "q": "The bus was very ___ this morning — no free seats.",
+                  "a": "crowded",
+                  "hint": "full of people"
+                },
+                {
+                  "t": "gap",
+                  "q": "Our ___ are very quiet.",
+                  "a": "neighbours",
+                  "hint": "people who live near you"
+                },
+                {
+                  "t": "order",
+                  "a": "There were no shops in this street."
+                },
+                {
+                  "t": "order",
+                  "a": "Was there a market here before?"
+                },
+                {
+                  "t": "transform",
+                  "instr": "Put it in the past.",
+                  "q": "There is a café on the corner.",
+                  "a": [
+                    "There was a café on the corner."
+                  ]
+                },
+                {
+                  "t": "transform",
+                  "instr": "Put it in the past.",
+                  "q": "There are trees in the yard.",
+                  "a": [
+                    "There were trees in the yard."
+                  ]
+                },
+                {
+                  "t": "match",
+                  "pairs": [
+                    [
+                      "quiet",
+                      "with little noise"
+                    ],
+                    [
+                      "crowded",
+                      "full of people"
+                    ],
+                    [
+                      "empty",
+                      "with nothing inside"
+                    ],
+                    [
+                      "neighbour",
+                      "a person who lives near you"
+                    ]
+                  ]
+                },
+                {
+                  "t": "sort",
+                  "instr": "One thing or more than one?",
+                  "groups": [
+                    {
+                      "label": "There was",
+                      "items": [
+                        "a cinema",
+                        "one shop",
+                        "a small park",
+                        "an old tree"
+                      ]
+                    },
+                    {
+                      "label": "There were",
+                      "items": [
+                        "two cafés",
+                        "many people",
+                        "some trees",
+                        "four buildings"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "t": "dictation",
+                  "a": "There was a small shop here but now there is a bank."
+                },
+                {
+                  "t": "listen",
+                  "text": "Twenty years ago this street was very quiet. There were no cafés and there wasn't a supermarket. There was one small shop on the corner. Now it is noisy and there are three cafés.",
+                  "q": "What was on the corner twenty years ago?",
+                  "o": [
+                    "A supermarket",
+                    "A small shop",
+                    "A café"
+                  ],
+                  "a": 1
+                }
+              ],
+              "speak": [
+                {
+                  "p": "Say how your street was ten years ago and how it is now.",
+                  "model": "Ten years ago there were two small shops and it was quiet. Now there is a supermarket and it is very noisy."
+                },
+                {
+                  "p": "Describe the first home you remember.",
+                  "model": "It was an old house with three rooms. There wasn't a bathroom inside, but there was a big garden behind it."
+                },
+                {
+                  "p": "Ask your partner about the place they grew up in.",
+                  "model": "Was it quiet or noisy? Were there many children in the street? Was there a park near your house?"
+                }
+              ]
             }
           ],
-          "locked": true
+          "test": [
+            {
+              "t": "mc",
+              "q": "___ two windows in my kitchen.",
+              "o": [
+                "There is",
+                "There are",
+                "It is"
+              ],
+              "a": 1
+            },
+            {
+              "t": "mc",
+              "q": "The café is ___ the bank and the shop.",
+              "o": [
+                "between",
+                "under",
+                "behind"
+              ],
+              "a": 0
+            },
+            {
+              "t": "gap",
+              "q": "___ there a lift in your building?",
+              "a": "Is",
+              "hint": "one thing"
+            },
+            {
+              "t": "gap",
+              "q": "The lamp is ___ the table.",
+              "a": "on",
+              "hint": "a surface"
+            },
+            {
+              "t": "gap",
+              "q": "There ___ trees in front of the house before.",
+              "a": "were",
+              "hint": "more than one, past"
+            },
+            {
+              "t": "order",
+              "a": "There are two bedrooms in our flat."
+            },
+            {
+              "t": "transform",
+              "instr": "Put it in the past.",
+              "q": "There is a café on the corner.",
+              "a": [
+                "There was a café on the corner."
+              ]
+            },
+            {
+              "t": "match",
+              "pairs": [
+                [
+                  "kitchen",
+                  "the room where you cook"
+                ],
+                [
+                  "wardrobe",
+                  "a tall cupboard for clothes"
+                ],
+                [
+                  "crowded",
+                  "full of people"
+                ],
+                [
+                  "neighbour",
+                  "a person who lives near you"
+                ]
+              ]
+            }
+          ]
         },
         {
           "n": 8,
