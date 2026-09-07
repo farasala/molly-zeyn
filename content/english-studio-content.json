@@ -1874,17 +1874,536 @@
               "title": "Jobs",
               "g": "word order in questions",
               "v": "Jobs",
-              "locked": true
+              "grammar": {
+                "h": "word order in questions &nbsp;·&nbsp; <b>do</b> / <b>does</b>",
+                "rows": [
+                  {
+                    "label": "Yes / no",
+                    "items": [
+                      "<b>Do</b> you work here?",
+                      "<b>Does</b> she speak English?",
+                      "<b>Do</b> they live in Astana?"
+                    ]
+                  },
+                  {
+                    "label": "With a question word",
+                    "items": [
+                      "Where <b>do</b> you work?",
+                      "What <b>does</b> he do?",
+                      "When <b>do</b> they finish?"
+                    ]
+                  },
+                  {
+                    "label": "The order",
+                    "items": [
+                      "(question word) + <b>do</b> / <b>does</b> + subject + verb"
+                    ]
+                  }
+                ],
+                "notes": [
+                  "After <b>do</b> or <b>does</b> the verb has no <b>-s</b>: <i>Does she work?</i>, not <i>Does she works?</i>",
+                  "<b>What do you do?</b> is how you ask about someone's job.",
+                  "With <b>be</b> there is no <i>do</i>: <i>Are you a teacher?</i>, not <i>Do you are a teacher?</i>",
+                  "Jobs take <b>a</b> or <b>an</b>: <i>She's a nurse. He's an engineer.</i>"
+                ]
+              },
+              "vocab": [
+                {
+                  "w": "teacher",
+                  "ipa": "/ˈtiːtʃə/",
+                  "pos": "n",
+                  "def": "someone who teaches a subject",
+                  "ex": "My mother is a teacher."
+                },
+                {
+                  "w": "doctor",
+                  "ipa": "/ˈdɒktə/",
+                  "pos": "n",
+                  "def": "someone who treats sick people",
+                  "ex": "The doctor works at the clinic."
+                },
+                {
+                  "w": "nurse",
+                  "ipa": "/nɜːs/",
+                  "pos": "n",
+                  "def": "someone who looks after patients",
+                  "ex": "She is a nurse in a big hospital."
+                },
+                {
+                  "w": "engineer",
+                  "ipa": "/ˌendʒɪˈnɪə/",
+                  "pos": "n",
+                  "def": "someone who designs or builds machines",
+                  "ex": "My father is an engineer."
+                },
+                {
+                  "w": "driver",
+                  "ipa": "/ˈdraɪvə/",
+                  "pos": "n",
+                  "def": "someone whose job is to drive",
+                  "ex": "The bus driver is very friendly."
+                },
+                {
+                  "w": "waiter",
+                  "ipa": "/ˈweɪtə/",
+                  "pos": "n",
+                  "def": "someone who brings food in a restaurant",
+                  "ex": "The waiter brings us the menu."
+                },
+                {
+                  "w": "shop assistant",
+                  "ipa": "/ˈʃɒp əˌsɪstənt/",
+                  "pos": "n",
+                  "def": "someone who helps customers in a shop",
+                  "ex": "My cousin is a shop assistant."
+                },
+                {
+                  "w": "lawyer",
+                  "ipa": "/ˈlɔːjə/",
+                  "pos": "n",
+                  "def": "someone who works with the law",
+                  "ex": "We need a lawyer for this."
+                },
+                {
+                  "w": "accountant",
+                  "ipa": "/əˈkaʊntənt/",
+                  "pos": "n",
+                  "def": "someone who works with money and numbers",
+                  "ex": "An accountant checks the numbers."
+                },
+                {
+                  "w": "journalist",
+                  "ipa": "/ˈdʒɜːnəlɪst/",
+                  "pos": "n",
+                  "def": "someone who writes for a newspaper or website",
+                  "ex": "He is a journalist in Almaty."
+                }
+              ],
+              "ex": [
+                {
+                  "t": "mc",
+                  "q": "___ she work in a hospital?",
+                  "o": [
+                    "Do",
+                    "Does",
+                    "Is"
+                  ],
+                  "a": 1
+                },
+                {
+                  "t": "mc",
+                  "q": "Where ___ they live?",
+                  "o": [
+                    "do",
+                    "does",
+                    "are"
+                  ],
+                  "a": 0
+                },
+                {
+                  "t": "mc",
+                  "q": "My uncle is ___ engineer.",
+                  "o": [
+                    "a",
+                    "an",
+                    "the"
+                  ],
+                  "a": 1
+                },
+                {
+                  "t": "gap",
+                  "q": "___ you speak Kazakh?",
+                  "a": "Do",
+                  "hint": "question"
+                },
+                {
+                  "t": "gap",
+                  "q": "What ___ your brother do?",
+                  "a": "does",
+                  "hint": "question"
+                },
+                {
+                  "t": "order",
+                  "a": "Where does your sister work?"
+                },
+                {
+                  "t": "order",
+                  "a": "Do you like your job?"
+                },
+                {
+                  "t": "transform",
+                  "instr": "Make it a question.",
+                  "q": "He works in a bank.",
+                  "a": [
+                    "Does he work in a bank?"
+                  ]
+                },
+                {
+                  "t": "transform",
+                  "instr": "Make it a question.",
+                  "q": "They live in Astana.",
+                  "a": [
+                    "Do they live in Astana?"
+                  ]
+                },
+                {
+                  "t": "match",
+                  "pairs": [
+                    [
+                      "nurse",
+                      "looks after patients"
+                    ],
+                    [
+                      "waiter",
+                      "brings food in a restaurant"
+                    ],
+                    [
+                      "accountant",
+                      "works with numbers"
+                    ],
+                    [
+                      "journalist",
+                      "writes for a newspaper"
+                    ]
+                  ]
+                },
+                {
+                  "t": "dictation",
+                  "a": "What does your father do? He's an engineer."
+                },
+                {
+                  "t": "listen",
+                  "text": "This is my friend Aigerim. She works in a hospital in Almaty. She isn't a doctor — she's a nurse.",
+                  "q": "What is Aigerim's job?",
+                  "o": [
+                    "Doctor",
+                    "Nurse",
+                    "Teacher"
+                  ],
+                  "a": 1
+                }
+              ],
+              "speak": [
+                {
+                  "p": "Ask your partner three questions about their job or studies.",
+                  "model": "What do you do? Where do you work? Do you like it?"
+                },
+                {
+                  "p": "Describe what someone in your family does.",
+                  "model": "My father is an engineer. He works in a big company."
+                },
+                {
+                  "p": "Say one job you would like and one you would not.",
+                  "model": "I want to be a journalist. I don't want to be an accountant."
+                }
+              ]
             },
             {
               "id": "3C",
               "title": "What's the time?",
               "g": "question words",
               "v": "Telling the time",
-              "locked": true
+              "grammar": {
+                "h": "question words &nbsp;·&nbsp; <b>what</b>, <b>where</b>, <b>when</b>, <b>who</b>, <b>why</b>, <b>how</b>",
+                "rows": [
+                  {
+                    "label": "Asking",
+                    "items": [
+                      "<b>What</b> time is it?",
+                      "<b>Where</b> is the station?",
+                      "<b>When</b> does it start?"
+                    ]
+                  },
+                  {
+                    "label": "More",
+                    "items": [
+                      "<b>Who</b> is your teacher?",
+                      "<b>Why</b> are you late?",
+                      "<b>How</b> do you go to work?"
+                    ]
+                  },
+                  {
+                    "label": "The time",
+                    "items": [
+                      "It's five <b>o'clock</b>.",
+                      "It's <b>half past</b> six.",
+                      "It's a <b>quarter to</b> nine."
+                    ]
+                  }
+                ],
+                "notes": [
+                  "<b>What time</b> asks for the clock; <b>when</b> asks for the day or the moment.",
+                  "Say <b>past</b> up to thirty minutes, then <b>to</b> the next hour: <i>ten past four</i>, <i>ten to five</i>.",
+                  "<b>o'clock</b> is only for the exact hour: <i>seven o'clock</i>, never <i>seven ten o'clock</i>.",
+                  "<b>Why</b> is answered with <b>because</b>: <i>Why are you late? Because the bus was slow.</i>"
+                ]
+              },
+              "vocab": [
+                {
+                  "w": "o'clock",
+                  "ipa": "/əˈklɒk/",
+                  "pos": "adv",
+                  "def": "used for the exact hour",
+                  "ex": "The lesson starts at six o'clock."
+                },
+                {
+                  "w": "half past",
+                  "ipa": "/ˌhɑːf ˈpɑːst/",
+                  "pos": "phr",
+                  "def": "thirty minutes after the hour",
+                  "ex": "I get up at half past seven."
+                },
+                {
+                  "w": "quarter past",
+                  "ipa": "/ˌkwɔːtə ˈpɑːst/",
+                  "pos": "phr",
+                  "def": "fifteen minutes after the hour",
+                  "ex": "It's a quarter past two."
+                },
+                {
+                  "w": "quarter to",
+                  "ipa": "/ˌkwɔːtə ˈtuː/",
+                  "pos": "phr",
+                  "def": "fifteen minutes before the hour",
+                  "ex": "We leave at a quarter to nine."
+                },
+                {
+                  "w": "midday",
+                  "ipa": "/ˌmɪdˈdeɪ/",
+                  "pos": "n",
+                  "def": "twelve in the daytime",
+                  "ex": "We have lunch at midday."
+                },
+                {
+                  "w": "midnight",
+                  "ipa": "/ˈmɪdnaɪt/",
+                  "pos": "n",
+                  "def": "twelve at night",
+                  "ex": "The shop closes at midnight."
+                },
+                {
+                  "w": "early",
+                  "ipa": "/ˈɜːli/",
+                  "pos": "adj",
+                  "def": "before the usual time",
+                  "ex": "The train is early today."
+                },
+                {
+                  "w": "late",
+                  "ipa": "/leɪt/",
+                  "pos": "adj",
+                  "def": "after the usual time",
+                  "ex": "Sorry, I'm late."
+                },
+                {
+                  "w": "hour",
+                  "ipa": "/ˈaʊə/",
+                  "pos": "n",
+                  "def": "sixty minutes",
+                  "ex": "The lesson is one hour."
+                },
+                {
+                  "w": "minute",
+                  "ipa": "/ˈmɪnɪt/",
+                  "pos": "n",
+                  "def": "sixty seconds",
+                  "ex": "Wait five minutes, please."
+                }
+              ],
+              "ex": [
+                {
+                  "t": "mc",
+                  "q": "___ time does the film start?",
+                  "o": [
+                    "Who",
+                    "What",
+                    "Why"
+                  ],
+                  "a": 1
+                },
+                {
+                  "t": "mc",
+                  "q": "___ are you late? Because the bus was slow.",
+                  "o": [
+                    "Why",
+                    "Where",
+                    "When"
+                  ],
+                  "a": 0
+                },
+                {
+                  "t": "mc",
+                  "q": "It's 8:15. It's a quarter ___ eight.",
+                  "o": [
+                    "to",
+                    "past",
+                    "of"
+                  ],
+                  "a": 1
+                },
+                {
+                  "t": "gap",
+                  "q": "___ is your English teacher?",
+                  "a": "Who",
+                  "hint": "person"
+                },
+                {
+                  "t": "gap",
+                  "q": "It's 9:45. It's a quarter ___ ten.",
+                  "a": "to",
+                  "hint": "before the hour"
+                },
+                {
+                  "t": "gap",
+                  "q": "___ do you go to work? By bus.",
+                  "a": "How",
+                  "hint": "the way"
+                },
+                {
+                  "t": "order",
+                  "a": "What time does the lesson start?"
+                },
+                {
+                  "t": "order",
+                  "a": "The shop closes at midnight."
+                },
+                {
+                  "t": "transform",
+                  "instr": "Write the time in words.",
+                  "q": "6:30",
+                  "a": [
+                    "half past six",
+                    "It's half past six."
+                  ]
+                },
+                {
+                  "t": "match",
+                  "pairs": [
+                    [
+                      "What time",
+                      "asks for the clock"
+                    ],
+                    [
+                      "Why",
+                      "asks for the reason"
+                    ],
+                    [
+                      "Who",
+                      "asks for the person"
+                    ],
+                    [
+                      "How",
+                      "asks for the way"
+                    ]
+                  ]
+                },
+                {
+                  "t": "dictation",
+                  "a": "The lesson starts at a quarter past six."
+                },
+                {
+                  "t": "listen",
+                  "text": "Our classes start at nine o'clock and finish at half past two. We have lunch at midday.",
+                  "q": "When do the classes finish?",
+                  "o": [
+                    "At nine",
+                    "At midday",
+                    "At half past two"
+                  ],
+                  "a": 2
+                }
+              ],
+              "speak": [
+                {
+                  "p": "Say what time you get up, start work or study, and finish.",
+                  "model": "I get up at half past six, I start at nine and I finish at six o'clock."
+                },
+                {
+                  "p": "Ask your partner about their day using three different question words.",
+                  "model": "What time do you get up? Where do you work? How do you go there?"
+                },
+                {
+                  "p": "Say one thing you are always late for, and why.",
+                  "model": "I'm always late for the gym because I finish work at six."
+                }
+              ]
             }
           ],
-          "test": []
+          "test": [
+            {
+              "t": "mc",
+              "q": "She ___ in a hospital.",
+              "o": [
+                "work",
+                "works",
+                "working"
+              ],
+              "a": 1
+            },
+            {
+              "t": "mc",
+              "q": "___ they live in Almaty?",
+              "o": [
+                "Do",
+                "Does",
+                "Are"
+              ],
+              "a": 0
+            },
+            {
+              "t": "gap",
+              "q": "He ___ speak Russian.",
+              "a": "doesn't",
+              "hint": "negative"
+            },
+            {
+              "t": "gap",
+              "q": "What time ___ the lesson start?",
+              "a": "does",
+              "hint": "question"
+            },
+            {
+              "t": "order",
+              "a": "My sister works in an office."
+            },
+            {
+              "t": "transform",
+              "instr": "Make it a question.",
+              "q": "She studies at university.",
+              "a": [
+                "Does she study at university?"
+              ]
+            },
+            {
+              "t": "transform",
+              "instr": "Make it negative.",
+              "q": "They get up early.",
+              "a": [
+                "They don't get up early."
+              ]
+            },
+            {
+              "t": "match",
+              "pairs": [
+                [
+                  "teacher",
+                  "teaches a subject"
+                ],
+                [
+                  "driver",
+                  "drives for a living"
+                ],
+                [
+                  "midnight",
+                  "twelve at night"
+                ],
+                [
+                  "quarter to",
+                  "fifteen minutes before the hour"
+                ]
+              ]
+            }
+          ]
         },
         {
           "n": 4,
