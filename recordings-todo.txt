@@ -92,3 +92,48 @@ the-shop-opens-at-nine-in-the-morning-and-closes-at-eight-in.mp3  |  The shop op
 i-start-work-at-eight-in-the-morning-i-have-a-lesson-on-tues.mp3  |  I start work at eight in the morning. I have a lesson on Tuesday. In August I go to the mountains.
 at-the-weekend-i-get-up-late-on-saturday-i-meet-friends-in-t.mp3  |  At the weekend I get up late. On Saturday I meet friends in the centre, and on Sunday I stay at home.
 the-books-are-on-the-table-my-bag-is-on-the-floor-and-my-pho.mp3  |  The books are on the table, my bag is on the floor and my phone is in my pocket.
+swim-she-can-swim-a-kilometre.mp3  |  swim. She can swim a kilometre.
+cook-i-cook-dinner-on-sundays.mp3  |  cook. I cook dinner on Sundays.
+ride-he-rides-his-bike-to-the-office.mp3  |  ride. He rides his bike to the office.
+play-the-guitar-my-son-plays-the-guitar-in-a-band.mp3  |  play the guitar. My son plays the guitar in a band.
+ski-we-ski-in-the-mountains-every-winter.mp3  |  ski. We ski in the mountains every winter.
+draw-my-daughter-draws-very-well.mp3  |  draw. My daughter draws very well.
+dance-they-dance-at-every-wedding.mp3  |  dance. They dance at every wedding.
+fix-my-uncle-can-fix-any-car.mp3  |  fix. My uncle can fix any car.
+well-she-sings-really-well.mp3  |  well. She sings really well.
+a-little-i-speak-german-a-little.mp3  |  a little. I speak German a little.
+i-can-swim-but-i-can-t-ski.mp3  |  I can swim but I can't ski.
+my-name-is-ruslan-i-can-drive-and-i-can-cook-but-i-can-t-swi.mp3  |  My name is Ruslan. I can drive and I can cook, but I can't swim. My wife swims very well, so she teaches our son.
+i-can-cook-i-can-drive-and-i-can-play-the-guitar-a-little-i-.mp3  |  I can cook, I can drive and I can play the guitar a little. I can't swim at all.
+can-you-ski-can-you-draw-can-you-cook-what-languages-can-you.mp3  |  Can you ski? Can you draw? Can you cook? What languages can you speak?
+my-uncle-can-fix-any-car-and-he-can-ride-a-horse-he-can-t-us.mp3  |  My uncle can fix any car, and he can ride a horse. He can't use a computer.
+weather-the-weather-is-better-today.mp3  |  weather. The weather is better today.
+sunny-it-is-sunny-and-warm-in-june.mp3  |  sunny. It is sunny and warm in June.
+rain-we-had-rain-all-night.mp3  |  rain. We had rain all night.
+snow-there-is-snow-on-the-mountains.mp3  |  snow. There is snow on the mountains.
+windy-it-is-windy-on-the-roof.mp3  |  windy. It is windy on the roof.
+cloudy-a-cloudy-morning-then-sun-after-lunch.mp3  |  cloudy. A cloudy morning, then sun after lunch.
+spring-almaty-is-beautiful-in-spring.mp3  |  spring. Almaty is beautiful in spring.
+summer-we-go-to-the-lake-in-summer.mp3  |  summer. We go to the lake in summer.
+autumn-the-trees-are-yellow-in-autumn.mp3  |  autumn. The trees are yellow in autumn.
+winter-winter-here-is-long-and-cold.mp3  |  winter. Winter here is long and cold.
+i-love-reading-but-i-hate-waiting.mp3  |  I love reading but I hate waiting.
+in-spring-i-like-walking-in-the-park-and-in-summer-we-swim-i.mp3  |  In spring I like walking in the park, and in summer we swim in the lake. I don't like autumn — it rains a lot. But I love winter, because I can ski.
+i-love-reading-and-cooking-i-hate-waiting-in-a-queue-and-i-h.mp3  |  I love reading and cooking. I hate waiting in a queue and I hate getting up early.
+in-summer-it-is-hot-and-sunny-in-autumn-it-rains-winter-is-c.mp3  |  In summer it is hot and sunny. In autumn it rains. Winter is cold with a lot of snow, and spring is windy.
+what-do-you-like-doing-at-the-weekend-do-you-like-walking-in.mp3  |  What do you like doing at the weekend? Do you like walking in the mountains?
+clothes-she-buys-her-clothes-online.mp3  |  clothes. She buys her clothes online.
+shirt-he-wears-a-white-shirt-to-work.mp3  |  shirt. He wears a white shirt to work.
+jeans-these-jeans-are-too-big-for-me.mp3  |  jeans. These jeans are too big for me.
+dress-that-dress-is-beautiful-on-her.mp3  |  dress. That dress is beautiful on her.
+jacket-take-a-jacket-it-is-cold-outside.mp3  |  jacket. Take a jacket — it is cold outside.
+shoes-my-shoes-are-wet.mp3  |  shoes. My shoes are wet.
+coat-in-winter-i-wear-a-heavy-coat.mp3  |  coat. In winter I wear a heavy coat.
+hat-he-never-wears-a-hat.mp3  |  hat. He never wears a hat.
+wear-what-do-you-wear-to-work.mp3  |  wear. What do you wear to work?
+try-on-can-i-try-on-these-shoes.mp3  |  try on. Can I try on these shoes?
+these-jeans-are-too-big-for-me.mp3  |  These jeans are too big for me.
+i-am-looking-for-a-jacket-for-my-brother-he-is-quite-tall-so.mp3  |  I am looking for a jacket for my brother. He is quite tall, so the small size is no good for him. Can I try this blue one on for him?
+i-am-wearing-jeans-a-white-shirt-and-black-shoes-my-jacket-i.mp3  |  I am wearing jeans, a white shirt and black shoes. My jacket is on the chair.
+in-winter-i-wear-a-heavy-coat-a-hat-and-warm-shoes-in-summer.mp3  |  In winter I wear a heavy coat, a hat and warm shoes. In summer I wear a light shirt and jeans.
+can-i-try-on-this-jacket-do-you-have-it-in-black-is-there-a-.mp3  |  Can I try on this jacket? Do you have it in black? Is there a bigger size for me?

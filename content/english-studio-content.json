@@ -3313,24 +3313,842 @@
               "title": "Skills",
               "g": "can / can't",
               "v": "More verb phrases",
-              "locked": true
+              "grammar": {
+                "h": "can &nbsp;·&nbsp; what you are able to do",
+                "rows": [
+                  {
+                    "label": "Positive and negative",
+                    "items": [
+                      "I <b>can</b> swim",
+                      "she <b>can</b> drive",
+                      "we <b>can't</b> cook",
+                      "they <b>cannot</b> come"
+                    ]
+                  },
+                  {
+                    "label": "Questions",
+                    "items": [
+                      "<b>Can</b> you play the guitar?",
+                      "<b>Can</b> she speak Turkish?",
+                      "Yes, I <b>can</b>. / No, I <b>can't</b>.",
+                      "<b>What</b> languages can you speak?"
+                    ]
+                  },
+                  {
+                    "label": "In sentences",
+                    "items": [
+                      "My brother can ski very well.",
+                      "I can't drive, but I can ride a bike.",
+                      "Can we sit here?"
+                    ]
+                  }
+                ],
+                "notes": [
+                  "<b>can</b> never takes <b>-s</b>: <i>she can</i>, not <i>she cans</i>.",
+                  "The verb after <b>can</b> has no <b>to</b>: <i>I can swim</i>, not <i>I can to swim</i>.",
+                  "<b>can't</b> is short for <b>cannot</b> — one word, written together.",
+                  "<b>can</b> also asks for things: <i>Can I have the bill, please?</i>"
+                ]
+              },
+              "vocab": [
+                {
+                  "w": "swim",
+                  "ipa": "/swɪm/",
+                  "pos": "v",
+                  "def": "to move through water",
+                  "ex": "She can swim a kilometre."
+                },
+                {
+                  "w": "cook",
+                  "ipa": "/kʊk/",
+                  "pos": "v",
+                  "def": "to make food ready to eat",
+                  "ex": "I cook dinner on Sundays."
+                },
+                {
+                  "w": "ride",
+                  "ipa": "/raɪd/",
+                  "pos": "v",
+                  "def": "to travel on a bike or a horse",
+                  "ex": "He rides his bike to the office."
+                },
+                {
+                  "w": "play the guitar",
+                  "ipa": "/ˌpleɪ ðə ɡɪˈtɑː/",
+                  "pos": "v",
+                  "def": "to make music with a guitar",
+                  "ex": "My son plays the guitar in a band."
+                },
+                {
+                  "w": "ski",
+                  "ipa": "/skiː/",
+                  "pos": "v",
+                  "def": "to move over snow on two long boards",
+                  "ex": "We ski in the mountains every winter."
+                },
+                {
+                  "w": "draw",
+                  "ipa": "/drɔː/",
+                  "pos": "v",
+                  "def": "to make a picture with a pen or a pencil",
+                  "ex": "My daughter draws very well."
+                },
+                {
+                  "w": "dance",
+                  "ipa": "/dɑːns/",
+                  "pos": "v",
+                  "def": "to move your body to music",
+                  "ex": "They dance at every wedding."
+                },
+                {
+                  "w": "fix",
+                  "ipa": "/fɪks/",
+                  "pos": "v",
+                  "def": "to repair something that is broken",
+                  "ex": "My uncle can fix any car."
+                },
+                {
+                  "w": "well",
+                  "ipa": "/wel/",
+                  "pos": "adv",
+                  "def": "in a good way",
+                  "ex": "She sings really well."
+                },
+                {
+                  "w": "a little",
+                  "ipa": "/ə ˈlɪtl/",
+                  "pos": "adv",
+                  "def": "not much, but not nothing",
+                  "ex": "I speak German a little."
+                }
+              ],
+              "ex": [
+                {
+                  "t": "mc",
+                  "q": "She ___ speak three languages.",
+                  "o": [
+                    "can",
+                    "cans",
+                    "can to"
+                  ],
+                  "a": 0
+                },
+                {
+                  "t": "mc",
+                  "q": "___ you play the guitar?",
+                  "o": [
+                    "Do",
+                    "Are",
+                    "Can"
+                  ],
+                  "a": 2
+                },
+                {
+                  "t": "mc",
+                  "q": "He can't ___ very well.",
+                  "o": [
+                    "to cook",
+                    "cook",
+                    "cooks"
+                  ],
+                  "a": 1
+                },
+                {
+                  "t": "gap",
+                  "q": "I ___ ski, but my sister can.",
+                  "a": "can't",
+                  "hint": "negative"
+                },
+                {
+                  "t": "gap",
+                  "q": "___ she drive?",
+                  "a": "Can",
+                  "hint": "question"
+                },
+                {
+                  "t": "gap",
+                  "q": "My uncle can ___ any car.",
+                  "a": "fix",
+                  "hint": "repair"
+                },
+                {
+                  "t": "order",
+                  "a": "My brother can ski very well."
+                },
+                {
+                  "t": "order",
+                  "a": "Can we sit here?"
+                },
+                {
+                  "t": "transform",
+                  "instr": "Make it negative.",
+                  "q": "I can dance.",
+                  "a": [
+                    "I can't dance.",
+                    "I cannot dance."
+                  ]
+                },
+                {
+                  "t": "transform",
+                  "instr": "Make it a question.",
+                  "q": "She can ride a bike.",
+                  "a": [
+                    "Can she ride a bike?"
+                  ]
+                },
+                {
+                  "t": "match",
+                  "pairs": [
+                    [
+                      "swim",
+                      "to move through water"
+                    ],
+                    [
+                      "cook",
+                      "to make food ready to eat"
+                    ],
+                    [
+                      "draw",
+                      "to make a picture"
+                    ],
+                    [
+                      "fix",
+                      "to repair something broken"
+                    ]
+                  ]
+                },
+                {
+                  "t": "dictation",
+                  "a": "I can swim but I can't ski."
+                },
+                {
+                  "t": "listen",
+                  "text": "My name is Ruslan. I can drive and I can cook, but I can't swim. My wife swims very well, so she teaches our son.",
+                  "q": "What can't Ruslan do?",
+                  "o": [
+                    "Drive",
+                    "Cook",
+                    "Swim"
+                  ],
+                  "a": 2
+                }
+              ],
+              "speak": [
+                {
+                  "p": "Say three things you can do well and one thing you can't do at all.",
+                  "model": "I can cook, I can drive and I can play the guitar a little. I can't swim at all."
+                },
+                {
+                  "p": "Ask your partner four questions with can.",
+                  "model": "Can you ski? Can you draw? Can you cook? What languages can you speak?"
+                },
+                {
+                  "p": "Talk about somebody in your family and what they can do.",
+                  "model": "My uncle can fix any car, and he can ride a horse. He can't use a computer."
+                }
+              ]
             },
             {
               "id": "5B",
               "title": "Likes and dislikes",
               "g": "like + verb + -ing",
               "v": "The weather & seasons",
-              "locked": true
+              "grammar": {
+                "h": "like, love, hate &nbsp;·&nbsp; + verb + <b>-ing</b>",
+                "rows": [
+                  {
+                    "label": "The pattern",
+                    "items": [
+                      "I <b>love</b> read<b>ing</b>",
+                      "she <b>likes</b> cook<b>ing</b>",
+                      "we <b>don't like</b> get<b>ting</b> up early",
+                      "they <b>hate</b> wait<b>ing</b>"
+                    ]
+                  },
+                  {
+                    "label": "Spelling of -ing",
+                    "items": [
+                      "most verbs — <b>+ ing</b>: <i>read → reading</i>",
+                      "ends in -e — <b>drop the e</b>: <i>drive → driving</i>",
+                      "one vowel + one consonant — <b>double it</b>: <i>swim → swimming</i>, <i>get → getting</i>"
+                    ]
+                  },
+                  {
+                    "label": "Asking",
+                    "items": [
+                      "<b>Do</b> you like cooking?",
+                      "Yes, I love it. / No, I hate it.",
+                      "<b>What</b> do you like doing at the weekend?"
+                    ]
+                  }
+                ],
+                "notes": [
+                  "After <b>like</b>, <b>love</b> and <b>hate</b> the second verb takes <b>-ing</b>: <i>I like swimming</i>.",
+                  "<b>like</b> is an ordinary present simple verb, so he and she add <b>-s</b>: <i>she likes</i>.",
+                  "From most to least: <b>love</b> → <b>like</b> → <b>don't like</b> → <b>hate</b>.",
+                  "<i>I don't like it</i> is softer than <i>I hate it</i>, and English speakers reach for <b>hate</b> less often than you might expect."
+                ]
+              },
+              "vocab": [
+                {
+                  "w": "weather",
+                  "ipa": "/ˈweðə/",
+                  "pos": "n",
+                  "def": "how hot, cold, wet or dry it is outside",
+                  "ex": "The weather is better today."
+                },
+                {
+                  "w": "sunny",
+                  "ipa": "/ˈsʌni/",
+                  "pos": "adj",
+                  "def": "with a lot of sun",
+                  "ex": "It is sunny and warm in June."
+                },
+                {
+                  "w": "rain",
+                  "ipa": "/reɪn/",
+                  "pos": "n",
+                  "def": "water that falls from the sky",
+                  "ex": "We had rain all night."
+                },
+                {
+                  "w": "snow",
+                  "ipa": "/snəʊ/",
+                  "pos": "n",
+                  "def": "soft white water that falls when it is very cold",
+                  "ex": "There is snow on the mountains."
+                },
+                {
+                  "w": "windy",
+                  "ipa": "/ˈwɪndi/",
+                  "pos": "adj",
+                  "def": "with a lot of wind",
+                  "ex": "It is windy on the roof."
+                },
+                {
+                  "w": "cloudy",
+                  "ipa": "/ˈklaʊdi/",
+                  "pos": "adj",
+                  "def": "with a lot of cloud and little sun",
+                  "ex": "A cloudy morning, then sun after lunch."
+                },
+                {
+                  "w": "spring",
+                  "ipa": "/sprɪŋ/",
+                  "pos": "n",
+                  "def": "the season after winter",
+                  "ex": "Almaty is beautiful in spring."
+                },
+                {
+                  "w": "summer",
+                  "ipa": "/ˈsʌmə/",
+                  "pos": "n",
+                  "def": "the hottest season of the year",
+                  "ex": "We go to the lake in summer."
+                },
+                {
+                  "w": "autumn",
+                  "ipa": "/ˈɔːtəm/",
+                  "pos": "n",
+                  "def": "the season after summer",
+                  "ex": "The trees are yellow in autumn."
+                },
+                {
+                  "w": "winter",
+                  "ipa": "/ˈwɪntə/",
+                  "pos": "n",
+                  "def": "the coldest season of the year",
+                  "ex": "Winter here is long and cold."
+                }
+              ],
+              "ex": [
+                {
+                  "t": "mc",
+                  "q": "I love ___ in the mountains.",
+                  "o": [
+                    "walk",
+                    "walking",
+                    "to walking"
+                  ],
+                  "a": 1
+                },
+                {
+                  "t": "mc",
+                  "q": "She ___ getting up early.",
+                  "o": [
+                    "don't like",
+                    "doesn't like",
+                    "not like"
+                  ],
+                  "a": 1
+                },
+                {
+                  "t": "mc",
+                  "q": "The trees are yellow in ___.",
+                  "o": [
+                    "spring",
+                    "summer",
+                    "autumn"
+                  ],
+                  "a": 2
+                },
+                {
+                  "t": "gap",
+                  "q": "He hates ___ in a queue.",
+                  "a": "waiting",
+                  "hint": "wait"
+                },
+                {
+                  "t": "gap",
+                  "q": "We love ___ in the lake in summer.",
+                  "a": "swimming",
+                  "hint": "swim"
+                },
+                {
+                  "t": "gap",
+                  "q": "It is very ___ today — the wind is strong.",
+                  "a": "windy",
+                  "hint": "weather"
+                },
+                {
+                  "t": "gap",
+                  "q": "There is a lot of ___ on the mountains in January.",
+                  "a": "snow",
+                  "hint": "weather"
+                },
+                {
+                  "t": "order",
+                  "a": "I don't like getting up early."
+                },
+                {
+                  "t": "order",
+                  "a": "What do you like doing at the weekend?"
+                },
+                {
+                  "t": "transform",
+                  "instr": "Change to she.",
+                  "q": "They like cooking.",
+                  "a": [
+                    "She likes cooking."
+                  ]
+                },
+                {
+                  "t": "transform",
+                  "instr": "Make it negative.",
+                  "q": "I like driving in the city.",
+                  "a": [
+                    "I don't like driving in the city.",
+                    "I do not like driving in the city."
+                  ]
+                },
+                {
+                  "t": "match",
+                  "pairs": [
+                    [
+                      "sunny",
+                      "with a lot of sun"
+                    ],
+                    [
+                      "windy",
+                      "with a lot of wind"
+                    ],
+                    [
+                      "autumn",
+                      "the season after summer"
+                    ],
+                    [
+                      "winter",
+                      "the coldest season"
+                    ]
+                  ]
+                },
+                {
+                  "t": "sort",
+                  "instr": "Which spelling rule does each -ing form follow?",
+                  "groups": [
+                    {
+                      "label": "+ ing",
+                      "items": [
+                        "reading",
+                        "waiting",
+                        "cooking",
+                        "playing"
+                      ]
+                    },
+                    {
+                      "label": "drop the e",
+                      "items": [
+                        "driving",
+                        "dancing",
+                        "writing",
+                        "making"
+                      ]
+                    },
+                    {
+                      "label": "double the letter",
+                      "items": [
+                        "swimming",
+                        "getting",
+                        "running",
+                        "sitting"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "t": "dictation",
+                  "a": "I love reading but I hate waiting."
+                },
+                {
+                  "t": "listen",
+                  "text": "In spring I like walking in the park, and in summer we swim in the lake. I don't like autumn — it rains a lot. But I love winter, because I can ski.",
+                  "q": "Which season does the speaker not like?",
+                  "o": [
+                    "Spring",
+                    "Autumn",
+                    "Winter"
+                  ],
+                  "a": 1
+                }
+              ],
+              "speak": [
+                {
+                  "p": "Say two things you love doing and two things you hate doing.",
+                  "model": "I love reading and cooking. I hate waiting in a queue and I hate getting up early."
+                },
+                {
+                  "p": "Describe the weather here in each season.",
+                  "model": "In summer it is hot and sunny. In autumn it rains. Winter is cold with a lot of snow, and spring is windy."
+                },
+                {
+                  "p": "Ask your partner what they like doing in their free time.",
+                  "model": "What do you like doing at the weekend? Do you like walking in the mountains?"
+                }
+              ]
             },
             {
               "id": "5C",
               "title": "What are you wearing?",
               "g": "object pronouns",
               "v": "Clothes",
-              "locked": true
+              "grammar": {
+                "h": "object pronouns &nbsp;·&nbsp; me, you, him, her, it, us, them",
+                "rows": [
+                  {
+                    "label": "Subject → object",
+                    "items": [
+                      "I → <b>me</b>",
+                      "you → <b>you</b>",
+                      "he → <b>him</b>",
+                      "she → <b>her</b>",
+                      "it → <b>it</b>",
+                      "we → <b>us</b>",
+                      "they → <b>them</b>"
+                    ]
+                  },
+                  {
+                    "label": "Where it goes",
+                    "items": [
+                      "She knows <b>me</b>.",
+                      "I often see <b>them</b> at the market.",
+                      "Can you help <b>us</b>?",
+                      "This jacket? I bought it for <b>her</b>."
+                    ]
+                  },
+                  {
+                    "label": "In sentences",
+                    "items": [
+                      "These shoes are new — do you like them?",
+                      "My sister called me yesterday.",
+                      "Wait for us at the door."
+                    ]
+                  }
+                ],
+                "notes": [
+                  "The subject comes <b>before</b> the verb and the object <b>after</b> it: <i>She likes him</i>, <i>He likes her</i>.",
+                  "After a preposition the object form is the only one: <i>with me</i>, <i>for them</i>, <i>about us</i> — never <i>with I</i>.",
+                  "<b>it</b> and <b>you</b> look the same in both places. Everything else changes.",
+                  "Things in the plural take <b>them</b>: <i>my shoes → I like them</i>."
+                ]
+              },
+              "vocab": [
+                {
+                  "w": "clothes",
+                  "ipa": "/kləʊðz/",
+                  "pos": "n",
+                  "def": "the things people wear",
+                  "ex": "She buys her clothes online."
+                },
+                {
+                  "w": "shirt",
+                  "ipa": "/ʃɜːt/",
+                  "pos": "n",
+                  "def": "a top with buttons and a collar",
+                  "ex": "He wears a white shirt to work."
+                },
+                {
+                  "w": "jeans",
+                  "ipa": "/dʒiːnz/",
+                  "pos": "n",
+                  "def": "trousers made of thick blue cotton",
+                  "ex": "These jeans are too big for me."
+                },
+                {
+                  "w": "dress",
+                  "ipa": "/dres/",
+                  "pos": "n",
+                  "def": "one piece of clothing that covers the body and legs",
+                  "ex": "That dress is beautiful on her."
+                },
+                {
+                  "w": "jacket",
+                  "ipa": "/ˈdʒækɪt/",
+                  "pos": "n",
+                  "def": "a short coat",
+                  "ex": "Take a jacket — it is cold outside."
+                },
+                {
+                  "w": "shoes",
+                  "ipa": "/ʃuːz/",
+                  "pos": "n",
+                  "def": "what you wear on your feet",
+                  "ex": "My shoes are wet."
+                },
+                {
+                  "w": "coat",
+                  "ipa": "/kəʊt/",
+                  "pos": "n",
+                  "def": "a long warm piece of clothing for outside",
+                  "ex": "In winter I wear a heavy coat."
+                },
+                {
+                  "w": "hat",
+                  "ipa": "/hæt/",
+                  "pos": "n",
+                  "def": "something you wear on your head",
+                  "ex": "He never wears a hat."
+                },
+                {
+                  "w": "wear",
+                  "ipa": "/weə/",
+                  "pos": "v",
+                  "def": "to have clothes on your body",
+                  "ex": "What do you wear to work?"
+                },
+                {
+                  "w": "try on",
+                  "ipa": "/ˌtraɪ ˈɒn/",
+                  "pos": "v",
+                  "def": "to put clothes on in a shop to see if they fit",
+                  "ex": "Can I try on these shoes?"
+                }
+              ],
+              "ex": [
+                {
+                  "t": "mc",
+                  "q": "My sister called ___ yesterday.",
+                  "o": [
+                    "I",
+                    "me",
+                    "my"
+                  ],
+                  "a": 1
+                },
+                {
+                  "t": "mc",
+                  "q": "These shoes are new — do you like ___?",
+                  "o": [
+                    "it",
+                    "they",
+                    "them"
+                  ],
+                  "a": 2
+                },
+                {
+                  "t": "mc",
+                  "q": "Wait for ___ at the door.",
+                  "o": [
+                    "we",
+                    "us",
+                    "our"
+                  ],
+                  "a": 1
+                },
+                {
+                  "t": "gap",
+                  "q": "I don't know her name, but I often see ___ at the market.",
+                  "a": "her",
+                  "hint": "she"
+                },
+                {
+                  "t": "gap",
+                  "q": "This jacket is too small for ___.",
+                  "a": "me",
+                  "hint": "I"
+                },
+                {
+                  "t": "gap",
+                  "q": "Take a ___ — it is cold outside.",
+                  "a": "jacket",
+                  "hint": "clothes"
+                },
+                {
+                  "t": "gap",
+                  "q": "Can I ___ on these shoes?",
+                  "a": "try",
+                  "hint": "in a shop"
+                },
+                {
+                  "t": "order",
+                  "a": "My sister called me yesterday."
+                },
+                {
+                  "t": "order",
+                  "a": "Can you help us with the bags?"
+                },
+                {
+                  "t": "transform",
+                  "instr": "Replace the words in brackets with one pronoun.",
+                  "q": "I saw (Timur and Aigerim) at the station.",
+                  "a": [
+                    "I saw them at the station."
+                  ]
+                },
+                {
+                  "t": "transform",
+                  "instr": "Replace the words in brackets with one pronoun.",
+                  "q": "She gave the book to (my brother).",
+                  "a": [
+                    "She gave the book to him."
+                  ]
+                },
+                {
+                  "t": "match",
+                  "pairs": [
+                    [
+                      "clothes",
+                      "the things people wear"
+                    ],
+                    [
+                      "jacket",
+                      "a short coat"
+                    ],
+                    [
+                      "wear",
+                      "to have clothes on your body"
+                    ],
+                    [
+                      "try on",
+                      "to put clothes on in a shop"
+                    ]
+                  ]
+                },
+                {
+                  "t": "dictation",
+                  "a": "These jeans are too big for me."
+                },
+                {
+                  "t": "listen",
+                  "text": "I am looking for a jacket for my brother. He is quite tall, so the small size is no good for him. Can I try this blue one on for him?",
+                  "q": "Who is the jacket for?",
+                  "o": [
+                    "The speaker",
+                    "The speaker's brother",
+                    "A friend"
+                  ],
+                  "a": 1
+                }
+              ],
+              "speak": [
+                {
+                  "p": "Describe what you are wearing today.",
+                  "model": "I am wearing jeans, a white shirt and black shoes. My jacket is on the chair."
+                },
+                {
+                  "p": "Say what you wear in winter and what you wear in summer.",
+                  "model": "In winter I wear a heavy coat, a hat and warm shoes. In summer I wear a light shirt and jeans."
+                },
+                {
+                  "p": "You are in a clothes shop. Ask three questions.",
+                  "model": "Can I try on this jacket? Do you have it in black? Is there a bigger size for me?"
+                }
+              ]
             }
           ],
-          "locked": true
+          "test": [
+            {
+              "t": "mc",
+              "q": "She ___ speak three languages.",
+              "o": [
+                "can",
+                "cans",
+                "can to"
+              ],
+              "a": 0
+            },
+            {
+              "t": "mc",
+              "q": "I love ___ in the mountains.",
+              "o": [
+                "walk",
+                "walking",
+                "to walking"
+              ],
+              "a": 1
+            },
+            {
+              "t": "gap",
+              "q": "___ you play the guitar?",
+              "a": "Can",
+              "hint": "question"
+            },
+            {
+              "t": "gap",
+              "q": "He hates ___ in a queue.",
+              "a": "waiting",
+              "hint": "wait"
+            },
+            {
+              "t": "gap",
+              "q": "My sister called ___ yesterday.",
+              "a": "me",
+              "hint": "I"
+            },
+            {
+              "t": "order",
+              "a": "I don't like getting up early."
+            },
+            {
+              "t": "transform",
+              "instr": "Make it negative.",
+              "q": "I can dance.",
+              "a": [
+                "I can't dance.",
+                "I cannot dance."
+              ]
+            },
+            {
+              "t": "match",
+              "pairs": [
+                [
+                  "sunny",
+                  "with a lot of sun"
+                ],
+                [
+                  "autumn",
+                  "the season after summer"
+                ],
+                [
+                  "jacket",
+                  "a short coat"
+                ],
+                [
+                  "try on",
+                  "to put clothes on in a shop"
+                ]
+              ]
+            }
+          ]
         },
         {
           "n": 6,

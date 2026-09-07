@@ -308,7 +308,7 @@ export function describeGiven(exercise: Exercise, given: string): string {
 
 /** One-line description of a task type, for the practice intro. */
 export const EXERCISE_NAMES: Record<Exercise['t'], string> = {
-  sort: 'sound sorting',
+  sort: 'sorting into groups',
   mc: 'multiple choice',
   gap: 'gap fill',
   order: 'word order',

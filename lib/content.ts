@@ -42,7 +42,11 @@ export type Exercise =
   | { t: 'match'; pairs: [string, string][] }
   | { t: 'dictation'; a: string }
   | { t: 'listen'; text: string; q: string; o: string[]; a: number }
-  /** Sort words into groups by the sound they carry. */
+  /**
+   * Put each word in the right bin — by the sound it carries, the spelling
+   * rule it follows, or any other grouping the instruction names. There is
+   * no audio: the words are read on the page, so never say "listen".
+   */
   | { t: 'sort'; instr: string; groups: { label: string; items: string[] }[] };
 
 export type Lesson = {
