@@ -105,7 +105,7 @@ Rules:
   Render them by parsing those two tags into elements — do **not** use `dangerouslySetInnerHTML`.
 - Units/lessons with `"locked": true` must render a calm "syllabus set — content in production"
   panel showing the grammar focus and lexical set. They must never 404 or throw.
-- 12 units exist; units 1–10 have content today. That is expected.
+- All 12 units have content. The `locked` state is unused today but must keep working — the next level will start out with it.
 
 ### Audio
 Every spoken string maps to one file by slug:
@@ -249,8 +249,8 @@ teacher's review (if every student gets different tasks, comparing them is meani
 
 The generator is deterministic: lesson → vocabulary recall drawn from `vocab`, the lesson's
 own `ex` items, a couple of items from the unit's `test`, a dictation and a listening item
-when a recording exists → shuffle → 12–15 tasks. Fill units 3–12 and their homework appears
-with no code change.
+when a recording exists → shuffle → 12–15 tasks. Every unit's homework came out of this with
+no code change, and the next level's will too.
 
 ### How a student works through it
 
@@ -375,12 +375,9 @@ after it places the student at unit 4; the result survives being handed in.
    student account, not just in theory.
 3. Turn on database backups (Supabase Pro).
 4. Custom domain live on HTTPS, `*.vercel.app` still working as a fallback.
-5. Fill units 11–12: add `vocab`, `grammar`, `ex`, `speak` to each lesson, remove `locked`,
-   then record what `recordings-todo.txt` lists in the same single voice, drop the mp3s into
-   `public/audio/el/` and run `node scripts/audio.mjs`. Write the bodies into one file and run
-   `node scripts/add-unit.mjs <n> <file>`; it refuses a half-written unit rather than leaving
-   one lesson locked. Units 1–10 are written; 3 to 10 are live but waiting on their
-   audio, so their listening tasks stay hidden until it lands.
+5. Record what `recordings-todo.txt` lists in the same single voice, drop the mp3s into
+   `public/audio/el/` and run `node scripts/audio.mjs`. Units 3–12 are live but their
+   listening and dictation tasks stay hidden until their audio lands — 450 lines outstanding.
 6. Content licence: the syllabus follows a published coursebook, but every text, example and
    exercise in the JSON is original. Keep it that way — do not paste in coursebook text.
 

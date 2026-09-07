@@ -8447,24 +8447,877 @@
               "title": "What's happening?",
               "g": "present continuous",
               "v": "Actions & verbs",
-              "locked": true
+              "grammar": {
+                "h": "present continuous &nbsp;·&nbsp; happening now",
+                "rows": [
+                  {
+                    "label": "The form — be + -ing",
+                    "items": [
+                      "I <b>am</b> work<b>ing</b>",
+                      "she <b>is</b> read<b>ing</b>",
+                      "we <b>are</b> wait<b>ing</b>",
+                      "they <b>aren't</b> listen<b>ing</b>"
+                    ]
+                  },
+                  {
+                    "label": "Questions",
+                    "items": [
+                      "<b>Are</b> you work<b>ing</b>?",
+                      "<b>What is</b> she do<b>ing</b>?",
+                      "Yes, I <b>am</b>. / No, I'<b>m not</b>."
+                    ]
+                  },
+                  {
+                    "label": "Spelling of -ing",
+                    "items": [
+                      "most verbs — <b>+ ing</b>: <i>work → working</i>",
+                      "ends in -e — <b>drop the e</b>: <i>write → writing</i>",
+                      "one vowel + one consonant — <b>double it</b>: <i>sit → sitting</i>"
+                    ]
+                  }
+                ],
+                "notes": [
+                  "Two parts, always: <b>be</b> and <b>-ing</b>. Losing one of them is the commonest mistake — <i>she reading</i>, <i>she reads now</i>.",
+                  "The spelling rules are the ones from unit 5: drop the <b>e</b>, double the last letter.",
+                  "Some verbs are not used this way at all: <b>know</b>, <b>like</b>, <b>want</b>, <b>need</b>, <b>have</b> in the sense of owning. Say <i>I know</i>, never <i>I am knowing</i>.",
+                  "It covers more than this second: <i>I'm reading a good book</i> means these days, not right at this moment."
+                ]
+              },
+              "vocab": [
+                {
+                  "w": "sit",
+                  "ipa": "/sɪt/",
+                  "pos": "v",
+                  "def": "to rest on a chair with your body upright",
+                  "ex": "She is sitting by the window."
+                },
+                {
+                  "w": "stand",
+                  "ipa": "/stænd/",
+                  "pos": "v",
+                  "def": "to be upright on your feet",
+                  "ex": "A man is standing at the door."
+                },
+                {
+                  "w": "run",
+                  "ipa": "/rʌn/",
+                  "pos": "v",
+                  "def": "to move fast on your feet",
+                  "ex": "The children are running in the park."
+                },
+                {
+                  "w": "carry",
+                  "ipa": "/ˈkæri/",
+                  "pos": "v",
+                  "def": "to hold something and move it with you",
+                  "ex": "He is carrying two heavy bags."
+                },
+                {
+                  "w": "laugh",
+                  "ipa": "/lɑːf/",
+                  "pos": "v",
+                  "def": "to make a sound because something is funny",
+                  "ex": "Everybody is laughing."
+                },
+                {
+                  "w": "cry",
+                  "ipa": "/kraɪ/",
+                  "pos": "v",
+                  "def": "to have tears coming from your eyes",
+                  "ex": "The baby is crying again."
+                },
+                {
+                  "w": "smile",
+                  "ipa": "/smaɪl/",
+                  "pos": "v",
+                  "def": "to make a happy face with your mouth",
+                  "ex": "She is smiling in every photograph."
+                },
+                {
+                  "w": "hold",
+                  "ipa": "/həʊld/",
+                  "pos": "v",
+                  "def": "to have something in your hand",
+                  "ex": "He is holding a cup of tea."
+                },
+                {
+                  "w": "talk",
+                  "ipa": "/tɔːk/",
+                  "pos": "v",
+                  "def": "to speak with somebody",
+                  "ex": "They are talking about the film."
+                },
+                {
+                  "w": "happen",
+                  "ipa": "/ˈhæpn/",
+                  "pos": "v",
+                  "def": "to take place",
+                  "ex": "What is happening outside?"
+                }
+              ],
+              "ex": [
+                {
+                  "t": "mc",
+                  "q": "Be quiet — the baby ___.",
+                  "o": [
+                    "sleeps",
+                    "is sleeping",
+                    "sleep"
+                  ],
+                  "a": 1
+                },
+                {
+                  "t": "mc",
+                  "q": "They ___ about the film.",
+                  "o": [
+                    "talk",
+                    "are talking",
+                    "talking"
+                  ],
+                  "a": 1
+                },
+                {
+                  "t": "mc",
+                  "q": "She ___ by the window.",
+                  "o": [
+                    "is siting",
+                    "is sitting",
+                    "sitting"
+                  ],
+                  "a": 1
+                },
+                {
+                  "t": "gap",
+                  "q": "Look — it ___ outside.",
+                  "a": "is raining",
+                  "hint": "rain, now"
+                },
+                {
+                  "t": "gap",
+                  "q": "He is ___ two heavy bags.",
+                  "a": "carrying",
+                  "hint": "carry"
+                },
+                {
+                  "t": "gap",
+                  "q": "What ___ happening outside?",
+                  "a": "is",
+                  "hint": "be"
+                },
+                {
+                  "t": "gap",
+                  "q": "The children are ___ in the park.",
+                  "a": "running",
+                  "hint": "run"
+                },
+                {
+                  "t": "order",
+                  "a": "What are you doing at the moment?"
+                },
+                {
+                  "t": "order",
+                  "a": "A man is standing at the door."
+                },
+                {
+                  "t": "transform",
+                  "instr": "Put it in the present continuous.",
+                  "q": "She writes a letter.",
+                  "a": [
+                    "She is writing a letter."
+                  ]
+                },
+                {
+                  "t": "transform",
+                  "instr": "Make it negative.",
+                  "q": "They are listening.",
+                  "a": [
+                    "They aren't listening.",
+                    "They are not listening."
+                  ]
+                },
+                {
+                  "t": "match",
+                  "pairs": [
+                    [
+                      "carry",
+                      "to hold something and move it"
+                    ],
+                    [
+                      "laugh",
+                      "to make a sound at something funny"
+                    ],
+                    [
+                      "hold",
+                      "to have something in your hand"
+                    ],
+                    [
+                      "happen",
+                      "to take place"
+                    ]
+                  ]
+                },
+                {
+                  "t": "sort",
+                  "instr": "Can it be used in the continuous?",
+                  "groups": [
+                    {
+                      "label": "yes — an action",
+                      "items": [
+                        "run",
+                        "carry",
+                        "talk",
+                        "write"
+                      ]
+                    },
+                    {
+                      "label": "no — a state",
+                      "items": [
+                        "know",
+                        "like",
+                        "want",
+                        "need"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "t": "dictation",
+                  "a": "The children are running and everybody is laughing."
+                },
+                {
+                  "t": "listen",
+                  "text": "I am on the bus now. It is raining, so everybody is standing very close together. A woman next to me is talking on the phone, quite loudly. I am reading, or I am trying to.",
+                  "q": "What is the woman doing?",
+                  "o": [
+                    "Reading",
+                    "Talking on the phone",
+                    "Standing quietly"
+                  ],
+                  "a": 1
+                }
+              ],
+              "speak": [
+                {
+                  "p": "Describe what is happening around you right now.",
+                  "model": "I am sitting at my desk. My colleague is talking on the phone and somebody is making coffee in the kitchen."
+                },
+                {
+                  "p": "Phone a friend and tell them what you are doing.",
+                  "model": "Hi, I'm on the bus. It's raining and everybody is standing very close together. I'm going to the centre."
+                },
+                {
+                  "p": "Ask your partner four questions in the present continuous.",
+                  "model": "What are you doing this week? Are you working today? Is it raining where you are? What are you reading at the moment?"
+                }
+              ]
             },
             {
               "id": "11B",
               "title": "Usually or now?",
               "g": "present simple vs present continuous",
               "v": "Describing photos",
-              "locked": true
+              "grammar": {
+                "h": "present simple or continuous &nbsp;·&nbsp; usually, or right now",
+                "rows": [
+                  {
+                    "label": "Present simple — always, usually, every day",
+                    "items": [
+                      "She <b>drives</b> to work.",
+                      "We <b>have</b> lunch at one.",
+                      "He <b>doesn't</b> smoke."
+                    ]
+                  },
+                  {
+                    "label": "Present continuous — now, today, these days",
+                    "items": [
+                      "She <b>is taking</b> the bus today.",
+                      "We <b>are having</b> lunch late.",
+                      "He <b>isn't working</b> this week."
+                    ]
+                  },
+                  {
+                    "label": "The words that give it away",
+                    "items": [
+                      "simple — <i>usually, always, every day, on Mondays, never</i>",
+                      "continuous — <i>now, at the moment, today, this week, look!</i>"
+                    ]
+                  }
+                ],
+                "notes": [
+                  "Ask one question: is this a habit, or is it going on around now? A habit takes the simple.",
+                  "The two often share a sentence: <i>She usually drives, but today she is taking the bus.</i>",
+                  "State verbs stay simple even about this moment: <i>I want a coffee</i>, not <i>I am wanting</i>.",
+                  "To describe a photograph, use the continuous — you are saying what people in it are doing."
+                ]
+              },
+              "vocab": [
+                {
+                  "w": "photograph",
+                  "ipa": "/ˈfəʊtəɡrɑːf/",
+                  "pos": "n",
+                  "def": "a picture made with a camera",
+                  "ex": "There is an old photograph on the shelf."
+                },
+                {
+                  "w": "picture",
+                  "ipa": "/ˈpɪktʃə/",
+                  "pos": "n",
+                  "def": "a drawing or a photograph",
+                  "ex": "In the picture two men are working."
+                },
+                {
+                  "w": "background",
+                  "ipa": "/ˈbækɡraʊnd/",
+                  "pos": "n",
+                  "def": "the part of a picture that is far away",
+                  "ex": "There are mountains in the background."
+                },
+                {
+                  "w": "front",
+                  "ipa": "/frʌnt/",
+                  "pos": "n",
+                  "def": "the part that is nearest to you",
+                  "ex": "At the front a child is smiling."
+                },
+                {
+                  "w": "left",
+                  "ipa": "/left/",
+                  "pos": "n",
+                  "def": "the side where your heart is",
+                  "ex": "On the left there is a small house."
+                },
+                {
+                  "w": "right",
+                  "ipa": "/raɪt/",
+                  "pos": "n",
+                  "def": "the side opposite the left",
+                  "ex": "On the right two women are talking."
+                },
+                {
+                  "w": "middle",
+                  "ipa": "/ˈmɪdl/",
+                  "pos": "n",
+                  "def": "the central part",
+                  "ex": "In the middle of the picture there is a table."
+                },
+                {
+                  "w": "seem",
+                  "ipa": "/siːm/",
+                  "pos": "v",
+                  "def": "to give the impression of being something",
+                  "ex": "They seem very happy."
+                },
+                {
+                  "w": "look",
+                  "ipa": "/lʊk/",
+                  "pos": "v",
+                  "def": "to have a certain appearance",
+                  "ex": "She looks tired in this photograph."
+                },
+                {
+                  "w": "moment",
+                  "ipa": "/ˈməʊmənt/",
+                  "pos": "n",
+                  "def": "a very short piece of time",
+                  "ex": "At the moment nobody is talking."
+                }
+              ],
+              "ex": [
+                {
+                  "t": "mc",
+                  "q": "She usually ___ to work, but today she ___ the bus.",
+                  "o": [
+                    "drives / is taking",
+                    "is driving / takes",
+                    "drive / take"
+                  ],
+                  "a": 0
+                },
+                {
+                  "t": "mc",
+                  "q": "We ___ lunch at one every day.",
+                  "o": [
+                    "are having",
+                    "have",
+                    "having"
+                  ],
+                  "a": 1
+                },
+                {
+                  "t": "mc",
+                  "q": "Look! It ___.",
+                  "o": [
+                    "snows",
+                    "is snowing",
+                    "snow"
+                  ],
+                  "a": 1
+                },
+                {
+                  "t": "gap",
+                  "q": "He ___ working this week.",
+                  "a": "isn't",
+                  "hint": "negative, now"
+                },
+                {
+                  "t": "gap",
+                  "q": "I ___ get up early on Sundays.",
+                  "a": "don't",
+                  "hint": "negative, usually"
+                },
+                {
+                  "t": "gap",
+                  "q": "In the ___ of the picture there is a table.",
+                  "a": "middle",
+                  "hint": "the central part"
+                },
+                {
+                  "t": "gap",
+                  "q": "There are mountains in the ___.",
+                  "a": "background",
+                  "hint": "far away in a picture"
+                },
+                {
+                  "t": "order",
+                  "a": "She usually drives but today she is taking the bus."
+                },
+                {
+                  "t": "order",
+                  "a": "In the picture two men are working."
+                },
+                {
+                  "t": "transform",
+                  "instr": "Choose the right form.",
+                  "q": "Listen! Somebody (sing) in the next room.",
+                  "a": [
+                    "Listen! Somebody is singing in the next room.",
+                    "Somebody is singing in the next room."
+                  ]
+                },
+                {
+                  "t": "transform",
+                  "instr": "Choose the right form.",
+                  "q": "My father (work) in a bank.",
+                  "a": [
+                    "My father works in a bank."
+                  ]
+                },
+                {
+                  "t": "match",
+                  "pairs": [
+                    [
+                      "background",
+                      "the part of a picture that is far away"
+                    ],
+                    [
+                      "photograph",
+                      "a picture made with a camera"
+                    ],
+                    [
+                      "seem",
+                      "to give the impression of being something"
+                    ],
+                    [
+                      "moment",
+                      "a very short piece of time"
+                    ]
+                  ]
+                },
+                {
+                  "t": "sort",
+                  "instr": "Usually, or right now?",
+                  "groups": [
+                    {
+                      "label": "present simple",
+                      "items": [
+                        "every day",
+                        "usually",
+                        "on Mondays",
+                        "never"
+                      ]
+                    },
+                    {
+                      "label": "present continuous",
+                      "items": [
+                        "now",
+                        "at the moment",
+                        "today",
+                        "look!"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "t": "dictation",
+                  "a": "She usually drives but today she is taking the bus."
+                },
+                {
+                  "t": "listen",
+                  "text": "This is my favourite photograph. My grandmother is sitting in the middle and she is laughing. On the left my father is holding a cup of tea. In the background you can see the mountains.",
+                  "q": "Where is the grandmother?",
+                  "o": [
+                    "On the left",
+                    "In the middle",
+                    "In the background"
+                  ],
+                  "a": 1
+                }
+              ],
+              "speak": [
+                {
+                  "p": "Describe a photograph on your phone.",
+                  "model": "In the middle my sister is holding her son. On the left two friends are laughing. In the background there is the sea."
+                },
+                {
+                  "p": "Say one thing you usually do and one thing you are doing differently this week.",
+                  "model": "I usually walk to work, but this week I am taking the bus because it is raining every morning."
+                },
+                {
+                  "p": "Ask your partner two questions about habits and two about right now.",
+                  "model": "What time do you usually start? Do you cook every day? What are you working on this week? Are you reading anything at the moment?"
+                }
+              ]
             },
             {
               "id": "11C",
               "title": "Rules",
               "g": "have to / don't have to",
               "v": "Rules & obligations",
-              "locked": true
+              "grammar": {
+                "h": "have to &nbsp;·&nbsp; what is necessary",
+                "rows": [
+                  {
+                    "label": "Necessary",
+                    "items": [
+                      "I <b>have to</b> work on Saturday.",
+                      "she <b>has to</b> wear a uniform",
+                      "<b>Do</b> you <b>have to</b> come early?"
+                    ]
+                  },
+                  {
+                    "label": "Not necessary",
+                    "items": [
+                      "We <b>don't have to</b> pay — it is free.",
+                      "He <b>doesn't have to</b> get up early on Sunday."
+                    ]
+                  },
+                  {
+                    "label": "Not allowed — a different thing",
+                    "items": [
+                      "You <b>can't</b> park here.",
+                      "<i>You don't have to park here</i> means something else entirely."
+                    ]
+                  }
+                ],
+                "notes": [
+                  "<b>have to</b> is an ordinary verb: <b>has</b> for he and she, and <b>do / does</b> in questions and negatives.",
+                  "<b>don't have to</b> means it is not necessary. <b>can't</b> means it is not allowed. They are not the same thing.",
+                  "The verb after <b>have to</b> is plain: <i>have to work</i>, never <i>have to working</i>.",
+                  "In the past it is <b>had to</b> for everybody: <i>I had to wait an hour.</i>"
+                ]
+              },
+              "vocab": [
+                {
+                  "w": "rule",
+                  "ipa": "/ruːl/",
+                  "pos": "n",
+                  "def": "something you must or must not do",
+                  "ex": "The first rule is: no phones."
+                },
+                {
+                  "w": "uniform",
+                  "ipa": "/ˈjuːnɪfɔːm/",
+                  "pos": "n",
+                  "def": "special clothes for a job or a school",
+                  "ex": "She has to wear a uniform at the hospital."
+                },
+                {
+                  "w": "allowed",
+                  "ipa": "/əˈlaʊd/",
+                  "pos": "adj",
+                  "def": "permitted",
+                  "ex": "Photographs are not allowed in the museum."
+                },
+                {
+                  "w": "must",
+                  "ipa": "/mʌst/",
+                  "pos": "v",
+                  "def": "to be necessary — a strong instruction",
+                  "ex": "You must show your ticket at the door."
+                },
+                {
+                  "w": "pay",
+                  "ipa": "/peɪ/",
+                  "pos": "v",
+                  "def": "to give money for something",
+                  "ex": "You don't have to pay for the children."
+                },
+                {
+                  "w": "queue",
+                  "ipa": "/kjuː/",
+                  "pos": "n",
+                  "def": "a line of people waiting",
+                  "ex": "There is a long queue at the bank."
+                },
+                {
+                  "w": "sign",
+                  "ipa": "/saɪn/",
+                  "pos": "n",
+                  "def": "a board with information on it",
+                  "ex": "The sign says the pool is closed."
+                },
+                {
+                  "w": "permission",
+                  "ipa": "/pəˈmɪʃn/",
+                  "pos": "n",
+                  "def": "official agreement that you may do something",
+                  "ex": "You need permission to take photographs."
+                },
+                {
+                  "w": "forbidden",
+                  "ipa": "/fəˈbɪdn/",
+                  "pos": "adj",
+                  "def": "not allowed at all",
+                  "ex": "Smoking is forbidden in the building."
+                },
+                {
+                  "w": "document",
+                  "ipa": "/ˈdɒkjumənt/",
+                  "pos": "n",
+                  "def": "an official paper",
+                  "ex": "Bring all your documents to the office."
+                }
+              ],
+              "ex": [
+                {
+                  "t": "mc",
+                  "q": "She ___ wear a uniform at work.",
+                  "o": [
+                    "have to",
+                    "has to",
+                    "having to"
+                  ],
+                  "a": 1
+                },
+                {
+                  "t": "mc",
+                  "q": "We ___ pay — it's free.",
+                  "o": [
+                    "don't have to",
+                    "can't",
+                    "haven't to"
+                  ],
+                  "a": 0
+                },
+                {
+                  "t": "mc",
+                  "q": "___ you have to come early?",
+                  "o": [
+                    "Do",
+                    "Are",
+                    "Have"
+                  ],
+                  "a": 0
+                },
+                {
+                  "t": "gap",
+                  "q": "I ___ to work on Saturday.",
+                  "a": "have",
+                  "hint": "necessary"
+                },
+                {
+                  "t": "gap",
+                  "q": "He doesn't have to ___ up early on Sunday.",
+                  "a": "get",
+                  "hint": "plain verb"
+                },
+                {
+                  "t": "gap",
+                  "q": "Smoking is ___ in the building.",
+                  "a": "forbidden",
+                  "hint": "not allowed at all"
+                },
+                {
+                  "t": "gap",
+                  "q": "There is a long ___ at the bank.",
+                  "a": "queue",
+                  "hint": "a line of people waiting"
+                },
+                {
+                  "t": "order",
+                  "a": "You don't have to pay for the children."
+                },
+                {
+                  "t": "order",
+                  "a": "Does she have to wear a uniform?"
+                },
+                {
+                  "t": "transform",
+                  "instr": "Make it negative.",
+                  "q": "We have to book a table.",
+                  "a": [
+                    "We don't have to book a table.",
+                    "We do not have to book a table."
+                  ]
+                },
+                {
+                  "t": "transform",
+                  "instr": "Put it in the past.",
+                  "q": "I have to wait an hour.",
+                  "a": [
+                    "I had to wait an hour."
+                  ]
+                },
+                {
+                  "t": "match",
+                  "pairs": [
+                    [
+                      "uniform",
+                      "special clothes for a job or a school"
+                    ],
+                    [
+                      "queue",
+                      "a line of people waiting"
+                    ],
+                    [
+                      "sign",
+                      "a board with information on it"
+                    ],
+                    [
+                      "permission",
+                      "agreement that you may do something"
+                    ]
+                  ]
+                },
+                {
+                  "t": "sort",
+                  "instr": "Not necessary, or not allowed?",
+                  "groups": [
+                    {
+                      "label": "don't have to",
+                      "items": [
+                        "pay for children",
+                        "wear a suit",
+                        "come before nine",
+                        "book a table"
+                      ]
+                    },
+                    {
+                      "label": "can't",
+                      "items": [
+                        "park here",
+                        "smoke inside",
+                        "use a phone in the exam",
+                        "take photographs"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "t": "dictation",
+                  "a": "You don't have to pay but you have to show your ticket."
+                },
+                {
+                  "t": "listen",
+                  "text": "A few rules for the office. You have to be here by nine. You don't have to wear a suit, but jeans are not allowed. And you can't eat at your desk — there is a kitchen for that.",
+                  "q": "What is not allowed?",
+                  "o": [
+                    "Arriving at nine",
+                    "Wearing jeans",
+                    "Using the kitchen"
+                  ],
+                  "a": 1
+                }
+              ],
+              "speak": [
+                {
+                  "p": "Say three rules at your work or your school.",
+                  "model": "We have to be there by nine. We don't have to wear a uniform, but we can't wear jeans on Mondays."
+                },
+                {
+                  "p": "Say two things you have to do this week and two you don't have to do.",
+                  "model": "I have to finish a report and I have to call the bank. I don't have to work on Friday and I don't have to cook — my brother is cooking."
+                },
+                {
+                  "p": "Explain the rules of a place a visitor does not know.",
+                  "model": "In the museum you can't take photographs and you have to leave your bag at the entrance. You don't have to pay on Wednesdays."
+                }
+              ]
             }
           ],
-          "locked": true
+          "test": [
+            {
+              "t": "mc",
+              "q": "Be quiet — the baby ___.",
+              "o": [
+                "sleeps",
+                "is sleeping",
+                "sleep"
+              ],
+              "a": 1
+            },
+            {
+              "t": "mc",
+              "q": "She usually ___ to work, but today she ___ the bus.",
+              "o": [
+                "drives / is taking",
+                "is driving / takes",
+                "drive / take"
+              ],
+              "a": 0
+            },
+            {
+              "t": "gap",
+              "q": "Look — it ___ outside.",
+              "a": "is raining",
+              "hint": "rain, now"
+            },
+            {
+              "t": "gap",
+              "q": "She ___ wear a uniform at work.",
+              "a": "has to",
+              "hint": "necessary"
+            },
+            {
+              "t": "gap",
+              "q": "We ___ have to pay — it is free.",
+              "a": "don't",
+              "hint": "not necessary"
+            },
+            {
+              "t": "order",
+              "a": "What are you doing at the moment?"
+            },
+            {
+              "t": "transform",
+              "instr": "Put it in the present continuous.",
+              "q": "She writes a letter.",
+              "a": [
+                "She is writing a letter."
+              ]
+            },
+            {
+              "t": "match",
+              "pairs": [
+                [
+                  "background",
+                  "the part of a picture that is far away"
+                ],
+                [
+                  "queue",
+                  "a line of people waiting"
+                ],
+                [
+                  "carry",
+                  "to hold something and move it"
+                ],
+                [
+                  "uniform",
+                  "special clothes for a job or a school"
+                ]
+              ]
+            }
+          ]
         },
         {
           "n": 12,
@@ -8478,24 +9331,882 @@
               "title": "Have you ever?",
               "g": "present perfect — experience",
               "v": "Life events",
-              "locked": true
+              "grammar": {
+                "h": "present perfect &nbsp;·&nbsp; have + the third form",
+                "rows": [
+                  {
+                    "label": "The form",
+                    "items": [
+                      "I <b>have been</b> to Turkey.",
+                      "she <b>has visited</b> Astana",
+                      "we <b>haven't tried</b> sushi",
+                      "they <b>have never flown</b>"
+                    ]
+                  },
+                  {
+                    "label": "Asking about a life",
+                    "items": [
+                      "<b>Have</b> you <b>ever</b> been to the sea?",
+                      "Yes, I <b>have</b>. / No, I <b>haven't</b>.",
+                      "<b>Has</b> she <b>ever</b> worked abroad?"
+                    ]
+                  },
+                  {
+                    "label": "The third form",
+                    "items": [
+                      "be → <b>been</b>, go → <b>gone</b>, see → <b>seen</b>, eat → <b>eaten</b>",
+                      "do → <b>done</b>, have → <b>had</b>, take → <b>taken</b>, write → <b>written</b>",
+                      "regular verbs — the same as the past: <i>visited</i>, <i>worked</i>"
+                    ]
+                  }
+                ],
+                "notes": [
+                  "This is about a life so far, with <b>no date</b>. The moment a date appears, the past simple takes over.",
+                  "<b>ever</b> belongs to the question, <b>never</b> to the answer: <i>Have you ever…? — No, never.</i>",
+                  "<b>never</b> is already negative: <i>I have never been</i>, not <i>I haven't never been</i>.",
+                  "<b>been</b> means went and came back; <b>gone</b> means went and is still there."
+                ]
+              },
+              "vocab": [
+                {
+                  "w": "ever",
+                  "ipa": "/ˈevə/",
+                  "pos": "adv",
+                  "def": "at any time in your life",
+                  "ex": "Have you ever been abroad?"
+                },
+                {
+                  "w": "travel",
+                  "ipa": "/ˈtrævl/",
+                  "pos": "v",
+                  "def": "to go from one place or country to another",
+                  "ex": "She has travelled all over the country."
+                },
+                {
+                  "w": "move",
+                  "ipa": "/muːv/",
+                  "pos": "v",
+                  "def": "to go and live in another place",
+                  "ex": "They moved to Almaty in 2019."
+                },
+                {
+                  "w": "marry",
+                  "ipa": "/ˈmæri/",
+                  "pos": "v",
+                  "def": "to become somebody's husband or wife",
+                  "ex": "My sister married a teacher."
+                },
+                {
+                  "w": "graduate",
+                  "ipa": "/ˈɡrædʒueɪt/",
+                  "pos": "v",
+                  "def": "to finish university",
+                  "ex": "He graduated three years ago."
+                },
+                {
+                  "w": "experience",
+                  "ipa": "/ɪkˈspɪəriəns/",
+                  "pos": "n",
+                  "def": "something you have done or lived through",
+                  "ex": "It was a wonderful experience."
+                },
+                {
+                  "w": "lose",
+                  "ipa": "/luːz/",
+                  "pos": "v",
+                  "def": "to stop having something, often by accident",
+                  "ex": "I have lost my keys again."
+                },
+                {
+                  "w": "win",
+                  "ipa": "/wɪn/",
+                  "pos": "v",
+                  "def": "to be first in a game or a competition",
+                  "ex": "Our team has won three times."
+                },
+                {
+                  "w": "change",
+                  "ipa": "/tʃeɪndʒ/",
+                  "pos": "v",
+                  "def": "to become different, or to make something different",
+                  "ex": "She has changed her job twice."
+                },
+                {
+                  "w": "twice",
+                  "ipa": "/twaɪs/",
+                  "pos": "adv",
+                  "def": "two times",
+                  "ex": "I have been to Turkey twice."
+                }
+              ],
+              "ex": [
+                {
+                  "t": "mc",
+                  "q": "___ you ever been to Turkey?",
+                  "o": [
+                    "Did",
+                    "Have",
+                    "Are"
+                  ],
+                  "a": 1
+                },
+                {
+                  "t": "mc",
+                  "q": "She ___ never worked abroad.",
+                  "o": [
+                    "has",
+                    "have",
+                    "is"
+                  ],
+                  "a": 0
+                },
+                {
+                  "t": "mc",
+                  "q": "We ___ tried sushi.",
+                  "o": [
+                    "haven't",
+                    "don't",
+                    "aren't"
+                  ],
+                  "a": 0
+                },
+                {
+                  "t": "gap",
+                  "q": "I have never ___ sushi.",
+                  "a": "eaten",
+                  "hint": "eat"
+                },
+                {
+                  "t": "gap",
+                  "q": "They have ___ to Almaty three times.",
+                  "a": "been",
+                  "hint": "be"
+                },
+                {
+                  "t": "gap",
+                  "q": "Our team ___ won three times.",
+                  "a": "has",
+                  "hint": "have"
+                },
+                {
+                  "t": "gap",
+                  "q": "He ___ three years ago.",
+                  "a": "graduated",
+                  "hint": "graduate"
+                },
+                {
+                  "t": "order",
+                  "a": "Have you ever been to the sea?"
+                },
+                {
+                  "t": "order",
+                  "a": "She has never worked abroad."
+                },
+                {
+                  "t": "transform",
+                  "instr": "Ask with ever.",
+                  "q": "you / be / to Turkey",
+                  "a": [
+                    "Have you ever been to Turkey?"
+                  ]
+                },
+                {
+                  "t": "transform",
+                  "instr": "Make it negative with never.",
+                  "q": "I have tried sushi.",
+                  "a": [
+                    "I have never tried sushi."
+                  ]
+                },
+                {
+                  "t": "match",
+                  "pairs": [
+                    [
+                      "graduate",
+                      "to finish university"
+                    ],
+                    [
+                      "move",
+                      "to go and live in another place"
+                    ],
+                    [
+                      "experience",
+                      "something you have lived through"
+                    ],
+                    [
+                      "twice",
+                      "two times"
+                    ]
+                  ]
+                },
+                {
+                  "t": "sort",
+                  "instr": "Is the third form regular or irregular?",
+                  "groups": [
+                    {
+                      "label": "regular — ed",
+                      "items": [
+                        "visit",
+                        "work",
+                        "travel",
+                        "move"
+                      ]
+                    },
+                    {
+                      "label": "irregular",
+                      "items": [
+                        "eat",
+                        "be",
+                        "see",
+                        "write"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "t": "dictation",
+                  "a": "I have never been to Turkey but I would like to go."
+                },
+                {
+                  "t": "listen",
+                  "text": "I have travelled quite a lot inside the country, but I have never been abroad. My sister has been to Turkey twice and to Georgia once. She says Georgia was the best experience of her life.",
+                  "q": "Where has the sister been twice?",
+                  "o": [
+                    "Turkey",
+                    "Georgia",
+                    "Nowhere"
+                  ],
+                  "a": 0
+                }
+              ],
+              "speak": [
+                {
+                  "p": "Say three things you have done in your life and one you have never done.",
+                  "model": "I have travelled all over the country, I have changed my job twice and I have learned to drive. I have never been abroad."
+                },
+                {
+                  "p": "Ask your partner five questions with Have you ever…?",
+                  "model": "Have you ever been to the sea? Have you ever worked abroad? Have you ever tried sushi? Have you ever lost your keys? Have you ever won anything?"
+                },
+                {
+                  "p": "Talk about the best experience of your life so far.",
+                  "model": "The best experience of my life was a week in the mountains with my family. We have been back twice since then."
+                }
+              ]
             },
             {
               "id": "12B",
               "title": "When did you?",
               "g": "present perfect vs past simple",
               "v": "Time markers",
-              "locked": true
+              "grammar": {
+                "h": "present perfect or past simple &nbsp;·&nbsp; the date decides",
+                "rows": [
+                  {
+                    "label": "No date — present perfect",
+                    "items": [
+                      "I <b>have been</b> to Turkey.",
+                      "She <b>has changed</b> her job.",
+                      "<b>Have</b> you <b>ever</b> flown?"
+                    ]
+                  },
+                  {
+                    "label": "A date — past simple",
+                    "items": [
+                      "I <b>went</b> to Turkey <b>in 2023</b>.",
+                      "She <b>changed</b> her job <b>last year</b>.",
+                      "<b>When did</b> you fly?"
+                    ]
+                  },
+                  {
+                    "label": "How a real conversation moves",
+                    "items": [
+                      "— Have you been to Astana?",
+                      "— Yes, I have.",
+                      "— When did you go?",
+                      "— Two years ago."
+                    ]
+                  }
+                ],
+                "notes": [
+                  "The first question is general, the second asks when. English changes tense at exactly that point.",
+                  "These force the past simple: <b>yesterday</b>, <b>last week</b>, <b>in 2020</b>, <b>ago</b>, <b>when</b>.",
+                  "These sit with the present perfect: <b>ever</b>, <b>never</b>, <b>before</b>, <b>twice</b>, <b>already</b>, <b>yet</b>.",
+                  "<i>I have been there yesterday</i> is the mistake to watch for. A date and the present perfect cannot share a sentence."
+                ]
+              },
+              "vocab": [
+                {
+                  "w": "already",
+                  "ipa": "/ɔːlˈredi/",
+                  "pos": "adv",
+                  "def": "before now, sooner than expected",
+                  "ex": "I have already finished."
+                },
+                {
+                  "w": "yet",
+                  "ipa": "/jet/",
+                  "pos": "adv",
+                  "def": "until now — in questions and negatives",
+                  "ex": "Have you finished yet?"
+                },
+                {
+                  "w": "just",
+                  "ipa": "/dʒʌst/",
+                  "pos": "adv",
+                  "def": "a very short time ago",
+                  "ex": "She has just left."
+                },
+                {
+                  "w": "before",
+                  "ipa": "/bɪˈfɔː/",
+                  "pos": "adv",
+                  "def": "at some earlier time",
+                  "ex": "I have never seen this film before."
+                },
+                {
+                  "w": "since",
+                  "ipa": "/sɪns/",
+                  "pos": "prep",
+                  "def": "from a point in time until now",
+                  "ex": "I have lived here since 2020."
+                },
+                {
+                  "w": "for",
+                  "ipa": "/fɔː/",
+                  "pos": "prep",
+                  "def": "over a length of time",
+                  "ex": "We have been here for two hours."
+                },
+                {
+                  "w": "recently",
+                  "ipa": "/ˈriːsntli/",
+                  "pos": "adv",
+                  "def": "a short time ago",
+                  "ex": "Have you seen him recently?"
+                },
+                {
+                  "w": "once",
+                  "ipa": "/wʌns/",
+                  "pos": "adv",
+                  "def": "one time",
+                  "ex": "I have been to Georgia once."
+                },
+                {
+                  "w": "still",
+                  "ipa": "/stɪl/",
+                  "pos": "adv",
+                  "def": "continuing up to now",
+                  "ex": "She is still waiting."
+                },
+                {
+                  "w": "finally",
+                  "ipa": "/ˈfaɪnəli/",
+                  "pos": "adv",
+                  "def": "after a long time",
+                  "ex": "They have finally answered."
+                }
+              ],
+              "ex": [
+                {
+                  "t": "mc",
+                  "q": "___ you ever been to Astana?",
+                  "o": [
+                    "Did",
+                    "Have",
+                    "Were"
+                  ],
+                  "a": 1
+                },
+                {
+                  "t": "mc",
+                  "q": "I ___ to Turkey in 2023.",
+                  "o": [
+                    "have been",
+                    "went",
+                    "have gone"
+                  ],
+                  "a": 1
+                },
+                {
+                  "t": "mc",
+                  "q": "She has ___ left.",
+                  "o": [
+                    "yet",
+                    "just",
+                    "ago"
+                  ],
+                  "a": 1
+                },
+                {
+                  "t": "gap",
+                  "q": "When ___ you go there?",
+                  "a": "did",
+                  "hint": "there is a date"
+                },
+                {
+                  "t": "gap",
+                  "q": "I have ___ finished the report.",
+                  "a": "already",
+                  "hint": "sooner than expected"
+                },
+                {
+                  "t": "gap",
+                  "q": "Have you finished ___?",
+                  "a": "yet",
+                  "hint": "in a question"
+                },
+                {
+                  "t": "gap",
+                  "q": "We have been here ___ two hours.",
+                  "a": "for",
+                  "hint": "a length of time"
+                },
+                {
+                  "t": "order",
+                  "a": "I have never seen this film before."
+                },
+                {
+                  "t": "order",
+                  "a": "When did you move to Almaty?"
+                },
+                {
+                  "t": "transform",
+                  "instr": "Correct the mistake.",
+                  "q": "I have been to the market yesterday.",
+                  "a": [
+                    "I went to the market yesterday."
+                  ]
+                },
+                {
+                  "t": "transform",
+                  "instr": "Correct the mistake.",
+                  "q": "Did you ever eat sushi?",
+                  "a": [
+                    "Have you ever eaten sushi?"
+                  ]
+                },
+                {
+                  "t": "match",
+                  "pairs": [
+                    [
+                      "already",
+                      "before now, sooner than expected"
+                    ],
+                    [
+                      "yet",
+                      "until now, in questions and negatives"
+                    ],
+                    [
+                      "just",
+                      "a very short time ago"
+                    ],
+                    [
+                      "since",
+                      "from a point in time until now"
+                    ]
+                  ]
+                },
+                {
+                  "t": "sort",
+                  "instr": "Which tense does each one go with?",
+                  "groups": [
+                    {
+                      "label": "present perfect",
+                      "items": [
+                        "ever",
+                        "never",
+                        "already",
+                        "yet"
+                      ]
+                    },
+                    {
+                      "label": "past simple",
+                      "items": [
+                        "yesterday",
+                        "last week",
+                        "in 2020",
+                        "ago"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "t": "dictation",
+                  "a": "I have already been there but I went a long time ago."
+                },
+                {
+                  "t": "listen",
+                  "text": "— Have you been to the new café? — Yes, I have. — When did you go? — Last Friday, with Dana. We have been there twice actually, but the second time was better.",
+                  "q": "How many times has the speaker been?",
+                  "o": [
+                    "Once",
+                    "Twice",
+                    "Three times"
+                  ],
+                  "a": 1
+                }
+              ],
+              "speak": [
+                {
+                  "p": "Have the two-step conversation with your partner: ask in general, then ask when.",
+                  "model": "— Have you been to Astana? — Yes, I have. — When did you go? — Two years ago, for a wedding."
+                },
+                {
+                  "p": "Say three things you have already done today and one you haven't done yet.",
+                  "model": "I have already had breakfast, answered my email and called the bank. I haven't finished the report yet."
+                },
+                {
+                  "p": "Say how long you have lived where you live, and when you moved there.",
+                  "model": "I have lived in this flat for six years. I moved here in 2020, just before the winter."
+                }
+              ]
             },
             {
               "id": "12C",
               "title": "Elementary review",
               "g": "all tenses A1–A2",
               "v": "Consolidation",
-              "locked": true
+              "grammar": {
+                "h": "the tenses of Elementary &nbsp;·&nbsp; all in one place",
+                "rows": [
+                  {
+                    "label": "Now and always",
+                    "items": [
+                      "present simple — <i>She works in a bank.</i>",
+                      "present continuous — <i>She is working at home today.</i>"
+                    ]
+                  },
+                  {
+                    "label": "Before",
+                    "items": [
+                      "past simple — <i>She worked there in 2020.</i>",
+                      "present perfect — <i>She has worked in three banks.</i>"
+                    ]
+                  },
+                  {
+                    "label": "After, and what is possible",
+                    "items": [
+                      "be going to — <i>She is going to change her job.</i>",
+                      "can — <i>She can drive.</i>",
+                      "have to — <i>She has to start at eight.</i>"
+                    ]
+                  }
+                ],
+                "notes": [
+                  "Choose the tense from the time word, not from the sentence you are translating: <i>every day</i> → simple, <i>now</i> → continuous, <i>yesterday</i> → past, <i>ever</i> → perfect.",
+                  "Three of these need an auxiliary in questions — <b>do / does</b>, <b>did</b>, <b>have / has</b>. The other two already carry <b>be</b>.",
+                  "Negatives use the same auxiliary: <i>doesn't</i>, <i>didn't</i>, <i>hasn't</i>, <i>isn't</i>.",
+                  "When two tenses seem possible, say the time word out loud first. It nearly always decides for you."
+                ]
+              },
+              "vocab": [
+                {
+                  "w": "actually",
+                  "ipa": "/ˈæktʃuəli/",
+                  "pos": "adv",
+                  "def": "in fact — often to correct what someone assumed",
+                  "ex": "Actually, I have never been there."
+                },
+                {
+                  "w": "of course",
+                  "ipa": "/əv ˈkɔːs/",
+                  "pos": "adv",
+                  "def": "certainly, naturally",
+                  "ex": "Of course you can come with us."
+                },
+                {
+                  "w": "anyway",
+                  "ipa": "/ˈeniweɪ/",
+                  "pos": "adv",
+                  "def": "in any case, despite that",
+                  "ex": "It was raining, but we went anyway."
+                },
+                {
+                  "w": "instead",
+                  "ipa": "/ɪnˈsted/",
+                  "pos": "adv",
+                  "def": "in the place of that",
+                  "ex": "The café was closed, so we went home instead."
+                },
+                {
+                  "w": "both",
+                  "ipa": "/bəʊθ/",
+                  "pos": "det",
+                  "def": "the two of them together",
+                  "ex": "Both my sisters live in Astana."
+                },
+                {
+                  "w": "each other",
+                  "ipa": "/ˌiːtʃ ˈʌðə/",
+                  "pos": "pron",
+                  "def": "one person to the other and back",
+                  "ex": "We have known each other for ten years."
+                },
+                {
+                  "w": "quite",
+                  "ipa": "/kwaɪt/",
+                  "pos": "adv",
+                  "def": "fairly, to some degree",
+                  "ex": "The film was quite good."
+                },
+                {
+                  "w": "really",
+                  "ipa": "/ˈrɪəli/",
+                  "pos": "adv",
+                  "def": "very, or truly",
+                  "ex": "It was really cold yesterday."
+                },
+                {
+                  "w": "such",
+                  "ipa": "/sʌtʃ/",
+                  "pos": "det",
+                  "def": "of this kind, so much",
+                  "ex": "It was such a long day."
+                },
+                {
+                  "w": "however",
+                  "ipa": "/haʊˈevə/",
+                  "pos": "adv",
+                  "def": "but — a more formal way of saying it",
+                  "ex": "The hotel was small. However, it was very clean."
+                }
+              ],
+              "ex": [
+                {
+                  "t": "mc",
+                  "q": "She ___ in a bank, but today she ___ at home.",
+                  "o": [
+                    "works / is working",
+                    "is working / works",
+                    "work / working"
+                  ],
+                  "a": 0
+                },
+                {
+                  "t": "mc",
+                  "q": "___ you ever been to Georgia?",
+                  "o": [
+                    "Did",
+                    "Have",
+                    "Are"
+                  ],
+                  "a": 1
+                },
+                {
+                  "t": "mc",
+                  "q": "We ___ to the mountains last Sunday.",
+                  "o": [
+                    "have gone",
+                    "went",
+                    "are going"
+                  ],
+                  "a": 1
+                },
+                {
+                  "t": "gap",
+                  "q": "I ___ going to book the tickets tomorrow.",
+                  "a": "am",
+                  "hint": "be"
+                },
+                {
+                  "t": "gap",
+                  "q": "He ___ have to work on Saturday.",
+                  "a": "doesn't",
+                  "hint": "not necessary"
+                },
+                {
+                  "t": "gap",
+                  "q": "They ___ at home yesterday evening.",
+                  "a": "were",
+                  "hint": "be, past"
+                },
+                {
+                  "t": "gap",
+                  "q": "___ course you can come with us.",
+                  "a": "Of",
+                  "hint": "certainly"
+                },
+                {
+                  "t": "order",
+                  "a": "She has worked in three different banks."
+                },
+                {
+                  "t": "order",
+                  "a": "The café was closed so we went home instead."
+                },
+                {
+                  "t": "transform",
+                  "instr": "Put it in the past.",
+                  "q": "I take the bus and I get there at nine.",
+                  "a": [
+                    "I took the bus and I got there at nine."
+                  ]
+                },
+                {
+                  "t": "transform",
+                  "instr": "Make it a question.",
+                  "q": "She is going to change her job.",
+                  "a": [
+                    "Is she going to change her job?"
+                  ]
+                },
+                {
+                  "t": "match",
+                  "pairs": [
+                    [
+                      "actually",
+                      "in fact, really"
+                    ],
+                    [
+                      "anyway",
+                      "in any case"
+                    ],
+                    [
+                      "instead",
+                      "in the place of that"
+                    ],
+                    [
+                      "however",
+                      "but, more formally"
+                    ]
+                  ]
+                },
+                {
+                  "t": "sort",
+                  "instr": "Which tense does each time word ask for?",
+                  "groups": [
+                    {
+                      "label": "present simple",
+                      "items": [
+                        "every day",
+                        "usually",
+                        "on Fridays"
+                      ]
+                    },
+                    {
+                      "label": "past simple",
+                      "items": [
+                        "yesterday",
+                        "last year",
+                        "in 2020"
+                      ]
+                    },
+                    {
+                      "label": "present perfect",
+                      "items": [
+                        "ever",
+                        "never",
+                        "twice"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "t": "dictation",
+                  "a": "I have lived here for ten years and I am not going to move."
+                },
+                {
+                  "t": "listen",
+                  "text": "I have lived in Almaty for a long time. I moved here in 2016 to study, and I have worked in the same office since I graduated. Next year I am going to change my job. Actually, I have already sent two applications.",
+                  "q": "Why did the speaker move to Almaty?",
+                  "o": [
+                    "To study",
+                    "To work in an office",
+                    "To change jobs"
+                  ],
+                  "a": 0
+                }
+              ],
+              "speak": [
+                {
+                  "p": "Tell the story of your last five years, using at least four different tenses.",
+                  "model": "I moved here in 2020. I have worked in the same office since then, and at the moment I am studying English in the evenings. Next year I am going to look for a new job."
+                },
+                {
+                  "p": "Answer these four questions in full sentences: What do you usually do on Sundays? What are you doing this week? What did you do last weekend? What have you never done?",
+                  "model": "On Sundays I usually rest. This week I am working late every day. Last weekend I went to the mountains. I have never flown in a plane."
+                },
+                {
+                  "p": "Describe somebody in your family: their habits, what they are doing now, what they did before and what they are going to do.",
+                  "model": "My sister works in a school. At the moment she is preparing lessons for September. She studied in Astana and graduated in 2018. Next year she is going to move to a bigger school."
+                }
+              ]
             }
           ],
-          "locked": true
+          "test": [
+            {
+              "t": "mc",
+              "q": "___ you ever been to Turkey?",
+              "o": [
+                "Did",
+                "Have",
+                "Are"
+              ],
+              "a": 1
+            },
+            {
+              "t": "mc",
+              "q": "I ___ to Turkey in 2023.",
+              "o": [
+                "have been",
+                "went",
+                "have gone"
+              ],
+              "a": 1
+            },
+            {
+              "t": "gap",
+              "q": "I have never ___ sushi.",
+              "a": "eaten",
+              "hint": "eat"
+            },
+            {
+              "t": "gap",
+              "q": "We have been here ___ two hours.",
+              "a": "for",
+              "hint": "a length of time"
+            },
+            {
+              "t": "gap",
+              "q": "She ___ in a bank but today she is working at home.",
+              "a": "works",
+              "hint": "usually"
+            },
+            {
+              "t": "order",
+              "a": "Have you ever been to the sea?"
+            },
+            {
+              "t": "transform",
+              "instr": "Correct the mistake.",
+              "q": "I have been to the market yesterday.",
+              "a": [
+                "I went to the market yesterday."
+              ]
+            },
+            {
+              "t": "match",
+              "pairs": [
+                [
+                  "already",
+                  "before now, sooner than expected"
+                ],
+                [
+                  "graduate",
+                  "to finish university"
+                ],
+                [
+                  "instead",
+                  "in the place of that"
+                ],
+                [
+                  "twice",
+                  "two times"
+                ]
+              ]
+            }
+          ]
         }
       ],
       "entryTest": {
