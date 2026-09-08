@@ -165,6 +165,10 @@ once in the root layout and style everything with `var(--*)`.
 
 Copy exact spacing, sizes and colours per screen from `reference/prototype.dc.html`.
 
+The prototype has no phone layout, so one rule that is not in it: **a matching task keeps
+its two columns on a phone.** Collapsing it puts the word out of sight while its meaning is
+chosen, which is the task. Shrink the type instead. Checked at 375px and 320px.
+
 ---
 
 ## 5. Who sees what — read this before touching access
