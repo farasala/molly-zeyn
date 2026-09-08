@@ -57,8 +57,8 @@ export function AuthForm({ mode }: { mode: 'login' | 'signup' }) {
             type="password"
             autoComplete={isSignup ? 'new-password' : 'current-password'}
             required
-            minLength={isSignup ? 6 : undefined}
-            placeholder={isSignup ? 'At least 6 characters' : 'Your password'}
+            minLength={isSignup ? 8 : undefined}
+            placeholder={isSignup ? 'At least 8 characters' : 'Your password'}
           />
         </label>
       </div>

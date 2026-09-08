@@ -378,6 +378,10 @@ after it places the student at unit 4; the result survives being handed in.
 ## 9. Before the first real students
 
 1. No demo or seeded accounts anywhere; no password shipped in code or docs.
+   Minimum password length is 8, set in `MIN_PASSWORD` in both auth-actions.ts and
+   join-actions.ts and mirrored in the two forms. Change all four together, and set the same
+   number in Supabase (Authentication → Providers → Email), or the server rejects a password
+   the form accepted. Leaked-password protection there is Pro-plan only.
 2. Re-verify RLS on every table, and the access gate in §5, with a second logged-in
    student account, not just in theory. Done once the content was complete: a student outside
    the group reads 0 rows from every table, a student in it reads only their own, the teacher

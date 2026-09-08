@@ -52,8 +52,8 @@ export function JoinForm({ token }: { token: string }) {
             type="password"
             autoComplete="new-password"
             required
-            minLength={6}
-            placeholder="At least 6 characters"
+            minLength={8}
+            placeholder="At least 8 characters"
           />
         </label>
       </div>

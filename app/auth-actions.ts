@@ -6,7 +6,7 @@ import { createClient } from '@/lib/supabase/server';
 import { emptyAuthState, type AuthState, type Role } from '@/lib/auth-state';
 
 const EMAIL = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
-const MIN_PASSWORD = 6;
+const MIN_PASSWORD = 8;
 
 function read(formData: FormData, key: string): string {
   const value = formData.get(key);
