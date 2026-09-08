@@ -184,9 +184,9 @@ export default async function DashboardPage() {
         <section className="card">
           <h2 className="card-title">Your progress</h2>
           <p className="card-text">
-            {totals.activities === 0
-              ? 'Nothing recorded yet. Finish a practice set and it lands here, on every device you sign in from.'
-              : 'Counted from every practice run you have finished. The best attempt counts per lesson.'}
+            {totals.activities === 0 && totals.homework === 0
+              ? 'Nothing recorded yet. Hand in a homework or finish a practice set and it lands here, on every device you sign in from.'
+              : 'Counted from the homework you have handed in and every practice run you have finished. The best attempt counts per lesson.'}
           </p>
           <dl className="detail-list">
             <div className="detail">
@@ -196,6 +196,10 @@ export default async function DashboardPage() {
             <div className="detail">
               <dt>Words known</dt>
               <dd>{wordsKnown}</dd>
+            </div>
+            <div className="detail">
+              <dt>Homework done</dt>
+              <dd>{totals.homework}</dd>
             </div>
             <div className="detail">
               <dt>Practice runs</dt>

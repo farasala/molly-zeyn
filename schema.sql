@@ -146,8 +146,17 @@ returns boolean language sql stable security definer set search_path = public as
   );
 $$;
 
-revoke execute on function public.is_group_teacher(uuid) from anon;
-revoke execute on function public.is_group_member(uuid)  from anon;
+-- Every function in `public` is reachable over PostgREST as /rest/v1/rpc/<name>,
+-- and a new function carries EXECUTE for PUBLIC by default. Revoking from anon
+-- alone does nothing — anon inherits the PUBLIC grant. Revoke that, then grant
+-- back only to the role that needs it. These three are called inside RLS
+-- policies, so the signed-in role evaluating the policy must keep EXECUTE.
+revoke all on function public.teaches(uuid, uuid)      from public, anon;
+revoke all on function public.is_group_teacher(uuid) from public, anon;
+revoke all on function public.is_group_member(uuid)  from public, anon;
+grant execute on function public.teaches(uuid, uuid)      to authenticated;
+grant execute on function public.is_group_teacher(uuid) to authenticated;
+grant execute on function public.is_group_member(uuid)  to authenticated;
 
 -- groups: owned by the teacher; members may read their own group
 drop policy if exists groups_owner  on public.groups;

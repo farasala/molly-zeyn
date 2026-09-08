@@ -35,8 +35,8 @@ export default async function ProgressPage() {
           <p className="page-eyebrow">Elementary · A1–A2</p>
           <h1 className="page-title">Progress</h1>
           <p className="page-lead">
-            Every figure here comes from the same records as your dashboard: the practice you have
-            finished and the words you have marked.
+            Every figure here comes from the same records as your dashboard: the homework you have
+            handed in, the practice you have finished and the words you have marked.
           </p>
         </header>
 
@@ -50,6 +50,10 @@ export default async function ProgressPage() {
             <div className="detail">
               <dt>Words known</dt>
               <dd>{wordsKnown}</dd>
+            </div>
+            <div className="detail">
+              <dt>Homework done</dt>
+              <dd>{totals.homework}</dd>
             </div>
             <div className="detail">
               <dt>Practice runs</dt>

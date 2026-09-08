@@ -1,16 +1,21 @@
 import { createClient } from '@/lib/supabase/server';
 
 /**
- * Totals for the signed-in student, read straight from `activity_results`.
- * Every attempt is kept, so XP is the sum of what was earned and the score
- * shown per lesson is the best one.
+ * Totals for the signed-in student.
  *
- * Stage 7 builds the full cabinet on top of this; for now it is what proves
- * a finished practice run survives a log out and a different device.
+ * XP is earned in two places and both count: practice runs, in
+ * `activity_results`, and handed-in homework, in `homework_submissions`.
+ * Reading only the first was a quiet lie — the homework screen says "+160 XP"
+ * and the cabinet then showed 0.
+ *
+ * Every attempt is kept, so the score shown per lesson is the best one.
  */
 export type Totals = {
+  /** Practice and homework together — the number the student is shown. */
   xp: number;
+  /** Practice runs only. Homework is counted separately; it is not practice. */
   activities: number;
+  homework: number;
   lessonsPractised: number;
   best: Map<string, { score: number; total: number }>;
 };
@@ -26,11 +31,20 @@ export async function getTotals(userId: string, levelId: string): Promise<Totals
     // Course tests live in the same table but are not practice runs.
     .eq('kind', 'practice');
 
-  const empty: Totals = { xp: 0, activities: 0, lessonsPractised: 0, best: new Map() };
+  const { data: handedIn } = await supabase
+    .from('homework_submissions')
+    .select('xp')
+    .eq('student_id', userId)
+    .eq('status', 'submitted');
+
+  const homeworkXp = (handedIn ?? []).reduce((sum, row) => sum + (row.xp ?? 0), 0);
+  const homework = handedIn?.length ?? 0;
+
+  const empty: Totals = { xp: homeworkXp, activities: 0, homework, lessonsPractised: 0, best: new Map() };
   if (error || !data) return empty;
 
   const best = new Map<string, { score: number; total: number }>();
-  let xp = 0;
+  let xp = homeworkXp;
 
   for (const row of data) {
     xp += row.xp ?? 0;
@@ -43,7 +57,7 @@ export async function getTotals(userId: string, levelId: string): Promise<Totals
     if (share > currentShare) best.set(lessonId, { score: row.score, total: row.total });
   }
 
-  return { xp, activities: data.length, lessonsPractised: best.size, best };
+  return { xp, activities: data.length, homework, lessonsPractised: best.size, best };
 }
 
 /** One sitting of the entry or end-of-course test. */

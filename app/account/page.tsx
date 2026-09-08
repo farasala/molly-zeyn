@@ -102,6 +102,10 @@ export default async function AccountPage() {
               <dd>{wordsKnown}</dd>
             </div>
             <div className="detail">
+              <dt>Homework done</dt>
+              <dd>{totals.homework}</dd>
+            </div>
+            <div className="detail">
               <dt>Practice runs</dt>
               <dd>{totals.activities}</dd>
             </div>

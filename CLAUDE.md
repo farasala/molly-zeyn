@@ -233,6 +233,13 @@ last week's homework" lesson opening does not work.
 **and the order**, so a submission stays readable later. Treat a released unit's content as
 append-only; editing a published exercise invalidates past submissions.
 
+**Every function in `public` is an API endpoint.** PostgREST exposes it at
+`/rest/v1/rpc/<name>`, and a new function carries EXECUTE for PUBLIC by default — so
+`revoke ... from anon` does nothing on its own. Revoke from `public` first, then grant only
+to the role that needs it. A SECURITY DEFINER function reads past RLS, so one left open is a
+hole with a URL. Only `invite_preview` is meant for `anon`, because /join/<token> is read
+before the student has an account.
+
 **RLS is on for every table.** A student reads and writes only their own rows. A teacher
 reads rows of students who share a group, and never writes a student's progress. Never
 disable RLS "temporarily". Never query with the service-role key to work around it.
@@ -372,7 +379,9 @@ after it places the student at unit 4; the result survives being handed in.
 
 1. No demo or seeded accounts anywhere; no password shipped in code or docs.
 2. Re-verify RLS on every table, and the access gate in §5, with a second logged-in
-   student account, not just in theory.
+   student account, not just in theory. Done once the content was complete: a student outside
+   the group reads 0 rows from every table, a student in it reads only their own, the teacher
+   reads their own students and nobody else's.
 3. Turn on database backups (Supabase Pro).
 4. Custom domain live on HTTPS, `*.vercel.app` still working as a fallback.
 5. Record what `recordings-todo.txt` lists in the same single voice, drop the mp3s into
