@@ -120,7 +120,8 @@ const slug = (t: string) =>
 - listening exercise → `slug(ex.text)`
 - speaking model answer → `slug(speak.model)`
 
-All 92 files exist and cover 100% of units 1–2. Play them with a plain `<audio>` element.
+All 540 lines are recorded — every vocabulary card, dictation, listening item and speaking
+model in all 12 units. Play them with a plain `<audio>` element.
 
 **Never edit the `audio` map by hand.** Run `node scripts/audio.mjs`: it rebuilds the map from
 the mp3s actually in `public/audio/el/` and writes `recordings-todo.txt` — every line the content
@@ -388,9 +389,10 @@ after it places the student at unit 4; the result survives being handed in.
    reads their own students and nobody else's.
 3. Turn on database backups (Supabase Pro).
 4. Custom domain live on HTTPS, `*.vercel.app` still working as a fallback.
-5. Record what `recordings-todo.txt` lists in the same single voice, drop the mp3s into
-   `public/audio/el/` and run `node scripts/audio.mjs`. Units 3–12 are live but their
-   listening and dictation tasks stay hidden until their audio lands — 450 lines outstanding.
+5. Recording is done — nothing outstanding, and `recordings-todo.txt` is gone because the
+   script deletes it once the list is empty. Content added later goes through the same loop:
+   write the line, run `node scripts/audio.mjs`, record what it lists, drop the mp3s into
+   `public/audio/el/`, run it again.
 6. Content licence: the syllabus follows a published coursebook, but every text, example and
    exercise in the JSON is original. Keep it that way — do not paste in coursebook text.
 
