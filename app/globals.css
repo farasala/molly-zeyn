@@ -1821,8 +1821,20 @@ a.level-card:hover {
     font-size: var(--fs-body-lg);
   }
 
+  /*
+   * Matching stays in two columns on a phone. Collapsing to one stacked every
+   * word above every meaning, so the word the student had just tapped was
+   * 370px off screen while they chose its partner — the pairing, which is the
+   * whole task, became invisible. Narrow columns with smaller type wrap onto
+   * three or four lines and keep both halves of the pair in view.
+   */
   .match-grid {
-    grid-template-columns: 1fr;
+    gap: var(--space-3);
+  }
+
+  .match-item {
+    font-size: 15px;
+    padding: 12px;
   }
 
   .score-title {
@@ -2399,7 +2411,7 @@ select.field-input {
   white-space: nowrap;
 }
 
-/* sound sorting: loose words above, labelled bins below */
+/* sorting into groups: loose words above, labelled bins below */
 
 .bin-grid {
   display: grid;
@@ -2443,4 +2455,15 @@ select.field-input {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-2);
+}
+
+/*
+ * On a phone the bins are one per row, so an empty one is 130px of nothing
+ * between the student and the next group. Room for a single row of chips is
+ * enough to read as a drop target; it grows as words land in it.
+ */
+@media (max-width: 760px) {
+  .bin {
+    min-height: 92px;
+  }
 }
