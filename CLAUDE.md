@@ -430,9 +430,26 @@ course from 540 recorded lines to 792.
 **Check:** every lesson's Speaking tab shows 10 tasks, each with its own model answer and its
 own recording; `node scripts/audio.mjs` reports nothing left to record.
 
+### Stage 11 — access check on /api/check and /api/clip — DONE
+
+Both routes resolve a lesson straight from an id the browser sends, and until this stage both
+only checked that *someone* was signed in — not that they were entitled to *that lesson*.
+Lesson ids are short and guessable ("6C", "12A"), so a signed-in student could ask either
+route for a lesson they had not unlocked yet and get back its answer or its audio, even
+though the question itself never reaches them any other way. `canAccessLesson` in
+`lib/access.ts` closes it: true for a teacher, true for a student whose own `lesson_access`
+covers that lesson, false otherwise — a plain row lookup, not the page-render round trip the
+route was built to avoid, so the per-answer latency a 15-task drill depends on is unaffected.
+
+**Check:** with a real student JWT, a lesson not in that student's `lesson_access` returns
+403 from both routes; the same lesson after it is granted returns the real answer and, where
+one exists, the audio; a different, still-ungranted lesson stays at 403; a teacher gets
+through regardless. Free practice and Warmup, which call these same routes, were unaffected
+because they only ever address lessons already in the caller's own access.
+
 ---
 
-## 11. Before the first real students
+## 12. Before the first real students
 
 1. No demo or seeded accounts anywhere; no password shipped in code or docs.
    Minimum password length is 8, set in `MIN_PASSWORD` in both auth-actions.ts and
@@ -454,7 +471,7 @@ own recording; `node scripts/audio.mjs` reports nothing left to record.
 
 ---
 
-## 12. Working rules
+## 13. Working rules
 
 - One stage per session. Report what you did and what the check is; wait for the result.
 - Server components for data fetching; client components only where interaction needs them.

@@ -1,4 +1,5 @@
 import { type NextRequest, NextResponse } from 'next/server';
+import { canAccessLesson } from '@/lib/access';
 import { getLessonById } from '@/lib/content';
 import { checkExercise } from '@/lib/exercises';
 import { createClient } from '@/lib/supabase/server';
@@ -39,6 +40,13 @@ export async function POST(request: NextRequest) {
 
   if (typeof lessonId !== 'string' || typeof index !== 'number' || typeof given !== 'string') {
     return NextResponse.json({ ok: false, correct: false, expected: '' }, { status: 400 });
+  }
+
+  // Being signed in is not being entitled to this lesson. Without this, any
+  // student could ask for a lesson they have not unlocked yet and read its
+  // answer back — one devtools panel closer than the question ever gets.
+  if (!(await canAccessLesson(supabase, user.id, LEVEL_ID, lessonId))) {
+    return NextResponse.json({ ok: false, correct: false, expected: '' }, { status: 403 });
   }
 
   const exercise = getLessonById(LEVEL_ID, lessonId)?.lesson.ex?.[index];

@@ -55,3 +55,38 @@ export function unitReachable(
   if (isTeacher) return true;
   return lessonIds.some((id) => access.open.has(id) || access.assigned.has(id));
 }
+
+/**
+ * True when this user may read one lesson's content right now — the teacher,
+ * always, or a student whose own lesson_access covers it.
+ *
+ * The two route handlers that resolve a lesson straight from an id the
+ * browser sent (/api/check, /api/clip) have no page and no lessonState() to
+ * lean on — they only checked that someone was signed in, not that they were
+ * signed in as the right someone. This is that same open/shut rule, checked
+ * directly against the id the request named. Without it a signed-in student
+ * could ask either route for a lesson they have not unlocked yet and get
+ * back its answer or its audio, even though the question itself never
+ * reaches them any other way.
+ */
+export async function canAccessLesson(
+  supabase: Awaited<ReturnType<typeof createClient>>,
+  userId: string,
+  levelId: string,
+  lessonId: string,
+): Promise<boolean> {
+  const { data: profile } = await supabase
+    .from('profiles')
+    .select('role')
+    .eq('id', userId)
+    .maybeSingle();
+  if (profile?.role === 'teacher') return true;
+
+  const { data: access } = await supabase
+    .from('lesson_access')
+    .select('lesson_id')
+    .eq('level_id', levelId)
+    .eq('lesson_id', lessonId)
+    .maybeSingle();
+  return Boolean(access);
+}
