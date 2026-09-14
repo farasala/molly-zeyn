@@ -110,7 +110,7 @@ export default async function DashboardPage() {
             </Link>
             {isTeacher && (
               <Link className="pill-button is-ghost" href="/teacher">
-                Groups and students
+                Your students
               </Link>
             )}
           </div>

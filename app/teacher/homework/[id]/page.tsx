@@ -60,7 +60,7 @@ export default async function HomeworkReviewPage({ params, searchParams }: Props
       <div className="page">
         <header className="page-head">
           <p className="page-eyebrow">
-            <Link href="/teacher">Groups</Link> · Unit {review.unitN} ·{' '}
+            <Link href="/teacher">Your students</Link> · Unit {review.unitN} ·{' '}
             <Link href={`/lessons/${review.lessonId}?stage=homework`}>{review.lessonId}</Link>
           </p>
           <h1 className="page-title">{review.title}</h1>

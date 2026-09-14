@@ -8,6 +8,12 @@ import { createClient } from '@/lib/supabase/server';
 
 const LEVEL_ID = 'elementary';
 
+// A "persistent" link on columns that were built with a use-count and an
+// expiry: generous values rather than no limit, so one link handles every
+// student a teacher will ever invite without them thinking about it again.
+const INVITE_MAX_USES = 500;
+const INVITE_LIFETIME_DAYS = 730;
+
 export type ActionResult = { ok: boolean; message?: string };
 
 /** A token short enough to paste into a chat, long enough not to be guessed. */
@@ -15,36 +21,55 @@ function newToken(): string {
   return randomBytes(12).toString('base64url');
 }
 
-export async function createGroup(formData: FormData): Promise<ActionResult> {
-  const teacher = await getTeacher();
-  if (!teacher) return { ok: false, message: 'Only a teacher can create a group.' };
-
-  const name = String(formData.get('name') ?? '').trim();
-  if (name.length < 2) return { ok: false, message: 'Give the group a name first.' };
-
-  const supabase = await createClient();
-  const { error } = await supabase
+/**
+ * The one group a teacher's students land in. Groups still exist in the
+ * schema — `teaches()` and everything that follows it in RLS depend on group
+ * membership — but nobody manages one by hand any more. The first time an
+ * invitation link is needed, one is made quietly and reused after that.
+ */
+async function ensureRosterGroup(
+  supabase: Awaited<ReturnType<typeof createClient>>,
+  teacherId: string,
+  teacherName: string,
+): Promise<string | null> {
+  const { data: existing } = await supabase
     .from('groups')
-    .insert({ teacher_id: teacher.profile.id, name });
+    .select('id')
+    .eq('teacher_id', teacherId)
+    .order('created_at', { ascending: true })
+    .limit(1)
+    .maybeSingle();
 
-  if (error) return { ok: false, message: 'The group could not be created. Try again.' };
+  if (existing) return existing.id;
 
-  revalidatePath('/teacher');
-  return { ok: true };
+  const { data: created } = await supabase
+    .from('groups')
+    .insert({ teacher_id: teacherId, name: `${teacherName}'s students` })
+    .select('id')
+    .single();
+
+  return created?.id ?? null;
 }
 
-export async function createInvite(formData: FormData): Promise<ActionResult> {
+/**
+ * Makes the link a teacher hands to every new student. Calling it again
+ * while a link is still good just shows that one — see the "New Link" button
+ * on /teacher, which is really "give up on this one and make another."
+ */
+export async function createInvite(_formData: FormData): Promise<ActionResult> {
   const teacher = await getTeacher();
   if (!teacher) return { ok: false, message: 'Only a teacher can invite students.' };
 
-  const groupId = String(formData.get('groupId') ?? '');
-  if (!groupId) return { ok: false, message: 'Pick a group for the invitation.' };
-
   const supabase = await createClient();
+  const groupId = await ensureRosterGroup(supabase, teacher.profile.id, teacher.profile.full_name);
+  if (!groupId) return { ok: false, message: 'The link could not be created. Try again.' };
+
   const { error } = await supabase.from('invites').insert({
     token: newToken(),
     teacher_id: teacher.profile.id,
     group_id: groupId,
+    max_uses: INVITE_MAX_USES,
+    expires_at: new Date(Date.now() + INVITE_LIFETIME_DAYS * 86_400_000).toISOString(),
   });
 
   if (error) return { ok: false, message: 'The link could not be created. Try again.' };
@@ -66,18 +91,20 @@ export async function revokeInvite(formData: FormData): Promise<ActionResult> {
 }
 
 /**
- * Sets homework for one lesson. The task list is worked out now and stored,
- * so what the student answers is what the teacher later reads back.
+ * Sets homework for one lesson, for one or more students picked by name —
+ * one row per student. That is what keeps "handed in" a plain yes or no:
+ * a shared row that pointed at a group made it a fraction, and one student
+ * running ahead of another inside the same row had nowhere honest to show.
  */
 export async function assignHomework(formData: FormData): Promise<ActionResult> {
   const teacher = await getTeacher();
   if (!teacher) return { ok: false, message: 'Only a teacher can set homework.' };
 
   const lessonId = String(formData.get('lessonId') ?? '');
-  const groupId = String(formData.get('groupId') ?? '');
+  const studentIds = formData.getAll('studentIds').map(String).filter(Boolean);
   const dueRaw = String(formData.get('dueAt') ?? '').trim();
 
-  if (!groupId) return { ok: false, message: 'Pick a group to set this for.' };
+  if (studentIds.length === 0) return { ok: false, message: 'Pick at least one student.' };
 
   const plan = planHomework(LEVEL_ID, lessonId);
   if (!plan) {
@@ -85,16 +112,18 @@ export async function assignHomework(formData: FormData): Promise<ActionResult> 
   }
 
   const supabase = await createClient();
-  const { error } = await supabase.from('homework').insert({
+  const rows = studentIds.map((studentId) => ({
     teacher_id: teacher.profile.id,
-    group_id: groupId,
+    student_id: studentId,
     level_id: plan.levelId,
     unit_n: plan.unitN,
     lesson_id: plan.lessonId,
     title: plan.title,
     items: plan.items,
     due_at: dueRaw ? new Date(dueRaw).toISOString() : null,
-  });
+  }));
+
+  const { error } = await supabase.from('homework').insert(rows);
 
   if (error) return { ok: false, message: 'The homework could not be set. Try again.' };
 

@@ -54,12 +54,14 @@ export type HomeworkReview = {
   students: ReviewStudent[];
 };
 
+type Member = { id: string; full_name: string; avatar_color: string };
+
 export async function getHomeworkReview(homeworkId: string): Promise<HomeworkReview | null> {
   const supabase = await createClient();
 
   const { data: homework } = await supabase
     .from('homework')
-    .select('id, title, lesson_id, unit_n, level_id, created_at, due_at, group_id, items')
+    .select('id, title, lesson_id, unit_n, level_id, created_at, due_at, group_id, student_id, items')
     .eq('id', homeworkId)
     .maybeSingle();
 
@@ -67,21 +69,38 @@ export async function getHomeworkReview(homeworkId: string): Promise<HomeworkRev
 
   const refs = parseItems(homework.items);
 
-  const [{ data: group }, { data: members }, { data: submissions }] = await Promise.all([
+  const [{ data: group }, { data: submissions }] = await Promise.all([
     homework.group_id
       ? supabase.from('groups').select('name').eq('id', homework.group_id).maybeSingle()
       : Promise.resolve({ data: null }),
-    homework.group_id
-      ? supabase
-          .from('group_members')
-          .select('student:student_id (id, full_name, avatar_color)')
-          .eq('group_id', homework.group_id)
-      : Promise.resolve({ data: [] }),
     supabase
       .from('homework_submissions')
       .select('id, student_id, status, score, total, submitted_at')
       .eq('homework_id', homeworkId),
   ]);
+
+  // Two shapes for the same question — "who was this set for?" — because a
+  // row now targets one student directly instead of a whole group. Both
+  // collapse to the same flat list of profiles before anything below cares
+  // which one it was.
+  let memberProfiles: Member[] = [];
+  if (homework.group_id) {
+    const { data: members } = await supabase
+      .from('group_members')
+      .select('student:student_id (id, full_name, avatar_color)')
+      .eq('group_id', homework.group_id);
+    memberProfiles = (members ?? []).flatMap((row) => {
+      const student = row.student as unknown as Member | null;
+      return student ? [student] : [];
+    });
+  } else if (homework.student_id) {
+    const { data: profile } = await supabase
+      .from('profiles')
+      .select('id, full_name, avatar_color')
+      .eq('id', homework.student_id)
+      .maybeSingle();
+    if (profile) memberProfiles = [profile];
+  }
 
   const submissionIds = (submissions ?? []).map((row) => row.id);
   const { data: answers } = submissionIds.length
@@ -121,32 +140,25 @@ export async function getHomeworkReview(homeworkId: string): Promise<HomeworkRev
     ];
   });
 
-  const students: ReviewStudent[] = (members ?? []).flatMap((row) => {
-    const student = row.student as unknown as {
-      id: string;
-      full_name: string;
-      avatar_color: string;
-    } | null;
-    if (!student) return [];
-
-    const submission = (submissions ?? []).find((item) => item.student_id === student.id);
-    return [
-      {
+  const students: ReviewStudent[] = memberProfiles
+    .map((student) => {
+      const submission = (submissions ?? []).find((item) => item.student_id === student.id);
+      return {
         id: student.id,
         name: student.full_name,
         avatarColor: student.avatar_color,
         submissionId: submission?.id ?? null,
-        status: !submission
+        status: (!submission
           ? 'not started'
           : submission.status === 'submitted'
             ? 'handed in'
-            : 'in progress',
+            : 'in progress') as ReviewStudent['status'],
         score: submission?.score ?? 0,
         total: submission?.total ?? refs.length,
         submittedAt: submission?.submitted_at ?? null,
-      },
-    ];
-  });
+      };
+    })
+    .sort((a, b) => a.name.localeCompare(b.name));
 
   return {
     id: homework.id,
@@ -158,7 +170,7 @@ export async function getHomeworkReview(homeworkId: string): Promise<HomeworkRev
     dueAt: homework.due_at,
     groupName: (group as { name: string } | null)?.name ?? null,
     tasks: tasks.sort((a, b) => b.missedBy.length - a.missedBy.length || a.index - b.index),
-    students: students.sort((a, b) => a.name.localeCompare(b.name)),
+    students,
   };
 }
 

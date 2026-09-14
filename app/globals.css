@@ -2467,3 +2467,70 @@ select.field-input {
     min-height: 92px;
   }
 }
+
+/* ============================================================ student picker */
+
+.student-picker {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  border: none;
+  padding: 0;
+  margin: 0;
+  min-width: 220px;
+}
+
+.student-check {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--fs-body-lg);
+  font-weight: var(--fw-semibold);
+  color: var(--green-900);
+  cursor: pointer;
+}
+
+.student-check input {
+  width: 20px;
+  height: 20px;
+  accent-color: var(--green-900);
+  cursor: pointer;
+}
+
+/* ============================================================ warmup */
+
+/*
+ * A list, not a carousel: every task sits in the page at once and the
+ * student scrolls, the way the end-of-course test's per-unit breakdown
+ * reads as a list rather than a slideshow. Checking one row does not
+ * advance to the next.
+ */
+.warmup-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.warmup-row {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.warmup-badge {
+  align-self: flex-start;
+  font-size: 11px;
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  background: var(--neutral-100);
+  border-radius: var(--radius-pill);
+  padding: 4px var(--space-3);
+}

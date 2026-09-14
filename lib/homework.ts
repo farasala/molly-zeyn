@@ -87,7 +87,7 @@ export function resolveItem(
 }
 
 /** A matching task over the lesson's word list — word against its meaning. */
-function vocabExercise(lesson: Lesson, words: string[]): Exercise | null {
+export function vocabExercise(lesson: Lesson, words: string[]): Exercise | null {
   const byWord = new Map((lesson.vocab ?? []).map((entry) => [entry.w, entry]));
   const pairs: [string, string][] = [];
 

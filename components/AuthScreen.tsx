@@ -4,7 +4,7 @@ import { AuthForm } from '@/components/AuthForm';
 const POINTS = [
   'Sign up once — progress follows you to every lesson.',
   'Flashcards remember the words you marked as known.',
-  'Teachers see the whole group from one account.',
+  'Teachers see every student from one account.',
 ];
 
 export function AuthScreen({ mode }: { mode: 'login' | 'signup' }) {

@@ -5,20 +5,12 @@ import type { Role } from '@/lib/auth-state';
  *  filtering in the query, so a mistake here cannot leak another teacher's
  *  students. */
 
-export type Group = {
-  id: string;
-  name: string;
-  created_at: string;
-};
-
 export type Student = {
   id: string;
   full_name: string;
   role: Role;
   avatar_color: string;
 };
-
-export type GroupWithStudents = Group & { students: Student[] };
 
 export type Invite = {
   token: string;
@@ -28,40 +20,32 @@ export type Invite = {
   expires_at: string;
 };
 
-export async function getGroups(teacherId: string): Promise<GroupWithStudents[]> {
+/**
+ * Every student this teacher teaches, flattened across whatever groups sit
+ * underneath. A teacher never manages a group by hand — see `ensureRosterGroup`
+ * in app/teacher-actions.ts — so the UI works from one flat, sorted list.
+ */
+export async function getRoster(teacherId: string): Promise<Student[]> {
   const supabase = await createClient();
 
-  const { data: groups } = await supabase
-    .from('groups')
-    .select('id, name, created_at')
-    .eq('teacher_id', teacherId)
-    .order('created_at', { ascending: true });
-
+  const { data: groups } = await supabase.from('groups').select('id').eq('teacher_id', teacherId);
   if (!groups?.length) return [];
 
   const { data: members } = await supabase
     .from('group_members')
-    .select('group_id, student:student_id (id, full_name, role, avatar_color)')
+    .select('student:student_id (id, full_name, role, avatar_color)')
     .in(
       'group_id',
       groups.map((group) => group.id),
     );
 
-  const byGroup = new Map<string, Student[]>();
+  const byId = new Map<string, Student>();
   for (const row of members ?? []) {
     const student = row.student as unknown as Student | null;
-    if (!student) continue;
-    const list = byGroup.get(row.group_id) ?? [];
-    list.push(student);
-    byGroup.set(row.group_id, list);
+    if (student) byId.set(student.id, student);
   }
 
-  return groups.map((group) => ({
-    ...group,
-    students: (byGroup.get(group.id) ?? []).sort((a, b) =>
-      a.full_name.localeCompare(b.full_name),
-    ),
-  }));
+  return [...byId.values()].sort((a, b) => a.full_name.localeCompare(b.full_name));
 }
 
 export async function getInvites(teacherId: string): Promise<Invite[]> {

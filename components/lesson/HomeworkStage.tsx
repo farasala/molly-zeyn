@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { ActionForm } from '@/components/ActionForm';
 import { assignHomework, deleteHomework } from '@/app/teacher-actions';
 import { startHomework } from '@/app/homework-actions';
-import type { AssignedHomework, GroupWithStudents, SubmissionRow } from '@/lib/teaching';
+import type { AssignedHomework, Student, SubmissionRow } from '@/lib/teaching';
 
 type StudentView = {
   homework: AssignedHomework;
@@ -66,19 +66,22 @@ export function StudentHomework({ rows, lessonId }: { rows: StudentView; lessonI
 
 type TeacherProps = {
   lessonId: string;
-  groups: GroupWithStudents[];
+  students: Student[];
   assigned: AssignedHomework[];
   submissions: SubmissionRow[];
 };
 
-/** What the teacher sees: set it, and who has done it. */
-export function TeacherHomework({ lessonId, groups, assigned, submissions }: TeacherProps) {
+/** What the teacher sees: pick names, set it, and who has done it. */
+export function TeacherHomework({ lessonId, students, assigned, submissions }: TeacherProps) {
   const byHomework = new Map<string, SubmissionRow[]>();
   for (const row of submissions) {
     const list = byHomework.get(row.homework_id) ?? [];
     list.push(row);
     byHomework.set(row.homework_id, list);
   }
+
+  const nameOf = (id: string | null) =>
+    students.find((student) => student.id === id)?.full_name ?? 'A student no longer on your roster';
 
   return (
     <>
@@ -89,10 +92,9 @@ export function TeacherHomework({ lessonId, groups, assigned, submissions }: Tea
           items from the unit test. Finishing it opens the lesson for that student.
         </p>
 
-        {groups.length === 0 ? (
+        {students.length === 0 ? (
           <p className="card-text">
-            You have no groups yet. <Link href="/teacher">Create one first</Link> — a one-to-one
-            student is a group of one.
+            You have no students yet. <Link href="/teacher">Send your invitation link</Link> first.
           </p>
         ) : (
           <ActionForm
@@ -102,16 +104,15 @@ export function TeacherHomework({ lessonId, groups, assigned, submissions }: Tea
             pendingLabel="Setting…"
           >
             <input type="hidden" name="lessonId" value={lessonId} />
-            <label className="field">
-              <span className="field-label">Group</span>
-              <select className="field-input" name="groupId" defaultValue={groups[0].id}>
-                {groups.map((group) => (
-                  <option key={group.id} value={group.id}>
-                    {group.name} ({group.students.length})
-                  </option>
-                ))}
-              </select>
-            </label>
+            <fieldset className="student-picker">
+              <legend className="field-label">Students</legend>
+              {students.map((student) => (
+                <label className="student-check" key={student.id}>
+                  <input type="checkbox" name="studentIds" value={student.id} defaultChecked />
+                  {student.full_name}
+                </label>
+              ))}
+            </fieldset>
             <label className="field">
               <span className="field-label">Due (optional)</span>
               <input className="field-input" type="date" name="dueAt" />
@@ -126,20 +127,19 @@ export function TeacherHomework({ lessonId, groups, assigned, submissions }: Tea
           <ul className="hw-list">
             {assigned.map((homework) => {
               const rows = byHomework.get(homework.id) ?? [];
-              const group = groups.find((item) => item.id === homework.group_id);
               const done = rows.filter((row) => row.status === 'submitted');
 
               return (
                 <li className="hw-row" key={homework.id}>
                   <div className="hw-row-main">
                     <span className="hw-row-title">
-                      {group?.name ?? 'One student'} · set{' '}
+                      {nameOf(homework.student_id)} · set{' '}
                       {new Date(homework.created_at).toLocaleDateString('en-GB')}
                     </span>
                     <span className="hw-row-sub">
-                      {done.length} of {group?.students.length ?? rows.length} handed in
-                      {done.length > 0 &&
-                        ` · ${done.map((row) => `${row.score}/${row.total}`).join(', ')}`}
+                      {done.length > 0
+                        ? `Handed in · ${done.map((row) => `${row.score}/${row.total}`).join(', ')}`
+                        : 'Not handed in yet'}
                     </span>
                   </div>
                   <div className="hw-row-actions">

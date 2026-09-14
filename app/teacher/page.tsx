@@ -1,24 +1,26 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import { redirect } from 'next/navigation';
-import { createGroup, createInvite, revokeInvite } from '@/app/teacher-actions';
+import { createInvite, revokeInvite } from '@/app/teacher-actions';
 import { ActionForm } from '@/components/ActionForm';
 import { AppHeader } from '@/components/AppHeader';
 import { InviteLink } from '@/components/teacher/InviteLink';
 import { getTeacher } from '@/lib/auth';
-import { getGroups, getInvites, getStudentTests } from '@/lib/teaching';
+import { getInvites, getRoster, getStudentTests } from '@/lib/teaching';
 
-export const metadata: Metadata = { title: 'Groups · English Studio' };
+export const metadata: Metadata = { title: 'Students · English Studio' };
 
 export default async function TeacherPage() {
   const teacher = await getTeacher();
   if (!teacher) redirect('/dashboard');
 
-  const groups = await getGroups(teacher.profile.id);
-  const invites = await getInvites(teacher.profile.id);
-  const tests = await getStudentTests(
-    groups.flatMap((group) => group.students.map((student) => student.id)),
-    'elementary',
+  const roster = await getRoster(teacher.profile.id);
+  const [invites, tests] = await Promise.all([
+    getInvites(teacher.profile.id),
+    getStudentTests(roster.map((student) => student.id), 'elementary'),
+  ]);
+
+  const activeInvites = invites.filter(
+    (invite) => invite.used_count < invite.max_uses && new Date(invite.expires_at) > new Date(),
   );
 
   return (
@@ -28,100 +30,73 @@ export default async function TeacherPage() {
       <div className="page">
         <header className="page-head">
           <p className="page-eyebrow">Teaching</p>
-          <h1 className="page-title">Groups and students</h1>
+          <h1 className="page-title">Your students</h1>
           <p className="page-lead">
-            A group is however you teach: a class, or a single student on their own. Students join
-            through a link — there is no open sign-up, so nobody arrives by accident.
+            Send a new student the link below once. They register, and they show up in the list —
+            no group to set up first.
           </p>
         </header>
 
         <section className="card">
-          <h2 className="card-title">New group</h2>
-          <ActionForm className="inline-form" action={createGroup} submitLabel="Create Group">
-            <label className="field">
-              <span className="field-label">Name</span>
-              <input
-                className="field-input"
-                name="name"
-                placeholder="Aigerim · Tue and Thu"
-                required
-                minLength={2}
-              />
-            </label>
-          </ActionForm>
+          <h2 className="card-title">Invitation link</h2>
+          {activeInvites.length === 0 ? (
+            <ActionForm action={createInvite} submitLabel="Create Your Invitation Link" />
+          ) : (
+            <div className="invite-block">
+              {activeInvites.map((invite) => (
+                <InviteLink
+                  key={invite.token}
+                  token={invite.token}
+                  used={invite.used_count}
+                  max={invite.max_uses}
+                  expiresAt={invite.expires_at}
+                  revoke={revokeInvite}
+                />
+              ))}
+              <ActionForm action={createInvite} submitLabel="New Link" variant="plain" />
+            </div>
+          )}
         </section>
 
-        {groups.length === 0 ? (
-          <section className="card">
-            <h2 className="card-title">No groups yet</h2>
-            <p className="card-text">
-              Create one above, then make an invitation link for it and send that to your student.
-            </p>
-          </section>
-        ) : (
-          groups.map((group) => {
-            const groupInvites = invites.filter((invite) => invite.group_id === group.id);
+        <section className="card">
+          <h2 className="card-title">
+            {roster.length === 0
+              ? 'No students yet'
+              : `${roster.length} student${roster.length === 1 ? '' : 's'}`}
+          </h2>
 
-            return (
-              <section className="card" key={group.id}>
-                <h2 className="card-title">{group.name}</h2>
-
-                {group.students.length === 0 ? (
-                  <p className="card-text">
-                    Nobody has joined yet. Send them the invitation link below.
-                  </p>
-                ) : (
-                  <ul className="student-list">
-                    {group.students.map((student) => (
-                      <li className="student-row" key={student.id}>
-                        <span
-                          className="avatar is-small"
-                          style={{ background: student.avatar_color }}
-                          aria-hidden="true"
-                        >
-                          {student.full_name.trim().charAt(0).toUpperCase()}
-                        </span>
-                        <span className="student-name">{student.full_name}</span>
-                        <span className="student-score">
-                          {tests.get(student.id)?.entry
-                            ? `Placement ${tests.get(student.id)!.entry!.score}/${tests.get(student.id)!.entry!.total} · start unit ${tests.get(student.id)!.entry!.startAt}`
-                            : 'No placement test'}
-                        </span>
-                        {tests.get(student.id)?.final && (
-                          <span className="student-score">
-                            End of course {tests.get(student.id)!.final!.score}/
-                            {tests.get(student.id)!.final!.total}
-                          </span>
-                        )}
-                      </li>
-                    ))}
-                  </ul>
-                )}
-
-                <div className="invite-block">
-                  {groupInvites.map((invite) => (
-                    <InviteLink
-                      key={invite.token}
-                      token={invite.token}
-                      used={invite.used_count}
-                      max={invite.max_uses}
-                      expiresAt={invite.expires_at}
-                      revoke={revokeInvite}
-                    />
-                  ))}
-
-                  <ActionForm
-                    action={createInvite}
-                    submitLabel={groupInvites.length ? 'New Link' : 'Create Invitation Link'}
-                    variant="plain"
-                  >
-                    <input type="hidden" name="groupId" value={group.id} />
-                  </ActionForm>
-                </div>
-              </section>
-            );
-          })
-        )}
+          {roster.length === 0 ? (
+            <p className="card-text">Nobody has joined yet. Send them the link above.</p>
+          ) : (
+            <ul className="student-list">
+              {roster.map((student) => {
+                const record = tests.get(student.id);
+                return (
+                  <li className="student-row" key={student.id}>
+                    <span
+                      className="avatar is-small"
+                      style={{ background: student.avatar_color }}
+                      aria-hidden="true"
+                    >
+                      {student.full_name.trim().charAt(0).toUpperCase()}
+                    </span>
+                    <span className="student-name">{student.full_name}</span>
+                    <span className="student-score">
+                      {record?.entry
+                        ? `Placement ${record.entry.score}/${record.entry.total} · start unit ${record.entry.startAt}`
+                        : 'No placement test'}
+                    </span>
+                    {record?.final && (
+                      <span className="student-score">
+                        End of course {record.final.score}/{record.final.total}
+                      </span>
+                    )}
+                  </li>
+                );
+              })}
+            </ul>
+          )}
+        </section>
       </div>
     </div>
   );

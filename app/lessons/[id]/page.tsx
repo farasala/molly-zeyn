@@ -5,20 +5,23 @@ import { AppHeader } from '@/components/AppHeader';
 import { GrammarStage } from '@/components/lesson/GrammarStage';
 import { SpeakingStage, type SpeakItem } from '@/components/lesson/SpeakingStage';
 import { VocabularyStage, type VocabItem } from '@/components/lesson/VocabularyStage';
+import { WarmupRunner } from '@/components/lesson/WarmupRunner';
 import { audioSlug, audioUrl, vocabSlug } from '@/lib/audio';
 import { requireAccount } from '@/lib/auth';
 import { getLessonById, hasAudio } from '@/lib/content';
 import { EMPTY_ACCESS, getStudentAccess, lessonState } from '@/lib/access';
 import { PracticeRunner } from '@/components/practice/PracticeRunner';
 import { StudentHomework, TeacherHomework } from '@/components/lesson/HomeworkStage';
-import { getGroups, getSubmissions, getTeacherHomework } from '@/lib/teaching';
+import { getRoster, getSubmissions, getTeacherHomework } from '@/lib/teaching';
 import { createClient } from '@/lib/supabase/server';
 import { EXERCISE_NAMES, isPlayable, shuffle, toPublicItem } from '@/lib/exercises';
+import { planWarmup } from '@/lib/warmup';
 
 const LEVEL_ID = 'elementary';
 
 const STAGES = [
   { id: 'overview', label: 'Overview' },
+  { id: 'warmup', label: 'Warmup' },
   { id: 'vocab', label: 'Vocabulary' },
   { id: 'grammar', label: 'Grammar' },
   { id: 'practice', label: 'Practice' },
@@ -111,16 +114,12 @@ export default async function LessonPage({ params, searchParams }: Props) {
     audio: urlFor(audioSlug(prompt.model)),
   }));
 
-  // A dictation with no recording yet is not dealt out, so the count the
-  // student is promised has to be the playable one.
   const exercises = (lesson.ex ?? []).filter(isPlayable);
   const kinds = [...new Set(exercises.map((exercise) => EXERCISE_NAMES[exercise.t]))];
 
-  // Stripped of their answers and reshuffled on every visit. `i` keeps each
-  // task's index in the lesson, which is how the server checks the answer.
   const isTeacher = account.user.profile.role === 'teacher';
 
-  const groups = isTeacher ? await getGroups(account.user.profile.id) : [];
+  const students = isTeacher ? await getRoster(account.user.profile.id) : [];
   const teacherHomework = isTeacher
     ? await getTeacherHomework(account.user.profile.id, lesson.id)
     : [];
@@ -132,7 +131,6 @@ export default async function LessonPage({ params, searchParams }: Props) {
   const access = isTeacher ? EMPTY_ACCESS : await getStudentAccess(LEVEL_ID);
   const state = lessonState(isTeacher, lesson.id, access);
 
-  // Homework first, then the rest of the lesson once it is handed in.
   const stage = state === 'homework-only' ? 'homework' : requestedStage;
 
   const practiceItems = shuffle(
@@ -142,11 +140,15 @@ export default async function LessonPage({ params, searchParams }: Props) {
       .map(({ exercise, index }) => toPublicItem(exercise, index, `/api/clip/${lesson.id}`)),
   );
 
+  const warmupItems =
+    locked || state === 'shut'
+      ? []
+      : planWarmup(LEVEL_ID, lesson.id, isTeacher ? null : access.open);
+
   return (
     <div className="shell">
       <AppHeader user={account.user} />
 
-      {/* the accent lives on the page so the flashcard and badges all share it */}
       <div className={`page accent-${unit.accent}`}>
         <section className="lesson-head">
           <div className="lesson-head-top">
@@ -160,15 +162,13 @@ export default async function LessonPage({ params, searchParams }: Props) {
               </div>
             </div>
             <Link className="pill-button" href={`/levels/${LEVEL_ID}`}>
-              ← Back to units
+              Back to units
             </Link>
           </div>
 
           {!locked && state !== 'shut' && (
             <nav className="stage-tabs" aria-label="Lesson stages">
               {STAGES.map((item) => {
-                // Until the homework is handed in, the rest of the lesson is
-                // not a link — it is shown so the student can see what opens.
                 const sealed = state === 'homework-only' && item.id !== 'homework';
                 return sealed ? (
                   <span className="stage-tab is-sealed" key={item.id} aria-disabled="true">
@@ -191,7 +191,7 @@ export default async function LessonPage({ params, searchParams }: Props) {
 
         {locked ? (
           <section className="stage-card is-locked">
-            <h2 className="locked-title">Syllabus is set — content in production</h2>
+            <h2 className="locked-title">Syllabus is set - content in production</h2>
             <p className="locked-text">
               This lesson already has its slot in the course map: grammar focus <b>{lesson.g}</b>,
               lexical set <b>{lesson.v}</b>. The vocabulary, grammar cards, exercises and speaking
@@ -206,7 +206,7 @@ export default async function LessonPage({ params, searchParams }: Props) {
             <h2 className="locked-title">This lesson is not open yet</h2>
             <p className="locked-text">
               Lessons open one at a time. You go through this one with your teacher, then the
-              homework for it appears here — finishing that opens the vocabulary, the grammar card,
+              homework for it appears here - finishing that opens the vocabulary, the grammar card,
               the exercises and the speaking tasks for you to go back over.
             </p>
             <Link className="pill-button is-primary is-wide" href="/dashboard">
@@ -225,46 +225,59 @@ export default async function LessonPage({ params, searchParams }: Props) {
 
             {stage === 'overview' && (
               <section className="overview-grid">
-                <Link className="overview-card" href={`/lessons/${lesson.id}?stage=vocab`}>
+                <Link className="overview-card" href={`/lessons/${lesson.id}?stage=warmup`}>
                   <span className="overview-step">Step 1</span>
+                  <h2 className="overview-title">Warmup</h2>
+                  <p className="overview-sub">
+                    {warmupItems.length > 0
+                      ? `${warmupItems.length} tasks back from earlier lessons, to get you back into it.`
+                      : 'Nothing to warm up with yet - this is as far back as it goes.'}
+                  </p>
+                  <span className="overview-cta">Start warmup</span>
+                </Link>
+
+                <Link className="overview-card" href={`/lessons/${lesson.id}?stage=vocab`}>
+                  <span className="overview-step">Step 2</span>
                   <h2 className="overview-title">Vocabulary</h2>
                   <p className="overview-sub">
-                    {vocab.length} words from “{lesson.v}” with phonemics, meaning and an
+                    {vocab.length} words from this lesson's set, with phonemics, meaning and an
                     example{vocabAudio ? ', read out loud' : ''}.
                   </p>
-                  <span className="overview-cta">Open flashcards →</span>
+                  <span className="overview-cta">Open flashcards</span>
                 </Link>
 
                 <Link className="overview-card" href={`/lessons/${lesson.id}?stage=grammar`}>
-                  <span className="overview-step">Step 2</span>
+                  <span className="overview-step">Step 3</span>
                   <h2 className="overview-title">Grammar</h2>
                   <p className="overview-sub">
-                    The rule on the big screen — {lesson.g}: forms, examples and the mistakes
+                    The rule on the big screen - {lesson.g}: forms, examples and the mistakes
                     to head off.
                   </p>
-                  <span className="overview-cta">Show the rule →</span>
+                  <span className="overview-cta">Show the rule</span>
                 </Link>
 
                 <Link className="overview-card" href={`/lessons/${lesson.id}?stage=practice`}>
-                  <span className="overview-step">Step 3</span>
+                  <span className="overview-step">Step 4</span>
                   <h2 className="overview-title">Practice</h2>
                   <p className="overview-sub">
                     {exercises.length} exercises: {kinds.join(', ')}.
                   </p>
-                  <span className="overview-cta">Start practice →</span>
+                  <span className="overview-cta">Start practice</span>
                 </Link>
 
                 <Link className="overview-card" href={`/lessons/${lesson.id}?stage=speaking`}>
-                  <span className="overview-step">Step 4</span>
+                  <span className="overview-step">Step 5</span>
                   <h2 className="overview-title">Speaking</h2>
                   <p className="overview-sub">
                     {prompts.length} prompts for pair or solo work, each with a model answer you can
                     reveal.
                   </p>
-                  <span className="overview-cta">Open tasks →</span>
+                  <span className="overview-cta">Open tasks</span>
                 </Link>
               </section>
             )}
+
+            {stage === 'warmup' && <WarmupRunner items={warmupItems} />}
 
             {stage === 'vocab' && <VocabularyStage words={vocab} lexicalSet={lesson.v} />}
 
@@ -292,7 +305,7 @@ export default async function LessonPage({ params, searchParams }: Props) {
               (isTeacher ? (
                 <TeacherHomework
                   lessonId={lesson.id}
-                  groups={groups}
+                  students={students}
                   assigned={teacherHomework}
                   submissions={teacherSubmissions}
                 />

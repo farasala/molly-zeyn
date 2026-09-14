@@ -196,10 +196,11 @@ submitted homework covers that lesson, or a teacher granted it by hand.
 
 Students join **by invitation only**. There is no open sign-up.
 
-1. Teacher creates a group (one-to-one is a group of one) and gets a link `/join/<token>`.
+1. The teacher has one invitation link, `/join/<token>`, made the first time it is needed and
+   reused for every student after that — there is no group to name first.
 2. The student opens it, sees who invited them, and registers with an email.
-3. Consuming the token adds them to the group. **The role comes from the invite and is
-   always `student`** — the Student/Teacher choice comes out of the sign-up form.
+3. Consuming the token adds them to that teacher's roster. **The role comes from the invite
+   and is always `student`** — the Student/Teacher choice comes out of the sign-up form.
 4. Teacher accounts are created by hand: register, then set `role = 'teacher'` in `profiles`.
 
 ## 6. Data model
@@ -210,7 +211,10 @@ that needs it — do not rewrite the applied file, add to it.
 Already live:
 
 - `profiles` — `full_name`, `role` (`student` | `teacher`), `avatar_color`, `created_at`.
-- `groups`, `group_members` — a teacher's classes.
+- `groups`, `group_members` — still what `teaches()` and the RLS built on it key off, but a
+  teacher never manages one by hand. `app/teacher-actions.ts` makes one roster group quietly
+  the first time an invitation link is needed. The UI shows one flat, sorted list of students —
+  see stage 9.
 - `activity_results` — one row per finished practice, unit test or course test. Keep every
   attempt; show the best per activity, and use the sum of `xp` for total XP.
   `kind` is `practice` | `test` | `entry` | `final`. The two course tests store
@@ -225,7 +229,7 @@ To come:
 | Table | What it holds |
 |---|---|
 | `invites` | `token`, `teacher_id`, `group_id`, `expires_at`, `max_uses`, `used_count` |
-| `homework` | `teacher_id`, `group_id`/`student_id`, `level_id`, `unit_n`, `lesson_id`, `items` (jsonb: the exact task list and its order), `due_at` |
+| `homework` | `teacher_id`, `group_id`/`student_id`, `level_id`, `unit_n`, `lesson_id`, `items` (jsonb: the exact task list and its order), `due_at` — as of stage 9 a new row always sets `student_id` and leaves `group_id` null: one row per student keeps "handed in" a plain yes or no instead of a fraction over a group. `group_id` stays on the table for the rows that already used it. |
 | `homework_submissions` | `homework_id`, `student_id`, `attempt`, `status` (`assigned`\|`in_progress`\|`submitted`), `score`, `total`, `xp`, `submitted_at` |
 | `homework_answers` | `submission_id`, `item_index`, `given`, `correct`, `answered_at` |
 | `lesson_access` | `student_id`, `level_id`, `lesson_id`, `source` (`homework`\|`teacher`), `granted_at` |
@@ -296,7 +300,7 @@ protected routes, header with log out. Live and verified.
 
 ### Stage 2 — content — DONE
 `/levels`, `/levels/elementary`, `/lessons/[id]` with Overview / Vocabulary / Grammar /
-Practice / Speaking. Flashcards, word list, the grammar projection card, speaking prompts,
+Practice / Speaking (stage 9 adds Warmup). Flashcards, word list, the grammar projection card, speaking prompts,
 92 recordings. Live and verified. **Access is not yet restricted — stage 4 does that.**
 
 ### Stage 3 — exercise engine — DONE
@@ -378,9 +382,41 @@ and are fresh on the next navigation anyway.
 **Check:** the answer key never reaches the browser; a paper right through unit 3 and blank
 after it places the student at unit 4; the result survives being handed in.
 
+### Stage 9 — student roster and revision warm-up — DONE
+
+Two changes, shipped together because the second grew out of testing the first.
+
+**Roster.** A teacher no longer names a group before inviting anyone. `getRoster` in
+`lib/teaching.ts` flattens every group the teacher owns into one sorted student list;
+`ensureRosterGroup` in `app/teacher-actions.ts` makes the one group quietly, the first time
+an invitation link is made, and every invite after that reuses it. The link itself is
+"persistent" on columns built for a use-count and an expiry: 500 uses, a two-year expiry,
+not literal infinity. Assigning homework picks student names off a checkbox list, not a
+group from a dropdown — `assignHomework` inserts one `homework` row per student picked
+(`student_id` set, `group_id` null), so "handed in" reads as a plain yes or no per row
+instead of a fraction over a group that one student in it had already cleared. `lib/review.ts`
+reads either shape, so homework set before this stage still reviews correctly.
+
+**Warmup.** A new lesson tab between Overview and Vocabulary: a handful of tasks pulled back
+from lessons already covered, mixed in type (matching, a couple of the earlier lesson's own
+exercises, a speaking prompt to reveal), so a student meets a few of the earlier words and
+rules again right before the next class. `lib/warmup.ts` builds the list — nothing generated,
+every item a reference into a lesson the student already has open, same principle as
+homework — and it is never graded or saved: there is no score to disagree with. It needed its
+own check route, `/api/warmup-check`, because a warm-up item can be a synthetic vocabulary
+match built from a word list, which has no index into any lesson's `ex` array for `/api/check`
+to resolve. `WarmupRunner` renders every task in one page as a list, not a card — the whole
+point was to make it scroll like the end-of-course test's per-unit breakdown, not click through
+one full-screen task at a time; checking one task never advances to the next.
+
+**Check:** a fresh invitation link, a student who registers through it, and that student's
+name on a checkbox the moment the page is asked for again — no group to create first.
+A lesson with five units before it shows warmup tasks from several of them, each answerable
+and checked on its own; the first lesson in the course shows the empty state instead.
+
 ---
 
-## 9. Before the first real students
+## 10. Before the first real students
 
 1. No demo or seeded accounts anywhere; no password shipped in code or docs.
    Minimum password length is 8, set in `MIN_PASSWORD` in both auth-actions.ts and
@@ -402,7 +438,7 @@ after it places the student at unit 4; the result survives being handed in.
 
 ---
 
-## 10. Working rules
+## 11. Working rules
 
 - One stage per session. Report what you did and what the check is; wait for the result.
 - Server components for data fetching; client components only where interaction needs them.
