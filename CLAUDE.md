@@ -120,8 +120,9 @@ const slug = (t: string) =>
 - listening exercise → `slug(ex.text)`
 - speaking model answer → `slug(speak.model)`
 
-All 540 lines are recorded — every vocabulary card, dictation, listening item and speaking
-model in all 12 units. Play them with a plain `<audio>` element.
+All 792 lines are recorded — every vocabulary card, dictation, listening item and speaking
+model in all 12 units, ten speaking prompts per lesson (stage 10). Play them with a plain
+`<audio>` element.
 
 **Never edit the `audio` map by hand.** Run `node scripts/audio.mjs`: it rebuilds the map from
 the mp3s actually in `public/audio/el/` and writes `recordings-todo.txt` — every line the content
@@ -414,9 +415,24 @@ name on a checkbox the moment the page is asked for again — no group to create
 A lesson with five units before it shows warmup tasks from several of them, each answerable
 and checked on its own; the first lesson in the course shows the empty state instead.
 
+### Stage 10 — ten speaking prompts a lesson — DONE
+
+Speaking went from 3 prompts per lesson to 10 — 108 to 360 across the course, 252 new
+original prompt-and-model pairs, one lesson at a time, each one staying inside the grammar
+the lesson had actually taught by that point (no `have to` in a lesson that has not reached
+unit 11 yet, no present perfect before unit 12) so a student is never asked to produce a
+form they have not met. Checked for accidental duplicate model answers against the existing
+108 and against each other before recording — the slug is built from the model text, so two
+sentences that slugged the same would have silently shared one file. All 252 recorded in the
+same voice as the rest of the course and merged with `node scripts/audio.mjs`, taking the
+course from 540 recorded lines to 792.
+
+**Check:** every lesson's Speaking tab shows 10 tasks, each with its own model answer and its
+own recording; `node scripts/audio.mjs` reports nothing left to record.
+
 ---
 
-## 10. Before the first real students
+## 11. Before the first real students
 
 1. No demo or seeded accounts anywhere; no password shipped in code or docs.
    Minimum password length is 8, set in `MIN_PASSWORD` in both auth-actions.ts and
@@ -438,7 +454,7 @@ and checked on its own; the first lesson in the course shows the empty state ins
 
 ---
 
-## 11. Working rules
+## 12. Working rules
 
 - One stage per session. Report what you did and what the check is; wait for the result.
 - Server components for data fetching; client components only where interaction needs them.
